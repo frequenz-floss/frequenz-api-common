@@ -1,0 +1,48 @@
+// Frequenz microgrid component categories.
+//
+// Copyright:
+// Copyright 2023 Frequenz Energy-as-a-Service GmbH
+//
+// License:
+// MIT
+
+syntax = "proto3";
+
+package frequenz.api.common;
+
+// Enumrated component categories.
+enum ComponentCategory {
+    // An unknown component categories, useful for error handling, and marking
+    // unknown components in a list of components with otherwise known categories.
+    COMPONENT_CATEGORY_UNSPECIFIED = 0;
+
+    // The point where the local microgrid is connected to the grid.
+    COMPONENT_CATEGORY_GRID = 1;
+
+    // A meter, for measuring electrical metrics, e.g., current, voltage, etc.
+    COMPONENT_CATEGORY_METER = 2;
+
+    // An electricity generator, with batteries or solar energy.
+    COMPONENT_CATEGORY_INVERTER = 3;
+
+    // A DC-DC converter.
+    COMPONENT_CATEGORY_CONVERTER = 4;
+
+    // A storage system for electrical energy, used by inverters.
+    COMPONENT_CATEGORY_BATTERY = 5;
+
+    // A station for charging electrical vehicles.
+    COMPONENT_CATEGORY_EV_CHARGER = 6;
+
+    // A sensor for measuring ambient metrics, e.g., temperature, humidity, etc.
+    COMPONENT_CATEGORY_SENSOR = 7;
+
+    // A crypto miner.
+    COMPONENT_CATEGORY_CRYPTO_MINER = 8;
+
+    // An electrolyzer for converting water into hydrogen and oxygen.
+    COMPONENT_CATEGORY_ELECTROLYZER = 9;
+
+    // A heat and power combustion plant (CHP stands for combined heat and power).
+    COMPONENT_CATEGORY_CHP = 10;
+  }
