@@ -1,69 +1,38 @@
-# GitHub issue form. For more information see:
-# https://docs.github.com/en/communities/using-templates-to-encourage-useful-issues-and-pull-requests/syntax-for-issue-forms
+---
+name: Bug report
+about: Create a report to help us improve
+title: ''
+labels: ''
+assignees: ''
 
-name: Report something is not working properly 🐛
-description:
-  Use this if there is something that is not working properly.  If you are not
-  sure or you need help making something work, please ask a question instead.
-labels:
-  - "priority:❓"
-  - "type:bug"
-body:
-  - type: markdown
-    attributes:
-      value:
-        Thanks for taking the time to fill out this bug report!
-  - type: textarea
-    id: what-happened
-    attributes:
-      label: What happened?
-      description: Please tell us what happened that shouldn't have.
-      placeholder: What happened that shouldn't have.
-    validations:
-      required: true
-  - type: textarea
-    id: what-expected
-    attributes:
-      label: What did you expect instead?
-      description: Please tell us what did you expect to happen.
-      placeholder: What did you expect to happen.
-    validations:
-      required: true
-  - type: input
-    id: version
-    attributes:
-      label: Affected version(s)
-      description:
-        Please add a comma-separated list of the versions affected by this
-        issue.
-      placeholder: 'Example: v0.11.0, v0.12.0'
-  - type: dropdown
-    id: part
-    attributes:
-      label: Affected part(s)
-      description:
-        Which parts of the repo are affected by this issue? Select all that
-        apply.
-      multiple: true
-      options:
-        - I don't know (part:❓)
-        - Actors or actors utilities (decorator, etc.) (part:actor)
-        - Configuration management (part:config)
-        - Core components (data structures, etc.) (part:core)
-        - Data pipeline (part:data-pipeline)
-        - Documentation (part:docs)
-        - Microgrid (API, component graph, etc.) (part:microgrid)
-        - Battery power distribution (part:power-distribution)
-        - Unit, integration and performance tests (part:tests)
-        - Build script, CI, dependencies, etc. (part:tooling)
-    validations:
-      required: true
-  - type: textarea
-    id: extra
-    attributes:
-      label: Extra information
-      description:
-        Please write here any extra information you think it might be relevant,
-        e.g., if this didn't happen before, or if you suspect where the problem
-        might be.
-      placeholder: Any extra information you think it might be relevant.
+---
+
+**Describe the bug**
+A clear and concise description of what the bug is.
+
+**To Reproduce**
+Steps to reproduce the behavior:
+1. Go to '...'
+2. Click on '....'
+3. Scroll down to '....'
+4. See error
+
+**Expected behavior**
+A clear and concise description of what you expected to happen.
+
+**Screenshots**
+If applicable, add screenshots to help explain your problem.
+
+**Desktop (please complete the following information):**
+ - OS: [e.g. iOS]
+ - Browser [e.g. chrome, safari]
+ - Version [e.g. 22]
+
+**Smartphone (please complete the following information):**
+ - Device: [e.g. iPhone6]
+ - OS: [e.g. iOS8.1]
+ - Browser [e.g. stock browser, safari]
+ - Version [e.g. 22]
+
+**Additional context**
+Add any other context about the problem here.
