@@ -46,3 +46,30 @@ enum ComponentCategory {
   // A heat and power combustion plant (CHP stands for combined heat and power).
   COMPONENT_CATEGORY_CHP = 10;
 }
+
+// Enumerated battery types.
+enum BatteryType {
+  // Unspecified.
+  BATTERY_TYPE_UNSPECIFIED = 0;
+
+  // Li-ion batteries.
+  BATTERY_TYPE_LI_ION = 1;
+
+  // Sodium-ion batteries
+  BATTERY_TYPE_NA_ION = 2;
+}
+
+// Enumerated inverter types.
+enum InverterType {
+  // Unspecified.
+  INVERTER_TYPE_UNSPECIFIED = 0;
+
+  // Battery inverter.
+  INVERTER_TYPE_BATTERY = 1;
+
+  // Solar inverter.
+  INVERTER_TYPE_SOLAR = 2;
+
+  // Hybrid inverter.
+  INVERTER_TYPE_HYBRID = 3;
+}
