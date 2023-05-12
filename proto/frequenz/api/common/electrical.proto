@@ -8,7 +8,7 @@
 
 syntax = "proto3";
 
-package frequenz.api.common.common;
+package frequenz.api.common.electrical;
 
 // A set of lower and upper bounds for any metric.
 // The units of the bounds are always the same as the related metric.
@@ -75,92 +75,6 @@ message Metric {
   // `[system_inclusion_bounds.lower, system_exclusion_bounds.lower]`.
   // This means that clients can only request charge commands with values that
   // are within the `system_inclusion_bounds`, but not within
-  // `system_exclusion_bounds`.
-  // Similarly, for the system to accept a discharge command,
-  // clients need to request power values within the bounds
-  // `[system_exclusion_bounds.upper, system_inclusion_bounds.upper]`.
-  //
-  // The following diagram illustrates the relationship between the bounds.
-  // ```
-  //   inclusion.lower                              inclusion.upper
-  // <-------|============|------------------|============|--------->
-  //                exclusion.lower    exclusion.upper
-  // ```
-  // ---- values here are disallowed and wil be rejected
-  // ==== vales here are allowed and will be accepted
-  Bounds system_inclusion_bounds = 5;
-}
-
-// Metrics depicted as a collection of statistical summaries.
-//
-// Useful when a component has to report multiple values for the same metric.
-// E.g., a battery is a collection of several blocks, and each block has a
-// temperature sensor. The battery can report a summary of the values provided
-// by all these sensors, like, min, max, avg, etc., and if possible, the entire
-// array of temperature values.
-message MetricAggregation {
-  // The average value of the metric.
-  float avg = 1;
-
-  // The minimum value of the metric.
-  optional float min = 2;
-
-  // The maximum value of the metric.
-  optional float max = 3;
-
-  // The array of all the metric values.
-  repeated float raw_values = 12;
-
-  // The manufacturer's rated bounds of the metric. This may differ from
-  // `system_bounds` as it does not take into account the current state of the
-  // overall system.
-  Bounds rated_bounds = 13;
-
-  // The current bounds of the metric, as imposed by the component this metric
-  // originates from.
-  Bounds component_bounds = 14;
-
-  // These bounds indicate the range of values that are disallowed for the
-  // metric.
-  // If these bounds for a metric are [`lower`, `upper`], then this metric's
-  // `value` needs to comply with the constraints
-  // `value <= lower` OR `upper <= value`.
-  //
-  // It is important to note that these bounds work together with
-  // `system_inclusion_bounds`.
-  //
-  // E.g., for the system to accept a charge command,
-  // clients need to request power values within the bounds
-  // `[system_inclusion_bounds.lower, system_exclusion_bounds.lower]`.
-  // This means that clients can only request charge commands with power values
-  // that are within the `system_inclusion_bounds`, but not within
-  // `system_exclusion_bounds`.
-  // Similarly, for the system to accept a discharge command,
-  // clients need to request power values within the bounds
-  // `[system_exclusion_bounds.upper, system_inclusion_bounds.upper]`.
-  //
-  // The following diagram illustrates the relationship between the bounds.
-  // ```
-  //   inclusion.lower                              inclusion.upper
-  // <-------|============|------------------|============|--------->
-  //                exclusion.lower    exclusion.upper
-  // ```
-  // ---- values here are disallowed and wil be rejected
-  // ==== vales here are allowed and will be accepted
-  Bounds system_exclusion_bounds = 4;
-
-  // These bounds indicate the range of values that are allowed for the metric.
-  // If these bounds for a metric are [`lower`, `upper`], then this metric's
-  // `value` needs to comply with the constraint `lower <= value <= upper`
-  //
-  // It is important to note that these bounds work together with
-  // `system_exclusion_bounds`.
-  //
-  // E.g., for the system to accept a charge command,
-  // clients need to request power values within the bounds
-  // `[system_inclusion_bounds.lower, system_exclusion_bounds.lower]`.
-  // This means that clients can only request charge commands with power values
-  // that are within the `system_inclusion_bounds`, but not within
   // `system_exclusion_bounds`.
   // Similarly, for the system to accept a discharge command,
   // clients need to request power values within the bounds
@@ -361,18 +275,4 @@ message AC {
 
   // AC metrics for phase/line 3.
   ACPhase phase_3 = 13;
-}
-
-// Error levels definitions.
-enum ErrorLevel {
-  // Unspecified component error.
-  ERROR_LEVEL_UNSPECIFIED = 0;
-
-  // Action must be taken to prevent a severe error from occurring in the
-  // future.
-  ERROR_LEVEL_WARN = 1;
-
-  // A severe error that causes the component to fail. Immediate action must be
-  // taken.
-  ERROR_LEVEL_CRITICAL = 2;
 }
