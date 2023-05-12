@@ -45,4 +45,4 @@ enum ComponentCategory {
 
   // A heat and power combustion plant (CHP stands for combined heat and power).
   COMPONENT_CATEGORY_CHP = 10;
-  }
+}
