@@ -10,6 +10,8 @@ syntax = "proto3";
 
 package frequenz.api.common.electrical;
 
+import "frequenz/api/common/metrics.proto";
+
 // A set of lower and upper bounds for any metric.
 // The units of the bounds are always the same as the related metric.
 message Bounds {
