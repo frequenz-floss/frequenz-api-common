@@ -1,4 +1,4 @@
-// Frequenz microgrid component categories.
+// Frequenz microgrid components definitions.
 //
 // Copyright:
 // Copyright 2023 Frequenz Energy-as-a-Service GmbH
@@ -8,7 +8,7 @@
 
 syntax = "proto3";
 
-package frequenz.api.common.component_category;
+package frequenz.api.common.components;
 
 // Enumrated component categories.
 enum ComponentCategory {
