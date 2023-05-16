@@ -8,7 +8,7 @@
 
 syntax = "proto3";
 
-package frequenz.api.common.electrical;
+package frequenz.api.common.metrics.electrical;
 
 import "frequenz/api/common/metrics.proto";
 
