@@ -6,6 +6,8 @@
 // License:
 // MIT
 
+syntax = "proto3";
+
 package frequenz.api.common.metrics;
 
 // A set of lower and upper bounds for any metric.
