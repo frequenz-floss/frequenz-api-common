@@ -1,5 +1,10 @@
 build/*
 dist/*
+py/frequenz_api_common.egg-info/*
+py/frequenz/api/common/**/*_pb2.py
+py/frequenz/api/common/**/*_pb2.pyi
+py/frequenz/api/common/**/*_pb2_grpc.py
+py/frequenz/api/common/**/*_pb2_grpc.pyi
 *.egg-info
 .nox/*
 __pycache__
