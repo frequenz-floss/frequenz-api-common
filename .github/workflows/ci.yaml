@@ -1,6 +1,6 @@
 name: frequenz-api-common
 
-on: [pull_request, push, release]
+on: [pull_request, push]
 
 # Ensure old CI runs still being in progress are cancelled.
 concurrency:
