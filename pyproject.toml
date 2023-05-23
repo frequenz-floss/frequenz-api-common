@@ -45,7 +45,7 @@ dev-pylint = [
   # For checking the noxfile and tests
   "frequenz-api-common[dev-noxfile,dev-pytest]",
 ]
-dev-pytest = ["pytest == 7.2.2"]
+dev-pytest = ["pytest == 7.3.1"]
 dev = [
   "frequenz-api-common[dev-docstrings,dev-formatting,dev-mypy,dev-noxfile,dev-pylint,dev-pytest]",
 ]
