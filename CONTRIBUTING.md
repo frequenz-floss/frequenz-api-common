@@ -1,5 +1,5 @@
-Contributing to Frequenz Microgrid API
-======================================
+Contributing to Frequenz Common API
+===================================
 
 
 Build
@@ -64,11 +64,11 @@ These are the steps to create a new release:
 
 5. A GitHub action will test the tag and if all goes well it will create
    a [GitHub
-   Release](https://github.com/frequenz-floss/frequenz-api-microgrid/releases),
+   Release](https://github.com/frequenz-floss/frequenz-api-common/releases),
    create a new
-   [announcement](https://github.com/frequenz-floss/frequenz-api-microgrid/discussions/categories/announcements)
+   [announcement](https://github.com/frequenz-floss/frequenz-api-common/discussions/categories/announcements)
    about the release, and upload a new package to
-   [PyPI](https://pypi.org/project/frequenz-api-microgrid/) automatically.
+   [PyPI](https://pypi.org/project/frequenz-api-common/) automatically.
 
 6. Once this is done, reset the `RELEASE_NOTES.md` with the template:
 
