@@ -2,4 +2,5 @@
 
 ## Summary
 
-This is the first release, including packages for common metrics types, electrical metrics and components.
+- Various build system fixes
+- Improved smoothness of using this as a dependency
