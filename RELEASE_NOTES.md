@@ -6,7 +6,14 @@
 
 ## Upgrading
 
-<!-- Here goes notes on how to upgrade from previous versions, including if there are any depractions and what they should be replaced with --> 
+* The submodule URL was changed to use HTTPS instead of SSH (to avoid problems trying to unlock SSH keys to do updates, etc.).
+
+  Make sure you sync your submodules to the new URL:
+
+  ```console
+  $ git submodule sync
+  Synchronizing submodule url for 'submodules/api-common-protos'
+  ```
 
 ## New Features
 
