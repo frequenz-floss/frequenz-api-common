@@ -2,7 +2,8 @@
 
 ## Summary
 
-<!-- Here goes a general summary of what this release is about -->
+This release includes renaming the `EVChargerType` enum to `EvChargerType` and
+the addition of the `MetricAggregation` message.
 
 ## Upgrading
 
@@ -64,4 +65,4 @@
 
 ## Bug Fixes
 
-<!-- Here goes notable bug fixes that are worth a special mention or explanation -->
+None
