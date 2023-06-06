@@ -57,7 +57,10 @@
   `EvChargerType`, to satisfy protolint requirements.
 ## New Features
 
-<!-- Here goes the main new features and examples or instructions on how to use them -->
+* [Added `MetricAggregation` message](https://github.com/frequenz-floss/frequenz-api-common/pull/22)
+
+  The message `MetricAggregation` has been [copied from frequenz-api-microgrid](https://github.com/frequenz-floss/frequenz-api-microgrid/blob/2b316db3d34565fa04445be62700176d07756750/proto/frequenz/api/microgrid/common.proto#L15-L99)
+  into this repository, so that it can be used by other APIs as well.
 
 ## Bug Fixes
 
