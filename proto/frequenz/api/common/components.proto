@@ -75,18 +75,18 @@ enum InverterType {
 }
 
 // Enumerated EV charger types.
-enum EVChargerType {
+enum EvChargerType {
   // Default type.
-  EVCHARGER_TYPE_UNSPECIFIED = 0;
+  EV_CHARGER_TYPE_UNSPECIFIED = 0;
 
   // The EV charging station supports AC charging only.
-  EVCHARGER_TYPE_AC = 1;
+  EV_CHARGER_TYPE_AC = 1;
 
   // The EV charging station supports DC charging only.
-  EVCHARGER_TYPE_DC = 2;
+  EV_CHARGER_TYPE_DC = 2;
 
   // The EV charging station supports both AC and DC.
-  EVCHARGER_TYPE_HYBRID = 3;
+  EV_CHARGER_TYPE_HYBRID = 3;
 }
 
 // Enumerated sensor types.
