@@ -8,21 +8,24 @@
 
 "part:docs": 
   - "**/*.md"
+  - "docs/**"
+  - "examples/**"
   - LICENSE
 
 "part:tests":
-  - "tests/**"
+  - "pytests/**"
 
 "part:tooling":
+  - "**/*.ini"
+  - "**/*.toml"
+  - "**/*.yaml"
+  - "**/*.yml"
   - ".git*"
   - ".git*/**"
-  - "**/*.toml"
-  - "**/*.ini"
+  - "docs/*.py"
   - CODEOWNERS
   - MANIFEST.in
-  - "*requirements*.txt"
-  - setup.py
-  - setup.cfg
+  - noxfile.py
 
 "part:protobuf":
   - "proto/**"
