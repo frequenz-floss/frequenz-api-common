@@ -1,8 +1,11 @@
+# License: MIT
+# Copyright © 2023 Frequenz Energy-as-a-Service GmbH
+
 [build-system]
 requires = [
   "setuptools == 67.7.2",
   "setuptools_scm[toml] == 7.1.0",
-  "frequenz-repo-config[api] == 0.2.0",
+  "frequenz-repo-config[api] == 0.3.0",
 ]
 build-backend = "setuptools.build_meta"
 
@@ -11,7 +14,7 @@ name = "frequenz-api-common"
 description = "Frequenz common gRPC API and bindings"
 readme = "README.md"
 license = { text = "MIT" }
-keywords = ["frequenz", "api", "microgrid", "grpc", "common"]
+keywords = ["frequenz", "python", "api", "grpc", "protobuf", "rpc", "common"]
 classifiers = [
   "Development Status :: 3 - Alpha",
   "Intended Audience :: Developers",
@@ -19,6 +22,7 @@ classifiers = [
   "Programming Language :: Python :: 3",
   "Programming Language :: Python :: 3 :: Only",
   "Topic :: Software Development :: Libraries",
+  "Typing :: Typed",
 ]
 requires-python = ">= 3.11, < 4"
 dependencies = [
@@ -32,29 +36,68 @@ name = "Frequenz Energy-as-a-Service GmbH"
 email = "floss@frequenz.com"
 
 [project.optional-dependencies]
-dev-docstrings = ["pydocstyle == 6.3.0", "darglint == 1.8.1"]
+dev-docstrings = [
+  "pydocstyle == 6.3.0",
+  "darglint == 1.8.1",
+  "tomli == 2.0.1",      # Needed by pydocstyle to read pyproject.toml
+]
 dev-formatting = ["black == 23.3.0", "isort == 5.12.0"]
+dev-mkdocs = [
+  "mike == 1.1.2",
+  "mkdocs-gen-files == 0.5.0",
+  "mkdocs-literate-nav == 0.6.0",
+  "mkdocs-material == 9.1.16",
+  "mkdocs-section-index == 0.3.5",
+  "mkdocstrings[python] == 0.22.0",
+  "frequenz-repo-config[api] == 0.3.0",
+]
 dev-mypy = [
   "mypy == 1.4.1",
-  # For checking the noxfile and tests
-  "frequenz-api-common[dev-noxfile,dev-pytest]",
+  # For checking the noxfile, docs/ script, and tests
+  "frequenz-api-common[dev-mkdocs,dev-noxfile,dev-pytest]",
 ]
-dev-noxfile = ["nox == 2023.4.22", "frequenz-repo-config[api] == 0.2.0"]
+dev-noxfile = ["nox == 2023.4.22", "frequenz-repo-config[api] == 0.3.0"]
 dev-pylint = [
   "pylint == 2.17.4",
-  # For checking the noxfile and tests
-  "frequenz-api-common[dev-noxfile,dev-pytest]",
+  # For checking the noxfile, docs/ script, and tests
+  "frequenz-api-common[dev-mkdocs,dev-noxfile,dev-pytest]",
 ]
 dev-pytest = ["pytest == 7.4.0"]
 dev = [
-  "frequenz-api-common[dev-docstrings,dev-formatting,dev-mypy,dev-noxfile,dev-pylint,dev-pytest]",
+  "frequenz-api-common[dev-mkdocs,dev-docstrings,dev-formatting,dev-mkdocs,dev-mypy,dev-noxfile,dev-pylint,dev-pytest]",
 ]
 
 [project.urls]
 Changelog = "https://github.com/frequenz-floss/frequenz-api-common/releases"
-Repository = "https://github.com/frequenz-floss/frequenz-api-common"
 Issues = "https://github.com/frequenz-floss/frequenz-api-common/issues"
+Repository = "https://github.com/frequenz-floss/frequenz-api-common"
 Support = "https://github.com/frequenz-floss/frequenz-api-common/discussions/categories/support"
+
+[tool.black]
+line-length = 88
+target-version = ['py311']
+
+[tool.isort]
+profile = "black"
+line_length = 88
+src_paths = ["src", "examples", "tests"]
+
+[tool.pylint.similarities]
+ignore-comments = ['yes']
+ignore-docstrings = ['yes']
+ignore-imports = ['no']
+min-similarity-lines = 40
+
+[tool.pylint.messages_control]
+disable = [
+  "too-few-public-methods",
+  # disabled because it conflicts with isort
+  "wrong-import-order",
+  "ungrouped-imports",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["pytests"]
 
 [tool.setuptools.package-dir]
 "" = "py"
@@ -64,6 +107,3 @@ Support = "https://github.com/frequenz-floss/frequenz-api-common/discussions/cat
 
 [tool.setuptools_scm]
 version_scheme = "post-release"
-
-[tools.pytest.ini_options]
-testpaths = ["pytests"]
