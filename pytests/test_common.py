@@ -1,7 +1,7 @@
 # License: MIT
 # Copyright © 2023 Frequenz Energy-as-a-Service GmbH
 
-"""Basic tests to check some code is generated."""
+"""Tests for the frequenz.api.common package."""
 
 
 def test_package_import() -> None:
