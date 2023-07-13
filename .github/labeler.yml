@@ -6,7 +6,7 @@
 # For more details on the configuration please see:
 # https://github.com/marketplace/actions/labeler
 
-"part:docs": 
+"part:docs":
   - "**/*.md"
   - "docs/**"
   - "examples/**"
