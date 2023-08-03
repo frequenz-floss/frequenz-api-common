@@ -82,6 +82,9 @@ profile = "black"
 line_length = 88
 src_paths = ["benchmarks", "examples", "src", "tests"]
 
+[tool.frequenz-repo-config.protobuf]
+include_paths = ["submodules/api-common-protos"]
+
 [tool.pylint.similarities]
 ignore-comments = ['yes']
 ignore-docstrings = ['yes']
