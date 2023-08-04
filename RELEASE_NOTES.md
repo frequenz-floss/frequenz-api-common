@@ -16,6 +16,9 @@
 * Added a new variant `COMPONENT_CATEGORY_RELAY` to the `ComponentCategory`
   enum.
 
+* Added a new variant `COMPONENT_CATEGORY_PRECHARGE_MODULE` to the
+  `ComponentCategory` enum.
+
 ## Bug Fixes
 
 <!-- Here goes notable bug fixes that are worth a special mention or explanation -->
