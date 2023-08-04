@@ -10,7 +10,8 @@
 
 ## New Features
 
-<!-- Here goes the main new features and examples or instructions on how to use them -->
+* Added a new message named `Location`, representing the co-ordinates of a
+  geographical location.
 
 ## Bug Fixes
 
