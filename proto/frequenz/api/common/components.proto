@@ -44,6 +44,21 @@ enum ComponentCategory {
 
   // A heat and power combustion plant (CHP stands for combined heat and power).
   COMPONENT_CATEGORY_CHP = 10;
+
+  // A relay.
+  // Relays generally have two states: open (connected) and closed
+  // (disconnected).
+  // They are generally placed in front of a component, e.g., an inverter, to
+  // control whether the component is connected to the grid or not.
+  COMPONENT_CATEGORY_RELAY = 11;
+
+  // A precharge module.
+  // Precharging involves gradually ramping up the DC voltage to prevent any
+  // potential damage to sensitive electrical components like capacitors.
+  // While many inverters and batteries come equipped with in-built precharging
+  // mechanisms, some may lack this feature. In such cases, we need to use
+  // external precharging modules.
+  COMPONENT_CATEGORY_PRECHARGE_MODULE = 12;
 }
 
 // Enumerated battery types.
