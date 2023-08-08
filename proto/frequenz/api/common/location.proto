@@ -16,4 +16,7 @@ message Location {
 
   // Longitude ranges from -180 (West) to 180 (East)
   float longitude = 2;
+
+  // Country ISO 3166-1 Alpha 2
+  string country_code = 3;
 }

@@ -11,7 +11,7 @@
 ## New Features
 
 * Added a new message named `Location`, representing the co-ordinates of a
-  geographical location.
+  geographical location and the corresponding country-code.
 
 * Added a new variant `COMPONENT_CATEGORY_RELAY` to the `ComponentCategory`
   enum.
