@@ -1,5 +1,6 @@
 {
   "cookiecutter": {
+    "Introduction": "",
     "type": "api",
     "name": "common",
     "description": "Frequenz common gRPC API and bindings",
