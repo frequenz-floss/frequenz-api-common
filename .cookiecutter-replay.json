@@ -1,5 +1,6 @@
 {
   "cookiecutter": {
+    "Introduction": "",
     "type": "api",
     "name": "common",
     "description": "Frequenz common gRPC API and bindings",
@@ -13,17 +14,6 @@
     "pypi_package_name": "frequenz-api-common",
     "github_repo_name": "frequenz-api-common",
     "default_codeowners": "@frequenz-floss/api-team",
-    "_extensions": [
-      "jinja2_time.TimeExtension",
-      "local_extensions.as_identifier",
-      "local_extensions.default_codeowners",
-      "local_extensions.github_repo_name",
-      "local_extensions.keywords",
-      "local_extensions.pypi_package_name",
-      "local_extensions.python_package",
-      "local_extensions.src_path",
-      "local_extensions.title"
-    ],
     "_template": "gh:frequenz-floss/frequenz-repo-config-python"
   }
 }
