@@ -60,6 +60,10 @@ enum ComponentCategory {
   // mechanisms, some may lack this feature. In such cases, we need to use
   // external precharging modules.
   COMPONENT_CATEGORY_PRECHARGE_MODULE = 12;
+
+  // A fuse.
+  // Fuses are used to protect electrical components from overcurrents.
+  COMPONENT_CATEGORY_FUSE = 13;
 }
 
 // Enumerated battery types.

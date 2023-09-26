@@ -12,7 +12,7 @@
 
 ## New Features
 
-<!-- Here goes the main new features and examples or instructions on how to use them -->
+- Added a new component category variant: `COMPONENT_CATEGORY_FUSE`.
 
 ## Bug Fixes
 
