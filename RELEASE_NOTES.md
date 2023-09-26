@@ -14,6 +14,9 @@
 
 - Added a new component category variant: `COMPONENT_CATEGORY_FUSE`.
 
+- Added a new component category variant:
+  `COMPONENT_CATEGORY_VOLTAGE_TRANSFORMER`.
+
 ## Bug Fixes
 
 <!-- Here goes notable bug fixes that are worth a special mention or explanation -->
