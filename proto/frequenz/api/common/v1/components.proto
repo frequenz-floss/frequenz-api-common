@@ -8,7 +8,7 @@
 
 syntax = "proto3";
 
-package frequenz.api.common.components;
+package frequenz.api.common.v1.components;
 
 // Enumrated component categories.
 enum ComponentCategory {

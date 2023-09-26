@@ -8,7 +8,7 @@
 
 syntax = "proto3";
 
-package frequenz.api.common.metrics;
+package frequenz.api.common.v1.metrics;
 
 // A set of lower and upper bounds for any metric.
 // The units of the bounds are always the same as the related metric.
@@ -114,11 +114,11 @@ message MetricAggregation {
   // The manufacturer's rated bounds of the metric. This may differ from
   // `system_bounds` as it does not take into account the current state of the
   // overall system.
-  frequenz.api.common.metrics.Bounds rated_bounds = 13;
+  frequenz.api.common.v1.metrics.Bounds rated_bounds = 13;
 
   // The current bounds of the metric, as imposed by the component this metric
   // originates from.
-  frequenz.api.common.metrics.Bounds component_bounds = 14;
+  frequenz.api.common.v1.metrics.Bounds component_bounds = 14;
 
   // These bounds indicate the range of values that are disallowed for the
   // metric.
@@ -147,7 +147,7 @@ message MetricAggregation {
   // ```
   // ---- values here are disallowed and wil be rejected
   // ==== vales here are allowed and will be accepted
-  frequenz.api.common.metrics.Bounds system_exclusion_bounds = 4;
+  frequenz.api.common.v1.metrics.Bounds system_exclusion_bounds = 4;
 
   // These bounds indicate the range of values that are allowed for the metric.
   // If these bounds for a metric are [`lower`, `upper`], then this metric's
@@ -174,5 +174,5 @@ message MetricAggregation {
   // ```
   // ---- values here are disallowed and wil be rejected
   // ==== vales here are allowed and will be accepted
-  frequenz.api.common.metrics.Bounds system_inclusion_bounds = 5;
+  frequenz.api.common.v1.metrics.Bounds system_inclusion_bounds = 5;
 }

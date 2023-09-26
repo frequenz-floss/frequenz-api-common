@@ -6,7 +6,9 @@
 
 ## Upgrading
 
-<!-- Here goes notes on how to upgrade from previous versions, including deprecations and what they should be replaced with -->
+- The package names have been changed from `frequenz.api.common.<package>` to
+  `frequenz.api.common.v1.<package>`. `v1` is the API's major version, and will
+  be incremented for breaking changes.
 
 ## New Features
 
