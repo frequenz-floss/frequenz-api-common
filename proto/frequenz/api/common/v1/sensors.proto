@@ -1,0 +1,78 @@
+// Frequenz microgrid sensor definitions.
+//
+// Copyright:
+// Copyright 2023 Frequenz Energy-as-a-Service GmbH
+//
+// License:
+// MIT
+
+syntax = "proto3";
+
+package frequenz.api.common.v1.sensors;
+
+// Enumerated sensor categories.
+enum SensorCategory {
+  // Unspecified
+  SENSOR_CATEGORY_UNSPECIFIED = 0;
+
+  // Thermometer (temperature sensor)
+  SENSOR_CATEGORY_THERMOMETER = 1;
+
+  // Hygrometer (humidity sensor)
+  SENSOR_CATEGORY_HYGROMETER = 2;
+
+  // Barometer (pressure sensor).
+  SENSOR_CATEGORY_BAROMETER = 3;
+
+  // Pyranometer (solar irradiance sensor).
+  SENSOR_CATEGORY_PYRANOMETER = 4;
+
+  // Anemometer (wind velocity and direction sensor).
+  SENSOR_CATEGORY_ANEMOMETER = 5;
+
+  // Accelerometers (acceleration sensor).
+  SENSOR_CATEGORY_ACCELEROMETER = 6;
+
+  // General sensors, which do not fall in any of the above categories
+  SENSOR_CATEGORY_GENERAL = 7;
+}
+
+// Enumrated sensor metrics.
+enum SensorMetric {
+  // Unspecified.
+  SENSOR_METRIC_UNSPECIFIED = 0;
+
+  // Temperature.
+  // In Celsius (°C).
+  SENSOR_METRIC_TEMPERATURE = 1;
+
+  // Humidity
+  // In percentage (%).
+  SENSOR_METRIC_HUMIDITY = 2;
+
+  // Pressure
+  // In Pascal (Pa).
+  SENSOR_METRIC_PRESSURE = 3;
+
+  // Irradiance / Radiation flux
+  // In watts per square meter (W / m^2).
+  SENSOR_METRIC_IRRADIANCE = 4;
+
+  // Velocity
+  // In meters per second (m / s).
+  SENSOR_METRIC_VELOCITY = 5;
+
+  // Acceleration.
+  // In meters per second per second (m / s^2)
+  SENSOR_METRIC_ACCELERATION = 6;
+
+  // Metric to represent angles, for metrics like direction.
+  // In angles with respect to the (magnetic) North (°).
+  SENSOR_METRIC_ANGLE = 7;
+
+  // Dew point.
+  // The temperature at which the air becomes saturated with water vapor.
+  //
+  // In Celsius (°C).
+  SENSOR_METRIC_DEW_POINT = 8;
+}

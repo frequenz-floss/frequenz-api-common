@@ -34,9 +34,6 @@ enum ComponentCategory {
   // A station for charging electrical vehicles.
   COMPONENT_CATEGORY_EV_CHARGER = 6;
 
-  // A sensor for measuring ambient metrics, e.g., temperature, humidity, etc.
-  COMPONENT_CATEGORY_SENSOR = 7;
-
   // A crypto miner.
   COMPONENT_CATEGORY_CRYPTO_MINER = 8;
 
@@ -114,31 +111,4 @@ enum EvChargerType {
 
   // The EV charging station supports both AC and DC.
   EV_CHARGER_TYPE_HYBRID = 3;
-}
-
-// Enumerated sensor types.
-enum SensorType {
-  // Unspecified
-  SENSOR_TYPE_UNSPECIFIED = 0;
-
-  // Thermometer (temperature sensor)
-  SENSOR_TYPE_THERMOMETER = 1;
-
-  // Hygrometer (humidity sensor)
-  SENSOR_TYPE_HYGROMETER = 2;
-
-  // Barometer (pressure sensor).
-  SENSOR_TYPE_BAROMETER = 3;
-
-  // Pyranometer (solar irradiance sensor).
-  SENSOR_TYPE_PYRANOMETER = 4;
-
-  // Anemometer (wind velocity and direction sensor).
-  SENSOR_TYPE_ANEMOMETER = 5;
-
-  // Accelerometers (acceleration sensor).
-  SENSOR_TYPE_ACCELEROMETER = 6;
-
-  // General sensors, which do not fall in any of the above categories
-  SENSOR_TYPE_GENERAL = 7;
 }
