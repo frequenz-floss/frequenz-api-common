@@ -15,6 +15,9 @@
   `COMPONENT_CATEGORY_SENSOR` and the enum `SensorType` from
   `frequenz.api.common.components`.
 
+- The component category variant `PRECHARGE_MODULE` has been renamed to
+  `PRECHARGER`.
+
 ## New Features
 
 - Added a new component category variant: `COMPONENT_CATEGORY_FUSE`.

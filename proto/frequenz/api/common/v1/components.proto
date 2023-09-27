@@ -56,7 +56,7 @@ enum ComponentCategory {
   // While many inverters and batteries come equipped with in-built precharging
   // mechanisms, some may lack this feature. In such cases, we need to use
   // external precharging modules.
-  COMPONENT_CATEGORY_PRECHARGE_MODULE = 12;
+  COMPONENT_CATEGORY_PRECHARGER = 12;
 
   // A fuse.
   // Fuses are used to protect electrical components from overcurrents.
