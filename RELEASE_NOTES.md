@@ -2,7 +2,8 @@
 
 ## Summary
 
-<!-- Here goes a general summary of what this release is about -->
+Added versioning to the API, added new component category variants, and split
+sensors out of components.
 
 ## Upgrading
 
@@ -24,7 +25,3 @@
 
 - Added a new component category variant:
   `COMPONENT_CATEGORY_VOLTAGE_TRANSFORMER`.
-
-## Bug Fixes
-
-<!-- Here goes notable bug fixes that are worth a special mention or explanation -->
