@@ -14,10 +14,12 @@ package frequenz.api.common.v1.metrics;
 // The units of the bounds are always the same as the related metric.
 message Bounds {
   // The lower bound.
-  float lower = 1;
+  // If absent, there is no lower bound.
+  optional float lower = 1;
 
   // The upper bound.
-  float upper = 2;
+  // If absent, there is no upper bound.
+  optional float upper = 2;
 }
 
 // A metric's value, with optional limits.
