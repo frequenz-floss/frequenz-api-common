@@ -6,7 +6,7 @@
 
 ## Upgrading
 
-<!-- Here goes notes on how to upgrade from previous versions, including deprecations and what they should be replaced with -->
+- `lower` and `upper` bounds fields in the `Bounds` message are now `optional`
 
 ## New Features
 
