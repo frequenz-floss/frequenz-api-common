@@ -1859,14 +1859,12 @@
 The units of the bounds are always the same as the related metric.</p>
 
             <details class="quote">
-              <summary>Source code in <code>/opt/hostedtoolcache/Python/3.11.5/x64/lib/python3.11/site-packages/frequenz/api/common/v1/metrics_pb2.py</code></summary>
+              <summary>Source code in <code>frequenz/api/common/v1/metrics_pb2.py</code></summary>
               <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-27">27</a></span>
 <span class="normal"><a href="#__codelineno-0-28">28</a></span>
-<span class="normal"><a href="#__codelineno-0-29">29</a></span>
-<span class="normal"><a href="#__codelineno-0-30">30</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27"></a>  <span class="n">_globals</span><span class="p">[</span><span class="s1">&#39;_METRIC&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">_serialized_end</span><span class="o">=</span><span class="mi">410</span>
-</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28"></a>  <span class="n">_globals</span><span class="p">[</span><span class="s1">&#39;_METRICAGGREGATION&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">_serialized_start</span><span class="o">=</span><span class="mi">413</span>
-</span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29"></a>  <span class="n">_globals</span><span class="p">[</span><span class="s1">&#39;_METRICAGGREGATION&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">_serialized_end</span><span class="o">=</span><span class="mi">791</span>
-</span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30"></a><span class="c1"># @@protoc_insertion_point(module_scope)</span>
+<span class="normal"><a href="#__codelineno-0-29">29</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27"></a>  <span class="n">_globals</span><span class="p">[</span><span class="s1">&#39;_METRICAGGREGATION&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">_serialized_start</span><span class="o">=</span><span class="mi">443</span>
+</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28"></a>  <span class="n">_globals</span><span class="p">[</span><span class="s1">&#39;_METRICAGGREGATION&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">_serialized_end</span><span class="o">=</span><span class="mi">821</span>
+</span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29"></a><span class="c1"># @@protoc_insertion_point(module_scope)</span>
 </span></code></pre></div></td></tr></table></div>
             </details>
 
@@ -1897,7 +1895,8 @@ The units of the bounds are always the same as the related metric.</p>
 
   <div class="doc doc-contents ">
   
-      <p>The lower bound.</p>
+      <p>The lower bound.
+If absent, there is no lower bound.</p>
   </div>
 
 </div>
@@ -1919,7 +1918,8 @@ The units of the bounds are always the same as the related metric.</p>
 
   <div class="doc doc-contents ">
   
-      <p>The upper bound.</p>
+      <p>The upper bound.
+If absent, there is no upper bound.</p>
   </div>
 
 </div>
