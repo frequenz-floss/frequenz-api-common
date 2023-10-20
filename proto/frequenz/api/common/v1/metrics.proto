@@ -27,11 +27,6 @@ message Metric {
   // The current value of the metric.
   float value = 1;
 
-  // The manufacturer's rated bounds of the metric. This may differ from
-  // `system_bounds` as it does not take into account the current state of the
-  // overall system.
-  Bounds rated_bounds = 2;
-
   // The current bounds of the metric, as imposed by the component this metric
   // originates from.
   Bounds component_bounds = 3;
@@ -112,11 +107,6 @@ message MetricAggregation {
 
   // The array of all the metric values.
   repeated float raw_values = 12;
-
-  // The manufacturer's rated bounds of the metric. This may differ from
-  // `system_bounds` as it does not take into account the current state of the
-  // overall system.
-  frequenz.api.common.v1.metrics.Bounds rated_bounds = 13;
 
   // The current bounds of the metric, as imposed by the component this metric
   // originates from.
