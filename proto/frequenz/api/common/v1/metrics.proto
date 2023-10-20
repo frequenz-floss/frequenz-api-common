@@ -10,6 +10,8 @@ syntax = "proto3";
 
 package frequenz.api.common.v1.metrics;
 
+import "google/protobuf/timestamp.proto";
+
 // A set of lower and upper bounds for any metric.
 // The units of the bounds are always the same as the related metric.
 message Bounds {
@@ -24,8 +26,11 @@ message Bounds {
 
 // A metric's value, with optional limits.
 message Metric {
-  // The current value of the metric.
-  float value = 1;
+  // The UTC timestamp of when the data was either measured or derived.
+  google.protobuf.Timestamp sampled_at = 1;
+
+  // The value of the metric, which could be either measured or derived.
+  float value = 2;
 
   // List of bounds that apply to the metric sample.
   //
@@ -63,6 +68,10 @@ message Metric {
 // by all these sensors, like, min, max, avg, etc., and if possible, the entire
 // array of temperature values.
 message MetricAggregation {
+  // The UTC timestamp indicating the period over which the data was aggregated
+  // or derived.
+  google.protobuf.Timestamp sampled_at = 1;
+
   // The derived average value of the metric.
   float avg_value = 2;
 

@@ -23,6 +23,9 @@
 - Fields in `MetricAggregation` message have been suffixed with `_value`, to
   make them consistent with the `Metric` message.
 
+- Timestamps have been introduced in the metric messages. This makes it easier
+  to use these messages in a timeseries context.
+
 ## New Features
 
 <!-- Here goes the main new features and examples or instructions on how to use them -->
