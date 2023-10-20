@@ -27,10 +27,6 @@ message Metric {
   // The current value of the metric.
   float value = 1;
 
-  // The current bounds of the metric, as imposed by the component this metric
-  // originates from.
-  Bounds component_bounds = 3;
-
   // These bounds indicate the range of values that are disallowed for the
   // metric.
   // If these bounds for a metric are [`lower`, `upper`], then this metric's
@@ -107,10 +103,6 @@ message MetricAggregation {
 
   // The array of all the metric values.
   repeated float raw_values = 12;
-
-  // The current bounds of the metric, as imposed by the component this metric
-  // originates from.
-  frequenz.api.common.v1.metrics.Bounds component_bounds = 14;
 
   // These bounds indicate the range of values that are disallowed for the
   // metric.
