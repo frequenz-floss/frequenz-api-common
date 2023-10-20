@@ -14,6 +14,12 @@
 - `component_bounds` field has been removed from the messages `Metric` and
   `MetricAggregation`
 
+- Inclusion and exclusion bounds have been removed from the metric definitions.
+  These have been replaced with an array of inclusion bounds. This simplifies
+  the message definition, and removes the requirement of clients having to check
+  if a parameter is _not_ in a given pair of bounds. This also extends the
+  possibility of having more than 2 pairs bounds for a given metric.
+
 ## New Features
 
 <!-- Here goes the main new features and examples or instructions on how to use them -->
