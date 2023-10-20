@@ -133,3 +133,21 @@ message AggregatedMetricSample {
   // ==== values here are allowed and will be accepted
   repeated Bounds bounds = 6;
 }
+
+// MetricSampleVariant serves as a union type that can encapsulate either a
+// `SimpleMetricSample` or an `AggregatedMetricSample`.
+//
+// This message is designed to offer flexibility in capturing different
+// granularities of metric samples—either a simple single-point measurement
+// or an aggregated set of measurements for a metric.
+//
+// A `MetricSampleVariant`` can hold either a `SimpleMetricSample` or an
+// `AggregatedMetricSample`, but not both simultaneously. Setting one will
+// nullify the other.
+//
+message MetricSampleVariant {
+  oneof metric_return_type {
+    SimpleMetricSample simple_metric = 1;
+    AggregatedMetricSample aggregated_metric = 2;
+  }
+}

@@ -30,6 +30,9 @@
 
 - Renamed `MetricAggregation` message to `AggregatedMetricSample`
 
+- Added a union type message `MetricSampleVariant` to represent both
+  `SimpleMetricSample` and `AggregatedMetricSample`
+
 ## New Features
 
 <!-- Here goes the main new features and examples or instructions on how to use them -->
