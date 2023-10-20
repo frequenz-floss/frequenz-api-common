@@ -26,6 +26,10 @@
 - Timestamps have been introduced in the metric messages. This makes it easier
   to use these messages in a timeseries context.
 
+- Renamed `Metric` message to `SimpleMetricSample`
+
+- Renamed `MetricAggregation` message to `AggregatedMetricSample`
+
 ## New Features
 
 <!-- Here goes the main new features and examples or instructions on how to use them -->

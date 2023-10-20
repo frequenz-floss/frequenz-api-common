@@ -24,8 +24,21 @@ message Bounds {
   optional float upper = 2;
 }
 
-// A metric's value, with optional limits.
-message Metric {
+// Represents a simple metric sample with an array of real-time system-defined
+// bounds.
+//
+// This represents a single sample of a specific metric, the value of which is
+// either measured or derived at a particular time.
+// The real-time system-defined bounds are optional and may not always be
+// present or set.
+//
+// ### Interplay Between Bounds and Metric Samples
+//
+// Consider a scenario where a metric sample for battery charging power is
+// registered at `10kW`. If there is a request to change the battery's charging
+// power, the proposed power level must align with the existing bounds. Failure
+// to do so will result in the command being rejected.
+message SimpleMetricSample {
   // The UTC timestamp of when the data was either measured or derived.
   google.protobuf.Timestamp sampled_at = 1;
 
@@ -60,14 +73,23 @@ message Metric {
   repeated Bounds bounds = 3;
 }
 
-// Metrics depicted as a collection of statistical summaries.
+// Encapsulates derived statistical summaries of a single metric.
 //
-// Useful when a component has to report multiple values for the same metric.
-// E.g., a battery is a collection of several blocks, and each block has a
-// temperature sensor. The battery can report a summary of the values provided
-// by all these sensors, like, min, max, avg, etc., and if possible, the entire
-// array of temperature values.
-message MetricAggregation {
+// The message allows for the reporting of statistical summaries—minimum,
+// maximum, and average values - as well as the complete list of individual
+// samples if available.
+//
+// This message represents derived metrics and contains fields for statistical
+// summaries—minimum, maximum, and average values. Individual measurements and
+// bounds are optional, accommodating scenarios where only subsets of this
+// information are available.
+//
+// ### Relationship Between Bounds and Metric Samples
+//
+// Suppose a metric sample for current has an average value of `10A`. For the
+// system to accept a charge command, clients need to request current values
+// within the bounds.
+message AggregatedMetricSample {
   // The UTC timestamp indicating the period over which the data was aggregated
   // or derived.
   google.protobuf.Timestamp sampled_at = 1;
