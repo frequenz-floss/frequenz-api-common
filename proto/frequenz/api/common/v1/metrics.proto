@@ -63,17 +63,17 @@ message Metric {
 // by all these sensors, like, min, max, avg, etc., and if possible, the entire
 // array of temperature values.
 message MetricAggregation {
-  // The average value of the metric.
-  float avg = 1;
+  // The derived average value of the metric.
+  float avg_value = 2;
 
-  // The minimum value of the metric.
-  optional float min = 2;
+  // The minimum measured value of the metric.
+  optional float min_value = 3;
 
-  // The maximum value of the metric.
-  optional float max = 3;
+  // The maximum measured value of the metric.
+  optional float max_value = 4;
 
-  // The array of all the metric values.
-  repeated float raw_values = 12;
+  // Optional array of all the raw individual values.
+  repeated float raw_values = 5;
 
   // List of bounds that apply to the metric sample.
   //

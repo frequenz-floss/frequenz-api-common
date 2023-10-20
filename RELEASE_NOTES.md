@@ -20,6 +20,9 @@
   if a parameter is _not_ in a given pair of bounds. This also extends the
   possibility of having more than 2 pairs bounds for a given metric.
 
+- Fields in `MetricAggregation` message have been suffixed with `_value`, to
+  make them consistent with the `Metric` message.
+
 ## New Features
 
 <!-- Here goes the main new features and examples or instructions on how to use them -->
