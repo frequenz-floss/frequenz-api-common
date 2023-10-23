@@ -27,17 +27,17 @@ message Bounds {
 // Represents a simple metric sample with an array of real-time system-defined
 // bounds.
 //
-// This represents a single sample of a specific metric, the value of which is
-// either measured or derived at a particular time.
-// The real-time system-defined bounds are optional and may not always be
-// present or set.
+// !!! note
+//     This represents a single sample of a specific metric, the value of which
+//     is either measured or derived at a particular time. The real-time
+//     system-defined bounds are optional and may not always be present or set.
 //
-// ### Interplay Between Bounds and Metric Samples
-//
-// Consider a scenario where a metric sample for battery charging power is
-// registered at `10kW`. If there is a request to change the battery's charging
-// power, the proposed power level must align with the existing bounds. Failure
-// to do so will result in the command being rejected.
+// !!! usage
+//     ### Interplay Between Bounds and Metric Samples
+//     Consider a scenario where a metric sample for battery charging power is
+//     registered at `10kW`. If there is a request to change the battery's
+//     charging power, the proposed power level must align with the existing
+//     bounds. Failure to do so will result in the command being rejected.
 message SimpleMetricSample {
   // The UTC timestamp of when the data was either measured or derived.
   google.protobuf.Timestamp sampled_at = 1;
@@ -50,7 +50,7 @@ message SimpleMetricSample {
   // These bounds adapt in real-time to reflect the operating conditions at the
   // time of sampling.
   //
-  // ### Multiple Bounds
+  // #### Multiple Bounds
   //
   // In the case of certain components like batteries, multiple bounds might
   // exist. These multiple bounds collectively extend the range of allowable
@@ -61,7 +61,8 @@ message SimpleMetricSample {
   // State of Power (SoP) metric, would be positive. Hence bounds can have
   // positive and negative values depending on the metric they represent.
   //
-  // Example:
+  // #### Example
+  //
   // The diagram below illustrates the relationship between the bounds.
   // ```
   //    bound[0].lower                               bound[1].upper
@@ -75,7 +76,7 @@ message SimpleMetricSample {
 
 // Encapsulates derived statistical summaries of a single metric.
 //
-// The message allows for the reporting of statistical summaries—minimum,
+// The message allows for the reporting of statistical summaries — minimum,
 // maximum, and average values - as well as the complete list of individual
 // samples if available.
 //
@@ -84,11 +85,11 @@ message SimpleMetricSample {
 // bounds are optional, accommodating scenarios where only subsets of this
 // information are available.
 //
-// ### Relationship Between Bounds and Metric Samples
-//
-// Suppose a metric sample for current has an average value of `10A`. For the
-// system to accept a charge command, clients need to request current values
-// within the bounds.
+// !!! note
+//     ### Relationship Between Bounds and Metric Samples
+//     Suppose a metric sample for current has an average value of `10A`. For
+//     the system to accept a charge command, clients need to request current
+//     values within the bounds.
 message AggregatedMetricSample {
   // The UTC timestamp indicating the period over which the data was aggregated
   // or derived.
@@ -111,7 +112,7 @@ message AggregatedMetricSample {
   // These bounds adapt in real-time to reflect the operating conditions at the
   // time of aggregation or derivation.
   //
-  // ### Multiple Bounds
+  // #### Multiple Bounds
   //
   // In the case of certain components like batteries, multiple bounds might
   // exist. These multiple bounds collectively extend the range of allowable
@@ -122,7 +123,8 @@ message AggregatedMetricSample {
   // State of Power (SoP) metric, would be positive. Hence bounds can have
   // positive and negative values depending on the metric they represent.
   //
-  // Example:
+  // #### Example
+  //
   // The diagram below illustrates the relationship between the bounds.
   // ```
   //      bound[0].lower                         bound[1].upper
@@ -141,10 +143,9 @@ message AggregatedMetricSample {
 // granularities of metric samples—either a simple single-point measurement
 // or an aggregated set of measurements for a metric.
 //
-// A `MetricSampleVariant`` can hold either a `SimpleMetricSample` or an
+// A `MetricSampleVariant` can hold either a `SimpleMetricSample` or an
 // `AggregatedMetricSample`, but not both simultaneously. Setting one will
 // nullify the other.
-//
 message MetricSampleVariant {
   oneof metric_return_type {
     SimpleMetricSample simple_metric = 1;
