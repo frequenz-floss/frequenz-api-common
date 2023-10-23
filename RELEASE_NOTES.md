@@ -33,6 +33,8 @@
 - Added a union type message `MetricSampleVariant` to represent both
   `SimpleMetricSample` and `AggregatedMetricSample`
 
+- Added a message to represent metrics sampled from components.
+
 ## New Features
 
 <!-- Here goes the main new features and examples or instructions on how to use them -->
