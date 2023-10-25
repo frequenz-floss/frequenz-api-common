@@ -8,6 +8,33 @@
 
 - `lower` and `upper` bounds fields in the `Bounds` message are now `optional`
 
+- `rated_bounds` field has been removed from the messages `Metric` and
+  `MetricAggregation`
+
+- `component_bounds` field has been removed from the messages `Metric` and
+  `MetricAggregation`
+
+- Inclusion and exclusion bounds have been removed from the metric definitions.
+  These have been replaced with an array of inclusion bounds. This simplifies
+  the message definition, and removes the requirement of clients having to check
+  if a parameter is _not_ in a given pair of bounds. This also extends the
+  possibility of having more than 2 pairs bounds for a given metric.
+
+- Fields in `MetricAggregation` message have been suffixed with `_value`, to
+  make them consistent with the `Metric` message.
+
+- Timestamps have been introduced in the metric messages. This makes it easier
+  to use these messages in a timeseries context.
+
+- Renamed `Metric` message to `SimpleMetricSample`
+
+- Renamed `MetricAggregation` message to `AggregatedMetricSample`
+
+- Added a union type message `MetricSampleVariant` to represent both
+  `SimpleMetricSample` and `AggregatedMetricSample`
+
+- Added a message to represent metrics sampled from components.
+
 ## New Features
 
 <!-- Here goes the main new features and examples or instructions on how to use them -->

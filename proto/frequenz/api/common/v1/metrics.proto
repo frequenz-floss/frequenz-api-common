@@ -10,6 +10,8 @@ syntax = "proto3";
 
 package frequenz.api.common.v1.metrics;
 
+import "google/protobuf/timestamp.proto";
+
 // A set of lower and upper bounds for any metric.
 // The units of the bounds are always the same as the related metric.
 message Bounds {
@@ -22,159 +24,223 @@ message Bounds {
   optional float upper = 2;
 }
 
-// A metric's value, with optional limits.
-message Metric {
-  // The current value of the metric.
-  float value = 1;
+// Represents a simple metric sample with an array of real-time system-defined
+// bounds.
+//
+// !!! note
+//     This represents a single sample of a specific metric, the value of which
+//     is either measured or derived at a particular time. The real-time
+//     system-defined bounds are optional and may not always be present or set.
+//
+// !!! usage
+//     ### Interplay Between Bounds and Metric Samples
+//     Consider a scenario where a metric sample for battery charging power is
+//     registered at `10kW`. If there is a request to change the battery's
+//     charging power, the proposed power level must align with the existing
+//     bounds. Failure to do so will result in the command being rejected.
+message SimpleMetricSample {
+  // The UTC timestamp of when the data was either measured or derived.
+  google.protobuf.Timestamp sampled_at = 1;
 
-  // The manufacturer's rated bounds of the metric. This may differ from
-  // `system_bounds` as it does not take into account the current state of the
-  // overall system.
-  Bounds rated_bounds = 2;
+  // The value of the metric, which could be either measured or derived.
+  float value = 2;
 
-  // The current bounds of the metric, as imposed by the component this metric
-  // originates from.
-  Bounds component_bounds = 3;
-
-  // These bounds indicate the range of values that are disallowed for the
-  // metric.
-  // If these bounds for a metric are [`lower`, `upper`], then this metric's
-  // `value` needs to comply with the constraints
-  // `value <= lower` OR `upper <= value`.
+  // List of bounds that apply to the metric sample.
   //
-  // It is important to note that these bounds work together with
-  // `system_inclusion_bounds`.
+  // These bounds adapt in real-time to reflect the operating conditions at the
+  // time of sampling.
   //
-  // E.g., for the system to accept a charge command,
-  // clients need to request power values within the bounds
-  // `[system_inclusion_bounds.lower, system_exclusion_bounds.lower]`.
-  // This means that clients can only request charge commands with values that
-  // are within the `system_inclusion_bounds`, but not within
-  // `system_exclusion_bounds`.
-  // Similarly, for the system to accept a discharge command,
-  // clients need to request power values within the bounds
-  // `[system_exclusion_bounds.upper, system_inclusion_bounds.upper]`.
+  // #### Multiple Bounds
   //
-  // The following diagram illustrates the relationship between the bounds.
+  // In the case of certain components like batteries, multiple bounds might
+  // exist. These multiple bounds collectively extend the range of allowable
+  // values, effectively forming a union of all given bounds. In such cases,
+  // the value of the metric must be within at least one of the bounds.
+  // In accordance with the passive sign convention, bounds that limit discharge
+  // would have negative numbers, while those limiting charge, such as for the
+  // State of Power (SoP) metric, would be positive. Hence bounds can have
+  // positive and negative values depending on the metric they represent.
+  //
+  // #### Example
+  //
+  // The diagram below illustrates the relationship between the bounds.
   // ```
-  //   inclusion.lower                              inclusion.upper
+  //    bound[0].lower                               bound[1].upper
   // <-------|============|------------------|============|--------->
-  //                exclusion.lower    exclusion.upper
+  //                bound[0].upper     bound[1].lower
   // ```
-  // ---- values here are disallowed and wil be rejected
-  // ==== vales here are allowed and will be accepted
-  Bounds system_exclusion_bounds = 4;
-
-  // These bounds indicate the range of values that are allowed for the metric.
-  // If these bounds for a metric are [`lower`, `upper`], then this metric's
-  // `value` needs to comply with the constraint `lower <= value <= upper`
-  //
-  // It is important to note that these bounds work together with
-  // `system_exclusion_bounds`.
-  //
-  // E.g., for the system to accept a charge command,
-  // clients need to request power values within the bounds
-  // `[system_inclusion_bounds.lower, system_exclusion_bounds.lower]`.
-  // This means that clients can only request charge commands with values that
-  // are within the `system_inclusion_bounds`, but not within
-  // `system_exclusion_bounds`.
-  // Similarly, for the system to accept a discharge command,
-  // clients need to request power values within the bounds
-  // `[system_exclusion_bounds.upper, system_inclusion_bounds.upper]`.
-  //
-  // The following diagram illustrates the relationship between the bounds.
-  // ```
-  //   inclusion.lower                              inclusion.upper
-  // <-------|============|------------------|============|--------->
-  //                exclusion.lower    exclusion.upper
-  // ```
-  // ---- values here are disallowed and wil be rejected
-  // ==== vales here are allowed and will be accepted
-  Bounds system_inclusion_bounds = 5;
+  // ---- values here are disallowed and will be rejected
+  // ==== values here are allowed and will be accepted
+  repeated Bounds bounds = 3;
 }
 
-// Metrics depicted as a collection of statistical summaries.
+// Encapsulates derived statistical summaries of a single metric.
 //
-// Useful when a component has to report multiple values for the same metric.
-// E.g., a battery is a collection of several blocks, and each block has a
-// temperature sensor. The battery can report a summary of the values provided
-// by all these sensors, like, min, max, avg, etc., and if possible, the entire
-// array of temperature values.
-message MetricAggregation {
-  // The average value of the metric.
-  float avg = 1;
+// The message allows for the reporting of statistical summaries — minimum,
+// maximum, and average values - as well as the complete list of individual
+// samples if available.
+//
+// This message represents derived metrics and contains fields for statistical
+// summaries—minimum, maximum, and average values. Individual measurements and
+// bounds are optional, accommodating scenarios where only subsets of this
+// information are available.
+//
+// !!! note
+//     ### Relationship Between Bounds and Metric Samples
+//     Suppose a metric sample for current has an average value of `10A`. For
+//     the system to accept a charge command, clients need to request current
+//     values within the bounds.
+message AggregatedMetricSample {
+  // The UTC timestamp indicating the period over which the data was aggregated
+  // or derived.
+  google.protobuf.Timestamp sampled_at = 1;
 
-  // The minimum value of the metric.
-  optional float min = 2;
+  // The derived average value of the metric.
+  float avg_value = 2;
 
-  // The maximum value of the metric.
-  optional float max = 3;
+  // The minimum measured value of the metric.
+  optional float min_value = 3;
 
-  // The array of all the metric values.
-  repeated float raw_values = 12;
+  // The maximum measured value of the metric.
+  optional float max_value = 4;
 
-  // The manufacturer's rated bounds of the metric. This may differ from
-  // `system_bounds` as it does not take into account the current state of the
-  // overall system.
-  frequenz.api.common.v1.metrics.Bounds rated_bounds = 13;
+  // Optional array of all the raw individual values.
+  repeated float raw_values = 5;
 
-  // The current bounds of the metric, as imposed by the component this metric
-  // originates from.
-  frequenz.api.common.v1.metrics.Bounds component_bounds = 14;
-
-  // These bounds indicate the range of values that are disallowed for the
-  // metric.
-  // If these bounds for a metric are [`lower`, `upper`], then this metric's
-  // `value` needs to comply with the constraints
-  // `value <= lower` OR `upper <= value`.
+  // List of bounds that apply to the metric sample.
   //
-  // It is important to note that these bounds work together with
-  // `system_inclusion_bounds`.
+  // These bounds adapt in real-time to reflect the operating conditions at the
+  // time of aggregation or derivation.
   //
-  // E.g., for the system to accept a charge command,
-  // clients need to request power values within the bounds
-  // `[system_inclusion_bounds.lower, system_exclusion_bounds.lower]`.
-  // This means that clients can only request charge commands with power values
-  // that are within the `system_inclusion_bounds`, but not within
-  // `system_exclusion_bounds`.
-  // Similarly, for the system to accept a discharge command,
-  // clients need to request power values within the bounds
-  // `[system_exclusion_bounds.upper, system_inclusion_bounds.upper]`.
+  // #### Multiple Bounds
   //
-  // The following diagram illustrates the relationship between the bounds.
+  // In the case of certain components like batteries, multiple bounds might
+  // exist. These multiple bounds collectively extend the range of allowable
+  // values, effectively forming a union of all given bounds. In such cases,
+  // the value of the metric must be within at least one of the bounds.
+  // In accordance with the passive sign convention, bounds that limit discharge
+  // would have negative numbers, while those limiting charge, such as for the
+  // State of Power (SoP) metric, would be positive. Hence bounds can have
+  // positive and negative values depending on the metric they represent.
+  //
+  // #### Example
+  //
+  // The diagram below illustrates the relationship between the bounds.
   // ```
-  //   inclusion.lower                              inclusion.upper
+  //      bound[0].lower                         bound[1].upper
   // <-------|============|------------------|============|--------->
-  //                exclusion.lower    exclusion.upper
+  //                bound[0].upper      bound[1].lower
   // ```
-  // ---- values here are disallowed and wil be rejected
-  // ==== vales here are allowed and will be accepted
-  frequenz.api.common.v1.metrics.Bounds system_exclusion_bounds = 4;
+  // ---- values here are disallowed and will be rejected
+  // ==== values here are allowed and will be accepted
+  repeated Bounds bounds = 6;
+}
 
-  // These bounds indicate the range of values that are allowed for the metric.
-  // If these bounds for a metric are [`lower`, `upper`], then this metric's
-  // `value` needs to comply with the constraint `lower <= value <= upper`
-  //
-  // It is important to note that these bounds work together with
-  // `system_exclusion_bounds`.
-  //
-  // E.g., for the system to accept a charge command,
-  // clients need to request power values within the bounds
-  // `[system_inclusion_bounds.lower, system_exclusion_bounds.lower]`.
-  // This means that clients can only request charge commands with power values
-  // that are within the `system_inclusion_bounds`, but not within
-  // `system_exclusion_bounds`.
-  // Similarly, for the system to accept a discharge command,
-  // clients need to request power values within the bounds
-  // `[system_exclusion_bounds.upper, system_inclusion_bounds.upper]`.
-  //
-  // The following diagram illustrates the relationship between the bounds.
-  // ```
-  //   inclusion.lower                              inclusion.upper
-  // <-------|============|------------------|============|--------->
-  //                exclusion.lower    exclusion.upper
-  // ```
-  // ---- values here are disallowed and wil be rejected
-  // ==== vales here are allowed and will be accepted
-  frequenz.api.common.v1.metrics.Bounds system_inclusion_bounds = 5;
+// MetricSampleVariant serves as a union type that can encapsulate either a
+// `SimpleMetricSample` or an `AggregatedMetricSample`.
+//
+// This message is designed to offer flexibility in capturing different
+// granularities of metric samples—either a simple single-point measurement
+// or an aggregated set of measurements for a metric.
+//
+// A `MetricSampleVariant` can hold either a `SimpleMetricSample` or an
+// `AggregatedMetricSample`, but not both simultaneously. Setting one will
+// nullify the other.
+message MetricSampleVariant {
+  oneof metric_return_type {
+    SimpleMetricSample simple_metric = 1;
+    AggregatedMetricSample aggregated_metric = 2;
+  }
+}
+
+// List of supported metrics.
+enum Metric {
+  // Default value.
+  METRIC_UNSPECIFIED = 0;
+
+  // DC electricity metrics
+  METRIC_DC_VOLTAGE = 1;
+  METRIC_DC_CURRENT = 2;
+  METRIC_DC_POWER = 3;
+
+  // General AC electricity metrics
+  METRIC_AC_FREQUENCY = 10;
+  METRIC_AC_VOLTAGE = 11;
+  METRIC_AC_VOLTAGE_PHASE_1 = 12;
+  METRIC_AC_VOLTAGE_PHASE_2 = 13;
+  METRIC_AC_VOLTAGE_PHASE_3 = 14;
+  METRIC_AC_APPARENT_CURRENT = 15;
+  METRIC_AC_APPARENT_CURRENT_PHASE_1 = 16;
+  METRIC_AC_APPARENT_CURRENT_PHASE_2 = 17;
+  METRIC_AC_APPARENT_CURRENT_PHASE_3 = 18;
+
+  // AC power metrics
+  METRIC_AC_APPARENT_POWER = 20;
+  METRIC_AC_APPARENT_POWER_PHASE_1 = 21;
+  METRIC_AC_APPARENT_POWER_PHASE_2 = 22;
+  METRIC_AC_APPARENT_POWER_PHASE_3 = 23;
+  METRIC_AC_ACTIVE_POWER = 24;
+  METRIC_AC_ACTIVE_POWER_PHASE_1 = 25;
+  METRIC_AC_ACTIVE_POWER_PHASE_2 = 26;
+  METRIC_AC_ACTIVE_POWER_PHASE_3 = 27;
+  METRIC_AC_REACTIVE_POWER = 28;
+  METRIC_AC_REACTIVE_POWER_PHASE_1 = 29;
+  METRIC_AC_REACTIVE_POWER_PHASE_2 = 30;
+  METRIC_AC_REACTIVE_POWER_PHASE_3 = 31;
+
+  // AC Power factor
+  METRIC_AC_POWER_FACTOR = 40;
+  METRIC_AC_POWER_FACTOR_PHASE_1 = 41;
+  METRIC_AC_POWER_FACTOR_PHASE_2 = 42;
+  METRIC_AC_POWER_FACTOR_PHASE_3 = 43;
+
+  // AC energy metrics
+  METRIC_AC_APPARENT_ENERGY = 50;
+  METRIC_AC_APPARENT_ENERGY_PHASE_1 = 51;
+  METRIC_AC_APPARENT_ENERGY_PHASE_2 = 52;
+  METRIC_AC_APPARENT_ENERGY_PHASE_3 = 53;
+  METRIC_AC_ACTIVE_ENERGY = 54;
+  METRIC_AC_ACTIVE_ENERGY_PHASE_1 = 55;
+  METRIC_AC_ACTIVE_ENERGY_PHASE_2 = 56;
+  METRIC_AC_ACTIVE_ENERGY_PHASE_3 = 57;
+  METRIC_AC_ACTIVE_ENERGY_CONSUMED = 58;
+  METRIC_AC_ACTIVE_ENERGY_CONSUMED_PHASE_1 = 59;
+  METRIC_AC_ACTIVE_ENERGY_CONSUMED_PHASE_2 = 60;
+  METRIC_AC_ACTIVE_ENERGY_CONSUMED_PHASE_3 = 61;
+  METRIC_AC_ACTIVE_ENERGY_DELIVERED = 62;
+  METRIC_AC_ACTIVE_ENERGY_DELIVERED_PHASE_1 = 63;
+  METRIC_AC_ACTIVE_ENERGY_DELIVERED_PHASE_2 = 64;
+  METRIC_AC_ACTIVE_ENERGY_DELIVERED_PHASE_3 = 65;
+  METRIC_AC_REACTIVE_ENERGY = 66;
+  METRIC_AC_REACTIVE_ENERGY_PHASE_1 = 67;
+  METRIC_AC_REACTIVE_ENERGY_PHASE_2 = 69;
+  METRIC_AC_REACTIVE_ENERGY_PHASE_3 = 70;
+
+  // AC harmonics
+  METRIC_AC_THD_CURRENT = 80;
+  METRIC_AC_THD_CURRENT_PHASE_1 = 81;
+  METRIC_AC_THD_CURRENT_PHASE_2 = 82;
+  METRIC_AC_THD_CURRENT_PHASE_3 = 83;
+
+  // General BMS metrics.
+  METRIC_BATTERY_CAPACITY = 101;
+  METRIC_BATTERY_SOC_PCT = 102;
+  METRIC_BATTERY_SOP_CHARGE = 103;
+  METRIC_BATTERY_SOP_DISCHARGE = 104;
+  METRIC_BATTERY_TEMPERATURE = 105;
+
+  // General inverter metrics.
+  METRIC_INVERTER_TEMPERATURE = 120;
+
+  // EV charging station metrics.
+  METRIC_EV_CHARGER_TEMPERATURE = 140;
+
+  //General sensor metrics
+  METRIC_SENSOR_WIND_SPEED = 160;
+  METRIC_SENSOR_WIND_DIRECTION = 162;
+  METRIC_SENSOR_TEMPERATURE = 163;
+  METRIC_SENSOR_RELATIVE_HUMIDITY = 164;
+  METRIC_SENSOR_DEW_POINT = 165;
+  METRIC_SENSOR_AIR_PRESSURE = 166;
+  METRIC_SENSOR_IRRADIANCE = 167;
 }
