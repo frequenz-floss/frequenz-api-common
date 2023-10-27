@@ -32,6 +32,6 @@
 
 "part:protobuf":
   - "proto/**"
-  
+
 "part:python":
   - "py/**"
