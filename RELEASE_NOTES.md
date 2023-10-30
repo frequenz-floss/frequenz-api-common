@@ -33,6 +33,9 @@
 - Added a union type message `MetricSampleVariant` to represent both
   `SimpleMetricSample` and `AggregatedMetricSample`
 
+- Added a message `MetricSample` to represent a metric sample with a timestamp
+  and bounds.
+
 - Added a message to represent metrics sampled from components.
 
 ## New Features
