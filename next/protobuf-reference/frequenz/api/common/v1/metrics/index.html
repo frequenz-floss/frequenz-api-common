@@ -929,6 +929,20 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#bounds" class="md-nav__link">
+    Bounds
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metricsample" class="md-nav__link">
+    MetricSample
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#relationship-between-bounds-and-metric-samples" class="md-nav__link">
     Relationship Between Bounds and Metric Samples
   </a>
@@ -956,13 +970,6 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#bounds" class="md-nav__link">
-    Bounds
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#metricsamplevariant" class="md-nav__link">
     MetricSampleVariant
   </a>
@@ -973,33 +980,6 @@
   <a href="#simplemetricsample" class="md-nav__link">
     SimpleMetricSample
   </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#interplay-between-bounds-and-metric-samples" class="md-nav__link">
-    Interplay Between Bounds and Metric Samples
-  </a>
-  
-    <nav class="md-nav" aria-label="Interplay Between Bounds and Metric Samples">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#multiple-bounds_1" class="md-nav__link">
-    Multiple Bounds
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#example_1" class="md-nav__link">
-    Example
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
         
@@ -1878,6 +1858,20 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#bounds" class="md-nav__link">
+    Bounds
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metricsample" class="md-nav__link">
+    MetricSample
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#relationship-between-bounds-and-metric-samples" class="md-nav__link">
     Relationship Between Bounds and Metric Samples
   </a>
@@ -1905,13 +1899,6 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#bounds" class="md-nav__link">
-    Bounds
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#metricsamplevariant" class="md-nav__link">
     MetricSampleVariant
   </a>
@@ -1922,33 +1909,6 @@
   <a href="#simplemetricsample" class="md-nav__link">
     SimpleMetricSample
   </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#interplay-between-bounds-and-metric-samples" class="md-nav__link">
-    Interplay Between Bounds and Metric Samples
-  </a>
-  
-    <nav class="md-nav" aria-label="Interplay Between Bounds and Metric Samples">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#multiple-bounds_1" class="md-nav__link">
-    Multiple Bounds
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#example_1" class="md-nav__link">
-    Example
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
         
@@ -1998,6 +1958,7 @@
 <ul>
 <li><a href="#frequenz-api-common-v1-metrics-AggregatedMetricSample">AggregatedMetricSample</a></li>
 <li><a href="#frequenz-api-common-v1-metrics-Bounds">Bounds</a></li>
+<li><a href="#frequenz-api-common-v1-metrics-MetricSample">MetricSample</a></li>
 <li><a href="#frequenz-api-common-v1-metrics-MetricSampleVariant">MetricSampleVariant</a></li>
 <li>
 <p><a href="#frequenz-api-common-v1-metrics-SimpleMetricSample">SimpleMetricSample</a></p>
@@ -2022,16 +1983,9 @@
 maximum, and average values - as well as the complete list of individual
 samples if available.</p>
 <p>This message represents derived metrics and contains fields for statistical
-summaries—minimum, maximum, and average values. Individual measurements and
-bounds are optional, accommodating scenarios where only subsets of this
-information are available.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<h3 id="relationship-between-bounds-and-metric-samples">Relationship Between Bounds and Metric Samples<a class="headerlink" href="#relationship-between-bounds-and-metric-samples" title="Permanent link">¤</a></h3>
-<p>Suppose a metric sample for current has an average value of <code>10A</code>. For
-the system to accept a charge command, clients need to request current
-values within the bounds.</p>
-</div>
+summaries—minimum, maximum, and average values. Individual measurements are
+are optional, accommodating scenarios where only subsets of this information
+are available.</p>
 <table>
 <thead>
 <tr>
@@ -2042,12 +1996,6 @@ values within the bounds.</p>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td>sampled_at</td>
-<td><a href="#google-protobuf-Timestamp">google.protobuf.Timestamp</a></td>
-<td></td>
-<td>The UTC timestamp indicating the period over which the data was aggregated or derived.</td>
-</tr>
 <tr>
 <td>avg_value</td>
 <td><a href="#float">float</a></td>
@@ -2072,19 +2020,8 @@ values within the bounds.</p>
 <td>repeated</td>
 <td>Optional array of all the raw individual values.</td>
 </tr>
-<tr>
-<td>bounds</td>
-<td><a href="#frequenz-api-common-v1-metrics-Bounds">Bounds</a></td>
-<td>repeated</td>
-<td>List of bounds that apply to the metric sample.</td>
-</tr>
 </tbody>
 </table>
-<p>These bounds adapt in real-time to reflect the operating conditions at the time of aggregation or derivation.</p>
-<h4 id="multiple-bounds">Multiple Bounds<a class="headerlink" href="#multiple-bounds" title="Permanent link">¤</a></h4>
-<p>In the case of certain components like batteries, multiple bounds might exist. These multiple bounds collectively extend the range of allowable values, effectively forming a union of all given bounds. In such cases, the value of the metric must be within at least one of the bounds. In accordance with the passive sign convention, bounds that limit discharge would have negative numbers, while those limiting charge, such as for the State of Power (SoP) metric, would be positive. Hence bounds can have positive and negative values depending on the metric they represent.</p>
-<h4 id="example">Example<a class="headerlink" href="#example" title="Permanent link">¤</a></h4>
-<p>The diagram below illustrates the relationship between the bounds. <code>bound[0].lower bound[1].upper &amp;lt;-------|============|------------------|============|---------&amp;gt; bound[0].upper bound[1].lower</code> ---- values here are disallowed and will be rejected ==== values here are allowed and will be accepted |</p>
 <p><a name="frequenz-api-common-v1-metrics-Bounds"></a></p>
 <h3 id="bounds">Bounds<a class="headerlink" href="#bounds" title="Permanent link">¤</a></h3>
 <p>A set of lower and upper bounds for any metric.
@@ -2113,6 +2050,63 @@ The units of the bounds are always the same as the related metric.</p>
 </tr>
 </tbody>
 </table>
+<p><a name="frequenz-api-common-v1-metrics-MetricSample"></a></p>
+<h3 id="metricsample">MetricSample<a class="headerlink" href="#metricsample" title="Permanent link">¤</a></h3>
+<p>Representation of a sampled metric along with its value.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This represents a single sample of a specific metric, the value of which
+is either measured or derived at a particular time. The real-time
+system-defined bounds are optional and may not always be present or set.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<h3 id="relationship-between-bounds-and-metric-samples">Relationship Between Bounds and Metric Samples<a class="headerlink" href="#relationship-between-bounds-and-metric-samples" title="Permanent link">¤</a></h3>
+<p>Suppose a metric sample for active power has a lower-bound of -10,000 W,
+and an upper-bound of 10,000 W. For the system to accept a charge
+command, clients need to request current values within the bounds.</p>
+</div>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>sampled_at</td>
+<td><a href="#google-protobuf-Timestamp">google.protobuf.Timestamp</a></td>
+<td></td>
+<td>The UTC timestamp of when the metric was sampled.</td>
+</tr>
+<tr>
+<td>metric</td>
+<td><a href="#frequenz-api-common-v1-metrics-Metric">Metric</a></td>
+<td></td>
+<td>The metric that was sampled.</td>
+</tr>
+<tr>
+<td>sample</td>
+<td><a href="#frequenz-api-common-v1-metrics-MetricSampleVariant">MetricSampleVariant</a></td>
+<td></td>
+<td>The value of the sampled metric.</td>
+</tr>
+<tr>
+<td>bounds</td>
+<td><a href="#frequenz-api-common-v1-metrics-Bounds">Bounds</a></td>
+<td>repeated</td>
+<td>List of bounds that apply to the metric sample.</td>
+</tr>
+</tbody>
+</table>
+<p>These bounds adapt in real-time to reflect the operating conditions at the time of aggregation or derivation.</p>
+<h4 id="multiple-bounds">Multiple Bounds<a class="headerlink" href="#multiple-bounds" title="Permanent link">¤</a></h4>
+<p>In the case of certain components like batteries, multiple bounds might exist. These multiple bounds collectively extend the range of allowable values, effectively forming a union of all given bounds. In such cases, the value of the metric must be within at least one of the bounds. In accordance with the passive sign convention, bounds that limit discharge would have negative numbers, while those limiting charge, such as for the State of Power (SoP) metric, would be positive. Hence bounds can have positive and negative values depending on the metric they represent.</p>
+<h4 id="example">Example<a class="headerlink" href="#example" title="Permanent link">¤</a></h4>
+<p>The diagram below illustrates the relationship between the bounds. <code>bound[0].lower bound[1].upper &amp;lt;-------|============|------------------|============|---------&amp;gt; bound[0].upper bound[1].lower</code> ---- values here are disallowed and will be rejected ==== values here are allowed and will be accepted |</p>
 <p><a name="frequenz-api-common-v1-metrics-MetricSampleVariant"></a></p>
 <h3 id="metricsamplevariant">MetricSampleVariant<a class="headerlink" href="#metricsamplevariant" title="Permanent link">¤</a></h3>
 <p>MetricSampleVariant serves as a union type that can encapsulate either a
@@ -2149,22 +2143,8 @@ nullify the other.</p>
 </table>
 <p><a name="frequenz-api-common-v1-metrics-SimpleMetricSample"></a></p>
 <h3 id="simplemetricsample">SimpleMetricSample<a class="headerlink" href="#simplemetricsample" title="Permanent link">¤</a></h3>
-<p>Represents a simple metric sample with an array of real-time system-defined
-bounds.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>This represents a single sample of a specific metric, the value of which
-is either measured or derived at a particular time. The real-time
-system-defined bounds are optional and may not always be present or set.</p>
-</div>
-<div class="admonition usage">
-<p class="admonition-title">Usage</p>
-<h3 id="interplay-between-bounds-and-metric-samples">Interplay Between Bounds and Metric Samples<a class="headerlink" href="#interplay-between-bounds-and-metric-samples" title="Permanent link">¤</a></h3>
-<p>Consider a scenario where a metric sample for battery charging power is
-registered at <code>10kW</code>. If there is a request to change the battery&#39;s
-charging power, the proposed power level must align with the existing
-bounds. Failure to do so will result in the command being rejected.</p>
-</div>
+<p>Represents a single sample of a specific metric, the value of which is either
+measured or derived at a particular time.</p>
 <table>
 <thead>
 <tr>
@@ -2176,30 +2156,13 @@ bounds. Failure to do so will result in the command being rejected.</p>
 </thead>
 <tbody>
 <tr>
-<td>sampled_at</td>
-<td><a href="#google-protobuf-Timestamp">google.protobuf.Timestamp</a></td>
-<td></td>
-<td>The UTC timestamp of when the data was either measured or derived.</td>
-</tr>
-<tr>
 <td>value</td>
 <td><a href="#float">float</a></td>
 <td></td>
 <td>The value of the metric, which could be either measured or derived.</td>
 </tr>
-<tr>
-<td>bounds</td>
-<td><a href="#frequenz-api-common-v1-metrics-Bounds">Bounds</a></td>
-<td>repeated</td>
-<td>List of bounds that apply to the metric sample.</td>
-</tr>
 </tbody>
 </table>
-<p>These bounds adapt in real-time to reflect the operating conditions at the time of sampling.</p>
-<h4 id="multiple-bounds_1">Multiple Bounds<a class="headerlink" href="#multiple-bounds_1" title="Permanent link">¤</a></h4>
-<p>In the case of certain components like batteries, multiple bounds might exist. These multiple bounds collectively extend the range of allowable values, effectively forming a union of all given bounds. In such cases, the value of the metric must be within at least one of the bounds. In accordance with the passive sign convention, bounds that limit discharge would have negative numbers, while those limiting charge, such as for the State of Power (SoP) metric, would be positive. Hence bounds can have positive and negative values depending on the metric they represent.</p>
-<h4 id="example_1">Example<a class="headerlink" href="#example_1" title="Permanent link">¤</a></h4>
-<p>The diagram below illustrates the relationship between the bounds. <code>bound[0].lower bound[1].upper &amp;lt;-------|============|------------------|============|---------&amp;gt; bound[0].upper bound[1].lower</code> ---- values here are disallowed and will be rejected ==== values here are allowed and will be accepted |</p>
 <p><a name="frequenz-api-common-v1-metrics-Metric"></a></p>
 <h3 id="metric">Metric<a class="headerlink" href="#metric" title="Permanent link">¤</a></h3>
 <p>List of supported metrics.</p>
