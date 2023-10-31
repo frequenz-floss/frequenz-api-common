@@ -14,172 +14,130 @@ import "frequenz/api/common/v1/metrics.proto";
 
 import "google/protobuf/timestamp.proto";
 
-
 // ComponentData message aggregates multiple metrics, operational states, and
 // errors, related to a specific microgrid component.
 //
 // !!! example
-//     Example output structure:
-//     ```
-//     {
-//       "metric_samples": [
-//         {
-//           "metric": "DC_VOLTAGE_V",
-//           "value": {
-//             "simple_metric": {
-//               "sampled_at": "2023-10-19T14:15:22.123456789Z",
-//               "value": 48.2,
-//               "bounds": [{ "lower": 45.0, "upper": 50.0 }]
-//             }
-//           }
-//         },
-//         {
-//           "metric": "DC_CURRENT_A",
-//           "value": {
-//             "aggregated_metric": {
-//               "sampled_at": "2023-10-19T14:15:22.123456789Z",
-//               "avg_value": 10.2,
-//               "min_value": 9.8,
-//               "max_value": 10.6,
-//               "list_values": [9.8, 10.1, 10.6],
-//               "bounds": [
-//                 { "lower": -20.0, "upper": -5.0 },
-//                 { "lower": 5.0, "upper": 20.0 }
-//               ]
-//             }
-//           }
-//         }
-//       ],
-//       "states": [
-//         {
-//           "sampled_at": "2023-10-19T14:15:22.123456789Z",
-//           "state": ["COMPONENT_STATE_CHARGING"],
-//           "errors": []
-//         },
-//         {
-//           "sampled_at": "2023-10-19T14:00:00.000000000Z",
-//           "state": ["COMPONENT_STATE_ERROR"],
-//           "errors": ["COMPONENT_ERROR_CODE_BATTERY_RELAY_ERROR"]
-//         }
-//       ]
-//     }
-//    ```
+//   Example output of a component data message:
+//   ```
+//    {
+//      component_id: 13,
+//      metric_samples: [
+//        /* list of metrics for multiple timestamps */
+//        {
+//          sampled_at: "2023-10-01T00:00:00Z",
+//          metric: "DC_VOLTAGE_V",
+//          sample: {},
+//          bounds: {},
+//        },
+//        {
+//          sampled_at: "2023-10-01T00:00:00Z",
+//          metric: "DC_VOLTAGE_V",
+//          sample: {},
+//          bounds: {},
+//        }
+//      ],
+//      states: [
+//        /* list of states for multiple timestamps */
+//        {
+//          sampled_at: "2023-10-01T00:00:00Z",
+//          states: [],
+//          errors: [],
+//        },
+//        {
+//          sampled_at: "2023-10-01T00:00:00Z",
+//          states: [],
+//          errors: [],
+//        },
+//      ]
+//    }
+//  ```
 message ComponentData {
-  // Representation of a sampled metric along with its value.
-  message MetricSample {
-    // The metric that was sampled.
-    frequenz.api.common.v1.metrics.Metric metric = 1;
-
-    // The value of the sampled metric.
-    frequenz.api.common.v1.metrics.MetricSampleVariant sample = 2;
-  }
-
-  // Representation of a component state and errors.
-  message State {
-    // The time at which the state was sampled.
-    google.protobuf.Timestamp sampled_at = 1;
-
-    // List if states of the microgrid component.
-    //
-    // !!! note
-    //    The list will contain unique members. No state will exist twice in
-    //    this list.
-    repeated ComponentState states = 2;
-
-    // List of errors for the microgrid component.
-    //
-    // !!! note
-    //    The list of errors is supposed to be populated only if the component
-    //    is in an error state.
-    //
-    // !!! note
-    //    The list will contain unique members. No error will exist twice in
-    //    this list.
-    repeated ComponentError errors = 4;
-  }
+  // The ID of the microgrid component.
+  uint64 component_id = 1;
 
   // List of measurements for a metric of the specific microgrid component.
-  repeated MetricSample metric_samples = 1;
+  repeated frequenz.api.common.v1.metrics.MetricSample metric_samples = 2;
 
   // List of states of a specific microgrid component.
-  repeated State states = 2;
+  repeated ComponentState states = 3;
 }
 
 // Enum to represent the various states that a component can be in.
 // This enum is unified across all component categories for consistency.
-enum ComponentState {
+enum ComponentStateCode {
   // Default value when the component state is not explicitly set.
   // This is the zero value of the enum.
-  COMPONENT_STATE_UNSPECIFIED = 0;
+  COMPONENT_STATE_CODE_UNSPECIFIED = 0;
 
   // State when the component is in an unknown or undefined condition.
   // This is used when the sender is unable to classify the component into any
   // other state.
-  COMPONENT_STATE_UNKNOWN = 1;
+  COMPONENT_STATE_CODE_UNKNOWN = 1;
 
   // State when the component is temporarily unavailable for operation.
-  COMPONENT_STATE_UNAVAILABLE = 2;
+  COMPONENT_STATE_CODE_UNAVAILABLE = 2;
 
   // State when the component is in the process of switching off.
-  COMPONENT_STATE_SWITCHING_OFF = 3;
+  COMPONENT_STATE_CODE_SWITCHING_OFF = 3;
 
   // State when the component has successfully switched off.
-  COMPONENT_STATE_OFF = 4;
+  COMPONENT_STATE_CODE_OFF = 4;
 
   // State when the component is in the process of switching on from an off
   // state.
-  COMPONENT_STATE_SWITCHING_ON = 5;
+  COMPONENT_STATE_CODE_SWITCHING_ON = 5;
 
   // State when the component is in standby mode, and not immediately ready for
   // immediate operations.
-  COMPONENT_STATE_STANDBY = 6;
+  COMPONENT_STATE_CODE_STANDBY = 6;
 
   // State when the component is fully operational and ready for use.
-  COMPONENT_STATE_READY = 7;
+  COMPONENT_STATE_CODE_READY = 7;
 
   // State when the component is actively consuming energy.
-  COMPONENT_STATE_CHARGING = 8;
+  COMPONENT_STATE_CODE_CHARGING = 8;
 
   // State when the component is actively producing or releasing energy.
-  COMPONENT_STATE_DISCHARGING = 9;
+  COMPONENT_STATE_CODE_DISCHARGING = 9;
 
   // State when the component is in an error state and may need attention.
-  COMPONENT_STATE_ERROR = 10;
+  COMPONENT_STATE_CODE_ERROR = 10;
 
   // The Electric Vehicle (EV) charging cable is unplugged from the charging
   // station.
-  COMPONENT_STATE_EV_CHARGING_CABLE_UNPLUGGED = 20;
+  COMPONENT_STATE_CODE_EV_CHARGING_CABLE_UNPLUGGED = 20;
 
   // The EV charging cable is plugged into the charging station.
-  COMPONENT_STATE_EV_CHARGING_CABLE_PLUGGED_AT_STATION = 21;
+  COMPONENT_STATE_CODE_EV_CHARGING_CABLE_PLUGGED_AT_STATION = 21;
 
   // The EV charging cable is plugged into the vehicle.
-  COMPONENT_STATE_EV_CHARGING_CABLE_PLUGGED_AT_EV = 22;
+  COMPONENT_STATE_CODE_EV_CHARGING_CABLE_PLUGGED_AT_EV = 22;
 
   // The EV charging cable is locked at the charging station end, indicating
   // readiness for charging.
-  COMPONENT_STATE_EV_CHARGING_CABLE_LOCKED_AT_STATION = 23;
+  COMPONENT_STATE_CODE_EV_CHARGING_CABLE_LOCKED_AT_STATION = 23;
 
   // The EV charging cable is locked at the vehicle end, indicating that
   // charging is active.
-  COMPONENT_STATE_EV_CHARGING_CABLE_LOCKED_AT_EV = 24;
+  COMPONENT_STATE_CODE_EV_CHARGING_CABLE_LOCKED_AT_EV = 24;
 
   // The relay is in an open state, meaning no current can flow through.
-  COMPONENT_STATE_RELAY_OPEN = 30;
+  COMPONENT_STATE_CODE_RELAY_OPEN = 30;
 
   // The relay is in a closed state, allowing current to flow.
-  COMPONENT_STATE_RELAY_CLOSED = 31;
+  COMPONENT_STATE_CODE_RELAY_CLOSED = 31;
 
   // The precharger circuit is open, meaning it's not currently active.
-  COMPONENT_STATE_PRECHARGER_OPEN = 40;
+  COMPONENT_STATE_CODE_PRECHARGER_OPEN = 40;
 
   // The precharger is in a precharging state, preparing the main circuit for
   // activation.
-  COMPONENT_STATE_PRECHARGER_PRECHARGING = 41;
+  COMPONENT_STATE_CODE_PRECHARGER_PRECHARGING = 41;
 
   // The precharger circuit is closed, allowing full current to flow to the main
   // circuit.
-  COMPONENT_STATE_PRECHARGER_CLOSED = 42;
+  COMPONENT_STATE_CODE_PRECHARGER_CLOSED = 42;
 }
 
 // A representation of all possible errors that can occur across all component
@@ -255,7 +213,7 @@ enum ComponentErrorCode {
   COMPONENT_ERROR_CODE_CONFIG_ERROR = 18;
 
   // Error indicating an illegal state requested for the component.
-  COMPONENT_ERROR_CODE_ILLEGAL_COMPONENT_STATE_REQUESTED = 19;
+  COMPONENT_ERROR_CODE_ILLEGAL_COMPONENT_STATE_CODE_REQUESTED = 19;
 
   // Error indicating that the hardware of the component is inaccessible.
   COMPONENT_ERROR_CODE_HARDWARE_INACCESSIBLE = 20;
@@ -307,28 +265,37 @@ enum ComponentErrorCode {
   COMPONENT_ERROR_CODE_RELAY_CYCLE_LIMIT_REACHED = 60;
 }
 
-// A representation of all possible error levels that an error can have.
-enum ErrorLevel {
-  // Default value. No specific error-level is specified.
-  ERROR_LEVEL_UNSPECIFIED = 0;
+// Representation of a component state and errors.
+message ComponentState {
+  // The time at which the state was sampled.
+  google.protobuf.Timestamp sampled_at = 1;
 
-  // The associated error is a warning.
-  // Users are advised to take action to prevent the error from becoming
-  // critical.
-  ERROR_LEVEL_WARN = 1;
+  // List if states of the microgrid component.
+  //
+  // !!! note
+  //    The list will contain unique members. No state will exist twice in
+  //    this list.
+  repeated ComponentStateCode states = 2;
 
-  // The associated error is critical.
-  // The associated component is very likely out-of-order, and needs immediate
-  // attention.
-  ERROR_LEVEL_CRITICAL = 2;
-}
+  // List of warnings for the microgrid component.
+  //
+  // !!! note
+  //    This list may have warnings even if the component state is not in an
+  //    error state.
+  //
+  // !!! note
+  //    The list will contain unique members. No warning will exist twice in
+  //    this list.
+  repeated ComponentErrorCode warnings = 3;
 
-// ComponentError message represents an error that occurred in a microgrid
-// component.
-message ComponentError {
-  // The error code.
-  ComponentErrorCode code = 1;
-
-  // THe error level, indicating if it is a warning or a critical error
-  ErrorLevel level = 2;
+  // List of errors for the microgrid component.
+  //
+  // !!! note
+  //    This list is expected to have errors if and only if the component is in
+  //    an error state.
+  //
+  // !!! note
+  //    The list will contain unique members. No error will exist twice in
+  //    this list.
+  repeated ComponentErrorCode errors = 4;
 }
