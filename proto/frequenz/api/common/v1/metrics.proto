@@ -66,7 +66,7 @@ message AggregatedMetricSample {
 // `AggregatedMetricSample`, but not both simultaneously. Setting one will
 // nullify the other.
 message MetricSampleVariant {
-  oneof metric_return_type {
+  oneof metric_sample_type {
     SimpleMetricSample simple_metric = 1;
     AggregatedMetricSample aggregated_metric = 2;
   }
