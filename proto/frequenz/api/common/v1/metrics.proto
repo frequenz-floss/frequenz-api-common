@@ -24,54 +24,11 @@ message Bounds {
   optional float upper = 2;
 }
 
-// Represents a simple metric sample with an array of real-time system-defined
-// bounds.
-//
-// !!! note
-//     This represents a single sample of a specific metric, the value of which
-//     is either measured or derived at a particular time. The real-time
-//     system-defined bounds are optional and may not always be present or set.
-//
-// !!! usage
-//     ### Interplay Between Bounds and Metric Samples
-//     Consider a scenario where a metric sample for battery charging power is
-//     registered at `10kW`. If there is a request to change the battery's
-//     charging power, the proposed power level must align with the existing
-//     bounds. Failure to do so will result in the command being rejected.
+// Represents a single sample of a specific metric, the value of which is either
+// measured or derived at a particular time.
 message SimpleMetricSample {
-  // The UTC timestamp of when the data was either measured or derived.
-  google.protobuf.Timestamp sampled_at = 1;
-
   // The value of the metric, which could be either measured or derived.
   float value = 2;
-
-  // List of bounds that apply to the metric sample.
-  //
-  // These bounds adapt in real-time to reflect the operating conditions at the
-  // time of sampling.
-  //
-  // #### Multiple Bounds
-  //
-  // In the case of certain components like batteries, multiple bounds might
-  // exist. These multiple bounds collectively extend the range of allowable
-  // values, effectively forming a union of all given bounds. In such cases,
-  // the value of the metric must be within at least one of the bounds.
-  // In accordance with the passive sign convention, bounds that limit discharge
-  // would have negative numbers, while those limiting charge, such as for the
-  // State of Power (SoP) metric, would be positive. Hence bounds can have
-  // positive and negative values depending on the metric they represent.
-  //
-  // #### Example
-  //
-  // The diagram below illustrates the relationship between the bounds.
-  // ```
-  //    bound[0].lower                               bound[1].upper
-  // <-------|============|------------------|============|--------->
-  //                bound[0].upper     bound[1].lower
-  // ```
-  // ---- values here are disallowed and will be rejected
-  // ==== values here are allowed and will be accepted
-  repeated Bounds bounds = 3;
 }
 
 // Encapsulates derived statistical summaries of a single metric.
@@ -81,20 +38,10 @@ message SimpleMetricSample {
 // samples if available.
 //
 // This message represents derived metrics and contains fields for statistical
-// summaries—minimum, maximum, and average values. Individual measurements and
-// bounds are optional, accommodating scenarios where only subsets of this
-// information are available.
-//
-// !!! note
-//     ### Relationship Between Bounds and Metric Samples
-//     Suppose a metric sample for current has an average value of `10A`. For
-//     the system to accept a charge command, clients need to request current
-//     values within the bounds.
+// summaries—minimum, maximum, and average values. Individual measurements are
+// are optional, accommodating scenarios where only subsets of this information
+// are available.
 message AggregatedMetricSample {
-  // The UTC timestamp indicating the period over which the data was aggregated
-  // or derived.
-  google.protobuf.Timestamp sampled_at = 1;
-
   // The derived average value of the metric.
   float avg_value = 2;
 
@@ -106,34 +53,6 @@ message AggregatedMetricSample {
 
   // Optional array of all the raw individual values.
   repeated float raw_values = 5;
-
-  // List of bounds that apply to the metric sample.
-  //
-  // These bounds adapt in real-time to reflect the operating conditions at the
-  // time of aggregation or derivation.
-  //
-  // #### Multiple Bounds
-  //
-  // In the case of certain components like batteries, multiple bounds might
-  // exist. These multiple bounds collectively extend the range of allowable
-  // values, effectively forming a union of all given bounds. In such cases,
-  // the value of the metric must be within at least one of the bounds.
-  // In accordance with the passive sign convention, bounds that limit discharge
-  // would have negative numbers, while those limiting charge, such as for the
-  // State of Power (SoP) metric, would be positive. Hence bounds can have
-  // positive and negative values depending on the metric they represent.
-  //
-  // #### Example
-  //
-  // The diagram below illustrates the relationship between the bounds.
-  // ```
-  //      bound[0].lower                         bound[1].upper
-  // <-------|============|------------------|============|--------->
-  //                bound[0].upper      bound[1].lower
-  // ```
-  // ---- values here are disallowed and will be rejected
-  // ==== values here are allowed and will be accepted
-  repeated Bounds bounds = 6;
 }
 
 // MetricSampleVariant serves as a union type that can encapsulate either a
