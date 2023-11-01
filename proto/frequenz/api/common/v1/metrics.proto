@@ -154,7 +154,7 @@ enum Metric {
   // EV charging station metrics.
   METRIC_EV_CHARGER_TEMPERATURE = 140;
 
-  //General sensor metrics
+  // General sensor metrics
   METRIC_SENSOR_WIND_SPEED = 160;
   METRIC_SENSOR_WIND_DIRECTION = 162;
   METRIC_SENSOR_TEMPERATURE = 163;
