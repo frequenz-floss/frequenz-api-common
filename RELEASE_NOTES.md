@@ -38,6 +38,8 @@
 
 - Added a message to represent metrics sampled from components.
 
+- Added a message `SensorData` to represent metrics sampled from sensors.
+
 ## New Features
 
 <!-- Here goes the main new features and examples or instructions on how to use them -->
