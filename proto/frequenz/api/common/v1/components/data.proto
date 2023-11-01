@@ -270,7 +270,7 @@ message ComponentState {
   // The time at which the state was sampled.
   google.protobuf.Timestamp sampled_at = 1;
 
-  // List if states of the microgrid component.
+  // List of states of the microgrid component.
   //
   // !!! note
   //    The list will contain unique members. No state will exist twice in
