@@ -40,6 +40,9 @@
 
 - Added a message `SensorData` to represent metrics sampled from sensors.
 
+- Added a message `Lifetime` as a wrapper over the start and end timestamps of
+  an entity.
+
 ## New Features
 
 <!-- Here goes the main new features and examples or instructions on how to use them -->
