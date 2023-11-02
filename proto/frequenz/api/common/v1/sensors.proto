@@ -10,6 +10,10 @@ syntax = "proto3";
 
 package frequenz.api.common.v1.sensors;
 
+import "frequenz/api/common/v1/metrics.proto";
+
+import "google/protobuf/timestamp.proto";
+
 // Enumerated sensor categories.
 enum SensorCategory {
   // Unspecified
@@ -75,4 +79,103 @@ enum SensorMetric {
   //
   // In Celsius (°C).
   SENSOR_METRIC_DEW_POINT = 8;
+}
+
+// ComponentData message aggregates multiple metrics, operational states, and
+// errors, related to a specific microgrid component.
+//
+// !!! example
+//   Example output of a component data message:
+//   ```
+//    {
+//      component_id: 13,
+//      metric_samples: [
+//        /* list of metrics for multiple timestamps */
+//        {
+//          sampled_at: "2023-10-01T00:00:00Z",
+//          metric: "METRIC_SENSOR_TEMPERATURE",
+//          sample: metric_sample_type: {simple_metric: {value: 23.5},
+//          bounds: {},
+//        },
+//        {
+//          sampled_at: "2023-10-01T00:00:00Z",
+//          metric: "METRIC_SENSOR_RELATIVE_HUMIDITY",
+//          sample: metric_sample_type: {simple_metric: {value: 23.5},
+//          bounds: {},
+//        }
+//      ]
+//    }
+//  ```
+message SensorData {
+  // The ID of the microgrid sensors.
+  uint64 sensor_id = 1;
+
+  // List of measurements for a metric of the specific microgrid sensor.
+  repeated SensorMetricSample metric_samples = 2;
+
+  // List of states of a specific microgrid sensor.
+  repeated SensorState states = 3;
+}
+
+// Representation of a sensor state and errors.
+message SensorState {
+  // The time at which the state was sampled.
+  google.protobuf.Timestamp sampled_at = 1;
+
+  // List of states of the microgrid sensor.
+  //
+  // !!! note
+  //    The list will contain unique members. No state will exist twice in
+  //    this list.
+  repeated SensorStateCode states = 2;
+
+  // List of errors for the microgrid sensor.
+  //
+  // !!! note
+  //    This list is expected to have errors if and only if the sensor is in
+  //    an error state.
+  //
+  // !!! note
+  //    The list will contain unique members. No error will exist twice in
+  //    this list.
+  repeated SensorErrorCode errors = 4;
+}
+
+// Enum to represent the various states that a sensor can be in.
+// This enum is unified across all sensor categories for consistency.
+enum SensorStateCode {
+  // Default value when the sensor state is not explicitly set.
+  // This is the zero value of the enum.
+  SENSOR_STATE_CODE_UNSPECIFIED = 0;
+
+  // The sensor is up and running.
+  SENSOR_STATE_CODE_ON = 1;
+
+  // The sensor is in an error state.
+  SENSOR_STATE_CODE_ERROR = 2;
+}
+
+// A representation of all possible errors that can occur in sensors.
+enum SensorErrorCode {
+  // Default value. No specific error is specified.
+  SENSOR_ERROR_CODE_UNSPECIFIED = 0;
+
+  // The sensor is reporting an unknown or an undefined error, and the sender
+  // cannot parse the sensor error to any of the variants below.
+  SENSOR_ERROR_CODE_UNKNOWN = 1;
+
+  // Error indicating an internal error within the sensor.
+  SENSOR_ERROR_CODE_INTERNAL = 2;
+}
+
+// Representation of a sampled sensor metric along with its value.
+message SensorMetricSample {
+  // The UTC timestamp of when the metric was sampled.
+  google.protobuf.Timestamp sampled_at = 1;
+
+  // The metric that was sampled.
+  frequenz.api.common.v1.metrics.Metric metric = 2;
+
+  // The value of the sampled metric.
+  frequenz.api.common.v1.metrics.MetricSampleVariant sample = 3;
 }
