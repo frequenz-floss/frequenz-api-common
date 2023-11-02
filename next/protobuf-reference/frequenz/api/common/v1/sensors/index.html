@@ -962,6 +962,27 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#sensordata" class="md-nav__link">
+    SensorData
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sensormetricsample" class="md-nav__link">
+    SensorMetricSample
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sensorstate" class="md-nav__link">
+    SensorState
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#sensorcategory" class="md-nav__link">
     SensorCategory
   </a>
@@ -969,8 +990,22 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#sensorerrorcode" class="md-nav__link">
+    SensorErrorCode
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#sensormetric" class="md-nav__link">
     SensorMetric
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sensorstatecode" class="md-nav__link">
+    SensorStateCode
   </a>
   
 </li>
@@ -1796,6 +1831,27 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#sensordata" class="md-nav__link">
+    SensorData
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sensormetricsample" class="md-nav__link">
+    SensorMetricSample
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sensorstate" class="md-nav__link">
+    SensorState
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#sensorcategory" class="md-nav__link">
     SensorCategory
   </a>
@@ -1803,8 +1859,22 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#sensorerrorcode" class="md-nav__link">
+    SensorErrorCode
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#sensormetric" class="md-nav__link">
     SensorMetric
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sensorstatecode" class="md-nav__link">
+    SensorStateCode
   </a>
   
 </li>
@@ -1846,8 +1916,17 @@
 <li>
 <p><a href="#frequenz_api_common_v1_sensors-proto">frequenz/api/common/v1/sensors.proto</a></p>
 <ul>
-<li><a href="#frequenz-api-common-v1-sensors-SensorCategory">SensorCategory</a></li>
+<li><a href="#frequenz-api-common-v1-sensors-SensorData">SensorData</a></li>
+<li><a href="#frequenz-api-common-v1-sensors-SensorMetricSample">SensorMetricSample</a></li>
+<li>
+<p><a href="#frequenz-api-common-v1-sensors-SensorState">SensorState</a></p>
+</li>
+<li>
+<p><a href="#frequenz-api-common-v1-sensors-SensorCategory">SensorCategory</a></p>
+</li>
+<li><a href="#frequenz-api-common-v1-sensors-SensorErrorCode">SensorErrorCode</a></li>
 <li><a href="#frequenz-api-common-v1-sensors-SensorMetric">SensorMetric</a></li>
+<li><a href="#frequenz-api-common-v1-sensors-SensorStateCode">SensorStateCode</a></li>
 </ul>
 </li>
 <li>
@@ -1858,6 +1937,126 @@
 <p align="right"><a href="#top">Top</a></p>
 
 <h2 id="frequenzapicommonv1sensorsproto">frequenz/api/common/v1/sensors.proto<a class="headerlink" href="#frequenzapicommonv1sensorsproto" title="Permanent link">¤</a></h2>
+<p><a name="frequenz-api-common-v1-sensors-SensorData"></a></p>
+<h3 id="sensordata">SensorData<a class="headerlink" href="#sensordata" title="Permanent link">¤</a></h3>
+<p>ComponentData message aggregates multiple metrics, operational states, and
+errors, related to a specific microgrid component.</p>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+</div>
+<p>Example output of a component data message:
+  <code>{
+     component_id: 13,
+     metric_samples: [
+       /* list of metrics for multiple timestamps */
+       {
+         sampled_at: &amp;#34;2023-10-01T00:00:00Z&amp;#34;,
+         metric: &amp;#34;METRIC_SENSOR_TEMPERATURE&amp;#34;,
+         sample: metric_sample_type: {simple_metric: {value: 23.5},
+         bounds: {},
+       },
+       {
+         sampled_at: &amp;#34;2023-10-01T00:00:00Z&amp;#34;,
+         metric: &amp;#34;METRIC_SENSOR_RELATIVE_HUMIDITY&amp;#34;,
+         sample: metric_sample_type: {simple_metric: {value: 23.5},
+         bounds: {},
+       }
+     ]
+   }</code></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>sensor_id</td>
+<td><a href="#uint64">uint64</a></td>
+<td></td>
+<td>The ID of the microgrid sensors.</td>
+</tr>
+<tr>
+<td>metric_samples</td>
+<td><a href="#frequenz-api-common-v1-sensors-SensorMetricSample">SensorMetricSample</a></td>
+<td>repeated</td>
+<td>List of measurements for a metric of the specific microgrid sensor.</td>
+</tr>
+<tr>
+<td>states</td>
+<td><a href="#frequenz-api-common-v1-sensors-SensorState">SensorState</a></td>
+<td>repeated</td>
+<td>List of states of a specific microgrid sensor.</td>
+</tr>
+</tbody>
+</table>
+<p><a name="frequenz-api-common-v1-sensors-SensorMetricSample"></a></p>
+<h3 id="sensormetricsample">SensorMetricSample<a class="headerlink" href="#sensormetricsample" title="Permanent link">¤</a></h3>
+<p>Representation of a sampled sensor metric along with its value.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>sampled_at</td>
+<td><a href="#google-protobuf-Timestamp">google.protobuf.Timestamp</a></td>
+<td></td>
+<td>The UTC timestamp of when the metric was sampled.</td>
+</tr>
+<tr>
+<td>metric</td>
+<td><a href="#frequenz-api-common-v1-metrics-Metric">frequenz.api.common.v1.metrics.Metric</a></td>
+<td></td>
+<td>The metric that was sampled.</td>
+</tr>
+<tr>
+<td>sample</td>
+<td><a href="#frequenz-api-common-v1-metrics-MetricSampleVariant">frequenz.api.common.v1.metrics.MetricSampleVariant</a></td>
+<td></td>
+<td>The value of the sampled metric.</td>
+</tr>
+</tbody>
+</table>
+<p><a name="frequenz-api-common-v1-sensors-SensorState"></a></p>
+<h3 id="sensorstate">SensorState<a class="headerlink" href="#sensorstate" title="Permanent link">¤</a></h3>
+<p>Representation of a sensor state and errors.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>sampled_at</td>
+<td><a href="#google-protobuf-Timestamp">google.protobuf.Timestamp</a></td>
+<td></td>
+<td>The time at which the state was sampled.</td>
+</tr>
+<tr>
+<td>states</td>
+<td><a href="#frequenz-api-common-v1-sensors-SensorStateCode">SensorStateCode</a></td>
+<td>repeated</td>
+<td>List of states of the microgrid sensor.</td>
+</tr>
+</tbody>
+</table>
+<p>!!! note The list will contain unique members. No state will exist twice in this list. |
+| errors | <a href="#frequenz-api-common-v1-sensors-SensorErrorCode">SensorErrorCode</a> | repeated | List of errors for the microgrid sensor.</p>
+<p>!!! note This list is expected to have errors if and only if the sensor is in an error state.</p>
+<p>!!! note The list will contain unique members. No error will exist twice in this list. |</p>
 <p><a name="frequenz-api-common-v1-sensors-SensorCategory"></a></p>
 <h3 id="sensorcategory">SensorCategory<a class="headerlink" href="#sensorcategory" title="Permanent link">¤</a></h3>
 <p>Enumerated sensor categories.</p>
@@ -1909,6 +2108,35 @@
 <td>SENSOR_CATEGORY_GENERAL</td>
 <td>7</td>
 <td>General sensors, which do not fall in any of the above categories</td>
+</tr>
+</tbody>
+</table>
+<p><a name="frequenz-api-common-v1-sensors-SensorErrorCode"></a></p>
+<h3 id="sensorerrorcode">SensorErrorCode<a class="headerlink" href="#sensorerrorcode" title="Permanent link">¤</a></h3>
+<p>A representation of all possible errors that can occur in sensors.</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Number</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SENSOR_ERROR_CODE_UNSPECIFIED</td>
+<td>0</td>
+<td>Default value. No specific error is specified.</td>
+</tr>
+<tr>
+<td>SENSOR_ERROR_CODE_UNKNOWN</td>
+<td>1</td>
+<td>The sensor is reporting an unknown or an undefined error, and the sender cannot parse the sensor error to any of the variants below.</td>
+</tr>
+<tr>
+<td>SENSOR_ERROR_CODE_INTERNAL</td>
+<td>2</td>
+<td>Error indicating an internal error within the sensor.</td>
 </tr>
 </tbody>
 </table>
@@ -1972,6 +2200,36 @@
 </tbody>
 </table>
 <p>In Celsius (°C). |</p>
+<p><a name="frequenz-api-common-v1-sensors-SensorStateCode"></a></p>
+<h3 id="sensorstatecode">SensorStateCode<a class="headerlink" href="#sensorstatecode" title="Permanent link">¤</a></h3>
+<p>Enum to represent the various states that a sensor can be in.
+This enum is unified across all sensor categories for consistency.</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Number</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SENSOR_STATE_CODE_UNSPECIFIED</td>
+<td>0</td>
+<td>Default value when the sensor state is not explicitly set. This is the zero value of the enum.</td>
+</tr>
+<tr>
+<td>SENSOR_STATE_CODE_ON</td>
+<td>1</td>
+<td>The sensor is up and running.</td>
+</tr>
+<tr>
+<td>SENSOR_STATE_CODE_ERROR</td>
+<td>2</td>
+<td>The sensor is in an error state.</td>
+</tr>
+</tbody>
+</table>
 <h2 id="scalar-value-types">Scalar Value Types<a class="headerlink" href="#scalar-value-types" title="Permanent link">¤</a></h2>
 <table>
 <thead>
