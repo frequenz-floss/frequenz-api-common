@@ -43,6 +43,8 @@
 - Added a message `Lifetime` as a wrapper over the start and end timestamps of
   an entity.
 
+- Added a message `Sensor` to represent sensors installed in a microgrid.
+
 ## New Features
 
 <!-- Here goes the main new features and examples or instructions on how to use them -->

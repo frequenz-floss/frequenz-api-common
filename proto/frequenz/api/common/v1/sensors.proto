@@ -10,6 +10,7 @@ syntax = "proto3";
 
 package frequenz.api.common.v1.sensors;
 
+import "frequenz/api/common/v1/lifetime.proto";
 import "frequenz/api/common/v1/metrics.proto";
 
 import "google/protobuf/timestamp.proto";
@@ -39,6 +40,31 @@ enum SensorCategory {
 
   // General sensors, which do not fall in any of the above categories
   SENSOR_CATEGORY_GENERAL = 7;
+}
+
+// A sensor that measures a physical metric in the microgrid's surrounding
+// environment.
+message Sensor {
+  // A unique identifier for the sensor.
+  uint64 id = 1;
+
+  // Unique identifier of the parent microgrid_id.
+  uint64 microgrid_id = 2;
+
+  // An optional name for the sensor.
+  string name = 3;
+
+  // The category of the sensor.
+  SensorCategory category = 4;
+
+  // The sensor manufacturer.
+  string manufacturer = 5;
+
+  // The model name of the sensor.
+  string model_name = 6;
+
+  // The operational lifetime of the sensor.
+  frequenz.api.common.v1.lifetime.Lifetime operational_lifetime = 7;
 }
 
 // Enumrated sensor metrics.
