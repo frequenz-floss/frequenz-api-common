@@ -49,3 +49,16 @@ def test_module_import_metrics_electrical() -> None:
     from frequenz.api.common.v1.metrics import electrical_pb2_grpc
 
     assert electrical_pb2_grpc is not None
+
+
+def test_module_import_grid() -> None:
+    """Test that the modules can be imported."""
+    # pylint: disable=import-outside-toplevel
+    from frequenz.api.common.v1 import grid_pb2
+
+    assert grid_pb2 is not None
+
+    # pylint: disable=import-outside-toplevel
+    from frequenz.api.common.v1 import grid_pb2_grpc
+
+    assert grid_pb2_grpc is not None

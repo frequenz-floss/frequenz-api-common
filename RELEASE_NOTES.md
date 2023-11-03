@@ -53,6 +53,8 @@
 - Added a message `ComponentConnection` to represent electrical connection
   between two components installed in a microgrid.
 
+- Added a message `DeliveryArea` to represent a market contract delivery area.
+
 ## New Features
 
 <!-- Here goes the main new features and examples or instructions on how to use them -->
