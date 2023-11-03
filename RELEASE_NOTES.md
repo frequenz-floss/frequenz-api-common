@@ -55,6 +55,8 @@
 
 - Added a message `DeliveryArea` to represent a market contract delivery area.
 
+- Added a message `Microgrid` to represent a microgrid.
+
 ## New Features
 
 <!-- Here goes the main new features and examples or instructions on how to use them -->

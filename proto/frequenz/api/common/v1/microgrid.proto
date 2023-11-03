@@ -1,0 +1,64 @@
+// Frequenz microgrid definition.
+//
+// Copyright 2023 Frequenz Energy-as-a-Service GmbH
+//
+// Licensed under the MIT License (the "License");
+// you may not use this file except in compliance with the License.
+
+syntax = "proto3";
+
+package frequenz.api.common.v1.microgrid;
+
+import "frequenz/api/common/v1/grid.proto";
+import "frequenz/api/common/v1/location.proto";
+
+import "google/protobuf/timestamp.proto";
+
+// MicrogridStatus defines the possible statuses for a microgrid.
+enum MicrogridStatus {
+  // The status is unspecified. This should not be used.
+  MICROGRID_STATUS_UNSPECIFIED = 0;
+
+  // The microgrid is active.
+  MICROGRID_STATUS_ACTIVE = 1;
+
+  // The microgrid is inactive.
+  MICROGRID_STATUS_INACTIVE = 2;
+}
+
+// Microgrid contains details of a specific microgrid. A microgrid is a
+// localized grouping of electricity generation, energy storage, and loads that
+// normally operates connected to a traditional centralized grid. Each microgrid
+// has a unique identifier and is associated with an enterprise account. A key
+// feature is that it has a physical location and is situated in a delivery
+// area.
+//
+// !!! info "Key Concepts"
+//      - `Physical Location`: Geographical coordinates specify the exact
+//        physical location of the microgrid.
+//      - `Delivery Area`: Each microgrid is part of a broader delivery area,
+//        which is crucial for energy trading and compliance.
+//
+message Microgrid {
+  // Unique identifier of the microgrid.
+  uint64 id = 1;
+
+  // Unique identifier linking this microgrid to its parent enterprise account.
+  uint64 enterprise_id = 2;
+
+  // Name of the microgrid.
+  string name = 3;
+
+  // The delivery area where the microgrid is located, as identified by a
+  // specific code.
+  frequenz.api.common.v1.grid.DeliveryArea delivery_area = 4;
+
+  // Physical location of the microgrid, in geographical co-ordinates.
+  frequenz.api.common.v1.location.Location location = 5;
+
+  // The current status of the microgrid.
+  MicrogridStatus status = 6;
+
+  // The UTC timestamp indicating when the microgrid was initially created.
+  google.protobuf.Timestamp create_timestamp = 7;
+}
