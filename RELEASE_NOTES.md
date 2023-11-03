@@ -50,6 +50,9 @@
 - Added a message `ComponentCategoryMetadataVariant` to represent the different
   types of sub-categories that can be associated with a component category.
 
+- Added a message `ComponentConnection` to represent electrical connection
+  between two components installed in a microgrid.
+
 ## New Features
 
 <!-- Here goes the main new features and examples or instructions on how to use them -->

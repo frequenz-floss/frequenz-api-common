@@ -143,6 +143,43 @@ message Component {
   frequenz.api.common.v1.lifetime.Lifetime operational_lifetime = 9;
 }
 
+// ComponentConnection describes a single electrical link between two components
+// within a microgrid, effectively representing the physical wiring as viewed
+// from the grid connection point, if one exists, or from the islanding point,
+// in case of an islanded microgrids.
+//
+// !!! note "Physical Representation"
+//     This message is not about data flow but rather about the physical
+//     electrical connections between components. Therefore, the IDs for the
+//     source and destination components correspond to the actual setup within
+//     the microgrid.
+//
+// !!! note "Direction"
+//     The direction of the connection follows the flow of current away from the
+//     grid connection point, or in case of islands, away from the islanding
+//     point. This direction is aligned with positive current according to the
+//     [Passive Sign Convention]
+//     (https://en.wikipedia.org/wiki/Passive_sign_convention).
+//
+// !!! info "Historical Data"
+//     The timestamps of when a connection was created and terminated allows for
+//     tracking the changes over time to a microgrid, providing insights into
+//     when and how the microgrid infrastructure has been modified.
+//
+message ComponentConnection {
+  // Unique identifier of the component where the connection originates. This is
+  // aligned with the direction of current flow away from the grid connection
+  // point, or in case of islands, away from the islanding point.
+  uint64 source_component_id = 1;
+
+  // Unique ID of the component where the connection terminates. This is the
+  // component towards which the current flows.
+  uint64 destination_component_id = 2;
+
+  // The operational lifetime of the connection.
+  frequenz.api.common.v1.lifetime.Lifetime operational_lifetime = 3;
+}
+
 // ComponentData message aggregates multiple metrics, operational states, and
 // errors, related to a specific microgrid component.
 //
