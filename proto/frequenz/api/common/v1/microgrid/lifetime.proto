@@ -7,7 +7,7 @@
 
 syntax = "proto3";
 
-package frequenz.api.common.v1.lifetime;
+package frequenz.api.common.v1.microgrid;
 
 import "google/protobuf/timestamp.proto";
 

@@ -8,16 +8,16 @@
 
 syntax = "proto3";
 
-package frequenz.api.common.v1.components;
+package frequenz.api.common.v1.microgrid.components;
 
-import "frequenz/api/common/v1/components/battery.proto";
-import "frequenz/api/common/v1/components/ev_charger.proto";
-import "frequenz/api/common/v1/components/fuse.proto";
-import "frequenz/api/common/v1/components/grid.proto";
-import "frequenz/api/common/v1/components/inverter.proto";
-import "frequenz/api/common/v1/components/transformer.proto";
-import "frequenz/api/common/v1/lifetime.proto";
 import "frequenz/api/common/v1/metrics.proto";
+import "frequenz/api/common/v1/microgrid/components/battery.proto";
+import "frequenz/api/common/v1/microgrid/components/ev_charger.proto";
+import "frequenz/api/common/v1/microgrid/components/fuse.proto";
+import "frequenz/api/common/v1/microgrid/components/grid.proto";
+import "frequenz/api/common/v1/microgrid/components/inverter.proto";
+import "frequenz/api/common/v1/microgrid/components/transformer.proto";
+import "frequenz/api/common/v1/microgrid/lifetime.proto";
 
 import "google/protobuf/timestamp.proto";
 
@@ -85,12 +85,12 @@ enum ComponentCategory {
 // Metadata specific to a microgrid component.
 message ComponentCategoryMetadataVariant {
   oneof metadata {
-    frequenz.api.common.v1.components.Battery battery = 1;
-    frequenz.api.common.v1.components.EvCharger ev_charger = 2;
-    frequenz.api.common.v1.components.Fuse fuse = 3;
-    frequenz.api.common.v1.components.GridConnectionPoint grid = 4;
-    frequenz.api.common.v1.components.Inverter inverter = 5;
-    frequenz.api.common.v1.components.VoltageTransformer
+    frequenz.api.common.v1.microgrid.components.Battery battery = 1;
+    frequenz.api.common.v1.microgrid.components.EvCharger ev_charger = 2;
+    frequenz.api.common.v1.microgrid.components.Fuse fuse = 3;
+    frequenz.api.common.v1.microgrid.components.GridConnectionPoint grid = 4;
+    frequenz.api.common.v1.microgrid.components.Inverter inverter = 5;
+    frequenz.api.common.v1.microgrid.components.VoltageTransformer
       voltage_transformer = 6;
   }
 }
@@ -140,7 +140,7 @@ message Component {
   ComponentStatus status = 8;
 
   // The operational lifetime of the component.
-  frequenz.api.common.v1.lifetime.Lifetime operational_lifetime = 9;
+  frequenz.api.common.v1.microgrid.Lifetime operational_lifetime = 9;
 }
 
 // ComponentConnection describes a single electrical link between two components
@@ -177,7 +177,7 @@ message ComponentConnection {
   uint64 destination_component_id = 2;
 
   // The operational lifetime of the connection.
-  frequenz.api.common.v1.lifetime.Lifetime operational_lifetime = 3;
+  frequenz.api.common.v1.microgrid.Lifetime operational_lifetime = 3;
 }
 
 // ComponentData message aggregates multiple metrics, operational states, and

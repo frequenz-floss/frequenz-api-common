@@ -12,19 +12,6 @@ def test_package_import() -> None:
     assert v1 is not None
 
 
-def test_module_import_components() -> None:
-    """Test that the modules can be imported."""
-    # pylint: disable=import-outside-toplevel
-    from frequenz.api.common.v1 import components_pb2
-
-    assert components_pb2 is not None
-
-    # pylint: disable=import-outside-toplevel
-    from frequenz.api.common.v1 import components_pb2_grpc
-
-    assert components_pb2_grpc is not None
-
-
 def test_module_import_metrics() -> None:
     """Test that the modules can be imported."""
     # pylint: disable=import-outside-toplevel
@@ -62,3 +49,112 @@ def test_module_import_grid() -> None:
     from frequenz.api.common.v1 import grid_pb2_grpc
 
     assert grid_pb2_grpc is not None
+
+
+def test_module_import_microgrid() -> None:
+    """Test that the modules can be imported."""
+    # pylint: disable=import-outside-toplevel
+    from frequenz.api.common.v1 import microgrid
+
+    assert microgrid is not None
+
+    # pylint: disable=import-outside-toplevel
+    from frequenz.api.common.v1.microgrid import microgrid_pb2
+
+    assert microgrid_pb2 is not None
+
+    # pylint: disable=import-outside-toplevel
+    from frequenz.api.common.v1.microgrid import microgrid_pb2_grpc
+
+    assert microgrid_pb2_grpc is not None
+
+
+def test_module_import_microgrid_lifetime() -> None:
+    """Test that the modules can be imported."""
+    # pylint: disable=import-outside-toplevel
+    from frequenz.api.common.v1.microgrid import lifetime_pb2
+
+    assert lifetime_pb2 is not None
+
+    # pylint: disable=import-outside-toplevel
+    from frequenz.api.common.v1.microgrid import lifetime_pb2_grpc
+
+    assert lifetime_pb2_grpc is not None
+
+
+def test_module_import_microgrid_components() -> None:
+    """Test that the modules can be imported."""
+    # pylint: disable=import-outside-toplevel
+    from frequenz.api.common.v1.microgrid import components
+
+    assert components is not None
+
+    # pylint: disable=import-outside-toplevel
+    from frequenz.api.common.v1.microgrid.components import battery_pb2
+
+    assert battery_pb2 is not None
+
+    # pylint: disable=import-outside-toplevel
+    from frequenz.api.common.v1.microgrid.components import battery_pb2_grpc
+
+    assert battery_pb2_grpc is not None
+
+    # pylint: disable=import-outside-toplevel
+    from frequenz.api.common.v1.microgrid.components import components_pb2
+
+    assert components_pb2 is not None
+
+    # pylint: disable=import-outside-toplevel
+    from frequenz.api.common.v1.microgrid.components import components_pb2_grpc
+
+    assert components_pb2_grpc is not None
+
+    # pylint: disable=import-outside-toplevel
+    from frequenz.api.common.v1.microgrid.components import ev_charger_pb2
+
+    assert ev_charger_pb2 is not None
+
+    # pylint: disable=import-outside-toplevel
+    from frequenz.api.common.v1.microgrid.components import ev_charger_pb2_grpc
+
+    assert ev_charger_pb2_grpc is not None
+
+    # pylint: disable=import-outside-toplevel
+    from frequenz.api.common.v1.microgrid.components import fuse_pb2
+
+    assert fuse_pb2 is not None
+
+    # pylint: disable=import-outside-toplevel
+    from frequenz.api.common.v1.microgrid.components import fuse_pb2_grpc
+
+    assert fuse_pb2_grpc is not None
+
+    # pylint: disable=import-outside-toplevel
+    from frequenz.api.common.v1.microgrid.components import grid_pb2
+
+    assert grid_pb2 is not None
+
+    # pylint: disable=import-outside-toplevel
+    from frequenz.api.common.v1.microgrid.components import grid_pb2_grpc
+
+    assert grid_pb2_grpc is not None
+
+    # pylint: disable=import-outside-toplevel
+    from frequenz.api.common.v1.microgrid.components import inverter_pb2
+
+    assert inverter_pb2 is not None
+
+    # pylint: disable=import-outside-toplevel
+    from frequenz.api.common.v1.microgrid.components import inverter_pb2_grpc
+
+    assert inverter_pb2_grpc is not None
+
+    # pylint: disable=import-outside-toplevel
+    from frequenz.api.common.v1.microgrid.components import transformer_pb2
+
+    assert transformer_pb2 is not None
+
+    # pylint: disable=import-outside-toplevel
+    from frequenz.api.common.v1.microgrid.components import transformer_pb2_grpc
+
+    assert transformer_pb2_grpc is not None

@@ -8,10 +8,10 @@
 
 syntax = "proto3";
 
-package frequenz.api.common.v1.sensors;
+package frequenz.api.common.v1.microgrid.sensors;
 
-import "frequenz/api/common/v1/lifetime.proto";
 import "frequenz/api/common/v1/metrics.proto";
+import "frequenz/api/common/v1/microgrid/lifetime.proto";
 
 import "google/protobuf/timestamp.proto";
 
@@ -64,7 +64,7 @@ message Sensor {
   string model_name = 6;
 
   // The operational lifetime of the sensor.
-  frequenz.api.common.v1.lifetime.Lifetime operational_lifetime = 7;
+  frequenz.api.common.v1.microgrid.Lifetime operational_lifetime = 7;
 }
 
 // Enumrated sensor metrics.
