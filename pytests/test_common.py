@@ -41,14 +41,22 @@ def test_module_import_metrics_electrical() -> None:
 def test_module_import_grid() -> None:
     """Test that the modules can be imported."""
     # pylint: disable=import-outside-toplevel
-    from frequenz.api.common.v1 import grid_pb2
+    from frequenz.api.common.v1 import grid
 
-    assert grid_pb2 is not None
+    assert grid is not None
+
+
+def test_module_import_grid_delivery_area() -> None:
+    """Test that the modules can be imported."""
+    # pylint: disable=import-outside-toplevel
+    from frequenz.api.common.v1.grid import delivery_area_pb2
+
+    assert delivery_area_pb2 is not None
 
     # pylint: disable=import-outside-toplevel
-    from frequenz.api.common.v1 import grid_pb2_grpc
+    from frequenz.api.common.v1.grid import delivery_area_pb2_grpc
 
-    assert grid_pb2_grpc is not None
+    assert delivery_area_pb2_grpc is not None
 
 
 def test_module_import_microgrid() -> None:
