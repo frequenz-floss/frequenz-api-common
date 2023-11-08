@@ -1,4 +1,4 @@
-// Metrics & bounds definitions.
+// Metrics definitions.
 //
 // Copyright:
 // Copyright 2023 Frequenz Energy-as-a-Service GmbH
@@ -10,19 +10,9 @@ syntax = "proto3";
 
 package frequenz.api.common.v1.metrics;
 
+import "frequenz/api/common/v1/metrics/bounds.proto";
+
 import "google/protobuf/timestamp.proto";
-
-// A set of lower and upper bounds for any metric.
-// The units of the bounds are always the same as the related metric.
-message Bounds {
-  // The lower bound.
-  // If absent, there is no lower bound.
-  optional float lower = 1;
-
-  // The upper bound.
-  // If absent, there is no upper bound.
-  optional float upper = 2;
-}
 
 // Represents a single sample of a specific metric, the value of which is either
 // measured or derived at a particular time.

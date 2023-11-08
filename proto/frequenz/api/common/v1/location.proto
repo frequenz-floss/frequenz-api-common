@@ -7,7 +7,7 @@
 
 syntax = "proto3";
 
-package frequenz.api.common.v1.location;
+package frequenz.api.common.v1;
 
 // A pair of geographical co-ordinates, representing the location of a place.
 message Location {

@@ -12,19 +12,6 @@ def test_package_import() -> None:
     assert v1 is not None
 
 
-def test_module_import_metrics() -> None:
-    """Test that the modules can be imported."""
-    # pylint: disable=import-outside-toplevel
-    from frequenz.api.common.v1 import metrics_pb2
-
-    assert metrics_pb2 is not None
-
-    # pylint: disable=import-outside-toplevel
-    from frequenz.api.common.v1 import metrics_pb2_grpc
-
-    assert metrics_pb2_grpc is not None
-
-
 def test_module_import_metrics_electrical() -> None:
     """Test that the modules can be imported."""
     # pylint: disable=import-outside-toplevel
@@ -36,6 +23,19 @@ def test_module_import_metrics_electrical() -> None:
     from frequenz.api.common.v1.metrics import electrical_pb2_grpc
 
     assert electrical_pb2_grpc is not None
+
+
+def test_module_import_metrics_bounds() -> None:
+    """Test that the modules can be imported."""
+    # pylint: disable=import-outside-toplevel
+    from frequenz.api.common.v1.metrics import bounds_pb2
+
+    assert bounds_pb2 is not None
+
+    # pylint: disable=import-outside-toplevel
+    from frequenz.api.common.v1.metrics import bounds_pb2_grpc
+
+    assert bounds_pb2_grpc is not None
 
 
 def test_module_import_grid() -> None:
@@ -166,3 +166,44 @@ def test_module_import_microgrid_components() -> None:
     from frequenz.api.common.v1.microgrid.components import transformer_pb2_grpc
 
     assert transformer_pb2_grpc is not None
+
+
+def test_module_import_location() -> None:
+    """Test that the modules can be imported."""
+    # pylint: disable=import-outside-toplevel
+    from frequenz.api.common.v1 import location_pb2
+
+    assert location_pb2 is not None
+
+    # pylint: disable=import-outside-toplevel
+    from frequenz.api.common.v1 import location_pb2_grpc
+
+    assert location_pb2_grpc is not None
+
+
+def test_module_import_pagination() -> None:
+    """Test that the modules can be imported."""
+    # pylint: disable=import-outside-toplevel
+    from frequenz.api.common.v1 import pagination
+
+    assert pagination is not None
+
+    # pylint: disable=import-outside-toplevel
+    from frequenz.api.common.v1.pagination import pagination_info_pb2
+
+    assert pagination_info_pb2 is not None
+
+    # pylint: disable=import-outside-toplevel
+    from frequenz.api.common.v1.pagination import pagination_info_pb2_grpc
+
+    assert pagination_info_pb2_grpc is not None
+
+    # pylint: disable=import-outside-toplevel
+    from frequenz.api.common.v1.pagination import pagination_params_pb2
+
+    assert pagination_params_pb2 is not None
+
+    # pylint: disable=import-outside-toplevel
+    from frequenz.api.common.v1.pagination import pagination_params_pb2_grpc
+
+    assert pagination_params_pb2_grpc is not None

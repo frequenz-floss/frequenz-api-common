@@ -10,7 +10,7 @@ syntax = "proto3";
 
 package frequenz.api.common.v1.microgrid.components;
 
-import "frequenz/api/common/v1/metrics.proto";
+import "frequenz/api/common/v1/metrics/metric_sample.proto";
 import "frequenz/api/common/v1/microgrid/components/battery.proto";
 import "frequenz/api/common/v1/microgrid/components/ev_charger.proto";
 import "frequenz/api/common/v1/microgrid/components/fuse.proto";

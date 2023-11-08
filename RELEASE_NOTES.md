@@ -57,6 +57,10 @@
 
 - Added a message `Microgrid` to represent a microgrid.
 
+- Updated the package name of `location.proto` to `frequenz.api.common.v1`.
+
+- Added messages to support pagination in APIs.
+
 ## New Features
 
 <!-- Here goes the main new features and examples or instructions on how to use them -->

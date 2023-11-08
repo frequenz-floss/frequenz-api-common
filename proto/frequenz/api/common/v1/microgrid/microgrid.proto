@@ -54,7 +54,7 @@ message Microgrid {
   frequenz.api.common.v1.grid.DeliveryArea delivery_area = 4;
 
   // Physical location of the microgrid, in geographical co-ordinates.
-  frequenz.api.common.v1.location.Location location = 5;
+  frequenz.api.common.v1.Location location = 5;
 
   // The current status of the microgrid.
   MicrogridStatus status = 6;
