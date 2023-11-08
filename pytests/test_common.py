@@ -179,3 +179,31 @@ def test_module_import_location() -> None:
     from frequenz.api.common.v1 import location_pb2_grpc
 
     assert location_pb2_grpc is not None
+
+
+def test_module_import_pagination() -> None:
+    """Test that the modules can be imported."""
+    # pylint: disable=import-outside-toplevel
+    from frequenz.api.common.v1 import pagination
+
+    assert pagination is not None
+
+    # pylint: disable=import-outside-toplevel
+    from frequenz.api.common.v1.pagination import pagination_info_pb2
+
+    assert pagination_info_pb2 is not None
+
+    # pylint: disable=import-outside-toplevel
+    from frequenz.api.common.v1.pagination import pagination_info_pb2_grpc
+
+    assert pagination_info_pb2_grpc is not None
+
+    # pylint: disable=import-outside-toplevel
+    from frequenz.api.common.v1.pagination import pagination_params_pb2
+
+    assert pagination_params_pb2 is not None
+
+    # pylint: disable=import-outside-toplevel
+    from frequenz.api.common.v1.pagination import pagination_params_pb2_grpc
+
+    assert pagination_params_pb2_grpc is not None
