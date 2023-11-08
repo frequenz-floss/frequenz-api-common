@@ -1,0 +1,28 @@
+// Frequenz definition of entity lifetimes, based upon start and end timestamps.
+//
+// Copyright 2023 Frequenz Energy-as-a-Service GmbH
+//
+// Licensed under the MIT License (the "License");
+// you may not use this file except in compliance with the License.
+
+syntax = "proto3";
+
+package frequenz.api.common.v1.microgrid;
+
+import "google/protobuf/timestamp.proto";
+
+// Lifetime captures the timestamps indicating the active operational period of
+// a microgrid asset, such as a component, connection, sensor, or any other
+// entity with a limited operational lifetime.
+//
+// !!! warning "Permanent Deletion"
+//     The `end_timestamp` indicates that the asset has been permanently removed
+//     from the system.
+//
+message Lifetime {
+  // The timestamp when the asset became operationally active.
+  google.protobuf.Timestamp start_timestamp = 1;
+
+  // Optional timestamp when the asset's operational activity ceased.
+  google.protobuf.Timestamp end_timestamp = 2;
+}

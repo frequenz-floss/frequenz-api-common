@@ -1,0 +1,33 @@
+// Frequenz definitions for inverters.
+//
+// Copyright:
+// Copyright 2023 Frequenz Energy-as-a-Service GmbH
+//
+// License:
+// MIT
+
+syntax = "proto3";
+
+package frequenz.api.common.v1.microgrid.components;
+
+// Enumerated inverter types.
+enum InverterType {
+  // Unspecified.
+  INVERTER_TYPE_UNSPECIFIED = 0;
+
+  // Battery inverter.
+  INVERTER_TYPE_BATTERY = 1;
+
+  // Solar inverter.
+  INVERTER_TYPE_SOLAR = 2;
+
+  // Hybrid inverter.
+  INVERTER_TYPE_HYBRID = 3;
+}
+
+// A representation of an inverter.
+// The inverter metadata.
+message Inverter {
+  // The inverter type.
+  InverterType type = 1;
+}

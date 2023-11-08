@@ -1,0 +1,29 @@
+// Frequenz definitions for batteries.
+//
+// Copyright:
+// Copyright 2023 Frequenz Energy-as-a-Service GmbH
+//
+// License:
+// MIT
+
+syntax = "proto3";
+
+package frequenz.api.common.v1.microgrid.components;
+
+// Enumerated battery types.
+enum BatteryType {
+  // Unspecified.
+  BATTERY_TYPE_UNSPECIFIED = 0;
+
+  // Li-ion batteries.
+  BATTERY_TYPE_LI_ION = 1;
+
+  // Sodium-ion batteries
+  BATTERY_TYPE_NA_ION = 2;
+}
+
+// A representation of a battery.
+message Battery {
+  // The battery type.
+  BatteryType type = 1;
+}

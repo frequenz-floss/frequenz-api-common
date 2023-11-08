@@ -8,9 +8,16 @@
 
 syntax = "proto3";
 
-package frequenz.api.common.v1.components;
+package frequenz.api.common.v1.microgrid.components;
 
 import "frequenz/api/common/v1/metrics.proto";
+import "frequenz/api/common/v1/microgrid/components/battery.proto";
+import "frequenz/api/common/v1/microgrid/components/ev_charger.proto";
+import "frequenz/api/common/v1/microgrid/components/fuse.proto";
+import "frequenz/api/common/v1/microgrid/components/grid.proto";
+import "frequenz/api/common/v1/microgrid/components/inverter.proto";
+import "frequenz/api/common/v1/microgrid/components/transformer.proto";
+import "frequenz/api/common/v1/microgrid/lifetime.proto";
 
 import "google/protobuf/timestamp.proto";
 
@@ -75,46 +82,102 @@ enum ComponentCategory {
   COMPONENT_CATEGORY_VOLTAGE_TRANSFORMER = 14;
 }
 
-// Enumerated battery types.
-enum BatteryType {
-  // Unspecified.
-  BATTERY_TYPE_UNSPECIFIED = 0;
-
-  // Li-ion batteries.
-  BATTERY_TYPE_LI_ION = 1;
-
-  // Sodium-ion batteries
-  BATTERY_TYPE_NA_ION = 2;
+// Metadata specific to a microgrid component.
+message ComponentCategoryMetadataVariant {
+  oneof metadata {
+    frequenz.api.common.v1.microgrid.components.Battery battery = 1;
+    frequenz.api.common.v1.microgrid.components.EvCharger ev_charger = 2;
+    frequenz.api.common.v1.microgrid.components.Fuse fuse = 3;
+    frequenz.api.common.v1.microgrid.components.GridConnectionPoint grid = 4;
+    frequenz.api.common.v1.microgrid.components.Inverter inverter = 5;
+    frequenz.api.common.v1.microgrid.components.VoltageTransformer
+      voltage_transformer = 6;
+  }
 }
 
-// Enumerated inverter types.
-enum InverterType {
-  // Unspecified.
-  INVERTER_TYPE_UNSPECIFIED = 0;
+// ComponentStatus defines the possible statuses for a component.
+//
+// !!! note
+//     The status indicates the status set by the user via the user interface.
+//     The status is not yet included in the Component messages and should be
+//     added.
+//
+enum ComponentStatus {
+  // The status is unspecified. This should not be used.
+  COMPONENT_STATUS_UNSPECIFIED = 0;
 
-  // Battery inverter.
-  INVERTER_TYPE_BATTERY = 1;
+  // The component is active.
+  COMPONENT_STATUS_ACTIVE = 1;
 
-  // Solar inverter.
-  INVERTER_TYPE_SOLAR = 2;
-
-  // Hybrid inverter.
-  INVERTER_TYPE_HYBRID = 3;
+  // The component is inactive.
+  COMPONENT_STATUS_INACTIVE = 2;
 }
 
-// Enumerated EV charger types.
-enum EvChargerType {
-  // Default type.
-  EV_CHARGER_TYPE_UNSPECIFIED = 0;
+// Microgrid electrical component details.
+message Component {
+  // The component ID.
+  uint64 id = 1;
 
-  // The EV charging station supports AC charging only.
-  EV_CHARGER_TYPE_AC = 1;
+  // Unique identifier of the parent microgrid_id.
+  uint64 microgrid_id = 2;
 
-  // The EV charging station supports DC charging only.
-  EV_CHARGER_TYPE_DC = 2;
+  // The component name.
+  string name = 3;
 
-  // The EV charging station supports both AC and DC.
-  EV_CHARGER_TYPE_HYBRID = 3;
+  // The component category. E.g., Inverter, Battery, etc.
+  ComponentCategory category = 4;
+
+  // The metadata specific to the component category type.
+  ComponentCategoryMetadataVariant category_type = 5;
+
+  // The component manufacturer.
+  string manufacturer = 6;
+
+  // The model name of the component.
+  string model_name = 7;
+
+  // The status of the component.
+  ComponentStatus status = 8;
+
+  // The operational lifetime of the component.
+  frequenz.api.common.v1.microgrid.Lifetime operational_lifetime = 9;
+}
+
+// ComponentConnection describes a single electrical link between two components
+// within a microgrid, effectively representing the physical wiring as viewed
+// from the grid connection point, if one exists, or from the islanding point,
+// in case of an islanded microgrids.
+//
+// !!! note "Physical Representation"
+//     This message is not about data flow but rather about the physical
+//     electrical connections between components. Therefore, the IDs for the
+//     source and destination components correspond to the actual setup within
+//     the microgrid.
+//
+// !!! note "Direction"
+//     The direction of the connection follows the flow of current away from the
+//     grid connection point, or in case of islands, away from the islanding
+//     point. This direction is aligned with positive current according to the
+//     [Passive Sign Convention]
+//     (https://en.wikipedia.org/wiki/Passive_sign_convention).
+//
+// !!! info "Historical Data"
+//     The timestamps of when a connection was created and terminated allows for
+//     tracking the changes over time to a microgrid, providing insights into
+//     when and how the microgrid infrastructure has been modified.
+//
+message ComponentConnection {
+  // Unique identifier of the component where the connection originates. This is
+  // aligned with the direction of current flow away from the grid connection
+  // point, or in case of islands, away from the islanding point.
+  uint64 source_component_id = 1;
+
+  // Unique ID of the component where the connection terminates. This is the
+  // component towards which the current flows.
+  uint64 destination_component_id = 2;
+
+  // The operational lifetime of the connection.
+  frequenz.api.common.v1.microgrid.Lifetime operational_lifetime = 3;
 }
 
 // ComponentData message aggregates multiple metrics, operational states, and

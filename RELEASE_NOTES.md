@@ -40,6 +40,23 @@
 
 - Added a message `SensorData` to represent metrics sampled from sensors.
 
+- Added a message `Lifetime` as a wrapper over the start and end timestamps of
+  an entity.
+
+- Added a message `Sensor` to represent sensors installed in a microgrid.
+
+- Added a message `Component` to represent components installed in a microgrid.
+
+- Added a message `ComponentCategoryMetadataVariant` to represent the different
+  types of sub-categories that can be associated with a component category.
+
+- Added a message `ComponentConnection` to represent electrical connection
+  between two components installed in a microgrid.
+
+- Added a message `DeliveryArea` to represent a market contract delivery area.
+
+- Added a message `Microgrid` to represent a microgrid.
+
 ## New Features
 
 <!-- Here goes the main new features and examples or instructions on how to use them -->
