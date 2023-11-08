@@ -1,0 +1,23 @@
+// Definitions for bounds.
+//
+// Copyright:
+// Copyright 2023 Frequenz Energy-as-a-Service GmbH
+//
+// License:
+// MIT
+
+syntax = "proto3";
+
+package frequenz.api.common.v1.metrics;
+
+// A set of lower and upper bounds for any metric.
+// The units of the bounds are always the same as the related metric.
+message Bounds {
+  // The lower bound.
+  // If absent, there is no lower bound.
+  optional float lower = 1;
+
+  // The upper bound.
+  // If absent, there is no upper bound.
+  optional float upper = 2;
+}
