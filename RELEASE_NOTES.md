@@ -2,7 +2,11 @@
 
 ## Summary
 
-<!-- Here goes a general summary of what this release is about -->
+This release contains
+* additions of data definitions to the common specs, that are intended to be
+  used by the Frequenz APIs.
+* refactors of existing definitions, in order to make them more consistent and
+  easier to use.
 
 ## Upgrading
 
@@ -62,11 +66,3 @@
 - Added messages to support pagination in APIs.
 
 - Removed `metrics/electrical.proto`, since it is no longer needed.
-
-## New Features
-
-<!-- Here goes the main new features and examples or instructions on how to use them -->
-
-## Bug Fixes
-
-<!-- Here goes notable bug fixes that are worth a special mention or explanation -->
