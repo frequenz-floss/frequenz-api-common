@@ -62,3 +62,12 @@ message Microgrid {
   // The UTC timestamp indicating when the microgrid was initially created.
   google.protobuf.Timestamp create_timestamp = 7;
 }
+
+// A message to link component IDs with their respective microgrid ID.
+message MicrogridComponentIDs {
+  // The ID of the microgrid.
+  uint64 microgrid_id = 1;
+
+  // List of component IDs belonging to this microgrid.
+  repeated uint64 component_ids = 2;
+}
