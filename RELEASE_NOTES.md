@@ -66,3 +66,8 @@ This release contains
 - Added messages to support pagination in APIs.
 
 - Removed `metrics/electrical.proto`, since it is no longer needed.
+
+## New Features
+
+- Added `MicrogridComponentIDs` message, which groups a microgrid ID together with
+  a list of component IDs.
