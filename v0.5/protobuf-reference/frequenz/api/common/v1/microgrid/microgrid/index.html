@@ -1195,6 +1195,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#microgridcomponentids" class="md-nav__link">
+    MicrogridComponentIDs
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#microgridstatus" class="md-nav__link">
     MicrogridStatus
   </a>
@@ -2839,6 +2846,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#microgridcomponentids" class="md-nav__link">
+    MicrogridComponentIDs
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#microgridstatus" class="md-nav__link">
     MicrogridStatus
   </a>
@@ -2882,8 +2896,9 @@
 <li>
 <p><a href="#frequenz_api_common_v1_microgrid_microgrid-proto">frequenz/api/common/v1/microgrid/microgrid.proto</a></p>
 <ul>
+<li><a href="#frequenz-api-common-v1-microgrid-Microgrid">Microgrid</a></li>
 <li>
-<p><a href="#frequenz-api-common-v1-microgrid-Microgrid">Microgrid</a></p>
+<p><a href="#frequenz-api-common-v1-microgrid-MicrogridComponentIDs">MicrogridComponentIDs</a></p>
 </li>
 <li>
 <p><a href="#frequenz-api-common-v1-microgrid-MicrogridStatus">MicrogridStatus</a></p>
@@ -2962,6 +2977,33 @@ area.</p>
 <td><a href="#google-protobuf-Timestamp">google.protobuf.Timestamp</a></td>
 <td></td>
 <td>The UTC timestamp indicating when the microgrid was initially created.</td>
+</tr>
+</tbody>
+</table>
+<p><a name="frequenz-api-common-v1-microgrid-MicrogridComponentIDs"></a></p>
+<h3 id="microgridcomponentids">MicrogridComponentIDs<a class="headerlink" href="#microgridcomponentids" title="Permanent link">¤</a></h3>
+<p>A message to link component IDs with their respective microgrid ID.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>microgrid_id</td>
+<td><a href="#uint64">uint64</a></td>
+<td></td>
+<td>The ID of the microgrid.</td>
+</tr>
+<tr>
+<td>component_ids</td>
+<td><a href="#uint64">uint64</a></td>
+<td>repeated</td>
+<td>List of component IDs belonging to this microgrid.</td>
 </tr>
 </tbody>
 </table>
