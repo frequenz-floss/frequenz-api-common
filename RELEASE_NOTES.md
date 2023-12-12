@@ -16,7 +16,7 @@ This release:
 
 ## New Features
 
-<!-- Here goes the main new features and examples or instructions on how to use them -->
+Add protobufs definition necesary for Electricity Trading (and for Ancillary Services Market). 
 
 ## Bug Fixes
 
