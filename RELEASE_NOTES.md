@@ -4,6 +4,10 @@
 This release:
 * Corrects `SensorData` and `ComponentData` doc examples
   to correctly reflect differences in respective values.
+* Adds `ComponentRatedBound` message to associate a charge & discharge range
+  to a specific `Metric`.
+* Adds rated bounds field to `Component` for charge & discharge
+  ranges for relevant metrics.
 
 
 ## Upgrading
