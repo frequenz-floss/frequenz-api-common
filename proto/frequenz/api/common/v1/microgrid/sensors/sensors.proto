@@ -107,29 +107,35 @@ enum SensorMetric {
   SENSOR_METRIC_DEW_POINT = 8;
 }
 
-// ComponentData message aggregates multiple metrics, operational states, and
-// errors, related to a specific microgrid component.
+// SensorData message aggregates multiple metrics, operational states, and
+// errors, related to a specific microgrid sensor.
 //
 // !!! example
 //   Example output of a component data message:
 //   ```
 //    {
-//      component_id: 13,
+//      sensor_id: 13,
 //      metric_samples: [
 //        /* list of metrics for multiple timestamps */
 //        {
 //          sampled_at: "2023-10-01T00:00:00Z",
 //          metric: "METRIC_SENSOR_TEMPERATURE",
 //          sample: metric_sample_type: {simple_metric: {value: 23.5},
-//          bounds: {},
 //        },
 //        {
 //          sampled_at: "2023-10-01T00:00:00Z",
 //          metric: "METRIC_SENSOR_RELATIVE_HUMIDITY",
 //          sample: metric_sample_type: {simple_metric: {value: 23.5},
-//          bounds: {},
 //        }
+//      ],
+//      states: [
+//        {
+//          sampled_at: "2023-10-01T00:00:00Z",
+//          states: [],
+//          errors: [],
+//        },
 //      ]
+//
 //    }
 //  ```
 message SensorData {

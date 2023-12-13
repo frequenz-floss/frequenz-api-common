@@ -1,8 +1,10 @@
 # Frequenz Common API Release Notes
 
 ## Summary
+This release:
+* Corrects `SensorData` and `ComponentData` doc examples
+  to correctly reflect differences in respective values.
 
-<!-- Here goes a general summary of what this release is about -->
 
 ## Upgrading
 
