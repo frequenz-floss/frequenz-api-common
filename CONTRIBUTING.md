@@ -88,7 +88,7 @@ dependencies and run `pytest` manually.
 python -m pip install .[dev-pytest]  # included in .[dev] too
 
 # And for example
-pytest tests/test_*.py
+pytest pytests/test_*.py
 ```
 
 Or you can use `nox`:
