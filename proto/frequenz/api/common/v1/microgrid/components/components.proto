@@ -10,6 +10,7 @@ syntax = "proto3";
 
 package frequenz.api.common.v1.microgrid.components;
 
+import "frequenz/api/common/v1/metrics/bounds.proto";
 import "frequenz/api/common/v1/metrics/metric_sample.proto";
 import "frequenz/api/common/v1/microgrid/components/battery.proto";
 import "frequenz/api/common/v1/microgrid/components/ev_charger.proto";
@@ -141,6 +142,26 @@ message Component {
 
   // The operational lifetime of the component.
   frequenz.api.common.v1.microgrid.Lifetime operational_lifetime = 9;
+
+  // List of rated bounds present for the component identified by Metric.
+  repeated MetricConfigBounds metric_config_bounds = 10;
+}
+
+// MetricConfigBounds describes a set of limits for a specific metric consisting
+// of a lower and upper bound for said metric.
+//
+// This can be used for example to specify an allowed range of power output
+// for a component.
+message MetricConfigBounds {
+  // Metric type the config bounds are for
+  frequenz.api.common.v1.metrics.Metric metric = 1;
+
+  // The set of bounds for the specified metric.
+  //
+  // This contains the lower and upper bounds for said metric.
+  // Sources these may be derived from include the component configuration,
+  // manufacturers limits, and limits of other devices.
+  frequenz.api.common.v1.metrics.Bounds config_bounds = 2;
 }
 
 // ComponentConnection describes a single electrical link between two components
