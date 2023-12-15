@@ -1,0 +1,61 @@
+// Frequenz definitions of the time increment used for electricity 
+// deliveries and trading.
+//
+// Copyright 2023 Frequenz Energy-as-a-Service GmbH
+//
+// Licensed under the MIT License (the "License");
+// you may not use this file except in compliance with the License.
+
+syntax = "proto3";
+
+package frequenz.api.common.v1.grid;
+
+import "google/protobuf/timestamp.proto";
+
+// DeliveryDuration represents the time increment, in minutes, 
+// used for electricity deliveries and trading. These durations
+// serve as the basis for defining the delivery period in contracts,
+// and they dictate how energy is scheduled and delivered to meet 
+// contractual obligations.
+//
+// !!! note "Compatibility Constraints"
+//     Not all delivery durations are universally 
+//     compatible with all delivery areas or markets.
+//
+enum DeliveryDuration {
+  // Default value, indicates that the duration is unspecified.
+  DELIVERY_DURATION_UNSPECIFIED = 0; 
+    
+  // 5-minute duration
+  DELIVERY_DURATION_5 = 1; 
+
+  // 15-minute contract duration.
+  DELIVERY_DURATION_15 = 2; 
+  
+  // 30-minute contract duration.
+  DELIVERY_DURATION_30 = 3; 
+  
+  // 1-hour contract duration.
+  DELIVERY_DURATION_60 = 4; 
+}
+
+// DeliveryPeriod represents the time period during which the contract 
+// is delivered. It is defined by a start timestamp and a duration.
+message DeliveryPeriod {
+  // Start UTC timestamp represents the beginning of the delivery period.
+  // This timestamp is inclusive, meaning that the delivery period starts
+  // from this point in time.
+  // 
+  // !!! note
+  //     Delivery period start time constraints:
+  //     - 5-minute durations must start at times that are multiples of 
+  //       5 minutes past the hour.
+  //     - 15-minute durations must start at :00, :15, :30, or 
+  //       :45 past the hour.
+  //     - 30-minute durations must start at :00 or :30 past the hour.
+  //     - 60-minute durations must start at :00 past the hour.
+  google.protobuf.Timestamp start = 1;
+
+  // The length of the delivery period.
+  DeliveryDuration duration = 2;
+}

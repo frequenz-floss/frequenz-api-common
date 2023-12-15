@@ -1,0 +1,53 @@
+// Frequenz definitions of price for electricity trading.
+//
+// Copyright 2023 Frequenz Energy-as-a-Service GmbH
+//
+// Licensed under the MIT License (the "License");
+// you may not use this file except in compliance with the License.
+
+syntax = "proto3";
+
+package frequenz.api.common.v1.market;
+
+import "google/type/decimal.proto";
+
+// Represents a monetary price for electricity trading, including
+// the amount and currency. The currency used should align with the
+// delivery area's standard currency.
+//
+// !!! caution "Validation Required"
+//     It's essential to ensure that the currency aligns with the 
+//     standard currency of the associated delivery area. Failure to
+//     do so may result in the API service rejecting the request due to currency
+//     mismatches.
+//
+// !!! info "Relation to Delivery Area"
+//     The currency specified is intrinsically related to the delivery area 
+//     for the contract. Make sure the chosen currency is compatible with 
+//     the delivery area's currency standards.
+//
+message Price {
+  // List of supported currencies.
+  // 
+  // !!! info "Extensibility"
+  //     New currencies can be added to this enum to support additional markets.
+  enum Currency {
+    CURRENCY_UNSPECIFIED = 0;
+    CURRENCY_USD = 1;
+    CURRENCY_CAD = 2;
+    CURRENCY_EUR = 3;
+    CURRENCY_GBP = 4;
+    CURRENCY_CHF = 5;
+    CURRENCY_CNY = 6;
+    CURRENCY_JPY = 7;
+    CURRENCY_AUD = 8;
+    CURRENCY_NZD = 9;
+    CURRENCY_SGD = 10;
+  }
+
+  // The amount of the price.
+  google.type.Decimal amount = 1; 
+
+  // The currency in which the price is denominated.
+  Currency currency = 2;
+}

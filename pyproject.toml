@@ -26,7 +26,8 @@ classifiers = [
 ]
 requires-python = ">= 3.11, < 4"
 dependencies = [
-  "googleapis-common-protos >= 1.56.2, < 2",
+  "googleapis-common-protos >= 1.56.4, < 2",
+  "googleapis-common-protos-stubs == 2.2.0",
   "grpcio >= 1.51.1, < 2",
 ]
 dynamic = ["version"]
