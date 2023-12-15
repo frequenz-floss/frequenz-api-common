@@ -1077,6 +1077,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#metricconfigbounds" class="md-nav__link">
+    MetricConfigBounds
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#componentcategory" class="md-nav__link">
     ComponentCategory
   </a>
@@ -2918,6 +2925,13 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#metricconfigbounds" class="md-nav__link">
+    MetricConfigBounds
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#componentcategory" class="md-nav__link">
     ComponentCategory
   </a>
@@ -2986,8 +3000,9 @@
 <li><a href="#frequenz-api-common-v1-microgrid-components-ComponentCategoryMetadataVariant">ComponentCategoryMetadataVariant</a></li>
 <li><a href="#frequenz-api-common-v1-microgrid-components-ComponentConnection">ComponentConnection</a></li>
 <li><a href="#frequenz-api-common-v1-microgrid-components-ComponentData">ComponentData</a></li>
+<li><a href="#frequenz-api-common-v1-microgrid-components-ComponentState">ComponentState</a></li>
 <li>
-<p><a href="#frequenz-api-common-v1-microgrid-components-ComponentState">ComponentState</a></p>
+<p><a href="#frequenz-api-common-v1-microgrid-components-MetricConfigBounds">MetricConfigBounds</a></p>
 </li>
 <li>
 <p><a href="#frequenz-api-common-v1-microgrid-components-ComponentCategory">ComponentCategory</a></p>
@@ -3071,6 +3086,12 @@
 <td><a href="#frequenz-api-common-v1-microgrid-Lifetime">frequenz.api.common.v1.microgrid.Lifetime</a></td>
 <td></td>
 <td>The operational lifetime of the component.</td>
+</tr>
+<tr>
+<td>metric_config_bounds</td>
+<td><a href="#frequenz-api-common-v1-microgrid-components-MetricConfigBounds">MetricConfigBounds</a></td>
+<td>repeated</td>
+<td>List of rated bounds present for the component identified by Metric.</td>
 </tr>
 </tbody>
 </table>
@@ -3281,6 +3302,37 @@ errors, related to a specific microgrid component.</p>
 | errors | <a href="#frequenz-api-common-v1-microgrid-components-ComponentErrorCode">ComponentErrorCode</a> | repeated | List of errors for the microgrid component.</p>
 <p>!!! note This list is expected to have errors if and only if the component is in an error state.</p>
 <p>!!! note The list will contain unique members. No error will exist twice in this list. |</p>
+<p><a name="frequenz-api-common-v1-microgrid-components-MetricConfigBounds"></a></p>
+<h3 id="metricconfigbounds">MetricConfigBounds<a class="headerlink" href="#metricconfigbounds" title="Permanent link">¤</a></h3>
+<p>MetricConfigBounds describes a set of limits for a specific metric consisting
+of a lower and upper bound for said metric.</p>
+<p>This can be used for example to specify an allowed range of power output
+for a component.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>metric</td>
+<td><a href="#frequenz-api-common-v1-metrics-Metric">frequenz.api.common.v1.metrics.Metric</a></td>
+<td></td>
+<td>Metric type the config bounds are for</td>
+</tr>
+<tr>
+<td>config_bounds</td>
+<td><a href="#frequenz-api-common-v1-metrics-Bounds">frequenz.api.common.v1.metrics.Bounds</a></td>
+<td></td>
+<td>The set of bounds for the specified metric.</td>
+</tr>
+</tbody>
+</table>
+<p>This contains the lower and upper bounds for said metric. Sources these may be derived from include the component configuration, manufacturers limits, and limits of other devices. |</p>
 <p><a name="frequenz-api-common-v1-microgrid-components-ComponentCategory"></a></p>
 <h3 id="componentcategory">ComponentCategory<a class="headerlink" href="#componentcategory" title="Permanent link">¤</a></h3>
 <p>Enumrated component categories.</p>
