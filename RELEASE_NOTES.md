@@ -1,23 +1,20 @@
 # Frequenz Common API Release Notes
 
 ## Summary
-This release:
-* Corrects `SensorData` and `ComponentData` doc examples
-  to correctly reflect differences in respective values.
-* Adds `ComponentRatedBound` message to associate a charge & discharge range
-  to a specific `Metric`.
-* Adds rated bounds field to `Component` for charge & discharge
-  ranges for relevant metrics.
 
+This release adds new features, and fixes the documentation of a few messages.
 
 ## Upgrading
 
-<!-- Here goes notes on how to upgrade from previous versions, including deprecations and what they should be replaced with -->
+- This release does not contain breaking changes in terms of protobuf definitions.
+  However, when upgrading, applications may need to be adjusted to work with the new additions.
 
 ## New Features
 
-Add protobufs definition necesary for Electricity Trading (and for Ancillary Services Market). 
+- Adds ability to specify static bounds in the `Component` message.
+
+- Adds protobuf definition necessary for Electricity Trading (and for Ancillary Services Market).
 
 ## Bug Fixes
 
-<!-- Here goes notable bug fixes that are worth a special mention or explanation -->
+- Fixes `SensorData` and `ComponentData` doc examples to correctly reflect differences in respective values.
