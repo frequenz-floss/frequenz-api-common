@@ -2,19 +2,16 @@
 
 ## Summary
 
-This release adds new features, and fixes the documentation of a few messages.
+<!-- Here goes a general summary of what this release is about -->
 
 ## Upgrading
 
-- This release does not contain breaking changes in terms of protobuf definitions.
-  However, when upgrading, applications may need to be adjusted to work with the new additions.
+<!-- Here goes notes on how to upgrade from previous versions, including deprecations and what they should be replaced with -->
 
 ## New Features
 
-- Adds ability to specify static bounds in the `Component` message.
-
-- Adds protobuf definition necessary for Electricity Trading (and for Ancillary Services Market).
+<!-- Here goes the main new features and examples or instructions on how to use them -->
 
 ## Bug Fixes
 
-- Fixes `SensorData` and `ComponentData` doc examples to correctly reflect differences in respective values.
+<!-- Here goes notable bug fixes that are worth a special mention or explanation -->
