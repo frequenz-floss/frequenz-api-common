@@ -1,0 +1,24 @@
+// Frequenz definitions of energy for electricity trading.
+//
+// Copyright 2023 Frequenz Energy-as-a-Service GmbH
+//
+// Licensed under the MIT License (the "License");
+// you may not use this file except in compliance with the License.
+
+syntax = "proto3";
+
+package frequenz.api.common.v1.market;
+
+import "google/type/decimal.proto";
+
+// Represents a single unit of electricity.
+//
+// !!! note
+//     In these trading orders, the unit of energy is denominated in MWh
+//     (Megawatt-hours) as opposed to MW (Megawatts).  MWh is a unit of energy
+//     representing total output over a period, while MW is a unit of power that
+//     represents the rate of energy production or consumption.
+message Energy {
+  // Represents energy unit in Megawatthours (MWh).
+  google.type.Decimal mwh = 1;
+}
