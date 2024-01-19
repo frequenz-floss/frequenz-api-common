@@ -159,8 +159,8 @@ message AC {
   metrics.Metric power_active = 4;
 
   // The reactive 3-phase AC power.
-  // +ve power means inductive (leading).
-  // -ve power means capacitive (lagging).
+  // +ve power means capacitive (current leading w.r.t. voltage).
+  // -ve power means inductive (current lagging w.r.t. voltage).
   // In Volt-Ampere reactive (VAr).
   metrics.Metric power_reactive = 5;
 

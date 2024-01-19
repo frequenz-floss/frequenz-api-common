@@ -1,12 +1,17 @@
 # Frequenz Common API Release Notes
 
+## Summary
+
+<!-- Here goes a general summary of what this release is about -->
+
+## Upgrading
+
+<!-- Here goes notes on how to upgrade from previous versions, including deprecations and what they should be replaced with -->
+
 ## New Features
 
-* Added a new message named `Location`, representing the co-ordinates of a
-  geographical location and the corresponding country-code.
+<!-- Here goes the main new features and examples or instructions on how to use them -->
 
-* Added a new variant `COMPONENT_CATEGORY_RELAY` to the `ComponentCategory`
-  enum.
+## Bug Fixes
 
-* Added a new variant `COMPONENT_CATEGORY_PRECHARGE_MODULE` to the
-  `ComponentCategory` enum.
+- Incorrect documentation for reactive power has been fixed.
