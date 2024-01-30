@@ -1,0 +1,199 @@
+// Contains definitions for electrical metrics (AC and DC).
+//
+// Copyright:
+// Copyright 2023 Frequenz Energy-as-a-Service GmbH
+//
+// License:
+// MIT
+
+syntax = "proto3";
+
+package frequenz.api.common.metrics.electrical;
+
+import "frequenz/api/common/metrics.proto";
+
+// Metrics of a DC electrical connection.
+message DC {
+  // The DC voltage across the component.
+  // In Volt (V).
+  metrics.Metric voltage = 1;
+
+  // The DC current flowing away from the grid connection.
+  // In passive sign convention:
+  // +ve current means consumption, away from the grid.
+  // -ve current means supply into the grid.
+  // In Ampere (A).
+  metrics.Metric current = 2;
+
+  // The DC power flowing away from the grid connection.
+  // In passive sign convention:
+  // +ve power means consumption, away from the grid.
+  // -ve power means supply into the grid.
+  // In Watt (W).
+  metrics.Metric power = 3;
+}
+
+// The current state and metrics of the electrical connections to the
+// inverter.
+message AC {
+  // The active energy the inverter is consuming or generating.
+  message ActiveEnergy {
+    // The sum of the consumed and delivered energy.
+    // This is a signed value in passive sign convention: if more energy is
+    // consumed than delivered, this is a -ve number, otherwise +ve.
+    // In Watt-hour (Wh).
+    metrics.Metric energy = 1;
+
+    // The consumed energy.
+    // In Watt-hour (Wh).
+    metrics.Metric energy_consumed = 2;
+
+    // The delivered energy.
+    // In Watt-hour (Wh).
+    metrics.Metric energy_delivered = 3;
+  }
+
+  // The reactive energy the inverter is consuming or generating.
+  message ReactiveEnergy {
+    // The sum of the capacitive and inductive energy.
+    // This is a signed value. If more energy is capacitive than inductive,
+    // this is a -ve number, otherwise +ve.
+    // In Volt-Ampere-hour (VArh).
+    metrics.Metric energy = 1;
+
+    // The capacitive energy.
+    // In Volt-Ampere-hour (VArh).
+    metrics.Metric energy_capacitive = 2;
+
+    // The inductive energy.
+    // In Volt-Ampere-hour (VArh).
+    metrics.Metric energy_inductive = 3;
+  }
+
+  // The harmonics of the fast Fourier transform of the instantaneous values
+  // and its total harmonic distortion.
+  // In percent (%).
+  message Harmonics {
+    float harmonic_1 = 1;
+    float harmonic_2 = 2;
+    float harmonic_3 = 3;
+    float harmonic_4 = 4;
+    float harmonic_5 = 5;
+    float harmonic_6 = 6;
+    float harmonic_7 = 7;
+    float harmonic_8 = 8;
+    float harmonic_9 = 9;
+    float harmonic_10 = 10;
+    float harmonic_11 = 11;
+  }
+
+  // AC metrics of a single phase.
+  message ACPhase {
+    // The AC voltage between the line and the neutral wire.
+    // In Volt (V).
+    metrics.Metric voltage = 1;
+
+    // AC current.
+    // +ve current means consumption, away from the grid.
+    // -ve current means supply into the grid.
+    // In Ampere (A).
+    metrics.Metric current = 2;
+
+    // AC active power.
+    // +ve power means consumption, away from the grid.
+    // -ve power means supply into the grid.
+    // In Watt (W).
+    metrics.Metric power_active = 3;
+
+    // AC reactive power.
+    // +ve power means inductive (leading).
+    // -ve power means capacitive (lagging).
+    // In Volt-Ampere reactive (VAr).
+    metrics.Metric power_reactive = 4;
+
+    // The total apparent energy. A Positive value represents the net apparent
+    // energy supplied to the grid connection, and vice versa.
+    // In Volt-Ampere-hour (VAh).
+    metrics.Metric energy_apparent = 5;
+
+    // The total active energy counters for the underlying component's
+    // consumption and supply.
+    // In Watt-hour (Wh).
+    ActiveEnergy energy_active = 6;
+
+    // The total reactive energy counters for the underlying component's
+    // capacitive and inductive energy values.
+    // In Volt-Ampere reactive hour (VArh).
+    ReactiveEnergy energy_reactive = 7;
+
+    // Harmonics of the instantaneous active power at the component.
+    // In percent (%).
+    Harmonics harmonics_power_active = 8;
+
+    // Total harmonic distortion
+    // of the instantaneous active power at the component.
+    // In percent (%).
+    float thd_power_active = 9;
+  }
+
+  // Overall AC metrics.
+
+  // The AC frequency.
+  // In Hertz (Hz).
+  metrics.Metric frequency = 1;
+
+  // The apparent 3-phase AC current. Positive values represent apparent energy
+  // flowing towards the grid connection, and vice versa.
+  // In Ampere (A).
+  metrics.Metric current = 2;
+
+  // The apparent 3-phase AC power. Positive values represent apparent energy
+  // flowing towards the grid connection, and vice versa.
+  // In Volt-Ampere (VA).
+  metrics.Metric power_apparent = 3;
+
+  // The total active 3-phase AC active power.
+  // +ve power means consumption, away from the grid.
+  // -ve power means supply into the grid.
+  // In Watt (W).
+  metrics.Metric power_active = 4;
+
+  // The reactive 3-phase AC power.
+  // +ve power means capacitive (current leading w.r.t. voltage).
+  // -ve power means inductive (current lagging w.r.t. voltage).
+  // In Volt-Ampere reactive (VAr).
+  metrics.Metric power_reactive = 5;
+
+  // The total 3-phase apparent energy. A positive value represents the net
+  // apparent energy supplied to the grid connection, and vice versa.
+  // In Volt-Ampere-hour (VAh).
+  metrics.Metric energy_apparent = 6;
+
+  // The total 3-phase active energy counters for the underlying component's
+  // consumption and supply.
+  // In Watt-hour (Wh).
+  ActiveEnergy energy_active = 7;
+
+  // The total 3-phase reactive energy counters for the underlying component's
+  // capacitive and inductive energy values.
+  // In Volt-Ampere reactive hour (VArh).
+  // FIXME: ReactiveEnergy says Volt-Ampere-hour (VAh).
+  ReactiveEnergy energy_reactive = 8;
+
+  // The sums of the harmonics
+  // of the instantaneous active power at the component across all 3 phases.
+  Harmonics harmonics_power_active = 9;
+
+  // The sums of the total harmonic distortion
+  // of the instantaneous active power at the component across all 3 phases.
+  float thd_power_active = 10;
+
+  // AC metrics for phase/line 1.
+  ACPhase phase_1 = 11;
+
+  // AC metrics for phase/line 2.
+  ACPhase phase_2 = 12;
+
+  // AC metrics for phase/line 3.
+  ACPhase phase_3 = 13;
+}
