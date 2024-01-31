@@ -1,0 +1,132 @@
+// Frequenz microgrid components definitions.
+//
+// Copyright:
+// Copyright 2023 Frequenz Energy-as-a-Service GmbH
+//
+// License:
+// MIT
+
+syntax = "proto3";
+
+package frequenz.api.common.components;
+
+// Enumrated component categories.
+enum ComponentCategory {
+  // An unknown component categories, useful for error handling, and marking
+  // unknown components in a list of components with otherwise known categories.
+  COMPONENT_CATEGORY_UNSPECIFIED = 0;
+
+  // The point where the local microgrid is connected to the grid.
+  COMPONENT_CATEGORY_GRID = 1;
+
+  // A meter, for measuring electrical metrics, e.g., current, voltage, etc.
+  COMPONENT_CATEGORY_METER = 2;
+
+  // An electricity generator, with batteries or solar energy.
+  COMPONENT_CATEGORY_INVERTER = 3;
+
+  // A DC-DC converter.
+  COMPONENT_CATEGORY_CONVERTER = 4;
+
+  // A storage system for electrical energy, used by inverters.
+  COMPONENT_CATEGORY_BATTERY = 5;
+
+  // A station for charging electrical vehicles.
+  COMPONENT_CATEGORY_EV_CHARGER = 6;
+
+  // A sensor for measuring ambient metrics, e.g., temperature, humidity, etc.
+  COMPONENT_CATEGORY_SENSOR = 7;
+
+  // A crypto miner.
+  COMPONENT_CATEGORY_CRYPTO_MINER = 8;
+
+  // An electrolyzer for converting water into hydrogen and oxygen.
+  COMPONENT_CATEGORY_ELECTROLYZER = 9;
+
+  // A heat and power combustion plant (CHP stands for combined heat and power).
+  COMPONENT_CATEGORY_CHP = 10;
+
+  // A relay.
+  // Relays generally have two states: open (connected) and closed
+  // (disconnected).
+  // They are generally placed in front of a component, e.g., an inverter, to
+  // control whether the component is connected to the grid or not.
+  COMPONENT_CATEGORY_RELAY = 11;
+
+  // A precharge module.
+  // Precharging involves gradually ramping up the DC voltage to prevent any
+  // potential damage to sensitive electrical components like capacitors.
+  // While many inverters and batteries come equipped with in-built precharging
+  // mechanisms, some may lack this feature. In such cases, we need to use
+  // external precharging modules.
+  COMPONENT_CATEGORY_PRECHARGE_MODULE = 12;
+}
+
+// Enumerated battery types.
+enum BatteryType {
+  // Unspecified.
+  BATTERY_TYPE_UNSPECIFIED = 0;
+
+  // Li-ion batteries.
+  BATTERY_TYPE_LI_ION = 1;
+
+  // Sodium-ion batteries
+  BATTERY_TYPE_NA_ION = 2;
+}
+
+// Enumerated inverter types.
+enum InverterType {
+  // Unspecified.
+  INVERTER_TYPE_UNSPECIFIED = 0;
+
+  // Battery inverter.
+  INVERTER_TYPE_BATTERY = 1;
+
+  // Solar inverter.
+  INVERTER_TYPE_SOLAR = 2;
+
+  // Hybrid inverter.
+  INVERTER_TYPE_HYBRID = 3;
+}
+
+// Enumerated EV charger types.
+enum EvChargerType {
+  // Default type.
+  EV_CHARGER_TYPE_UNSPECIFIED = 0;
+
+  // The EV charging station supports AC charging only.
+  EV_CHARGER_TYPE_AC = 1;
+
+  // The EV charging station supports DC charging only.
+  EV_CHARGER_TYPE_DC = 2;
+
+  // The EV charging station supports both AC and DC.
+  EV_CHARGER_TYPE_HYBRID = 3;
+}
+
+// Enumerated sensor types.
+enum SensorType {
+  // Unspecified
+  SENSOR_TYPE_UNSPECIFIED = 0;
+
+  // Thermometer (temperature sensor)
+  SENSOR_TYPE_THERMOMETER = 1;
+
+  // Hygrometer (humidity sensor)
+  SENSOR_TYPE_HYGROMETER = 2;
+
+  // Barometer (pressure sensor).
+  SENSOR_TYPE_BAROMETER = 3;
+
+  // Pyranometer (solar irradiance sensor).
+  SENSOR_TYPE_PYRANOMETER = 4;
+
+  // Anemometer (wind velocity and direction sensor).
+  SENSOR_TYPE_ANEMOMETER = 5;
+
+  // Accelerometers (acceleration sensor).
+  SENSOR_TYPE_ACCELEROMETER = 6;
+
+  // General sensors, which do not fall in any of the above categories
+  SENSOR_TYPE_GENERAL = 7;
+}
