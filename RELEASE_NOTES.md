@@ -1,8 +1,17 @@
 # Frequenz Common API Release Notes
 
+## Summary
+
+<!-- Here goes a general summary of what this release is about -->
+
+## Upgrading
+
+<!-- Here goes notes on how to upgrade from previous versions, including deprecations and what they should be replaced with -->
+
 ## New Features
 
-- Add a energy message for electricity trading markets
-- Add backwards compatibility with v0.3.x
+<!-- Here goes the main new features and examples or instructions on how to use them -->
 
-  This release includes the top-level files present in the v0.3.x release, so the Microgrid API v0.15.x can depend on a newer version of the Common API.
+## Bug Fixes
+
+<!-- Here goes notable bug fixes that are worth a special mention or explanation -->
