@@ -2897,6 +2897,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#frequenz.api.common.v1.metrics.metric_sample_pb2.MetricSample.source" class="md-nav__link">
+    <span class="md-ellipsis">
+      source
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -4178,6 +4187,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#frequenz.api.common.v1.metrics.metric_sample_pb2.MetricSample.source" class="md-nav__link">
+    <span class="md-ellipsis">
+      source
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -4818,6 +4836,37 @@ positive and negative values depending on the metric they represent.</p>
   <div class="doc doc-contents ">
   
       <p>The UTC timestamp of when the metric was sampled.</p>
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h6 id="frequenz.api.common.v1.metrics.metric_sample_pb2.MetricSample.source" class="doc doc-heading">
+          <code class="highlight language-python"><span class="n">source</span><span class="p">:</span> <span class="n">builtins</span><span class="o">.</span><span class="n">str</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+<a href="#frequenz.api.common.v1.metrics.metric_sample_pb2.MetricSample.source" class="headerlink" title="Permanent link">¤</a></h6>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>An optional string that can be used to identify the source of the metric.</p>
+<p>This is expected to be populated when the same <code>Metric</code> variant can be
+obtained from multiple sensors in the component. Knowing the source of the
+metric can help in certain control and monitoring applications.</p>
+<p>E.g., a hybrid inverter can have a DC string for a battery and another DC
+string for a PV array. The source names could resemble, say,
+<code>dc_battery_0</code> and <code>`dc_pv_0</code>. A metric like DC voltage can be obtained
+from both sources. For an application to determine the SoC of the battery
+using the battery voltage, the source of the voltage metric is important.</p>
+<p>In cases where the component has just one source for a metric, then this
+field is not expected to be present, because the source is implicit.</p>
   </div>
 
 </div>
