@@ -10,7 +10,9 @@
 
 ## New Features
 
-<!-- Here goes the main new features and examples or instructions on how to use them -->
+- Added a field named `source` to `MetricSample` to allow the user to identify
+  the source of the metric, in case different sensors in component report
+  metrics with the same `Metric` variant.
 
 ## Bug Fixes
 

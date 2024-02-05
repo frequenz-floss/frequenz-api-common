@@ -201,4 +201,20 @@ message MetricSample {
   // ---- values here are disallowed and will be rejected
   // ==== values here are allowed and will be accepted
   repeated Bounds bounds = 4;
+
+  // An optional string that can be used to identify the source of the metric.
+  //
+  // This is expected to be populated when the same `Metric` variant can be
+  // obtained from multiple sensors in the component. Knowing the source of the
+  // metric can help in certain control and monitoring applications.
+  //
+  // E.g., a hybrid inverter can have a DC string for a battery and another DC
+  // string for a PV array. The source names could resemble, say,
+  // `dc_battery_0` and ``dc_pv_0`. A metric like DC voltage can be obtained
+  // from both sources. For an application to determine the SoC of the battery
+  // using the battery voltage, the source of the voltage metric is important.
+  //
+  // In cases where the component has just one source for a metric, then this
+  // field is not expected to be present, because the source is implicit.
+  optional string source = 5;
 }
