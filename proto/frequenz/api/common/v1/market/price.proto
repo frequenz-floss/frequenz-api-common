@@ -9,7 +9,7 @@ syntax = "proto3";
 
 package frequenz.api.common.v1.market;
 
-import "google/type/decimal.proto";
+import "frequenz/api/common/v1/types/decimal.proto";
 
 // Represents a monetary price for electricity trading, including
 // the amount and currency. The currency used should align with the
@@ -46,7 +46,7 @@ message Price {
   }
 
   // The amount of the price.
-  google.type.Decimal amount = 1; 
+  frequenz.api.common.v1.types.Decimal amount = 1;
 
   // The currency in which the price is denominated.
   Currency currency = 2;
