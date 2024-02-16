@@ -16,19 +16,19 @@ import "frequenz/api/common/v1/types/decimal.proto";
 // delivery area's standard currency.
 //
 // !!! caution "Validation Required"
-//     It's essential to ensure that the currency aligns with the 
+//     It's essential to ensure that the currency aligns with the
 //     standard currency of the associated delivery area. Failure to
 //     do so may result in the API service rejecting the request due to currency
 //     mismatches.
 //
 // !!! info "Relation to Delivery Area"
-//     The currency specified is intrinsically related to the delivery area 
-//     for the contract. Make sure the chosen currency is compatible with 
+//     The currency specified is intrinsically related to the delivery area
+//     for the contract. Make sure the chosen currency is compatible with
 //     the delivery area's currency standards.
 //
 message Price {
   // List of supported currencies.
-  // 
+  //
   // !!! info "Extensibility"
   //     New currencies can be added to this enum to support additional markets.
   enum Currency {
