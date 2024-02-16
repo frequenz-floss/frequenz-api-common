@@ -6,11 +6,20 @@
 
 ## Upgrading
 
-<!-- Here goes notes on how to upgrade from previous versions, including deprecations and what they should be replaced with -->
+- The dependency on `googleapis-common-protos` / `googleapis/googleapis` was
+  removed, now the built-in `frequenz.api.common.v1.types.Decimal` is used
+  internally instead. This is compatible with Google's type, but if you
+  depended indirectly on Google's submodule or python packages, you may need to
+  update your dependencies.
+
+  Nevertheless it is strongly recommended to remove the dependency on Google
+  repos and use the built-in `frequenz.api.common.v1.types.Decimal` instead if
+  your project only uses the `Decimal` type from it too.
 
 ## New Features
 
-<!-- Here goes the main new features and examples or instructions on how to use them -->
+- Added a `Frequenz.api.common.v1.types.Decimal` type, compatible with
+  `google.type.Decimal`.
 
 ## Bug Fixes
 
