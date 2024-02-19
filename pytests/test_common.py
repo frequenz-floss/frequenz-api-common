@@ -12,6 +12,19 @@ def test_package_import() -> None:
     assert v1 is not None
 
 
+def test_module_import_decimal() -> None:
+    """Test that the modules can be imported."""
+    # pylint: disable=import-outside-toplevel
+    from frequenz.api.common.v1.types import decimal_pb2
+
+    assert decimal_pb2 is not None
+
+    # pylint: disable=import-outside-toplevel
+    from frequenz.api.common.v1.types import decimal_pb2_grpc
+
+    assert decimal_pb2_grpc is not None
+
+
 def test_module_import_metrics_bounds() -> None:
     """Test that the modules can be imported."""
     # pylint: disable=import-outside-toplevel

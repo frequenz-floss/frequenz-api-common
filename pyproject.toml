@@ -25,11 +25,7 @@ classifiers = [
   "Typing :: Typed",
 ]
 requires-python = ">= 3.11, < 4"
-dependencies = [
-  "googleapis-common-protos >= 1.56.4, < 2",
-  "googleapis-common-protos-stubs == 2.2.0",
-  "grpcio >= 1.51.1, < 2",
-]
+dependencies = ["grpcio >= 1.51.1, < 2", "protobuf >= 4.25.3, < 5"]
 dynamic = ["version"]
 
 [[project.authors]]
@@ -59,10 +55,7 @@ dev-mypy = [
   # For checking the noxfile, docs/ script, and tests
   "frequenz-api-common[dev-mkdocs,dev-noxfile,dev-pytest]",
 ]
-dev-noxfile = [
-  "nox == 2023.4.22",
-  "frequenz-repo-config[api] == 0.8.0",
-]
+dev-noxfile = ["nox == 2023.4.22", "frequenz-repo-config[api] == 0.8.0"]
 dev-pylint = [
   "pylint == 3.0.3",
   # For checking the noxfile, docs/ script, and tests

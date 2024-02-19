@@ -9,7 +9,7 @@ syntax = "proto3";
 
 package frequenz.api.common.v1.market;
 
-import "google/type/decimal.proto";
+import "frequenz/api/common/v1/types/decimal.proto";
 
 // Represents a single unit of electricity.
 //
@@ -20,5 +20,5 @@ import "google/type/decimal.proto";
 //     represents the rate of energy production or consumption.
 message Energy {
   // Represents energy unit in Megawatthours (MWh).
-  google.type.Decimal mwh = 1;
+  frequenz.api.common.v1.types.Decimal mwh = 1;
 }
