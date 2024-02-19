@@ -2,11 +2,8 @@
 
 ## Summary
 
-<!-- Here goes a general summary of what this release is about -->
-
-## Upgrading
-
-<!-- Here goes notes on how to upgrade from previous versions, including deprecations and what they should be replaced with -->
+This release contains minor updates to the API, including new metric variants,
+and a new field in `MetricSample` to identify the source of the metric.
 
 ## New Features
 
@@ -18,7 +15,3 @@
   - `METRIC_INVERTER_TEMPERATURE_CABINET`
   - `METRIC_INVERTER_TEMPERATURE_HEATSINK`
   - `METRIC_INVERTER_TEMPERATURE_TRANSFORMER`
-
-## Bug Fixes
-
-<!-- Here goes notable bug fixes that are worth a special mention or explanation -->
