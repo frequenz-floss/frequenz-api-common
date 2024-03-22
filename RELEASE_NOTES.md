@@ -16,10 +16,21 @@
   repos and use the built-in `frequenz.api.common.v1.types.Decimal` instead if
   your project only uses the `Decimal` type from it too.
 
+- Voltage metrics have been renamed from `METRIC_VOLTAGE_PHASE_[1|2|3]` to
+  `METRIC_VOLTAGE_PHASE_[1|2|3]_N`.
+
+- The variants in the enum `Metric` have been renumberd due to the addition of
+  line-to-line voltages.
+
 ## New Features
 
 - Added a `Frequenz.api.common.v1.types.Decimal` type, compatible with
   `google.type.Decimal`.
+
+- The following new metrics have been added:
+  - `METRIC_VOLTAGE_PHASE_1_PHASE_2`
+  - `METRIC_VOLTAGE_PHASE_2_PHASE_3`
+  - `METRIC_VOLTAGE_PHASE_3_PHASE_1`
 
 ## Bug Fixes
 
