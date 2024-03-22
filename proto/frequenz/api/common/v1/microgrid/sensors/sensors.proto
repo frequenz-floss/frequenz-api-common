@@ -209,5 +209,5 @@ message SensorMetricSample {
   frequenz.api.common.v1.metrics.Metric metric = 2;
 
   // The value of the sampled metric.
-  frequenz.api.common.v1.metrics.MetricValueVariant sample = 3;
+  frequenz.api.common.v1.metrics.MetricValueVariant value = 3;
 }

@@ -40,6 +40,8 @@
 
 - Rename `MetricSample.sample` to `MetricSample.value`.
 
+- Rename `SensorMetricSample.sample` to `SensorMetricSample.value`.
+
 ## New Features
 
 - Added a `Frequenz.api.common.v1.types.Decimal` type, compatible with
