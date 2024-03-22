@@ -33,6 +33,9 @@
 - Renamed `SimpleMetricSample` to `SimpleMetricValue`, because it does not
   contain a timestamp, so it does not represent a sample but a value.
 
+- Renamed `AggregatedMetricSample` to `AggregatedMetricValue`, because it does not
+  contain a timestamp, so it does not represent a sample but a value.
+
 ## New Features
 
 - Added a `Frequenz.api.common.v1.types.Decimal` type, compatible with
