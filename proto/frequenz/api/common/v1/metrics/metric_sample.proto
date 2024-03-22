@@ -16,7 +16,7 @@ import "google/protobuf/timestamp.proto";
 
 // Represents a single sample of a specific metric, the value of which is either
 // measured or derived at a particular time.
-message SimpleMetricSample {
+message SimpleMetricValue {
   // The value of the metric, which could be either measured or derived.
   float value = 2;
 }
@@ -31,7 +31,7 @@ message SimpleMetricSample {
 // summaries—minimum, maximum, and average values. Individual measurements are
 // are optional, accommodating scenarios where only subsets of this information
 // are available.
-message AggregatedMetricSample {
+message AggregatedMetricValue {
   // The derived average value of the metric.
   float avg_value = 2;
 
@@ -45,20 +45,20 @@ message AggregatedMetricSample {
   repeated float raw_values = 5;
 }
 
-// MetricSampleVariant serves as a union type that can encapsulate either a
-// `SimpleMetricSample` or an `AggregatedMetricSample`.
+// `MetricValueVariant` serves as a union type that can encapsulate either a
+// `SimpleMetricValue` or an `AggregatedMetricValue`.
 //
 // This message is designed to offer flexibility in capturing different
 // granularities of metric samples—either a simple single-point measurement
 // or an aggregated set of measurements for a metric.
 //
-// A `MetricSampleVariant` can hold either a `SimpleMetricSample` or an
-// `AggregatedMetricSample`, but not both simultaneously. Setting one will
+// A `MetricValueVariant` can hold either a `SimpleMetricValue` or an
+// `AggregatedMetricValue`, but not both simultaneously. Setting one will
 // nullify the other.
-message MetricSampleVariant {
-  oneof metric_sample_type {
-    SimpleMetricSample simple_metric = 1;
-    AggregatedMetricSample aggregated_metric = 2;
+message MetricValueVariant {
+  oneof metric_value_variant {
+    SimpleMetricValue simple_metric = 1;
+    AggregatedMetricValue aggregated_metric = 2;
   }
 }
 
@@ -178,7 +178,7 @@ message MetricSample {
   Metric metric = 2;
 
   // The value of the sampled metric.
-  MetricSampleVariant sample = 3;
+  MetricValueVariant value = 3;
 
   // List of bounds that apply to the metric sample.
   //
