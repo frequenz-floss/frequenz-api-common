@@ -45,18 +45,18 @@ message AggregatedMetricValue {
   repeated float raw_values = 5;
 }
 
-// MetricSampleVariant serves as a union type that can encapsulate either a
+// `MetricValueVariant` serves as a union type that can encapsulate either a
 // `SimpleMetricValue` or an `AggregatedMetricValue`.
 //
 // This message is designed to offer flexibility in capturing different
 // granularities of metric samples—either a simple single-point measurement
 // or an aggregated set of measurements for a metric.
 //
-// A `MetricSampleVariant` can hold either a `SimpleMetricValue` or an
+// A `MetricValueVariant` can hold either a `SimpleMetricValue` or an
 // `AggregatedMetricValue`, but not both simultaneously. Setting one will
 // nullify the other.
-message MetricSampleVariant {
-  oneof metric_sample_type {
+message MetricValueVariant {
+  oneof metric_value_variant {
     SimpleMetricValue simple_metric = 1;
     AggregatedMetricValue aggregated_metric = 2;
   }
@@ -178,7 +178,7 @@ message MetricSample {
   Metric metric = 2;
 
   // The value of the sampled metric.
-  MetricSampleVariant sample = 3;
+  MetricValueVariant sample = 3;
 
   // List of bounds that apply to the metric sample.
   //

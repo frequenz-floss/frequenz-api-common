@@ -120,12 +120,12 @@ enum SensorMetric {
 //        {
 //          sampled_at: "2023-10-01T00:00:00Z",
 //          metric: "METRIC_SENSOR_TEMPERATURE",
-//          sample: metric_sample_type: {simple_metric: {value: 23.5},
+//          sample: metric_value_variant: {simple_metric: {value: 23.5},
 //        },
 //        {
 //          sampled_at: "2023-10-01T00:00:00Z",
 //          metric: "METRIC_SENSOR_RELATIVE_HUMIDITY",
-//          sample: metric_sample_type: {simple_metric: {value: 23.5},
+//          sample: metric_value_variant: {simple_metric: {value: 23.5},
 //        }
 //      ],
 //      states: [
@@ -209,5 +209,5 @@ message SensorMetricSample {
   frequenz.api.common.v1.metrics.Metric metric = 2;
 
   // The value of the sampled metric.
-  frequenz.api.common.v1.metrics.MetricSampleVariant sample = 3;
+  frequenz.api.common.v1.metrics.MetricValueVariant sample = 3;
 }
