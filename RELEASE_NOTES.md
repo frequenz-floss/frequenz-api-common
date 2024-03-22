@@ -22,6 +22,10 @@
 - The variants in the enum `Metric` have been renumberd due to the addition of
   line-to-line voltages.
 
+- Current metrics have been renamed:
+  `METRIC_AC_APPARENT_CURRENT` -> `METRIC_AC_CURRENT`
+  `METRIC_AC_APPARENT_CURRENT_PHASE_[1|2|3]` -> `METRIC_AC_CURRENT_PHASE_[1|2|3]`
+
 ## New Features
 
 - Added a `Frequenz.api.common.v1.types.Decimal` type, compatible with
