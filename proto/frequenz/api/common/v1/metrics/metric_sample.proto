@@ -16,7 +16,7 @@ import "google/protobuf/timestamp.proto";
 
 // Represents a single sample of a specific metric, the value of which is either
 // measured or derived at a particular time.
-message SimpleMetricSample {
+message SimpleMetricValue {
   // The value of the metric, which could be either measured or derived.
   float value = 2;
 }
@@ -46,18 +46,18 @@ message AggregatedMetricSample {
 }
 
 // MetricSampleVariant serves as a union type that can encapsulate either a
-// `SimpleMetricSample` or an `AggregatedMetricSample`.
+// `SimpleMetricValue` or an `AggregatedMetricSample`.
 //
 // This message is designed to offer flexibility in capturing different
 // granularities of metric samples—either a simple single-point measurement
 // or an aggregated set of measurements for a metric.
 //
-// A `MetricSampleVariant` can hold either a `SimpleMetricSample` or an
+// A `MetricSampleVariant` can hold either a `SimpleMetricValue` or an
 // `AggregatedMetricSample`, but not both simultaneously. Setting one will
 // nullify the other.
 message MetricSampleVariant {
   oneof metric_sample_type {
-    SimpleMetricSample simple_metric = 1;
+    SimpleMetricValue simple_metric = 1;
     AggregatedMetricSample aggregated_metric = 2;
   }
 }
