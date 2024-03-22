@@ -26,6 +26,10 @@
   `METRIC_AC_APPARENT_CURRENT` -> `METRIC_AC_CURRENT`
   `METRIC_AC_APPARENT_CURRENT_PHASE_[1|2|3]` -> `METRIC_AC_CURRENT_PHASE_[1|2|3]`
 
+- Metrics for Total Harmonic Distortion have been un-abbreviated:
+  `METRIC_AC_THD_CURRENT` -> `METRIC_AC_TOTAL_HARMONIC_DISTORTION_CURRENT`
+  `METRIC_AC_THD_CURRENT_PHASE_[1|2|3]` -> `METRIC_AC_TOTAL_HARMONIC_DISTORTION_CURRENT_PHASE_[1|2|3]`
+
 ## New Features
 
 - Added a `Frequenz.api.common.v1.types.Decimal` type, compatible with
