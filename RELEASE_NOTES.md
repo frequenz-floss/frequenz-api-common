@@ -16,6 +16,9 @@
   repos and use the built-in `frequenz.api.common.v1.types.Decimal` instead if
   your project only uses the `Decimal` type from it too.
 
+- Voltage metrics have been renamed from `METRIC_VOLTAGE_PHASE_[1|2|3]` to
+  `METRIC_VOLTAGE_PHASE_[1|2|3]_N`.
+
 ## New Features
 
 - Added a `Frequenz.api.common.v1.types.Decimal` type, compatible with
