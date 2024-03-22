@@ -1158,9 +1158,9 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#aggregatedmetricsample" class="md-nav__link">
+  <a href="#aggregatedmetricvalue" class="md-nav__link">
     <span class="md-ellipsis">
-      AggregatedMetricSample
+      AggregatedMetricValue
     </span>
   </a>
   
@@ -1209,18 +1209,18 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#metricsamplevariant" class="md-nav__link">
+  <a href="#metricvaluevariant" class="md-nav__link">
     <span class="md-ellipsis">
-      MetricSampleVariant
+      MetricValueVariant
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#simplemetricsample" class="md-nav__link">
+  <a href="#simplemetricvalue" class="md-nav__link">
     <span class="md-ellipsis">
-      SimpleMetricSample
+      SimpleMetricValue
     </span>
   </a>
   
@@ -3869,9 +3869,9 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#aggregatedmetricsample" class="md-nav__link">
+  <a href="#aggregatedmetricvalue" class="md-nav__link">
     <span class="md-ellipsis">
-      AggregatedMetricSample
+      AggregatedMetricValue
     </span>
   </a>
   
@@ -3920,18 +3920,18 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#metricsamplevariant" class="md-nav__link">
+  <a href="#metricvaluevariant" class="md-nav__link">
     <span class="md-ellipsis">
-      MetricSampleVariant
+      MetricValueVariant
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#simplemetricsample" class="md-nav__link">
+  <a href="#simplemetricvalue" class="md-nav__link">
     <span class="md-ellipsis">
-      SimpleMetricSample
+      SimpleMetricValue
     </span>
   </a>
   
@@ -3985,11 +3985,11 @@
 <li>
 <p><a href="#frequenz_api_common_v1_metrics_metric_sample-proto">frequenz/api/common/v1/metrics/metric_sample.proto</a></p>
 <ul>
-<li><a href="#frequenz-api-common-v1-metrics-AggregatedMetricSample">AggregatedMetricSample</a></li>
+<li><a href="#frequenz-api-common-v1-metrics-AggregatedMetricValue">AggregatedMetricValue</a></li>
 <li><a href="#frequenz-api-common-v1-metrics-MetricSample">MetricSample</a></li>
-<li><a href="#frequenz-api-common-v1-metrics-MetricSampleVariant">MetricSampleVariant</a></li>
+<li><a href="#frequenz-api-common-v1-metrics-MetricValueVariant">MetricValueVariant</a></li>
 <li>
-<p><a href="#frequenz-api-common-v1-metrics-SimpleMetricSample">SimpleMetricSample</a></p>
+<p><a href="#frequenz-api-common-v1-metrics-SimpleMetricValue">SimpleMetricValue</a></p>
 </li>
 <li>
 <p><a href="#frequenz-api-common-v1-metrics-Metric">Metric</a></p>
@@ -4004,8 +4004,8 @@
 <p align="right"><a href="#top">Top</a></p>
 
 <h2 id="frequenzapicommonv1metricsmetric_sampleproto">frequenz/api/common/v1/metrics/metric_sample.proto<a class="headerlink" href="#frequenzapicommonv1metricsmetric_sampleproto" title="Permanent link">¤</a></h2>
-<p><a name="frequenz-api-common-v1-metrics-AggregatedMetricSample"></a></p>
-<h3 id="aggregatedmetricsample">AggregatedMetricSample<a class="headerlink" href="#aggregatedmetricsample" title="Permanent link">¤</a></h3>
+<p><a name="frequenz-api-common-v1-metrics-AggregatedMetricValue"></a></p>
+<h3 id="aggregatedmetricvalue">AggregatedMetricValue<a class="headerlink" href="#aggregatedmetricvalue" title="Permanent link">¤</a></h3>
 <p>Encapsulates derived statistical summaries of a single metric.</p>
 <p>The message allows for the reporting of statistical summaries — minimum,
 maximum, and average values - as well as the complete list of individual
@@ -4089,8 +4089,8 @@ command, clients need to request current values within the bounds.</p>
 <td>The metric that was sampled.</td>
 </tr>
 <tr>
-<td>sample</td>
-<td><a href="#frequenz-api-common-v1-metrics-MetricSampleVariant">MetricSampleVariant</a></td>
+<td>value</td>
+<td><a href="#frequenz-api-common-v1-metrics-MetricValueVariant">MetricValueVariant</a></td>
 <td></td>
 <td>The value of the sampled metric.</td>
 </tr>
@@ -4111,15 +4111,15 @@ command, clients need to request current values within the bounds.</p>
 <p>This is expected to be populated when the same <code>Metric</code> variant can be obtained from multiple sensors in the component. Knowing the source of the metric can help in certain control and monitoring applications.</p>
 <p>E.g., a hybrid inverter can have a DC string for a battery and another DC string for a PV array. The source names could resemble, say, <code>dc_battery_0</code> and <code>`dc_pv_0</code>. A metric like DC voltage can be obtained from both sources. For an application to determine the SoC of the battery using the battery voltage, the source of the voltage metric is important.</p>
 <p>In cases where the component has just one source for a metric, then this field is not expected to be present, because the source is implicit. |</p>
-<p><a name="frequenz-api-common-v1-metrics-MetricSampleVariant"></a></p>
-<h3 id="metricsamplevariant">MetricSampleVariant<a class="headerlink" href="#metricsamplevariant" title="Permanent link">¤</a></h3>
-<p>MetricSampleVariant serves as a union type that can encapsulate either a
-<code>SimpleMetricSample</code> or an <code>AggregatedMetricSample</code>.</p>
+<p><a name="frequenz-api-common-v1-metrics-MetricValueVariant"></a></p>
+<h3 id="metricvaluevariant">MetricValueVariant<a class="headerlink" href="#metricvaluevariant" title="Permanent link">¤</a></h3>
+<p><code>MetricValueVariant</code> serves as a union type that can encapsulate either a
+<code>SimpleMetricValue</code> or an <code>AggregatedMetricValue</code>.</p>
 <p>This message is designed to offer flexibility in capturing different
 granularities of metric samples—either a simple single-point measurement
 or an aggregated set of measurements for a metric.</p>
-<p>A <code>MetricSampleVariant</code> can hold either a <code>SimpleMetricSample</code> or an
-<code>AggregatedMetricSample</code>, but not both simultaneously. Setting one will
+<p>A <code>MetricValueVariant</code> can hold either a <code>SimpleMetricValue</code> or an
+<code>AggregatedMetricValue</code>, but not both simultaneously. Setting one will
 nullify the other.</p>
 <table>
 <thead>
@@ -4133,20 +4133,20 @@ nullify the other.</p>
 <tbody>
 <tr>
 <td>simple_metric</td>
-<td><a href="#frequenz-api-common-v1-metrics-SimpleMetricSample">SimpleMetricSample</a></td>
+<td><a href="#frequenz-api-common-v1-metrics-SimpleMetricValue">SimpleMetricValue</a></td>
 <td></td>
 <td></td>
 </tr>
 <tr>
 <td>aggregated_metric</td>
-<td><a href="#frequenz-api-common-v1-metrics-AggregatedMetricSample">AggregatedMetricSample</a></td>
+<td><a href="#frequenz-api-common-v1-metrics-AggregatedMetricValue">AggregatedMetricValue</a></td>
 <td></td>
 <td></td>
 </tr>
 </tbody>
 </table>
-<p><a name="frequenz-api-common-v1-metrics-SimpleMetricSample"></a></p>
-<h3 id="simplemetricsample">SimpleMetricSample<a class="headerlink" href="#simplemetricsample" title="Permanent link">¤</a></h3>
+<p><a name="frequenz-api-common-v1-metrics-SimpleMetricValue"></a></p>
+<h3 id="simplemetricvalue">SimpleMetricValue<a class="headerlink" href="#simplemetricvalue" title="Permanent link">¤</a></h3>
 <p>Represents a single sample of a specific metric, the value of which is either
 measured or derived at a particular time.</p>
 <table>

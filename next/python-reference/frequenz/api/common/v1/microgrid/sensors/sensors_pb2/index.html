@@ -3792,18 +3792,18 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#frequenz.api.common.v1.microgrid.sensors.sensors_pb2.SensorMetricSample.sample" class="md-nav__link">
+  <a href="#frequenz.api.common.v1.microgrid.sensors.sensors_pb2.SensorMetricSample.sampled_at" class="md-nav__link">
     <span class="md-ellipsis">
-      sample
+      sampled_at
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#frequenz.api.common.v1.microgrid.sensors.sensors_pb2.SensorMetricSample.sampled_at" class="md-nav__link">
+  <a href="#frequenz.api.common.v1.microgrid.sensors.sensors_pb2.SensorMetricSample.value" class="md-nav__link">
     <span class="md-ellipsis">
-      sampled_at
+      value
     </span>
   </a>
   
@@ -4735,18 +4735,18 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#frequenz.api.common.v1.microgrid.sensors.sensors_pb2.SensorMetricSample.sample" class="md-nav__link">
+  <a href="#frequenz.api.common.v1.microgrid.sensors.sensors_pb2.SensorMetricSample.sampled_at" class="md-nav__link">
     <span class="md-ellipsis">
-      sample
+      sampled_at
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#frequenz.api.common.v1.microgrid.sensors.sensors_pb2.SensorMetricSample.sampled_at" class="md-nav__link">
+  <a href="#frequenz.api.common.v1.microgrid.sensors.sensors_pb2.SensorMetricSample.value" class="md-nav__link">
     <span class="md-ellipsis">
-      sampled_at
+      value
     </span>
   </a>
   
@@ -5619,12 +5619,12 @@ errors, related to a specific microgrid sensor.</p>
        {
          sampled_at: "2023-10-01T00:00:00Z",
          metric: "METRIC_SENSOR_TEMPERATURE",
-         sample: metric_sample_type: {simple_metric: {value: 23.5},
+         value: metric_value_variant: {simple_metric: {value: 23.5},
        },
        {
          sampled_at: "2023-10-01T00:00:00Z",
          metric: "METRIC_SENSOR_RELATIVE_HUMIDITY",
-         sample: metric_sample_type: {simple_metric: {value: 23.5},
+         value: metric_value_variant: {simple_metric: {value: 23.5},
        }
      ],
      states: [
@@ -5824,27 +5824,6 @@ errors, related to a specific microgrid sensor.</p>
 
 
 
-<h6 id="frequenz.api.common.v1.microgrid.sensors.sensors_pb2.SensorMetricSample.sample" class="doc doc-heading">
-          <code class="highlight language-python"><span class="n">sample</span><span class="p">:</span> <span class="n">frequenz</span><span class="o">.</span><span class="n">api</span><span class="o">.</span><span class="n">common</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">metrics</span><span class="o">.</span><span class="n">metric_sample_pb2</span><span class="o">.</span><span class="n">MetricSampleVariant</span></code>
-  
-  <span class="doc doc-labels">
-      <small class="doc doc-label doc-label-property"><code>property</code></small>
-  </span>
-
-<a href="#frequenz.api.common.v1.microgrid.sensors.sensors_pb2.SensorMetricSample.sample" class="headerlink" title="Permanent link">¤</a></h6>
-
-
-  <div class="doc doc-contents ">
-  
-      <p>The value of the sampled metric.</p>
-  </div>
-
-</div>
-
-<div class="doc doc-object doc-attribute">
-
-
-
 <h6 id="frequenz.api.common.v1.microgrid.sensors.sensors_pb2.SensorMetricSample.sampled_at" class="doc doc-heading">
           <code class="highlight language-python"><span class="n">sampled_at</span><span class="p">:</span> <span class="n">google</span><span class="o">.</span><span class="n">protobuf</span><span class="o">.</span><span class="n">timestamp_pb2</span><span class="o">.</span><span class="n">Timestamp</span></code>
   
@@ -5858,6 +5837,27 @@ errors, related to a specific microgrid sensor.</p>
   <div class="doc doc-contents ">
   
       <p>The UTC timestamp of when the metric was sampled.</p>
+  </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h6 id="frequenz.api.common.v1.microgrid.sensors.sensors_pb2.SensorMetricSample.value" class="doc doc-heading">
+          <code class="highlight language-python"><span class="n">value</span><span class="p">:</span> <span class="n">frequenz</span><span class="o">.</span><span class="n">api</span><span class="o">.</span><span class="n">common</span><span class="o">.</span><span class="n">v1</span><span class="o">.</span><span class="n">metrics</span><span class="o">.</span><span class="n">metric_sample_pb2</span><span class="o">.</span><span class="n">MetricValueVariant</span></code>
+  
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+<a href="#frequenz.api.common.v1.microgrid.sensors.sensors_pb2.SensorMetricSample.value" class="headerlink" title="Permanent link">¤</a></h6>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>The value of the sampled metric.</p>
   </div>
 
 </div>
