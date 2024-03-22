@@ -178,7 +178,7 @@ message MetricSample {
   Metric metric = 2;
 
   // The value of the sampled metric.
-  MetricValueVariant sample = 3;
+  MetricValueVariant value = 3;
 
   // List of bounds that apply to the metric sample.
   //

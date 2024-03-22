@@ -38,6 +38,8 @@
 
 - Renamed `MetricSampleVariant` to `MetricValueVariant`.
 
+- Rename `MetricSample.sample` to `MetricSample.value`.
+
 ## New Features
 
 - Added a `Frequenz.api.common.v1.types.Decimal` type, compatible with
