@@ -2,7 +2,12 @@
 
 ## Summary
 
-<!-- Here goes a general summary of what this release is about -->
+- Removed dependency on `googleapis-common-protos` in favor of internal
+`frequenz.api.common.v1.types.Decimal`, advising updates to dependencies for
+users previously relying on Google's types.
+- Renamed voltage and current metrics for clarity and introduced new metrics,
+including line-to-line voltages and Total Harmonic Distortion (THD) metrics,
+with updated naming conventions for simplicity and precision.
 
 ## Upgrading
 
@@ -51,7 +56,3 @@
   - `METRIC_VOLTAGE_PHASE_1_PHASE_2`
   - `METRIC_VOLTAGE_PHASE_2_PHASE_3`
   - `METRIC_VOLTAGE_PHASE_3_PHASE_1`
-
-## Bug Fixes
-
-<!-- Here goes notable bug fixes that are worth a special mention or explanation -->
