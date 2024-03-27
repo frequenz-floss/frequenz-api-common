@@ -25,7 +25,7 @@ classifiers = [
   "Typing :: Typed",
 ]
 requires-python = ">= 3.11, < 4"
-dependencies = ["grpcio >= 1.51.1, < 2", "protobuf >= 4.25.3, < 5"]
+dependencies = ["grpcio >= 1.51.1, < 2", "protobuf >= 4.25.3, < 6"]
 dynamic = ["version"]
 
 [[project.authors]]
