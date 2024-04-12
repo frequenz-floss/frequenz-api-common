@@ -10,6 +10,9 @@
 
 ## New Features
 
+- Added a new component category called for air conditioners. It is added to
+  the component category enums as `COMPONENT_CATEGORY_AIR_CONDITIONER`.
+
 <!-- Here goes the main new features and examples or instructions on how to use them -->
 
 ## Bug Fixes

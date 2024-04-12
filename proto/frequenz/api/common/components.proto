@@ -60,6 +60,9 @@ enum ComponentCategory {
   // mechanisms, some may lack this feature. In such cases, we need to use
   // external precharging modules.
   COMPONENT_CATEGORY_PRECHARGE_MODULE = 12;
+
+  // An air conditioner.
+  COMPONENT_CATEGORY_AIR_CONDITIONER = 13;
 }
 
 // Enumerated battery types.
