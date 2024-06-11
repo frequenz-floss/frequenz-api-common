@@ -3947,26 +3947,13 @@ area.</p>
 <td></td>
 <td>The delivery area where the microgrid is located, as identified by a specific code.</td>
 </tr>
-<tr>
-<td>location</td>
-<td><a href="#frequenz-api-common-v1-Location">frequenz.api.common.v1.Location</a></td>
-<td></td>
-<td>Physical location of the microgrid, in geographical co-ordinates.</td>
-</tr>
-<tr>
-<td>status</td>
-<td><a href="#frequenz-api-common-v1-microgrid-MicrogridStatus">MicrogridStatus</a></td>
-<td></td>
-<td>The current status of the microgrid.</td>
-</tr>
-<tr>
-<td>create_timestamp</td>
-<td><a href="#google-protobuf-Timestamp">google.protobuf.Timestamp</a></td>
-<td></td>
-<td>The UTC timestamp indicating when the microgrid was initially created.</td>
-</tr>
 </tbody>
 </table>
+<p>If a microgrid is not connected to the grid (it is an island) it does not belong to any delivery area and this field will be missing, but it could be missing for other reasons as well. |
+| location | <a href="#frequenz-api-common-v1-Location">frequenz.api.common.v1.Location</a> |  | Physical location of the microgrid, in geographical co-ordinates.</p>
+<p>If the location is not known, this field will be missing. |
+| status | <a href="#frequenz-api-common-v1-microgrid-MicrogridStatus">MicrogridStatus</a> |  | The current status of the microgrid. |
+| create_timestamp | <a href="#google-protobuf-Timestamp">google.protobuf.Timestamp</a> |  | The UTC timestamp indicating when the microgrid was initially created. |</p>
 <p><a name="frequenz-api-common-v1-microgrid-MicrogridComponentIDs"></a></p>
 <h3 id="microgridcomponentids">MicrogridComponentIDs<a class="headerlink" href="#microgridcomponentids" title="Permanent link">¤</a></h3>
 <p>A message to link component IDs with their respective microgrid ID.</p>
