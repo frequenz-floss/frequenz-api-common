@@ -4893,7 +4893,43 @@ are available.</p>
 
 
       <p>List of supported metrics.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+</div>
+<p>AC energy metrics information:</p>
+<ul>
+<li>
+<p>This energy metric is reported directly from the component, and not a
+ result of aggregations in our systems. If a component does not have this
+ metric, this field cannot be populated.</p>
+</li>
+<li>
+<p>Components that provide energy metrics reset this metric from time to
+ time. This behaviour is specific to each component model. E.g., some
+ components reset it on UTC 00:00:00.</p>
+</li>
+<li>
+<p>This energy metric does not specify the timestamp since when the energy
+ was being accumulated, and therefore can be inconsistent.</p>
+</li>
+</ul>
 
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
 
     </div>
 
