@@ -20,7 +20,7 @@
       
       
       <link rel="icon" href="../../../../../logo.png">
-      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.21">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.21">
     
     
       
@@ -4263,16 +4263,16 @@
 
 
 <h2 id="frequenz.api.common.metrics_pb2" class="doc doc-heading">
-          <code>frequenz.api.common.metrics_pb2</code>
+            <code>frequenz.api.common.metrics_pb2</code>
 
 
 <a href="#frequenz.api.common.metrics_pb2" class="headerlink" title="Permanent link">¤</a></h2>
 
-  <div class="doc doc-contents first">
-  
+    <div class="doc doc-contents first">
+
       <p>Generated protocol buffer code.</p>
 
-  
+
 
   <div class="doc doc-children">
 
@@ -4288,43 +4288,41 @@
 
 
 <h4 id="frequenz.api.common.metrics_pb2.Bounds" class="doc doc-heading">
-          <code>frequenz.api.common.metrics_pb2.Bounds</code>
+            <code>frequenz.api.common.metrics_pb2.Bounds</code>
 
 
 <a href="#frequenz.api.common.metrics_pb2.Bounds" class="headerlink" title="Permanent link">¤</a></h4>
 
 
-  <div class="doc doc-contents ">
-          <p class="doc doc-class-bases">
-            Bases: <code><span title="google.protobuf.message.Message">Message</span></code></p>
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="google.protobuf.message.Message">Message</span></code></p>
 
-  
+
       <p>A set of lower and upper bounds for any metric.
 The units of the bounds are always the same as the related metric.</p>
 
-            <details class="quote">
-              <summary>Source code in <code>frequenz/api/common/metrics_pb2.py</code></summary>
-              <div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-22">22</a></span>
+              <details class="quote">
+                <summary>Source code in <code>frequenz/api/common/metrics_pb2.py</code></summary>
+                <div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-22">22</a></span>
 <span class="normal"><a href="#__codelineno-0-23">23</a></span>
 <span class="normal"><a href="#__codelineno-0-24">24</a></span>
 <span class="normal"><a href="#__codelineno-0-25">25</a></span>
 <span class="normal"><a href="#__codelineno-0-26">26</a></span>
 <span class="normal"><a href="#__codelineno-0-27">27</a></span>
 <span class="normal"><a href="#__codelineno-0-28">28</a></span>
-<span class="normal"><a href="#__codelineno-0-29">29</a></span>
-<span class="normal"><a href="#__codelineno-0-30">30</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22"></a><span class="k">if</span> <span class="ow">not</span> <span class="n">_descriptor</span><span class="o">.</span><span class="n">_USE_C_DESCRIPTORS</span><span class="p">:</span>
-</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23"></a>  <span class="n">DESCRIPTOR</span><span class="o">.</span><span class="n">_loaded_options</span> <span class="o">=</span> <span class="kc">None</span>
-</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24"></a>  <span class="n">_globals</span><span class="p">[</span><span class="s1">&#39;_BOUNDS&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">_serialized_start</span><span class="o">=</span><span class="mi">66</span>
-</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25"></a>  <span class="n">_globals</span><span class="p">[</span><span class="s1">&#39;_BOUNDS&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">_serialized_end</span><span class="o">=</span><span class="mi">104</span>
-</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26"></a>  <span class="n">_globals</span><span class="p">[</span><span class="s1">&#39;_METRIC&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">_serialized_start</span><span class="o">=</span><span class="mi">107</span>
-</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27"></a>  <span class="n">_globals</span><span class="p">[</span><span class="s1">&#39;_METRIC&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">_serialized_end</span><span class="o">=</span><span class="mi">392</span>
-</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28"></a>  <span class="n">_globals</span><span class="p">[</span><span class="s1">&#39;_METRICAGGREGATION&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">_serialized_start</span><span class="o">=</span><span class="mi">395</span>
-</span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29"></a>  <span class="n">_globals</span><span class="p">[</span><span class="s1">&#39;_METRICAGGREGATION&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">_serialized_end</span><span class="o">=</span><span class="mi">761</span>
-</span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30"></a><span class="c1"># @@protoc_insertion_point(module_scope)</span>
+<span class="normal"><a href="#__codelineno-0-29">29</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22"></a>  <span class="n">DESCRIPTOR</span><span class="o">.</span><span class="n">_options</span> <span class="o">=</span> <span class="kc">None</span>
+</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23"></a>  <span class="n">_BOUNDS</span><span class="o">.</span><span class="n">_serialized_start</span><span class="o">=</span><span class="mi">66</span>
+</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24"></a>  <span class="n">_BOUNDS</span><span class="o">.</span><span class="n">_serialized_end</span><span class="o">=</span><span class="mi">104</span>
+</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25"></a>  <span class="n">_METRIC</span><span class="o">.</span><span class="n">_serialized_start</span><span class="o">=</span><span class="mi">107</span>
+</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26"></a>  <span class="n">_METRIC</span><span class="o">.</span><span class="n">_serialized_end</span><span class="o">=</span><span class="mi">392</span>
+</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27"></a>  <span class="n">_METRICAGGREGATION</span><span class="o">.</span><span class="n">_serialized_start</span><span class="o">=</span><span class="mi">395</span>
+</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28"></a>  <span class="n">_METRICAGGREGATION</span><span class="o">.</span><span class="n">_serialized_end</span><span class="o">=</span><span class="mi">761</span>
+</span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29"></a><span class="c1"># @@protoc_insertion_point(module_scope)</span>
 </span></code></pre></div></td></tr></table></div>
-            </details>
+              </details>
 
-  
+
 
   <div class="doc doc-children">
 
@@ -4339,8 +4337,8 @@ The units of the bounds are always the same as the related metric.</p>
 
 
 <h6 id="frequenz.api.common.metrics_pb2.Bounds.lower" class="doc doc-heading">
-          <code class="highlight language-python"><span class="n">lower</span><span class="p">:</span> <span class="n">builtins</span><span class="o">.</span><span class="n">float</span></code>
-  
+            <code class="highlight language-python"><span class="n">lower</span><span class="p">:</span> <span class="n">builtins</span><span class="o">.</span><span class="n">float</span></code>
+
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
   </span>
@@ -4348,10 +4346,10 @@ The units of the bounds are always the same as the related metric.</p>
 <a href="#frequenz.api.common.metrics_pb2.Bounds.lower" class="headerlink" title="Permanent link">¤</a></h6>
 
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>The lower bound.</p>
-  </div>
+    </div>
 
 </div>
 
@@ -4360,8 +4358,8 @@ The units of the bounds are always the same as the related metric.</p>
 
 
 <h6 id="frequenz.api.common.metrics_pb2.Bounds.upper" class="doc doc-heading">
-          <code class="highlight language-python"><span class="n">upper</span><span class="p">:</span> <span class="n">builtins</span><span class="o">.</span><span class="n">float</span></code>
-  
+            <code class="highlight language-python"><span class="n">upper</span><span class="p">:</span> <span class="n">builtins</span><span class="o">.</span><span class="n">float</span></code>
+
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
   </span>
@@ -4369,10 +4367,10 @@ The units of the bounds are always the same as the related metric.</p>
 <a href="#frequenz.api.common.metrics_pb2.Bounds.upper" class="headerlink" title="Permanent link">¤</a></h6>
 
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>The upper bound.</p>
-  </div>
+    </div>
 
 </div>
 
@@ -4382,8 +4380,7 @@ The units of the bounds are always the same as the related metric.</p>
 
   </div>
 
-  </div>
-
+    </div>
 
 </div>
 
@@ -4392,21 +4389,21 @@ The units of the bounds are always the same as the related metric.</p>
 
 
 <h4 id="frequenz.api.common.metrics_pb2.Metric" class="doc doc-heading">
-          <code>frequenz.api.common.metrics_pb2.Metric</code>
+            <code>frequenz.api.common.metrics_pb2.Metric</code>
 
 
 <a href="#frequenz.api.common.metrics_pb2.Metric" class="headerlink" title="Permanent link">¤</a></h4>
 
 
-  <div class="doc doc-contents ">
-          <p class="doc doc-class-bases">
-            Bases: <code><span title="google.protobuf.message.Message">Message</span></code></p>
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="google.protobuf.message.Message">Message</span></code></p>
 
-  
+
       <p>A metric's value, with optional limits.</p>
 
 
-  
+
 
   <div class="doc doc-children">
 
@@ -4421,8 +4418,8 @@ The units of the bounds are always the same as the related metric.</p>
 
 
 <h6 id="frequenz.api.common.metrics_pb2.Metric.component_bounds" class="doc doc-heading">
-          <code class="highlight language-python"><span class="n">component_bounds</span><span class="p">:</span> <span class="n">global___Bounds</span></code>
-  
+            <code class="highlight language-python"><span class="n">component_bounds</span><span class="p">:</span> <span class="n">global___Bounds</span></code>
+
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-property"><code>property</code></small>
   </span>
@@ -4430,11 +4427,11 @@ The units of the bounds are always the same as the related metric.</p>
 <a href="#frequenz.api.common.metrics_pb2.Metric.component_bounds" class="headerlink" title="Permanent link">¤</a></h6>
 
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>The current bounds of the metric, as imposed by the component this metric
 originates from.</p>
-  </div>
+    </div>
 
 </div>
 
@@ -4443,8 +4440,8 @@ originates from.</p>
 
 
 <h6 id="frequenz.api.common.metrics_pb2.Metric.rated_bounds" class="doc doc-heading">
-          <code class="highlight language-python"><span class="n">rated_bounds</span><span class="p">:</span> <span class="n">global___Bounds</span></code>
-  
+            <code class="highlight language-python"><span class="n">rated_bounds</span><span class="p">:</span> <span class="n">global___Bounds</span></code>
+
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-property"><code>property</code></small>
   </span>
@@ -4452,12 +4449,12 @@ originates from.</p>
 <a href="#frequenz.api.common.metrics_pb2.Metric.rated_bounds" class="headerlink" title="Permanent link">¤</a></h6>
 
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>The manufacturer's rated bounds of the metric. This may differ from
 <code>system_bounds</code> as it does not take into account the current state of the
 overall system.</p>
-  </div>
+    </div>
 
 </div>
 
@@ -4466,8 +4463,8 @@ overall system.</p>
 
 
 <h6 id="frequenz.api.common.metrics_pb2.Metric.system_exclusion_bounds" class="doc doc-heading">
-          <code class="highlight language-python"><span class="n">system_exclusion_bounds</span><span class="p">:</span> <span class="n">global___Bounds</span></code>
-  
+            <code class="highlight language-python"><span class="n">system_exclusion_bounds</span><span class="p">:</span> <span class="n">global___Bounds</span></code>
+
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-property"><code>property</code></small>
   </span>
@@ -4475,8 +4472,8 @@ overall system.</p>
 <a href="#frequenz.api.common.metrics_pb2.Metric.system_exclusion_bounds" class="headerlink" title="Permanent link">¤</a></h6>
 
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>These bounds indicate the range of values that are disallowed for the
 metric.
 If these bounds for a metric are [<code>lower</code>, <code>upper</code>], then this metric's
@@ -4500,7 +4497,7 @@ clients need to request power values within the bounds
 </span></code></pre></div>
 ---- values here are disallowed and wil be rejected
 ==== vales here are allowed and will be accepted</p>
-  </div>
+    </div>
 
 </div>
 
@@ -4509,8 +4506,8 @@ clients need to request power values within the bounds
 
 
 <h6 id="frequenz.api.common.metrics_pb2.Metric.system_inclusion_bounds" class="doc doc-heading">
-          <code class="highlight language-python"><span class="n">system_inclusion_bounds</span><span class="p">:</span> <span class="n">global___Bounds</span></code>
-  
+            <code class="highlight language-python"><span class="n">system_inclusion_bounds</span><span class="p">:</span> <span class="n">global___Bounds</span></code>
+
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-property"><code>property</code></small>
   </span>
@@ -4518,8 +4515,8 @@ clients need to request power values within the bounds
 <a href="#frequenz.api.common.metrics_pb2.Metric.system_inclusion_bounds" class="headerlink" title="Permanent link">¤</a></h6>
 
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>These bounds indicate the range of values that are allowed for the metric.
 If these bounds for a metric are [<code>lower</code>, <code>upper</code>], then this metric's
 <code>value</code> needs to comply with the constraint <code>lower &lt;= value &lt;= upper</code></p>
@@ -4541,7 +4538,7 @@ clients need to request power values within the bounds
 </span></code></pre></div>
 ---- values here are disallowed and wil be rejected
 ==== vales here are allowed and will be accepted</p>
-  </div>
+    </div>
 
 </div>
 
@@ -4550,8 +4547,8 @@ clients need to request power values within the bounds
 
 
 <h6 id="frequenz.api.common.metrics_pb2.Metric.value" class="doc doc-heading">
-          <code class="highlight language-python"><span class="n">value</span><span class="p">:</span> <span class="n">builtins</span><span class="o">.</span><span class="n">float</span></code>
-  
+            <code class="highlight language-python"><span class="n">value</span><span class="p">:</span> <span class="n">builtins</span><span class="o">.</span><span class="n">float</span></code>
+
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
   </span>
@@ -4559,10 +4556,10 @@ clients need to request power values within the bounds
 <a href="#frequenz.api.common.metrics_pb2.Metric.value" class="headerlink" title="Permanent link">¤</a></h6>
 
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>The current value of the metric.</p>
-  </div>
+    </div>
 
 </div>
 
@@ -4572,8 +4569,7 @@ clients need to request power values within the bounds
 
   </div>
 
-  </div>
-
+    </div>
 
 </div>
 
@@ -4582,17 +4578,17 @@ clients need to request power values within the bounds
 
 
 <h4 id="frequenz.api.common.metrics_pb2.MetricAggregation" class="doc doc-heading">
-          <code>frequenz.api.common.metrics_pb2.MetricAggregation</code>
+            <code>frequenz.api.common.metrics_pb2.MetricAggregation</code>
 
 
 <a href="#frequenz.api.common.metrics_pb2.MetricAggregation" class="headerlink" title="Permanent link">¤</a></h4>
 
 
-  <div class="doc doc-contents ">
-          <p class="doc doc-class-bases">
-            Bases: <code><span title="google.protobuf.message.Message">Message</span></code></p>
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="google.protobuf.message.Message">Message</span></code></p>
 
-  
+
       <p>Metrics depicted as a collection of statistical summaries.</p>
 <p>Useful when a component has to report multiple values for the same metric.
 E.g., a battery is a collection of several blocks, and each block has a
@@ -4601,7 +4597,7 @@ by all these sensors, like, min, max, avg, etc., and if possible, the entire
 array of temperature values.</p>
 
 
-  
+
 
   <div class="doc doc-children">
 
@@ -4616,8 +4612,8 @@ array of temperature values.</p>
 
 
 <h6 id="frequenz.api.common.metrics_pb2.MetricAggregation.avg" class="doc doc-heading">
-          <code class="highlight language-python"><span class="n">avg</span><span class="p">:</span> <span class="n">builtins</span><span class="o">.</span><span class="n">float</span></code>
-  
+            <code class="highlight language-python"><span class="n">avg</span><span class="p">:</span> <span class="n">builtins</span><span class="o">.</span><span class="n">float</span></code>
+
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
   </span>
@@ -4625,10 +4621,10 @@ array of temperature values.</p>
 <a href="#frequenz.api.common.metrics_pb2.MetricAggregation.avg" class="headerlink" title="Permanent link">¤</a></h6>
 
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>The average value of the metric.</p>
-  </div>
+    </div>
 
 </div>
 
@@ -4637,8 +4633,8 @@ array of temperature values.</p>
 
 
 <h6 id="frequenz.api.common.metrics_pb2.MetricAggregation.component_bounds" class="doc doc-heading">
-          <code class="highlight language-python"><span class="n">component_bounds</span><span class="p">:</span> <span class="n">global___Bounds</span></code>
-  
+            <code class="highlight language-python"><span class="n">component_bounds</span><span class="p">:</span> <span class="n">global___Bounds</span></code>
+
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-property"><code>property</code></small>
   </span>
@@ -4646,11 +4642,11 @@ array of temperature values.</p>
 <a href="#frequenz.api.common.metrics_pb2.MetricAggregation.component_bounds" class="headerlink" title="Permanent link">¤</a></h6>
 
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>The current bounds of the metric, as imposed by the component this metric
 originates from.</p>
-  </div>
+    </div>
 
 </div>
 
@@ -4659,8 +4655,8 @@ originates from.</p>
 
 
 <h6 id="frequenz.api.common.metrics_pb2.MetricAggregation.max" class="doc doc-heading">
-          <code class="highlight language-python"><span class="nb">max</span><span class="p">:</span> <span class="n">builtins</span><span class="o">.</span><span class="n">float</span></code>
-  
+            <code class="highlight language-python"><span class="nb">max</span><span class="p">:</span> <span class="n">builtins</span><span class="o">.</span><span class="n">float</span></code>
+
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
   </span>
@@ -4668,10 +4664,10 @@ originates from.</p>
 <a href="#frequenz.api.common.metrics_pb2.MetricAggregation.max" class="headerlink" title="Permanent link">¤</a></h6>
 
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>The maximum value of the metric.</p>
-  </div>
+    </div>
 
 </div>
 
@@ -4680,8 +4676,8 @@ originates from.</p>
 
 
 <h6 id="frequenz.api.common.metrics_pb2.MetricAggregation.min" class="doc doc-heading">
-          <code class="highlight language-python"><span class="nb">min</span><span class="p">:</span> <span class="n">builtins</span><span class="o">.</span><span class="n">float</span></code>
-  
+            <code class="highlight language-python"><span class="nb">min</span><span class="p">:</span> <span class="n">builtins</span><span class="o">.</span><span class="n">float</span></code>
+
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
   </span>
@@ -4689,10 +4685,10 @@ originates from.</p>
 <a href="#frequenz.api.common.metrics_pb2.MetricAggregation.min" class="headerlink" title="Permanent link">¤</a></h6>
 
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>The minimum value of the metric.</p>
-  </div>
+    </div>
 
 </div>
 
@@ -4701,8 +4697,8 @@ originates from.</p>
 
 
 <h6 id="frequenz.api.common.metrics_pb2.MetricAggregation.rated_bounds" class="doc doc-heading">
-          <code class="highlight language-python"><span class="n">rated_bounds</span><span class="p">:</span> <span class="n">global___Bounds</span></code>
-  
+            <code class="highlight language-python"><span class="n">rated_bounds</span><span class="p">:</span> <span class="n">global___Bounds</span></code>
+
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-property"><code>property</code></small>
   </span>
@@ -4710,12 +4706,12 @@ originates from.</p>
 <a href="#frequenz.api.common.metrics_pb2.MetricAggregation.rated_bounds" class="headerlink" title="Permanent link">¤</a></h6>
 
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>The manufacturer's rated bounds of the metric. This may differ from
 <code>system_bounds</code> as it does not take into account the current state of the
 overall system.</p>
-  </div>
+    </div>
 
 </div>
 
@@ -4724,8 +4720,8 @@ overall system.</p>
 
 
 <h6 id="frequenz.api.common.metrics_pb2.MetricAggregation.raw_values" class="doc doc-heading">
-          <code class="highlight language-python"><span class="n">raw_values</span><span class="p">:</span> <span class="n">google</span><span class="o">.</span><span class="n">protobuf</span><span class="o">.</span><span class="n">internal</span><span class="o">.</span><span class="n">containers</span><span class="o">.</span><span class="n">RepeatedScalarFieldContainer</span><span class="p">[</span><span class="n">builtins</span><span class="o">.</span><span class="n">float</span><span class="p">]</span></code>
-  
+            <code class="highlight language-python"><span class="n">raw_values</span><span class="p">:</span> <span class="n">google</span><span class="o">.</span><span class="n">protobuf</span><span class="o">.</span><span class="n">internal</span><span class="o">.</span><span class="n">containers</span><span class="o">.</span><span class="n">RepeatedScalarFieldContainer</span><span class="p">[</span><span class="n">builtins</span><span class="o">.</span><span class="n">float</span><span class="p">]</span></code>
+
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-property"><code>property</code></small>
   </span>
@@ -4733,10 +4729,10 @@ overall system.</p>
 <a href="#frequenz.api.common.metrics_pb2.MetricAggregation.raw_values" class="headerlink" title="Permanent link">¤</a></h6>
 
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>The array of all the metric values.</p>
-  </div>
+    </div>
 
 </div>
 
@@ -4745,8 +4741,8 @@ overall system.</p>
 
 
 <h6 id="frequenz.api.common.metrics_pb2.MetricAggregation.system_exclusion_bounds" class="doc doc-heading">
-          <code class="highlight language-python"><span class="n">system_exclusion_bounds</span><span class="p">:</span> <span class="n">global___Bounds</span></code>
-  
+            <code class="highlight language-python"><span class="n">system_exclusion_bounds</span><span class="p">:</span> <span class="n">global___Bounds</span></code>
+
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-property"><code>property</code></small>
   </span>
@@ -4754,8 +4750,8 @@ overall system.</p>
 <a href="#frequenz.api.common.metrics_pb2.MetricAggregation.system_exclusion_bounds" class="headerlink" title="Permanent link">¤</a></h6>
 
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>These bounds indicate the range of values that are disallowed for the
 metric.
 If these bounds for a metric are [<code>lower</code>, <code>upper</code>], then this metric's
@@ -4779,7 +4775,7 @@ clients need to request power values within the bounds
 </span></code></pre></div>
 ---- values here are disallowed and wil be rejected
 ==== vales here are allowed and will be accepted</p>
-  </div>
+    </div>
 
 </div>
 
@@ -4788,8 +4784,8 @@ clients need to request power values within the bounds
 
 
 <h6 id="frequenz.api.common.metrics_pb2.MetricAggregation.system_inclusion_bounds" class="doc doc-heading">
-          <code class="highlight language-python"><span class="n">system_inclusion_bounds</span><span class="p">:</span> <span class="n">global___Bounds</span></code>
-  
+            <code class="highlight language-python"><span class="n">system_inclusion_bounds</span><span class="p">:</span> <span class="n">global___Bounds</span></code>
+
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-property"><code>property</code></small>
   </span>
@@ -4797,8 +4793,8 @@ clients need to request power values within the bounds
 <a href="#frequenz.api.common.metrics_pb2.MetricAggregation.system_inclusion_bounds" class="headerlink" title="Permanent link">¤</a></h6>
 
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>These bounds indicate the range of values that are allowed for the metric.
 If these bounds for a metric are [<code>lower</code>, <code>upper</code>], then this metric's
 <code>value</code> needs to comply with the constraint <code>lower &lt;= value &lt;= upper</code></p>
@@ -4820,7 +4816,7 @@ clients need to request power values within the bounds
 </span></code></pre></div>
 ---- values here are disallowed and wil be rejected
 ==== vales here are allowed and will be accepted</p>
-  </div>
+    </div>
 
 </div>
 
@@ -4830,8 +4826,7 @@ clients need to request power values within the bounds
 
   </div>
 
-  </div>
-
+    </div>
 
 </div>
 
@@ -4840,7 +4835,7 @@ clients need to request power values within the bounds
 
   </div>
 
-  </div>
+    </div>
 
 </div>
 

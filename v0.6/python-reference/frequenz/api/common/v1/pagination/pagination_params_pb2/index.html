@@ -20,7 +20,7 @@
       
       
       <link rel="icon" href="../../../../../../../logo.png">
-      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.21">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.21">
     
     
       
@@ -3913,16 +3913,16 @@
 
 
 <h2 id="frequenz.api.common.v1.pagination.pagination_params_pb2" class="doc doc-heading">
-          <code>frequenz.api.common.v1.pagination.pagination_params_pb2</code>
+            <code>frequenz.api.common.v1.pagination.pagination_params_pb2</code>
 
 
 <a href="#frequenz.api.common.v1.pagination.pagination_params_pb2" class="headerlink" title="Permanent link">¤</a></h2>
 
-  <div class="doc doc-contents first">
-  
+    <div class="doc doc-contents first">
+
       <p>Generated protocol buffer code.</p>
 
-  
+
 
   <div class="doc doc-children">
 
@@ -3938,17 +3938,17 @@
 
 
 <h4 id="frequenz.api.common.v1.pagination.pagination_params_pb2.PaginationParams" class="doc doc-heading">
-          <code>frequenz.api.common.v1.pagination.pagination_params_pb2.PaginationParams</code>
+            <code>frequenz.api.common.v1.pagination.pagination_params_pb2.PaginationParams</code>
 
 
 <a href="#frequenz.api.common.v1.pagination.pagination_params_pb2.PaginationParams" class="headerlink" title="Permanent link">¤</a></h4>
 
 
-  <div class="doc doc-contents ">
-          <p class="doc doc-class-bases">
-            Bases: <code><span title="google.protobuf.message.Message">Message</span></code></p>
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="google.protobuf.message.Message">Message</span></code></p>
 
-  
+
       <p>A message defining parameters for paginating list requests.
 It can be appended to a request message to specify the desired page of
 results and the maximum number of results per page. For initial requests
@@ -3958,27 +3958,25 @@ next_page_token from the previous responses PaginationInfo must be supplied.
 The page_size should only be specified in the initial request and will be
 disregarded in subsequent requests.</p>
 
-            <details class="quote">
-              <summary>Source code in <code>frequenz/api/common/v1/pagination/pagination_params_pb2.py</code></summary>
-              <div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-19">19</a></span>
+              <details class="quote">
+                <summary>Source code in <code>frequenz/api/common/v1/pagination/pagination_params_pb2.py</code></summary>
+                <div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-19">19</a></span>
 <span class="normal"><a href="#__codelineno-0-20">20</a></span>
 <span class="normal"><a href="#__codelineno-0-21">21</a></span>
 <span class="normal"><a href="#__codelineno-0-22">22</a></span>
 <span class="normal"><a href="#__codelineno-0-23">23</a></span>
 <span class="normal"><a href="#__codelineno-0-24">24</a></span>
-<span class="normal"><a href="#__codelineno-0-25">25</a></span>
-<span class="normal"><a href="#__codelineno-0-26">26</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19"></a><span class="n">_globals</span> <span class="o">=</span> <span class="nb">globals</span><span class="p">()</span>
-</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20"></a><span class="n">_builder</span><span class="o">.</span><span class="n">BuildMessageAndEnumDescriptors</span><span class="p">(</span><span class="n">DESCRIPTOR</span><span class="p">,</span> <span class="n">_globals</span><span class="p">)</span>
-</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21"></a><span class="n">_builder</span><span class="o">.</span><span class="n">BuildTopDescriptorsAndMessages</span><span class="p">(</span><span class="n">DESCRIPTOR</span><span class="p">,</span> <span class="s1">&#39;frequenz.api.common.v1.pagination.pagination_params_pb2&#39;</span><span class="p">,</span> <span class="n">_globals</span><span class="p">)</span>
-</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22"></a><span class="k">if</span> <span class="ow">not</span> <span class="n">_descriptor</span><span class="o">.</span><span class="n">_USE_C_DESCRIPTORS</span><span class="p">:</span>
-</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23"></a>  <span class="n">DESCRIPTOR</span><span class="o">.</span><span class="n">_loaded_options</span> <span class="o">=</span> <span class="kc">None</span>
-</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24"></a>  <span class="n">_globals</span><span class="p">[</span><span class="s1">&#39;_PAGINATIONPARAMS&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">_serialized_start</span><span class="o">=</span><span class="mi">96</span>
-</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25"></a>  <span class="n">_globals</span><span class="p">[</span><span class="s1">&#39;_PAGINATIONPARAMS&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">_serialized_end</span><span class="o">=</span><span class="mi">192</span>
-</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26"></a><span class="c1"># @@protoc_insertion_point(module_scope)</span>
+<span class="normal"><a href="#__codelineno-0-25">25</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19"></a><span class="n">_builder</span><span class="o">.</span><span class="n">BuildTopDescriptorsAndMessages</span><span class="p">(</span><span class="n">DESCRIPTOR</span><span class="p">,</span> <span class="s1">&#39;frequenz.api.common.v1.pagination.pagination_params_pb2&#39;</span><span class="p">,</span> <span class="nb">globals</span><span class="p">())</span>
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20"></a><span class="k">if</span> <span class="n">_descriptor</span><span class="o">.</span><span class="n">_USE_C_DESCRIPTORS</span> <span class="o">==</span> <span class="kc">False</span><span class="p">:</span>
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21"></a>
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22"></a>  <span class="n">DESCRIPTOR</span><span class="o">.</span><span class="n">_options</span> <span class="o">=</span> <span class="kc">None</span>
+</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23"></a>  <span class="n">_PAGINATIONPARAMS</span><span class="o">.</span><span class="n">_serialized_start</span><span class="o">=</span><span class="mi">96</span>
+</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24"></a>  <span class="n">_PAGINATIONPARAMS</span><span class="o">.</span><span class="n">_serialized_end</span><span class="o">=</span><span class="mi">192</span>
+</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25"></a><span class="c1"># @@protoc_insertion_point(module_scope)</span>
 </span></code></pre></div></td></tr></table></div>
-            </details>
+              </details>
 
-  
+
 
   <div class="doc doc-children">
 
@@ -3993,8 +3991,8 @@ disregarded in subsequent requests.</p>
 
 
 <h6 id="frequenz.api.common.v1.pagination.pagination_params_pb2.PaginationParams.page_size" class="doc doc-heading">
-          <code class="highlight language-python"><span class="n">page_size</span><span class="p">:</span> <span class="n">builtins</span><span class="o">.</span><span class="n">int</span></code>
-  
+            <code class="highlight language-python"><span class="n">page_size</span><span class="p">:</span> <span class="n">builtins</span><span class="o">.</span><span class="n">int</span></code>
+
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
   </span>
@@ -4002,10 +4000,10 @@ disregarded in subsequent requests.</p>
 <a href="#frequenz.api.common.v1.pagination.pagination_params_pb2.PaginationParams.page_size" class="headerlink" title="Permanent link">¤</a></h6>
 
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>The maximum number of results to be returned per request.</p>
-  </div>
+    </div>
 
 </div>
 
@@ -4014,8 +4012,8 @@ disregarded in subsequent requests.</p>
 
 
 <h6 id="frequenz.api.common.v1.pagination.pagination_params_pb2.PaginationParams.page_token" class="doc doc-heading">
-          <code class="highlight language-python"><span class="n">page_token</span><span class="p">:</span> <span class="n">builtins</span><span class="o">.</span><span class="n">str</span></code>
-  
+            <code class="highlight language-python"><span class="n">page_token</span><span class="p">:</span> <span class="n">builtins</span><span class="o">.</span><span class="n">str</span></code>
+
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
   </span>
@@ -4023,10 +4021,10 @@ disregarded in subsequent requests.</p>
 <a href="#frequenz.api.common.v1.pagination.pagination_params_pb2.PaginationParams.page_token" class="headerlink" title="Permanent link">¤</a></h6>
 
 
-  <div class="doc doc-contents ">
-  
+    <div class="doc doc-contents ">
+
       <p>The token identifying a specific page of the list results.</p>
-  </div>
+    </div>
 
 </div>
 
@@ -4036,8 +4034,7 @@ disregarded in subsequent requests.</p>
 
   </div>
 
-  </div>
-
+    </div>
 
 </div>
 
@@ -4046,7 +4043,7 @@ disregarded in subsequent requests.</p>
 
   </div>
 
-  </div>
+    </div>
 
 </div>
 
