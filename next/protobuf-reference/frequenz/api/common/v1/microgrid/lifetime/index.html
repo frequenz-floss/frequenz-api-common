@@ -3863,9 +3863,16 @@
 <p>Lifetime captures the timestamps indicating the active operational period of
 a microgrid asset, such as a component, connection, sensor, or any other
 entity with a limited operational lifetime.</p>
-<p>!!! warning &#34;Permanent Deletion&#34;
-    The <code>end_timestamp</code> indicates that the asset has been permanently removed
-    from the system.</p>
+<p>It is normally used to track the historical evolution of assets, and it
+determines the validity period for the asset&#39;s data.</p>
+<p>If the <code>start_timestamp</code> is not set, the asset is considered to be in
+operation since the beginning of the system&#39;s operational history.</p>
+<p>If the <code>end_timestamp</code> is not set, the asset is considered to be in
+operation indefinitely into the future.</p>
+<p>If the Lifetime message is completely missing, it means both timestamps are
+not set, which means the asset is considered to be in operation since the
+beginning of the system&#39;s operational history and indefinitely into the
+future.</p>
 <table>
 <thead>
 <tr>
@@ -3880,13 +3887,13 @@ entity with a limited operational lifetime.</p>
 <td>start_timestamp</td>
 <td><a href="#google-protobuf-Timestamp">google.protobuf.Timestamp</a></td>
 <td></td>
-<td>The timestamp when the asset became operationally active.</td>
+<td>The timestamp when the asset became operationally active. If not set, the asset is considered to be in operation since the beginning of the system&#39;s operational history.</td>
 </tr>
 <tr>
 <td>end_timestamp</td>
 <td><a href="#google-protobuf-Timestamp">google.protobuf.Timestamp</a></td>
 <td></td>
-<td>Optional timestamp when the asset&#39;s operational activity ceased.</td>
+<td>Optional timestamp when the asset&#39;s operational activity ceased. If not set, the asset is considered to be in operation indefinitely into the future.</td>
 </tr>
 </tbody>
 </table>

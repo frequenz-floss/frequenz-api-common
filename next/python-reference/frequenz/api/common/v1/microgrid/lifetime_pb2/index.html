@@ -3952,11 +3952,16 @@
         <p>Lifetime captures the timestamps indicating the active operational period of
 a microgrid asset, such as a component, connection, sensor, or any other
 entity with a limited operational lifetime.</p>
-<div class="admonition warning">
-<p class="admonition-title">Permanent Deletion</p>
-<p>The <code>end_timestamp</code> indicates that the asset has been permanently removed
-from the system.</p>
-</div>
+<p>It is normally used to track the historical evolution of assets, and it
+determines the validity period for the asset's data.</p>
+<p>If the <code>start_timestamp</code> is not set, the asset is considered to be in
+operation since the beginning of the system's operational history.</p>
+<p>If the <code>end_timestamp</code> is not set, the asset is considered to be in
+operation indefinitely into the future.</p>
+<p>If the Lifetime message is completely missing, it means both timestamps are
+not set, which means the asset is considered to be in operation since the
+beginning of the system's operational history and indefinitely into the
+future.</p>
 
               <details class="quote">
                 <summary>Source code in <code>frequenz/api/common/v1/microgrid/lifetime_pb2.py</code></summary>
@@ -4024,7 +4029,9 @@ from the system.</p>
 
     <div class="doc doc-contents ">
 
-        <p>Optional timestamp when the asset's operational activity ceased.</p>
+        <p>Optional timestamp when the asset's operational activity ceased.
+If not set, the asset is considered to be in operation indefinitely into
+the future.</p>
     </div>
 
 </div>
@@ -4045,7 +4052,9 @@ from the system.</p>
 
     <div class="doc doc-contents ">
 
-        <p>The timestamp when the asset became operationally active.</p>
+        <p>The timestamp when the asset became operationally active.
+If not set, the asset is considered to be in operation since the beginning
+of the system's operational history.</p>
     </div>
 
 </div>
