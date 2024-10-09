@@ -1,22 +1,17 @@
 # Frequenz Common API Release Notes
 
-Update of the `PaginationParams` struct.
+## Summary
+
+<!-- Here goes a general summary of what this release is about -->
 
 ## Upgrading
 
-- `PaginationParams` has been changed so that the `page_size` and `page_token`
-  fields are now mutually exclusive.
+<!-- Here goes notes on how to upgrade from previous versions, including deprecations and what they should be replaced with -->
 
-- A new component category `COMPONENT_CATEGORY_HVAC` has been added to the API
-  to represent HVAC (Heating, Ventilation, and Air Conditioning) systems.
+## New Features
 
-- Additional information for energy metric
-
-- Generalize Energy message documentation for broader market use
-
-- Add Power message to represent Power in MW
+<!-- Here goes the main new features and examples or instructions on how to use them -->
 
 ## Bug Fixes
 
-- Fix a dependency issue by pinning the `grpcio` version and related libraries.
-- Fixed a wrong documentation comment for `COMPONENT_CATEGORY_UNSPECIFIED`.
+<!-- Here goes notable bug fixes that are worth a special mention or explanation -->
