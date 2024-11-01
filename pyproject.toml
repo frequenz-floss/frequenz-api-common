@@ -56,22 +56,22 @@ dev-flake8 = [
   "pydoclint == 0.5.9",
   "pydocstyle == 6.3.0",
 ]
-dev-formatting = ["black == 24.8.0", "isort == 5.13.2"]
+dev-formatting = ["black == 24.10.0", "isort == 5.13.2"]
 dev-mkdocs = [
   "mike == 1.1.2",
   "mkdocs-gen-files == 0.5.0",
   "mkdocs-literate-nav == 0.6.1",
-  "mkdocs-material == 9.5.39",
-  "mkdocstrings[python] == 0.26.1",
+  "mkdocs-material == 9.5.43",
+  "mkdocstrings[python] == 0.26.2",
   "frequenz-repo-config[api] == 0.10.0",
 ]
 dev-mypy = [
-  "mypy == 1.11.2",
+  "mypy == 1.13.0",
   "grpc-stubs == 1.53.0.5",
   # For checking the noxfile, docs/ script, and tests
   "frequenz-api-common[dev-mkdocs,dev-noxfile,dev-pytest]",
 ]
-dev-noxfile = ["nox == 2024.4.15", "frequenz-repo-config[api] == 0.10.0"]
+dev-noxfile = ["nox == 2024.10.9", "frequenz-repo-config[api] == 0.10.0"]
 dev-pylint = [
   "pylint == 3.3.1",
   # For checking the noxfile, docs/ script, and tests
