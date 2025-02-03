@@ -36,11 +36,11 @@ dependencies = [
   # We can't widen beyond the current value unless we bump the minimum
   # requirements too because of protobuf cross-version runtime guarantees:
   # https://protobuf.dev/support/cross-version-runtime-guarantee/#major
-  "protobuf >= 5.29.2, < 7", # Do not widen beyond 7!
+  "protobuf >= 5.29.3, < 7", # Do not widen beyond 7!
   # We couldn't find any document with a spec about the cross-version runtime
   # guarantee for grpcio, so unless we find one in the future, we'll assume
   # major version jumps are not compatible
-  "grpcio >= 1.68.1, < 2", # Do not widen beyond 2!
+  "grpcio >= 1.70.0, < 2", # Do not widen beyond 2!
 ]
 dynamic = ["version"]
 
@@ -52,7 +52,7 @@ email = "floss@frequenz.com"
 dev-flake8 = [
   "flake8 == 7.1.1",
   "flake8-docstrings == 1.7.0",
-  "flake8-pyproject == 1.2.3",  # For reading the flake8 config from pyproject.toml
+  "flake8-pyproject == 1.2.3", # For reading the flake8 config from pyproject.toml
   "pydoclint == 0.6.0",
   "pydocstyle == 6.3.0",
 ]
