@@ -77,3 +77,12 @@ message MicrogridComponentIDs {
   // List of component IDs belonging to this microgrid.
   repeated uint64 component_ids = 2;
 }
+
+/// A message to link sensor IDs with their respective microgrid ID.
+message MicrogridSensorIDs {
+  // The ID of the microgrid.
+  uint64 microgrid_id = 1;
+
+  // List of sensor IDs belonging to this microgrid.
+  repeated uint64 sensor_ids = 2;
+}
