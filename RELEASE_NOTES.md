@@ -11,6 +11,7 @@
 ## New Features
 
 - Added message linking microgrid and sensor IDs.
+- Rename `components` to `electrical_components` and related messages, fields, enums.
 
 ## Bug Fixes
 
