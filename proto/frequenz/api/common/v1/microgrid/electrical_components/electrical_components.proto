@@ -13,11 +13,13 @@ package frequenz.api.common.v1.microgrid.electrical_components;
 import "frequenz/api/common/v1/metrics/bounds.proto";
 import "frequenz/api/common/v1/metrics/metric_sample.proto";
 import "frequenz/api/common/v1/microgrid/electrical_components/battery.proto";
-import "frequenz/api/common/v1/microgrid/electrical_components/ev_charger.proto";
+import
+  "frequenz/api/common/v1/microgrid/electrical_components/ev_charger.proto";
 import "frequenz/api/common/v1/microgrid/electrical_components/fuse.proto";
 import "frequenz/api/common/v1/microgrid/electrical_components/grid.proto";
 import "frequenz/api/common/v1/microgrid/electrical_components/inverter.proto";
-import "frequenz/api/common/v1/microgrid/electrical_components/transformer.proto";
+import
+  "frequenz/api/common/v1/microgrid/electrical_components/transformer.proto";
 import "frequenz/api/common/v1/microgrid/lifetime.proto";
 
 import "google/protobuf/timestamp.proto";
@@ -89,10 +91,13 @@ enum ElectricalComponentCategory {
 message ElectricalComponentCategoryMetadataVariant {
   oneof metadata {
     frequenz.api.common.v1.microgrid.electrical_components.Battery battery = 1;
-    frequenz.api.common.v1.microgrid.electrical_components.EvCharger ev_charger = 2;
+    frequenz.api.common.v1.microgrid.electrical_components.EvCharger
+      ev_charger = 2;
     frequenz.api.common.v1.microgrid.electrical_components.Fuse fuse = 3;
-    frequenz.api.common.v1.microgrid.electrical_components.GridConnectionPoint grid = 4;
-    frequenz.api.common.v1.microgrid.electrical_components.Inverter inverter = 5;
+    frequenz.api.common.v1.microgrid.electrical_components.GridConnectionPoint
+      grid = 4;
+    frequenz.api.common.v1.microgrid.electrical_components.Inverter
+      inverter = 5;
     frequenz.api.common.v1.microgrid.electrical_components.VoltageTransformer
       voltage_transformer = 6;
   }
