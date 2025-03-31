@@ -22,7 +22,7 @@ import "frequenz/api/common/v1/microgrid/lifetime.proto";
 
 import "google/protobuf/timestamp.proto";
 
-// Enumrated component categories.
+// Enumerated electrical component categories.
 enum ElectricalComponentCategory {
   // The component category is unspecified. This should not be used.
   ELECTRICAL_COMPONENT_CATEGORY_UNSPECIFIED = 0;
