@@ -11,6 +11,7 @@
 ## New Features
 
 - Added message linking microgrid and sensor IDs.
+- Added new message definitions for communication components.
 
 ## Bug Fixes
 
