@@ -1,7 +1,7 @@
 // Frequenz microgrid communication components definitions.
 //
 // Copyright:
-// Copyright 2023 Frequenz Energy-as-a-Service GmbH
+// Copyright 2025 Frequenz Energy-as-a-Service GmbH
 //
 // License:
 // MIT
@@ -11,12 +11,12 @@ syntax = "proto3";
 package frequenz.api.common.v1.microgrid.communication_components;
 
 
-// CommunicationComponent represents a communication component within a
+// `CommunicationComponent` represents a communication component within a
 // microgrid.
 //
 // Communication components are networked devices responsible for enabling
 // communication between electrical components, sensors, controllers, and other
-// networked equipment.
+// network devices.
 message CommunicationComponent {
   // Unique identifier of the communication component.
   uint64 id = 1;
@@ -34,7 +34,7 @@ message CommunicationComponent {
   repeated string ip_addresses = 5;
 }
 
-// CommunicationComponentCategory enumerates possible types of communication
+// `CommunicationComponentCategory` enumerates possible types of communication
 // components within the microgrid.
 //
 // Categories help distinguish communication devices according to their roles,
