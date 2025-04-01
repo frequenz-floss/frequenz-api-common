@@ -1,0 +1,71 @@
+// Frequenz microgrid communication components definitions.
+//
+// Copyright:
+// Copyright 2025 Frequenz Energy-as-a-Service GmbH
+//
+// License:
+// MIT
+
+syntax = "proto3";
+
+package frequenz.api.common.v1.microgrid.communication_components;
+
+
+// `CommunicationComponent` represents a communication component within a
+// microgrid.
+//
+// Communication components are networked devices responsible for enabling
+// communication between electrical components, sensors, controllers, and other
+// network devices.
+message CommunicationComponent {
+  // Unique identifier of the communication component.
+  uint64 id = 1;
+
+  // Unique identifier of the parent microgrid.
+  uint64 microgrid_id = 2;
+
+  // Human-readable name of the communication component.
+  string name = 3;
+
+  // Category identifying the type of the communication component.
+  CommunicationComponentCategory category = 4;
+
+  // List of IP addresses assigned to this communication component.
+  repeated string ip_addresses = 5;
+}
+
+// `CommunicationComponentCategory` enumerates possible types of communication
+// components within the microgrid.
+//
+// Categories help distinguish communication devices according to their roles,
+// capabilities, and protocols they handle within the microgrid infrastructure.
+enum CommunicationComponentCategory {
+  // Unspecified communication component category.
+  //
+  // !!! caution
+  //     This default value should never be used explicitly and indicates that
+  //     the category has not been properly defined.
+  COMMUNICATION_COMPONENT_CATEGORY_UNSPECIFIED = 0;
+
+  // Modbus Gateway used for protocol translation and managing Modbus
+  // communication.
+  COMMUNICATION_COMPONENT_CATEGORY_MODBUS_GATEWAY = 1;
+
+  // LTE Router providing cellular connectivity (LTE, 4G, 5G) for the microgrid.
+  COMMUNICATION_COMPONENT_CATEGORY_ROUTER = 2;
+
+  // Ethernet Switch enabling wired network connections within the microgrid.
+  COMMUNICATION_COMPONENT_CATEGORY_ETHERNET_SWITCH = 3;
+
+  // Digital Input/Output (DIO) Gateway enabling communication and control
+  // of digital signals between microgrid devices.
+  COMMUNICATION_COMPONENT_CATEGORY_DIO_GATEWAY = 4;
+
+  // Programmable Logic Controller (PLC) used for automation tasks,
+  // process control, and operational logic in the microgrid.
+  COMMUNICATION_COMPONENT_CATEGORY_PLC = 5;
+
+  // Serial Gateway (RS-232, RS-485, etc.) facilitating serial communication
+  // between legacy equipment and modern network infrastructures.
+  COMMUNICATION_COMPONENT_CATEGORY_SERIAL_GATEWAY = 6;
+}
