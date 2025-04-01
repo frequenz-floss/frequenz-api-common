@@ -188,6 +188,18 @@ def test_module_import_microgrid_communication_components() -> None:
 
     assert communication_components is not None
 
+    from frequenz.api.common.v1.microgrid.communication_components import (
+        communication_components_pb2,
+    )
+
+    assert communication_components_pb2 is not None
+
+    from frequenz.api.common.v1.microgrid.communication_components import (
+        communication_components_pb2_grpc,
+    )
+
+    assert communication_components_pb2_grpc is not None
+
 
 def test_module_import_location() -> None:
     """Test that the modules can be imported."""
