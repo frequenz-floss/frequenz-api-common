@@ -8,7 +8,7 @@
 
 syntax = "proto3";
 
-package frequenz.api.common.v1.microgrid.components;
+package frequenz.api.common.v1.microgrid.electrical_components;
 
 // A representation of a voltage transformer.
 // Voltage transformers are used to step up or step down the voltage, keeping

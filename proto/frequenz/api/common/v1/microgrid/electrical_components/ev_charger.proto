@@ -8,7 +8,7 @@
 
 syntax = "proto3";
 
-package frequenz.api.common.v1.microgrid.components;
+package frequenz.api.common.v1.microgrid.electrical_components;
 
 // Enumerated EV charger types.
 enum EvChargerType {
