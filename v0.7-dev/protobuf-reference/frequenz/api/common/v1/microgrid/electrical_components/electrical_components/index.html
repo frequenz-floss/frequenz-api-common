@@ -1531,9 +1531,9 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#electricalcomponenterror" class="md-nav__link">
+  <a href="#electricalcomponentdiagnostic" class="md-nav__link">
     <span class="md-ellipsis">
-      ElectricalComponentError
+      ElectricalComponentDiagnostic
     </span>
   </a>
   
@@ -1567,9 +1567,9 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#electricalcomponenterrorcode" class="md-nav__link">
+  <a href="#electricalcomponentdiagnosticcode" class="md-nav__link">
     <span class="md-ellipsis">
-      ElectricalComponentErrorCode
+      ElectricalComponentDiagnosticCode
     </span>
   </a>
   
@@ -4437,9 +4437,9 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#electricalcomponenterror" class="md-nav__link">
+  <a href="#electricalcomponentdiagnostic" class="md-nav__link">
     <span class="md-ellipsis">
-      ElectricalComponentError
+      ElectricalComponentDiagnostic
     </span>
   </a>
   
@@ -4473,9 +4473,9 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#electricalcomponenterrorcode" class="md-nav__link">
+  <a href="#electricalcomponentdiagnosticcode" class="md-nav__link">
     <span class="md-ellipsis">
-      ElectricalComponentErrorCode
+      ElectricalComponentDiagnosticCode
     </span>
   </a>
   
@@ -4543,7 +4543,7 @@
 <li><a href="#frequenz-api-common-v1-microgrid-electrical_components-ElectricalComponentCategoryMetadataVariant">ElectricalComponentCategoryMetadataVariant</a></li>
 <li><a href="#frequenz-api-common-v1-microgrid-electrical_components-ElectricalComponentConnection">ElectricalComponentConnection</a></li>
 <li><a href="#frequenz-api-common-v1-microgrid-electrical_components-ElectricalComponentData">ElectricalComponentData</a></li>
-<li><a href="#frequenz-api-common-v1-microgrid-electrical_components-ElectricalComponentError">ElectricalComponentError</a></li>
+<li><a href="#frequenz-api-common-v1-microgrid-electrical_components-ElectricalComponentDiagnostic">ElectricalComponentDiagnostic</a></li>
 <li><a href="#frequenz-api-common-v1-microgrid-electrical_components-ElectricalComponentState">ElectricalComponentState</a></li>
 <li>
 <p><a href="#frequenz-api-common-v1-microgrid-electrical_components-MetricConfigBounds">MetricConfigBounds</a></p>
@@ -4551,7 +4551,7 @@
 <li>
 <p><a href="#frequenz-api-common-v1-microgrid-electrical_components-ElectricalComponentCategory">ElectricalComponentCategory</a></p>
 </li>
-<li><a href="#frequenz-api-common-v1-microgrid-electrical_components-ElectricalComponentErrorCode">ElectricalComponentErrorCode</a></li>
+<li><a href="#frequenz-api-common-v1-microgrid-electrical_components-ElectricalComponentDiagnosticCode">ElectricalComponentDiagnosticCode</a></li>
 <li><a href="#frequenz-api-common-v1-microgrid-electrical_components-ElectricalComponentStateCode">ElectricalComponentStateCode</a></li>
 <li><a href="#frequenz-api-common-v1-microgrid-electrical_components-ElectricalComponentStatus">ElectricalComponentStatus</a></li>
 </ul>
@@ -4812,8 +4812,8 @@ states, and errors, related to a specific microgrid component.</p>
 </tr>
 </tbody>
 </table>
-<p><a name="frequenz-api-common-v1-microgrid-electrical_components-ElectricalComponentError"></a></p>
-<h3 id="electricalcomponenterror">ElectricalComponentError<a class="headerlink" href="#electricalcomponenterror" title="Permanent link">¤</a></h3>
+<p><a name="frequenz-api-common-v1-microgrid-electrical_components-ElectricalComponentDiagnostic"></a></p>
+<h3 id="electricalcomponentdiagnostic">ElectricalComponentDiagnostic<a class="headerlink" href="#electricalcomponentdiagnostic" title="Permanent link">¤</a></h3>
 <p>Represents an error or warning condition reported by a microgrid electrical
 component.</p>
 <p>This message extends a standardized error code with contextual information
@@ -4821,10 +4821,11 @@ useful for diagnostics, such as subsystem names, measured values, or
 vendor-specific insights.</p>
 <p>!!! example &#34;Typical Component Error&#34;
     <div class="language-json highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="p">{</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="err">&amp;#</span><span class="mi">34</span><span class="err">;errorCode&amp;#</span><span class="mi">34</span><span class="err">;</span><span class="p">:</span><span class="w"> </span><span class="err">&amp;#</span><span class="mi">34</span><span class="err">;ELECTRICAL_COMPONENT_ERROR_CODE_OVERTEMPERATURE&amp;#</span><span class="mi">34</span><span class="err">;</span><span class="p">,</span>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">  </span><span class="err">&amp;#</span><span class="mi">34</span><span class="err">;ve</span><span class="kc">n</span><span class="err">dorErrorCode&amp;#</span><span class="mi">34</span><span class="err">;</span><span class="p">:</span><span class="w"> </span><span class="mi">2003</span><span class="p">,</span>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">  </span><span class="err">&amp;#</span><span class="mi">34</span><span class="err">;message&amp;#</span><span class="mi">34</span><span class="err">;</span><span class="p">:</span><span class="w"> </span><span class="err">&amp;#</span><span class="mi">34</span><span class="err">;Tempera</span><span class="kc">ture</span><span class="w"> </span><span class="err">se</span><span class="kc">ns</span><span class="err">or</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="err">repor</span><span class="kc">te</span><span class="err">d</span><span class="w"> </span><span class="mf">61.5</span><span class="err">°C</span><span class="w"> </span><span class="err">(limi</span><span class="kc">t</span><span class="p">:</span><span class="w"> </span><span class="mi">60</span><span class="err">°C)&amp;#</span><span class="mi">34</span><span class="err">;</span>
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="p">}</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="err">&amp;#</span><span class="mi">34</span><span class="err">;diag</span><span class="kc">n</span><span class="err">os</span><span class="kc">t</span><span class="err">icCode&amp;#</span><span class="mi">34</span><span class="err">;</span><span class="p">:</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">      </span><span class="err">&amp;#</span><span class="mi">34</span><span class="err">;ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_OVERTEMPERATURE&amp;#</span><span class="mi">34</span><span class="err">;</span><span class="p">,</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">  </span><span class="err">&amp;#</span><span class="mi">34</span><span class="err">;ve</span><span class="kc">n</span><span class="err">dorErrorCode&amp;#</span><span class="mi">34</span><span class="err">;</span><span class="p">:</span><span class="w"> </span><span class="mi">2003</span><span class="p">,</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">  </span><span class="err">&amp;#</span><span class="mi">34</span><span class="err">;message&amp;#</span><span class="mi">34</span><span class="err">;</span><span class="p">:</span><span class="w"> </span><span class="err">&amp;#</span><span class="mi">34</span><span class="err">;Tempera</span><span class="kc">ture</span><span class="w"> </span><span class="err">se</span><span class="kc">ns</span><span class="err">or</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="err">repor</span><span class="kc">te</span><span class="err">d</span><span class="w"> </span><span class="mf">61.5</span><span class="err">°C</span><span class="w"> </span><span class="err">(limi</span><span class="kc">t</span><span class="p">:</span><span class="w"> </span><span class="mi">60</span><span class="err">°C)&amp;#</span><span class="mi">34</span><span class="err">;</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="p">}</span>
 </span></code></pre></div></p>
 <p>!!! note &#34;Component-Originated Diagnostics&#34;
     This message is intended to reflect diagnostics originating from
@@ -4846,8 +4847,8 @@ vendor-specific insights.</p>
 </thead>
 <tbody>
 <tr>
-<td>error_code</td>
-<td><a href="#frequenz-api-common-v1-microgrid-electrical_components-ElectricalComponentErrorCode">ElectricalComponentErrorCode</a></td>
+<td>diagnostic_code</td>
+<td><a href="#frequenz-api-common-v1-microgrid-electrical_components-ElectricalComponentDiagnosticCode">ElectricalComponentDiagnosticCode</a></td>
 <td></td>
 <td>A standardized error code representing the category of the issue.</td>
 </tr>
@@ -4867,7 +4868,7 @@ vendor-specific insights.</p>
 </table>
 <p><a name="frequenz-api-common-v1-microgrid-electrical_components-ElectricalComponentState"></a></p>
 <h3 id="electricalcomponentstate">ElectricalComponentState<a class="headerlink" href="#electricalcomponentstate" title="Permanent link">¤</a></h3>
-<p>Representation of a component state and errors.</p>
+<p>Representation of a component state, warnings, and errors.</p>
 <table>
 <thead>
 <tr>
@@ -4893,9 +4894,9 @@ vendor-specific insights.</p>
 </tbody>
 </table>
 <p>!!! note The list must not contain duplicate state codes. |
-| warnings | <a href="#frequenz-api-common-v1-microgrid-electrical_components-ElectricalComponentError">ElectricalComponentError</a> | repeated | List of non-critical warnings detected for the component.</p>
+| warnings | <a href="#frequenz-api-common-v1-microgrid-electrical_components-ElectricalComponentDiagnostic">ElectricalComponentDiagnostic</a> | repeated | List of non-critical warnings detected for the component.</p>
 <p>!!! note Warnings may be reported even when the component is operational. No duplicate warning codes allowed. |
-| errors | <a href="#frequenz-api-common-v1-microgrid-electrical_components-ElectricalComponentError">ElectricalComponentError</a> | repeated | List of critical errors currently affecting the component.</p>
+| errors | <a href="#frequenz-api-common-v1-microgrid-electrical_components-ElectricalComponentDiagnostic">ElectricalComponentDiagnostic</a> | repeated | List of critical errors currently affecting the component.</p>
 <p>!!! note This list is expected to be populated only when the component is in an error state. No duplicate error codes allowed. |</p>
 <p><a name="frequenz-api-common-v1-microgrid-electrical_components-MetricConfigBounds"></a></p>
 <h3 id="metricconfigbounds">MetricConfigBounds<a class="headerlink" href="#metricconfigbounds" title="Permanent link">¤</a></h3>
@@ -5017,10 +5018,12 @@ for a component.</p>
 </tr>
 </tbody>
 </table>
-<p><a name="frequenz-api-common-v1-microgrid-electrical_components-ElectricalComponentErrorCode"></a></p>
-<h3 id="electricalcomponenterrorcode">ElectricalComponentErrorCode<a class="headerlink" href="#electricalcomponenterrorcode" title="Permanent link">¤</a></h3>
-<p>A representation of all possible errors that can occur across all component
-categories.</p>
+<p><a name="frequenz-api-common-v1-microgrid-electrical_components-ElectricalComponentDiagnosticCode"></a></p>
+<h3 id="electricalcomponentdiagnosticcode">ElectricalComponentDiagnosticCode<a class="headerlink" href="#electricalcomponentdiagnosticcode" title="Permanent link">¤</a></h3>
+<p>A representation of all possible diagnostic codes that can occur for
+electrical component, across all their categories. These diagnostic codes
+can be used to refer to warnings or errors that are reported by the
+component.</p>
 <table>
 <thead>
 <tr>
@@ -5031,179 +5034,179 @@ categories.</p>
 </thead>
 <tbody>
 <tr>
-<td>ELECTRICAL_COMPONENT_ERROR_CODE_UNSPECIFIED</td>
+<td>ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_UNSPECIFIED</td>
 <td>0</td>
 <td>Default value. No specific error is specified.</td>
 </tr>
 <tr>
-<td>ELECTRICAL_COMPONENT_ERROR_CODE_UNKNOWN</td>
+<td>ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_UNKNOWN</td>
 <td>1</td>
 <td>The component is reporting an unknown or an undefined error, and the sender cannot parse the component error to any of the variants below.</td>
 </tr>
 <tr>
-<td>ELECTRICAL_COMPONENT_ERROR_CODE_SWITCH_ON_FAULT</td>
+<td>ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_SWITCH_ON_FAULT</td>
 <td>2</td>
-<td>Error indicating that the component could not be switched on.</td>
+<td>The component could not be switched on.</td>
 </tr>
 <tr>
-<td>ELECTRICAL_COMPONENT_ERROR_CODE_UNDERVOLTAGE</td>
+<td>ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_UNDERVOLTAGE</td>
 <td>3</td>
-<td>Error indicating that the component is operating under the minimum rated voltage.</td>
+<td>The component is operating under the minimum rated voltage.</td>
 </tr>
 <tr>
-<td>ELECTRICAL_COMPONENT_ERROR_CODE_OVERVOLTAGE</td>
+<td>ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_OVERVOLTAGE</td>
 <td>4</td>
-<td>Error indicating that the component is operating over the maximum rated voltage.</td>
+<td>The component is operating over the maximum rated voltage.</td>
 </tr>
 <tr>
-<td>ELECTRICAL_COMPONENT_ERROR_CODE_OVERCURRENT</td>
+<td>ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_OVERCURRENT</td>
 <td>5</td>
-<td>Error indicating that the component is drawing more current than the maximum rated value.</td>
+<td>The component is drawing more current than the maximum rated value.</td>
 </tr>
 <tr>
-<td>ELECTRICAL_COMPONENT_ERROR_CODE_OVERCURRENT_CHARGING</td>
+<td>ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_OVERCURRENT_CHARGING</td>
 <td>6</td>
-<td>Error indicating that the component&#39;s consumption current is over the maximum rated value during charging.</td>
+<td>The component&#39;s consumption current is over the maximum rated value during charging.</td>
 </tr>
 <tr>
-<td>ELECTRICAL_COMPONENT_ERROR_CODE_OVERCURRENT_DISCHARGING</td>
+<td>ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_OVERCURRENT_DISCHARGING</td>
 <td>7</td>
-<td>Error indicating that the component&#39;s production current is over the maximum rated value during discharging.</td>
+<td>The component&#39;s production current is over the maximum rated value during discharging.</td>
 </tr>
 <tr>
-<td>ELECTRICAL_COMPONENT_ERROR_CODE_OVERTEMPERATURE</td>
+<td>ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_OVERTEMPERATURE</td>
 <td>8</td>
-<td>Error indicating that the component is operating over the maximum rated temperature.</td>
+<td>The component is operating over the maximum rated temperature.</td>
 </tr>
 <tr>
-<td>ELECTRICAL_COMPONENT_ERROR_CODE_UNDERTEMPERATURE</td>
+<td>ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_UNDERTEMPERATURE</td>
 <td>9</td>
-<td>Error indicating that the component is operating under the minimum rated temperature.</td>
+<td>The component is operating under the minimum rated temperature.</td>
 </tr>
 <tr>
-<td>ELECTRICAL_COMPONENT_ERROR_CODE_HIGH_HUMIDITY</td>
+<td>ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_HIGH_HUMIDITY</td>
 <td>10</td>
-<td>Error indicating that the component is exposed to high humidity levels over the maximum rated value.</td>
+<td>The component is exposed to high humidity levels over the maximum rated value.</td>
 </tr>
 <tr>
-<td>ELECTRICAL_COMPONENT_ERROR_CODE_FUSE_ERROR</td>
+<td>ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_FUSE_ERROR</td>
 <td>11</td>
-<td>Error indicating that the component&#39;s fuse has blown.</td>
+<td>The component&#39;s fuse has blown.</td>
 </tr>
 <tr>
-<td>ELECTRICAL_COMPONENT_ERROR_CODE_PRECHARGE_ERROR</td>
+<td>ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_PRECHARGE_ERROR</td>
 <td>12</td>
-<td>Error indicating that the component&#39;s precharge unit has failed.</td>
+<td>The component&#39;s precharge unit has failed.</td>
 </tr>
 <tr>
-<td>ELECTRICAL_COMPONENT_ERROR_CODE_PLAUSIBILITY_ERROR</td>
+<td>ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_PLAUSIBILITY_ERROR</td>
 <td>13</td>
-<td>Error indicating plausibility issues within the system involving this component.</td>
+<td>There are plausibility issues within the component, causing its internal sanity checks to fail.</td>
 </tr>
 <tr>
-<td>ELECTRICAL_COMPONENT_ERROR_CODE_UNDERVOLTAGE_SHUTDOWN</td>
+<td>ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_UNDERVOLTAGE_SHUTDOWN</td>
 <td>14</td>
-<td>Error indicating system shutdown due to undervoltage involving this component.</td>
+<td>There is or was a system shutdown due to undervoltage.</td>
 </tr>
 <tr>
-<td>ELECTRICAL_COMPONENT_ERROR_CODE_EV_UNEXPECTED_PILOT_FAILURE</td>
+<td>ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_EV_UNEXPECTED_PILOT_FAILURE</td>
 <td>15</td>
-<td>Error indicating unexpected pilot failure in an electric vehicle (EV) component.</td>
+<td>There is an unexpected pilot failure in an electric vehicle (EV) component.</td>
 </tr>
 <tr>
-<td>ELECTRICAL_COMPONENT_ERROR_CODE_FAULT_CURRENT</td>
+<td>ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_FAULT_CURRENT</td>
 <td>16</td>
-<td>Error indicating fault current detected in the component.</td>
+<td>A fault current has been detected in the component.</td>
 </tr>
 <tr>
-<td>ELECTRICAL_COMPONENT_ERROR_CODE_SHORT_CIRCUIT</td>
+<td>ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_SHORT_CIRCUIT</td>
 <td>17</td>
-<td>Error indicating a short circuit detected in the component.</td>
+<td>A short circuit has been detected in the component.</td>
 </tr>
 <tr>
-<td>ELECTRICAL_COMPONENT_ERROR_CODE_CONFIG_ERROR</td>
+<td>ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_CONFIG_ERROR</td>
 <td>18</td>
-<td>Error indicating a configuration error related to the component.</td>
+<td>The component has been configured incorrectly.</td>
 </tr>
 <tr>
-<td>ELECTRICAL_COMPONENT_ERROR_CODE_ILLEGAL_COMPONENT_STATE_CODE_REQUESTED</td>
+<td>ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_ILLEGAL_COMPONENT_STATE_CODE_REQUESTED</td>
 <td>19</td>
-<td>Error indicating an illegal state requested for the component.</td>
+<td>A illegal state has been requested for the component.</td>
 </tr>
 <tr>
-<td>ELECTRICAL_COMPONENT_ERROR_CODE_HARDWARE_INACCESSIBLE</td>
+<td>ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_HARDWARE_INACCESSIBLE</td>
 <td>20</td>
-<td>Error indicating that the hardware of the component is inaccessible.</td>
+<td>The hardware of the component is inaccessible.</td>
 </tr>
 <tr>
-<td>ELECTRICAL_COMPONENT_ERROR_CODE_INTERNAL</td>
+<td>ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_INTERNAL</td>
 <td>21</td>
-<td>Error indicating an internal error within the component.</td>
+<td>There is an internal error within the component.</td>
 </tr>
 <tr>
-<td>ELECTRICAL_COMPONENT_ERROR_CODE_UNAUTHORIZED</td>
+<td>ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_UNAUTHORIZED</td>
 <td>22</td>
-<td>Error indicating that the component is unauthorized to perform the last requested action.</td>
+<td>The component is unauthorized to perform the last requested action.</td>
 </tr>
 <tr>
-<td>ELECTRICAL_COMPONENT_ERROR_CODE_EV_CHARGING_CABLE_UNPLUGGED_FROM_STATION</td>
+<td>ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_EV_CHARGING_CABLE_UNPLUGGED_FROM_STATION</td>
 <td>40</td>
-<td>Error indicating electric vehicle (EV) cable was abruptly unplugged from the charging station.</td>
+<td>The electric vehicle (EV) cable was abruptly unplugged from the charging station.</td>
 </tr>
 <tr>
-<td>ELECTRICAL_COMPONENT_ERROR_CODE_EV_CHARGING_CABLE_UNPLUGGED_FROM_EV</td>
+<td>ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_EV_CHARGING_CABLE_UNPLUGGED_FROM_EV</td>
 <td>41</td>
-<td>Error indicating electric vehicle (EV) cable was abruptly unplugged from the vehicle.</td>
+<td>The electric vehicle (EV) cable was abruptly unplugged from the vehicle.</td>
 </tr>
 <tr>
-<td>ELECTRICAL_COMPONENT_ERROR_CODE_EV_CHARGING_CABLE_LOCK_FAILED</td>
+<td>ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_EV_CHARGING_CABLE_LOCK_FAILED</td>
 <td>42</td>
-<td>Error indicating electric vehicle (EV) cable lock failure.</td>
+<td>There is a cable lock failure with the electric vehicle (EV).</td>
 </tr>
 <tr>
-<td>ELECTRICAL_COMPONENT_ERROR_CODE_EV_CHARGING_CABLE_INVALID</td>
+<td>ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_EV_CHARGING_CABLE_INVALID</td>
 <td>43</td>
-<td>Error indicating an invalid electric vehicle (EV) cable.</td>
+<td>The electric vehicle (EV) charging cable is invalid.</td>
 </tr>
 <tr>
-<td>ELECTRICAL_COMPONENT_ERROR_CODE_EV_CONSUMER_INCOMPATIBLE</td>
+<td>ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_EV_CONSUMER_INCOMPATIBLE</td>
 <td>44</td>
-<td>Error indicating an incompatible electric vehicle (EV) plug.</td>
+<td>The incompatible electric vehicle (EV) charging plug is invalid.</td>
 </tr>
 <tr>
-<td>ELECTRICAL_COMPONENT_ERROR_CODE_BATTERY_IMBALANCE</td>
+<td>ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_BATTERY_IMBALANCE</td>
 <td>50</td>
-<td>Error indicating a battery system imbalance.</td>
+<td>There is a battery system imbalance.</td>
 </tr>
 <tr>
-<td>ELECTRICAL_COMPONENT_ERROR_CODE_BATTERY_LOW_SOH</td>
+<td>ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_BATTERY_LOW_SOH</td>
 <td>51</td>
-<td>Error indicating a low state of health (SOH) detected in the battery.</td>
+<td>The battery has a low state of health (SOH).</td>
 </tr>
 <tr>
-<td>ELECTRICAL_COMPONENT_ERROR_CODE_BATTERY_BLOCK_ERROR</td>
+<td>ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_BATTERY_BLOCK_ERROR</td>
 <td>52</td>
-<td>Error indicating a battery block error.</td>
+<td>At least one of the battery blocks is in an error state.</td>
 </tr>
 <tr>
-<td>ELECTRICAL_COMPONENT_ERROR_CODE_BATTERY_CONTROLLER_ERROR</td>
+<td>ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_BATTERY_CONTROLLER_ERROR</td>
 <td>53</td>
-<td>Error indicating a battery controller error.</td>
+<td>The battery controller is in an error state.</td>
 </tr>
 <tr>
-<td>ELECTRICAL_COMPONENT_ERROR_CODE_BATTERY_RELAY_ERROR</td>
+<td>ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_BATTERY_RELAY_ERROR</td>
 <td>54</td>
-<td>Error indicating a battery relay error.</td>
+<td>The battery&#39;s DC contactor or relay is in an error state.</td>
 </tr>
 <tr>
-<td>ELECTRICAL_COMPONENT_ERROR_CODE_BATTERY_CALIBRATION_NEEDED</td>
+<td>ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_BATTERY_CALIBRATION_NEEDED</td>
 <td>56</td>
-<td>Error indicating that battery calibration is needed.</td>
+<td>The battery needs calibration.</td>
 </tr>
 <tr>
-<td>ELECTRICAL_COMPONENT_ERROR_CODE_RELAY_CYCLE_LIMIT_REACHED</td>
+<td>ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_RELAY_CYCLE_LIMIT_REACHED</td>
 <td>60</td>
-<td>Error indicating that the relays have been cycled for the maximum number of times.</td>
+<td>The battery&#39;s DC contactor or relays have reached end of life.</td>
 </tr>
 </tbody>
 </table>
