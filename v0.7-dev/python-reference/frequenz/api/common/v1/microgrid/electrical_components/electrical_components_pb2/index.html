@@ -4350,6 +4350,63 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#frequenz.api.common.v1.microgrid.electrical_components.electrical_components_pb2.ElectricalComponentError" class="md-nav__link">
+    <span class="md-ellipsis">
+      ElectricalComponentError
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ElectricalComponentError">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#frequenz.api.common.v1.microgrid.electrical_components.electrical_components_pb2.ElectricalComponentError-attributes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Attributes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Attributes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#frequenz.api.common.v1.microgrid.electrical_components.electrical_components_pb2.ElectricalComponentError.error_code" class="md-nav__link">
+    <span class="md-ellipsis">
+      error_code
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#frequenz.api.common.v1.microgrid.electrical_components.electrical_components_pb2.ElectricalComponentError.message" class="md-nav__link">
+    <span class="md-ellipsis">
+      message
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#frequenz.api.common.v1.microgrid.electrical_components.electrical_components_pb2.ElectricalComponentError.vendor_error_code" class="md-nav__link">
+    <span class="md-ellipsis">
+      vendor_error_code
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#frequenz.api.common.v1.microgrid.electrical_components.electrical_components_pb2.ElectricalComponentErrorCode" class="md-nav__link">
     <span class="md-ellipsis">
       ElectricalComponentErrorCode
@@ -6285,6 +6342,63 @@
   <a href="#frequenz.api.common.v1.microgrid.electrical_components.electrical_components_pb2.ElectricalComponentData.states" class="md-nav__link">
     <span class="md-ellipsis">
       states
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#frequenz.api.common.v1.microgrid.electrical_components.electrical_components_pb2.ElectricalComponentError" class="md-nav__link">
+    <span class="md-ellipsis">
+      ElectricalComponentError
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ElectricalComponentError">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#frequenz.api.common.v1.microgrid.electrical_components.electrical_components_pb2.ElectricalComponentError-attributes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Attributes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Attributes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#frequenz.api.common.v1.microgrid.electrical_components.electrical_components_pb2.ElectricalComponentError.error_code" class="md-nav__link">
+    <span class="md-ellipsis">
+      error_code
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#frequenz.api.common.v1.microgrid.electrical_components.electrical_components_pb2.ElectricalComponentError.message" class="md-nav__link">
+    <span class="md-ellipsis">
+      message
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#frequenz.api.common.v1.microgrid.electrical_components.electrical_components_pb2.ElectricalComponentError.vendor_error_code" class="md-nav__link">
+    <span class="md-ellipsis">
+      vendor_error_code
     </span>
   </a>
   
@@ -8818,6 +8932,144 @@ states, and errors, related to a specific microgrid component.</p>
 
 
 
+<h4 id="frequenz.api.common.v1.microgrid.electrical_components.electrical_components_pb2.ElectricalComponentError" class="doc doc-heading">
+            <code>frequenz.api.common.v1.microgrid.electrical_components.electrical_components_pb2.ElectricalComponentError</code>
+
+
+<a href="#frequenz.api.common.v1.microgrid.electrical_components.electrical_components_pb2.ElectricalComponentError" class="headerlink" title="Permanent link">¤</a></h4>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="google.protobuf.message.Message">Message</span></code></p>
+
+
+        <p>Represents an error or warning condition reported by a microgrid electrical
+component.</p>
+<p>This message extends a standardized error code with contextual information
+useful for diagnostics, such as subsystem names, measured values, or
+vendor-specific insights.</p>
+<div class="admonition example">
+<p class="admonition-title">Typical Component Error</p>
+<div class="language-json highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="p">{</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="nt">&quot;errorCode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ELECTRICAL_COMPONENT_ERROR_CODE_OVERTEMPERATURE&quot;</span><span class="p">,</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">  </span><span class="nt">&quot;vendorErrorCode&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2003</span><span class="p">,</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">  </span><span class="nt">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Temperature sensor 3 reported 61.5°C (limit: 60°C)&quot;</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="p">}</span>
+</span></code></pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Component-Originated Diagnostics</p>
+<p>This message is intended to reflect diagnostics originating from
+electrical components (e.g., inverters, batteries), either from internal
+firmware or via gateway logic.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Vendor-Specific Codes</p>
+<p>When available, <code>vendor_error_code</code> will reflect manufacturer-defined
+error identifiers, typically exposed via Modbus or similar interfaces.
+These codes are vendor- and firmware-specific and must be interpreted
+using the vendor's official documentation.</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+<h5 id="frequenz.api.common.v1.microgrid.electrical_components.electrical_components_pb2.ElectricalComponentError-attributes">Attributes<a href="#frequenz.api.common.v1.microgrid.electrical_components.electrical_components_pb2.ElectricalComponentError-attributes" class="headerlink" title="Permanent link">¤</a></h5>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h6 id="frequenz.api.common.v1.microgrid.electrical_components.electrical_components_pb2.ElectricalComponentError.error_code" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">error_code</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+<a href="#frequenz.api.common.v1.microgrid.electrical_components.electrical_components_pb2.ElectricalComponentError.error_code" class="headerlink" title="Permanent link">¤</a></h6>
+
+
+    <div class="doc doc-contents ">
+
+        <p>A standardized error code representing the category of the issue.</p>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h6 id="frequenz.api.common.v1.microgrid.electrical_components.electrical_components_pb2.ElectricalComponentError.message" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">message</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+<a href="#frequenz.api.common.v1.microgrid.electrical_components.electrical_components_pb2.ElectricalComponentError.message" class="headerlink" title="Permanent link">¤</a></h6>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Optional human-readable message providing additional context.</p>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h6 id="frequenz.api.common.v1.microgrid.electrical_components.electrical_components_pb2.ElectricalComponentError.vendor_error_code" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">vendor_error_code</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+<a href="#frequenz.api.common.v1.microgrid.electrical_components.electrical_components_pb2.ElectricalComponentError.vendor_error_code" class="headerlink" title="Permanent link">¤</a></h6>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Optional vendor-provided error code for the error, for vendor-specific
+insights or more granular diagnostics.</p>
+
+    </div>
+
+</div>
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
 <h4 id="frequenz.api.common.v1.microgrid.electrical_components.electrical_components_pb2.ElectricalComponentErrorCode" class="doc doc-heading">
             <code>frequenz.api.common.v1.microgrid.electrical_components.electrical_components_pb2.ElectricalComponentErrorCode</code>
 
@@ -8911,17 +9163,13 @@ categories.</p>
 
     <div class="doc doc-contents ">
 
-        <p>List of errors for the microgrid component.</p>
+        <p>List of critical errors currently affecting the component.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
+<p>This list is expected to be populated only when the component is in an
+error state.
+No duplicate error codes allowed.</p>
 </div>
-<p>This list is expected to have errors if and only if the component is in
-   an error state.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-</div>
-<p>The list will contain unique members. No error will exist twice in
-   this list.</p>
 
     </div>
 
@@ -8965,12 +9213,11 @@ categories.</p>
 
     <div class="doc doc-contents ">
 
-        <p>List of states of the microgrid component.</p>
+        <p>List of operational states currently active for the component.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
+<p>The list must not contain duplicate state codes.</p>
 </div>
-<p>The list will contain unique members. No state will exist twice in
-   this list.</p>
 
     </div>
 
@@ -8992,17 +9239,12 @@ categories.</p>
 
     <div class="doc doc-contents ">
 
-        <p>List of warnings for the microgrid component.</p>
+        <p>List of non-critical warnings detected for the component.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
+<p>Warnings may be reported even when the component is operational.
+No duplicate warning codes allowed.</p>
 </div>
-<p>This list may have warnings even if the component state is not in an
-   error state.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-</div>
-<p>The list will contain unique members. No warning will exist twice in
-   this list.</p>
 
     </div>
 

@@ -1531,6 +1531,15 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#electricalcomponenterror" class="md-nav__link">
+    <span class="md-ellipsis">
+      ElectricalComponentError
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#electricalcomponentstate" class="md-nav__link">
     <span class="md-ellipsis">
       ElectricalComponentState
@@ -4428,6 +4437,15 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#electricalcomponenterror" class="md-nav__link">
+    <span class="md-ellipsis">
+      ElectricalComponentError
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#electricalcomponentstate" class="md-nav__link">
     <span class="md-ellipsis">
       ElectricalComponentState
@@ -4525,6 +4543,7 @@
 <li><a href="#frequenz-api-common-v1-microgrid-electrical_components-ElectricalComponentCategoryMetadataVariant">ElectricalComponentCategoryMetadataVariant</a></li>
 <li><a href="#frequenz-api-common-v1-microgrid-electrical_components-ElectricalComponentConnection">ElectricalComponentConnection</a></li>
 <li><a href="#frequenz-api-common-v1-microgrid-electrical_components-ElectricalComponentData">ElectricalComponentData</a></li>
+<li><a href="#frequenz-api-common-v1-microgrid-electrical_components-ElectricalComponentError">ElectricalComponentError</a></li>
 <li><a href="#frequenz-api-common-v1-microgrid-electrical_components-ElectricalComponentState">ElectricalComponentState</a></li>
 <li>
 <p><a href="#frequenz-api-common-v1-microgrid-electrical_components-MetricConfigBounds">MetricConfigBounds</a></p>
@@ -4793,6 +4812,59 @@ states, and errors, related to a specific microgrid component.</p>
 </tr>
 </tbody>
 </table>
+<p><a name="frequenz-api-common-v1-microgrid-electrical_components-ElectricalComponentError"></a></p>
+<h3 id="electricalcomponenterror">ElectricalComponentError<a class="headerlink" href="#electricalcomponenterror" title="Permanent link">¤</a></h3>
+<p>Represents an error or warning condition reported by a microgrid electrical
+component.</p>
+<p>This message extends a standardized error code with contextual information
+useful for diagnostics, such as subsystem names, measured values, or
+vendor-specific insights.</p>
+<p>!!! example &#34;Typical Component Error&#34;
+    <div class="language-json highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="p">{</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="err">&amp;#</span><span class="mi">34</span><span class="err">;errorCode&amp;#</span><span class="mi">34</span><span class="err">;</span><span class="p">:</span><span class="w"> </span><span class="err">&amp;#</span><span class="mi">34</span><span class="err">;ELECTRICAL_COMPONENT_ERROR_CODE_OVERTEMPERATURE&amp;#</span><span class="mi">34</span><span class="err">;</span><span class="p">,</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">  </span><span class="err">&amp;#</span><span class="mi">34</span><span class="err">;ve</span><span class="kc">n</span><span class="err">dorErrorCode&amp;#</span><span class="mi">34</span><span class="err">;</span><span class="p">:</span><span class="w"> </span><span class="mi">2003</span><span class="p">,</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">  </span><span class="err">&amp;#</span><span class="mi">34</span><span class="err">;message&amp;#</span><span class="mi">34</span><span class="err">;</span><span class="p">:</span><span class="w"> </span><span class="err">&amp;#</span><span class="mi">34</span><span class="err">;Tempera</span><span class="kc">ture</span><span class="w"> </span><span class="err">se</span><span class="kc">ns</span><span class="err">or</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="err">repor</span><span class="kc">te</span><span class="err">d</span><span class="w"> </span><span class="mf">61.5</span><span class="err">°C</span><span class="w"> </span><span class="err">(limi</span><span class="kc">t</span><span class="p">:</span><span class="w"> </span><span class="mi">60</span><span class="err">°C)&amp;#</span><span class="mi">34</span><span class="err">;</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="p">}</span>
+</span></code></pre></div></p>
+<p>!!! note &#34;Component-Originated Diagnostics&#34;
+    This message is intended to reflect diagnostics originating from
+    electrical components (e.g., inverters, batteries), either from internal
+    firmware or via gateway logic.</p>
+<p>!!! note &#34;Vendor-Specific Codes&#34;
+    When available, <code>vendor_error_code</code> will reflect manufacturer-defined
+    error identifiers, typically exposed via Modbus or similar interfaces.
+    These codes are vendor- and firmware-specific and must be interpreted
+    using the vendor&#39;s official documentation.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>error_code</td>
+<td><a href="#frequenz-api-common-v1-microgrid-electrical_components-ElectricalComponentErrorCode">ElectricalComponentErrorCode</a></td>
+<td></td>
+<td>A standardized error code representing the category of the issue.</td>
+</tr>
+<tr>
+<td>vendor_error_code</td>
+<td><a href="#uint32">uint32</a></td>
+<td>optional</td>
+<td>Optional vendor-provided error code for the error, for vendor-specific insights or more granular diagnostics.</td>
+</tr>
+<tr>
+<td>message</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>Optional human-readable message providing additional context.</td>
+</tr>
+</tbody>
+</table>
 <p><a name="frequenz-api-common-v1-microgrid-electrical_components-ElectricalComponentState"></a></p>
 <h3 id="electricalcomponentstate">ElectricalComponentState<a class="headerlink" href="#electricalcomponentstate" title="Permanent link">¤</a></h3>
 <p>Representation of a component state and errors.</p>
@@ -4816,17 +4888,15 @@ states, and errors, related to a specific microgrid component.</p>
 <td>states</td>
 <td><a href="#frequenz-api-common-v1-microgrid-electrical_components-ElectricalComponentStateCode">ElectricalComponentStateCode</a></td>
 <td>repeated</td>
-<td>List of states of the microgrid component.</td>
+<td>List of operational states currently active for the component.</td>
 </tr>
 </tbody>
 </table>
-<p>!!! note The list will contain unique members. No state will exist twice in this list. |
-| warnings | <a href="#frequenz-api-common-v1-microgrid-electrical_components-ElectricalComponentErrorCode">ElectricalComponentErrorCode</a> | repeated | List of warnings for the microgrid component.</p>
-<p>!!! note This list may have warnings even if the component state is not in an error state.</p>
-<p>!!! note The list will contain unique members. No warning will exist twice in this list. |
-| errors | <a href="#frequenz-api-common-v1-microgrid-electrical_components-ElectricalComponentErrorCode">ElectricalComponentErrorCode</a> | repeated | List of errors for the microgrid component.</p>
-<p>!!! note This list is expected to have errors if and only if the component is in an error state.</p>
-<p>!!! note The list will contain unique members. No error will exist twice in this list. |</p>
+<p>!!! note The list must not contain duplicate state codes. |
+| warnings | <a href="#frequenz-api-common-v1-microgrid-electrical_components-ElectricalComponentError">ElectricalComponentError</a> | repeated | List of non-critical warnings detected for the component.</p>
+<p>!!! note Warnings may be reported even when the component is operational. No duplicate warning codes allowed. |
+| errors | <a href="#frequenz-api-common-v1-microgrid-electrical_components-ElectricalComponentError">ElectricalComponentError</a> | repeated | List of critical errors currently affecting the component.</p>
+<p>!!! note This list is expected to be populated only when the component is in an error state. No duplicate error codes allowed. |</p>
 <p><a name="frequenz-api-common-v1-microgrid-electrical_components-MetricConfigBounds"></a></p>
 <h3 id="metricconfigbounds">MetricConfigBounds<a class="headerlink" href="#metricconfigbounds" title="Permanent link">¤</a></h3>
 <p>MetricConfigBounds describes a set of limits for a specific metric consisting
