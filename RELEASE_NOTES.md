@@ -13,7 +13,8 @@
 - Renamed `components` to `electrical_components` and related messages, fields, enums.
 - Added message linking microgrid and sensor IDs.
 - Added new message definitions for communication components.
-- Added new message `ElectricalComponentError` to represent errors in microgrid electrical components.
+- Added new message `ElectricalComponentDiagnostic` to represent warnings and errors in microgrid electrical components.
+- The enum `ComponentErrorCode` has now been renamed to `ElectricalComponentDiagnosticCode` to better reflect its shared usage with warnings and errors.
 
 ## Bug Fixes
 
