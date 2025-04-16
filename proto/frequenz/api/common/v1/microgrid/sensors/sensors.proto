@@ -149,6 +149,38 @@ message SensorData {
   repeated SensorState states = 3;
 }
 
+// Represents an error or warning condition reported by a microgrid sensor.
+//
+// This message extends a standardized error code with contextual information
+// useful for diagnostics, such as subsystem names, measured values, or
+// vendor-specific insights.
+//
+// !!! example "Typical Sensor Error"
+//     ```json
+//     {
+//       "errorCode":
+//           "SENSOR_ERROR_CODE_INTERNAL",
+//       "vendorErrorCode": 2003,
+//       "message": "Temperature sensor 3 reported 61.5°C (limit: 60°C)"
+//     }
+//     ```
+// !!! note "Vendor-Specific Codes"
+//     When available, `vendor_error_code` will reflect manufacturer-defined
+//     error identifiers, typically exposed via Modbus or similar interfaces.
+//     These codes are vendor- and firmware-specific and must be interpreted
+//     using the vendor's official documentation.
+message SensorDiagnostic {
+  // A standardized error code representing the category of the issue.
+  SensorErrorCode error_code = 1;
+
+  // Optional vendor-provided error code for the error, for vendor-specific
+  // insights or more granular diagnostics.
+  optional uint32 vendor_error_code = 2;
+
+  // Optional human-readable message providing additional context.
+  string message = 3;
+}
+
 // Representation of a sensor state and errors.
 message SensorState {
   // The time at which the state was sampled.
@@ -170,7 +202,7 @@ message SensorState {
   // !!! note
   //    The list will contain unique members. No error will exist twice in
   //    this list.
-  repeated SensorErrorCode errors = 4;
+  repeated SensorDiagnostic errors = 4;
 }
 
 // Enum to represent the various states that a sensor can be in.
