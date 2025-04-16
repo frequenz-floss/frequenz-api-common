@@ -16,6 +16,7 @@
 - Added new message `ElectricalComponentDiagnostic` to represent warnings and errors in microgrid electrical components.
 - The enum `ComponentErrorCode` has now been renamed to `ElectricalComponentDiagnosticCode` to better reflect its shared usage with warnings and errors.
 - Added new message `SensorDiagnostic` to represent warnings and errors in microgrid sensors.
+- The enum `SensorErrorCode` has now been renamed to `SensorDiagnosticCode` to better reflect its shared usage with warnings and errors.
 
 ## Bug Fixes
 

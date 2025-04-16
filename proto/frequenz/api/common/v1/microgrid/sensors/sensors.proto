@@ -158,8 +158,8 @@ message SensorData {
 // !!! example "Typical Sensor Error"
 //     ```json
 //     {
-//       "errorCode":
-//           "SENSOR_ERROR_CODE_INTERNAL",
+//       "diagnosticCode":
+//           "SENSOR_DIAGNOSTIC_CODE_INTERNAL",
 //       "vendorErrorCode": 2003,
 //       "message": "Temperature sensor 3 reported 61.5°C (limit: 60°C)"
 //     }
@@ -171,7 +171,7 @@ message SensorData {
 //     using the vendor's official documentation.
 message SensorDiagnostic {
   // A standardized error code representing the category of the issue.
-  SensorErrorCode error_code = 1;
+  SensorDiagnosticCode diagnostic_code = 1;
 
   // Optional vendor-provided error code for the error, for vendor-specific
   // insights or more granular diagnostics.
@@ -219,17 +219,18 @@ enum SensorStateCode {
   SENSOR_STATE_CODE_ERROR = 2;
 }
 
-// A representation of all possible errors that can occur in sensors.
-enum SensorErrorCode {
+// A representation of all possible warnings and errors that can occur in
+// sensors.
+enum SensorDiagnosticCode {
   // Default value. No specific error is specified.
-  SENSOR_ERROR_CODE_UNSPECIFIED = 0;
+  SENSOR_DIAGNOSTIC_CODE_UNSPECIFIED = 0;
 
   // The sensor is reporting an unknown or an undefined error, and the sender
   // cannot parse the sensor error to any of the variants below.
-  SENSOR_ERROR_CODE_UNKNOWN = 1;
+  SENSOR_DIAGNOSTIC_CODE_UNKNOWN = 1;
 
   // Error indicating an internal error within the sensor.
-  SENSOR_ERROR_CODE_INTERNAL = 2;
+  SENSOR_DIAGNOSTIC_CODE_INTERNAL = 2;
 }
 
 // Representation of a sampled sensor metric along with its value.
