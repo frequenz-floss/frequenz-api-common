@@ -193,6 +193,17 @@ message SensorState {
   //    this list.
   repeated SensorStateCode states = 2;
 
+  // List of warnings for the microgrid sensor.
+  //
+  // !!! note
+  //    This list is expected to have warnings if and only if the sensor is
+  //    reporting warnings.
+  //
+  // !!! note
+  //    The list will contain unique members. No warning will exist twice in
+  //    this list.
+  repeated SensorDiagnostic warnings = 3;
+
   // List of errors for the microgrid sensor.
   //
   // !!! note
