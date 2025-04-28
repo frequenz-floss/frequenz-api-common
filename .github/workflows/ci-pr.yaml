@@ -11,6 +11,34 @@ env:
   # but sadly `env` can't be used either in `runs-on`.
 
 jobs:
+  validate-structure:
+    name: Validate Python Package Structure
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Check for __init__.py files using counts
+      run: |
+        echo "Comparing directory count in proto with __init__.py count in py..."
+        PROTO_BASE="proto/frequenz/api/common"
+        PYTHON_BASE="py/frequenz/api/common" # Match the base for comparison
+
+        # Count directories in the specific proto path
+        proto_dirs=$(find "$PROTO_BASE" -type d | wc -l)
+        echo "Found $proto_dirs directories under $PROTO_BASE"
+
+        # Count __init__.py files in the corresponding python path
+        py_inits=$(find "$PYTHON_BASE" -type f -name "__init__.py" | wc -l)
+        echo "Found $py_inits '__init__.py' files under $PYTHON_BASE"
+
+        if [ "$proto_dirs" -ne "$py_inits" ]; then
+          echo "Validation failed: Mismatch between proto directory count ($proto_dirs) and python __init__.py count ($py_inits)."
+          echo "Ensure (manually!) every directory under $PROTO_BASE has a corresponding directory with __init__.py under $PYTHON_BASE."
+          exit 1
+        else
+          echo "Validation successful: Proto directory count matches python __init__.py count ($proto_dirs)."
+        fi
+
   protolint:
     name: Check proto files with protolint
     runs-on: ubuntu-24.04
