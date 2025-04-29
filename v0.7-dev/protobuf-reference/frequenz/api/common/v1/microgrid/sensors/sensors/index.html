@@ -1750,6 +1750,15 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#sensordiagnostic" class="md-nav__link">
+    <span class="md-ellipsis">
+      SensorDiagnostic
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#sensormetricsample" class="md-nav__link">
     <span class="md-ellipsis">
       SensorMetricSample
@@ -1777,9 +1786,9 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#sensorerrorcode" class="md-nav__link">
+  <a href="#sensordiagnosticcode" class="md-nav__link">
     <span class="md-ellipsis">
-      SensorErrorCode
+      SensorDiagnosticCode
     </span>
   </a>
   
@@ -4392,6 +4401,15 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#sensordiagnostic" class="md-nav__link">
+    <span class="md-ellipsis">
+      SensorDiagnostic
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#sensormetricsample" class="md-nav__link">
     <span class="md-ellipsis">
       SensorMetricSample
@@ -4419,9 +4437,9 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#sensorerrorcode" class="md-nav__link">
+  <a href="#sensordiagnosticcode" class="md-nav__link">
     <span class="md-ellipsis">
-      SensorErrorCode
+      SensorDiagnosticCode
     </span>
   </a>
   
@@ -4487,6 +4505,7 @@
 <ul>
 <li><a href="#frequenz-api-common-v1-microgrid-sensors-Sensor">Sensor</a></li>
 <li><a href="#frequenz-api-common-v1-microgrid-sensors-SensorData">SensorData</a></li>
+<li><a href="#frequenz-api-common-v1-microgrid-sensors-SensorDiagnostic">SensorDiagnostic</a></li>
 <li><a href="#frequenz-api-common-v1-microgrid-sensors-SensorMetricSample">SensorMetricSample</a></li>
 <li>
 <p><a href="#frequenz-api-common-v1-microgrid-sensors-SensorState">SensorState</a></p>
@@ -4494,7 +4513,7 @@
 <li>
 <p><a href="#frequenz-api-common-v1-microgrid-sensors-SensorCategory">SensorCategory</a></p>
 </li>
-<li><a href="#frequenz-api-common-v1-microgrid-sensors-SensorErrorCode">SensorErrorCode</a></li>
+<li><a href="#frequenz-api-common-v1-microgrid-sensors-SensorDiagnosticCode">SensorDiagnosticCode</a></li>
 <li><a href="#frequenz-api-common-v1-microgrid-sensors-SensorMetric">SensorMetric</a></li>
 <li><a href="#frequenz-api-common-v1-microgrid-sensors-SensorStateCode">SensorStateCode</a></li>
 </ul>
@@ -4628,6 +4647,55 @@ errors, related to a specific microgrid sensor.</p>
 </tr>
 </tbody>
 </table>
+<p><a name="frequenz-api-common-v1-microgrid-sensors-SensorDiagnostic"></a></p>
+<h3 id="sensordiagnostic">SensorDiagnostic<a class="headerlink" href="#sensordiagnostic" title="Permanent link">¤</a></h3>
+<p>Represents an error or warning condition reported by a microgrid sensor.</p>
+<p>This message extends a standardized error code with contextual information
+useful for diagnostics, such as subsystem names, measured values, or
+vendor-specific insights.</p>
+<p>!!! example &#34;Typical Sensor Error&#34;
+    <div class="language-json highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="p">{</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="err">&amp;#</span><span class="mi">34</span><span class="err">;diag</span><span class="kc">n</span><span class="err">os</span><span class="kc">t</span><span class="err">icCode&amp;#</span><span class="mi">34</span><span class="err">;</span><span class="p">:</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">      </span><span class="err">&amp;#</span><span class="mi">34</span><span class="err">;SENSOR_DIAGNOSTIC_CODE_INTERNAL&amp;#</span><span class="mi">34</span><span class="err">;</span><span class="p">,</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">  </span><span class="err">&amp;#</span><span class="mi">34</span><span class="err">;ve</span><span class="kc">n</span><span class="err">dorErrorCode&amp;#</span><span class="mi">34</span><span class="err">;</span><span class="p">:</span><span class="w"> </span><span class="mi">2003</span><span class="p">,</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">  </span><span class="err">&amp;#</span><span class="mi">34</span><span class="err">;message&amp;#</span><span class="mi">34</span><span class="err">;</span><span class="p">:</span><span class="w"> </span><span class="err">&amp;#</span><span class="mi">34</span><span class="err">;Tempera</span><span class="kc">ture</span><span class="w"> </span><span class="err">se</span><span class="kc">ns</span><span class="err">or</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="err">repor</span><span class="kc">te</span><span class="err">d</span><span class="w"> </span><span class="mf">61.5</span><span class="err">°C</span><span class="w"> </span><span class="err">(limi</span><span class="kc">t</span><span class="p">:</span><span class="w"> </span><span class="mi">60</span><span class="err">°C)&amp;#</span><span class="mi">34</span><span class="err">;</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="p">}</span>
+</span></code></pre></div>
+!!! note &#34;Vendor-Specific Codes&#34;
+    When available, <code>vendor_error_code</code> will reflect manufacturer-defined
+    error identifiers, typically exposed via Modbus or similar interfaces.
+    These codes are vendor- and firmware-specific and must be interpreted
+    using the vendor&#39;s official documentation.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>diagnostic_code</td>
+<td><a href="#frequenz-api-common-v1-microgrid-sensors-SensorDiagnosticCode">SensorDiagnosticCode</a></td>
+<td></td>
+<td>A standardized error code representing the category of the issue.</td>
+</tr>
+<tr>
+<td>vendor_error_code</td>
+<td><a href="#uint32">uint32</a></td>
+<td>optional</td>
+<td>Optional vendor-provided error code for the error, for vendor-specific insights or more granular diagnostics.</td>
+</tr>
+<tr>
+<td>message</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>Optional human-readable message providing additional context.</td>
+</tr>
+</tbody>
+</table>
 <p><a name="frequenz-api-common-v1-microgrid-sensors-SensorMetricSample"></a></p>
 <h3 id="sensormetricsample">SensorMetricSample<a class="headerlink" href="#sensormetricsample" title="Permanent link">¤</a></h3>
 <p>Representation of a sampled sensor metric along with its value.</p>
@@ -4689,7 +4757,10 @@ errors, related to a specific microgrid sensor.</p>
 </tbody>
 </table>
 <p>!!! note The list will contain unique members. No state will exist twice in this list. |
-| errors | <a href="#frequenz-api-common-v1-microgrid-sensors-SensorErrorCode">SensorErrorCode</a> | repeated | List of errors for the microgrid sensor.</p>
+| warnings | <a href="#frequenz-api-common-v1-microgrid-sensors-SensorDiagnostic">SensorDiagnostic</a> | repeated | List of warnings for the microgrid sensor.</p>
+<p>!!! note This list is expected to have warnings if and only if the sensor is reporting warnings.</p>
+<p>!!! note The list will contain unique members. No warning will exist twice in this list. |
+| errors | <a href="#frequenz-api-common-v1-microgrid-sensors-SensorDiagnostic">SensorDiagnostic</a> | repeated | List of errors for the microgrid sensor.</p>
 <p>!!! note This list is expected to have errors if and only if the sensor is in an error state.</p>
 <p>!!! note The list will contain unique members. No error will exist twice in this list. |</p>
 <p><a name="frequenz-api-common-v1-microgrid-sensors-SensorCategory"></a></p>
@@ -4746,9 +4817,10 @@ errors, related to a specific microgrid sensor.</p>
 </tr>
 </tbody>
 </table>
-<p><a name="frequenz-api-common-v1-microgrid-sensors-SensorErrorCode"></a></p>
-<h3 id="sensorerrorcode">SensorErrorCode<a class="headerlink" href="#sensorerrorcode" title="Permanent link">¤</a></h3>
-<p>A representation of all possible errors that can occur in sensors.</p>
+<p><a name="frequenz-api-common-v1-microgrid-sensors-SensorDiagnosticCode"></a></p>
+<h3 id="sensordiagnosticcode">SensorDiagnosticCode<a class="headerlink" href="#sensordiagnosticcode" title="Permanent link">¤</a></h3>
+<p>A representation of all possible warnings and errors that can occur in
+sensors.</p>
 <table>
 <thead>
 <tr>
@@ -4759,17 +4831,17 @@ errors, related to a specific microgrid sensor.</p>
 </thead>
 <tbody>
 <tr>
-<td>SENSOR_ERROR_CODE_UNSPECIFIED</td>
+<td>SENSOR_DIAGNOSTIC_CODE_UNSPECIFIED</td>
 <td>0</td>
 <td>Default value. No specific error is specified.</td>
 </tr>
 <tr>
-<td>SENSOR_ERROR_CODE_UNKNOWN</td>
+<td>SENSOR_DIAGNOSTIC_CODE_UNKNOWN</td>
 <td>1</td>
 <td>The sensor is reporting an unknown or an undefined error, and the sender cannot parse the sensor error to any of the variants below.</td>
 </tr>
 <tr>
-<td>SENSOR_ERROR_CODE_INTERNAL</td>
+<td>SENSOR_DIAGNOSTIC_CODE_INTERNAL</td>
 <td>2</td>
 <td>Error indicating an internal error within the sensor.</td>
 </tr>
