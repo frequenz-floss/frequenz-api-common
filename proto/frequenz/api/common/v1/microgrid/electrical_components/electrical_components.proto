@@ -503,21 +503,33 @@ message ElectricalComponentState {
   // List of operational states currently active for the component.
   //
   // !!! note
-  //     The list must not contain duplicate state codes.
+  //    This list is treated as a set, and therefore its members will be unique,
+  //    i.e., no state will exist twice in this list.
+  //
+  // !!! note
+  //    If the state is `ELECTRICAL_COMPONENT_STATE_CODE_ERROR`, then the
+  //    electrical component is in an error state. In such cases, the `errors`
+  //    field will be populated with the list of errors.
   repeated ElectricalComponentStateCode states = 2;
 
   // List of non-critical warnings detected for the component.
   //
   // !!! note
+  //    This list is treated as a set, and therefore its members will be unique,
+  //    i.e., no state will exist twice in this list.
+  //
+  // !!! note
   //     Warnings may be reported even when the component is operational.
-  //     No duplicate warning codes allowed.
   repeated ElectricalComponentDiagnostic warnings = 3;
 
   // List of critical errors currently affecting the component.
   //
   // !!! note
-  //     This list is expected to be populated only when the component is in an
-  //     error state.
-  //     No duplicate error codes allowed.
+  //    This list is treated as a set, and therefore its members will be unique,
+  //    i.e., no state will exist twice in this list.
+  //
+  // !!! note
+  //    This list is expected to have errors if and only if the electrical
+  //    component is in an error state.
   repeated ElectricalComponentDiagnostic errors = 4;
 }

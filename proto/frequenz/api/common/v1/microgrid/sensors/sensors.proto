@@ -189,30 +189,35 @@ message SensorState {
   // List of states of the microgrid sensor.
   //
   // !!! note
-  //    The list will contain unique members. No state will exist twice in
-  //    this list.
+  //    This list is treated as a set, and therefore its members will be unique,
+  //    i.e., no state will exist twice in this list.
+  //
+  // !!! note
+  //    If the state is `SENSOR_STATE_CODE_ERROR`, the sensor is in an error
+  //    state. In such cases, the `errors` field will be populated with the
+  //    list of errors.
   repeated SensorStateCode states = 2;
 
   // List of warnings for the microgrid sensor.
   //
   // !!! note
-  //    This list is expected to have warnings if and only if the sensor is
-  //    reporting warnings.
+  //    This list is treated as a set, and therefore its members will be unique,
+  //    i.e., no state will exist twice in this list.
   //
   // !!! note
-  //    The list will contain unique members. No warning will exist twice in
-  //    this list.
+  //    This list is expected to have warnings if and only if the sensor is
+  //    reporting warnings.
   repeated SensorDiagnostic warnings = 3;
 
   // List of errors for the microgrid sensor.
   //
   // !!! note
-  //    This list is expected to have errors if and only if the sensor is in
-  //    an error state.
+  //    This list is treated as a set, and therefore its members will be unique,
+  //    i.e., no state will exist twice in this list.
   //
   // !!! note
-  //    The list will contain unique members. No error will exist twice in
-  //    this list.
+  //    This list is expected to have errors if and only if the sensor is in
+  //    an error state.
   repeated SensorDiagnostic errors = 4;
 }
 
