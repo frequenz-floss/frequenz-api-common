@@ -173,9 +173,9 @@ message SensorDiagnostic {
   // A standardized error code representing the category of the issue.
   SensorDiagnosticCode diagnostic_code = 1;
 
-  // Optional vendor-provided error code for the error, for vendor-specific
+  // Optional vendor-provided diagnostic code for the error, for vendor-specific
   // insights or more granular diagnostics.
-  optional uint32 vendor_error_code = 2;
+  optional uint32 vendor_diagnostic_code = 2;
 
   // Optional human-readable message providing additional context.
   string message = 3;

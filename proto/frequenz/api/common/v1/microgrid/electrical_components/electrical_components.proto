@@ -488,7 +488,7 @@ message ElectricalComponentDiagnostic {
 
   // Optional vendor-provided error code for the error, for vendor-specific
   // insights or more granular diagnostics.
-  optional uint32 vendor_error_code = 2;
+  optional uint32 vendor_diagnostic_code = 2;
 
   // Optional human-readable message providing additional context.
   string message = 3;
