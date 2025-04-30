@@ -1,3 +1,5 @@
+// protolint:disable MAX_LINE_LENGTH
+
 // Frequenz microgrid communication components definitions.
 //
 // Copyright:
@@ -10,6 +12,60 @@ syntax = "proto3";
 
 package frequenz.api.common.v1.microgrid.communication_components;
 
+// Enumerated diagnostic codes for communication components.
+//
+// These codes indicate common network- or device-level faults that may affect
+// connectivity.
+enum CommunicationComponentDiagnosticCode {
+  // Default value; no specific diagnostic is specified.
+  COMMUNICATION_COMPONENT_DIAGNOSTIC_CODE_UNSPECIFIED = 0;
+
+  // Component is unreachable (e.g., no heartbeat from device, network down).
+  COMMUNICATION_COMPONENT_DIAGNOSTIC_CODE_UNREACHABLE = 1;
+
+  // Configuration error detected (e.g., invalid VLAN, IP conflict).
+  COMMUNICATION_COMPONENT_DIAGNOSTIC_CODE_CONFIGURATION_ERR = 2;
+
+  // High packet loss detected over a sustained period.
+  COMMUNICATION_COMPONENT_DIAGNOSTIC_CODE_PACKET_LOSS = 3;
+
+  // Excessive latency observed (e.g., ping time above threshold).
+  COMMUNICATION_COMPONENT_DIAGNOSTIC_CODE_HIGH_LATENCY = 4;
+
+  // Hardware fault reported by device (e.g., port error, cable disconnected).
+  COMMUNICATION_COMPONENT_DIAGNOSTIC_CODE_HARDWARE_FAULT = 5;
+}
+
+// Represents an error or warning condition reported by a microgrid
+// communication component.
+//
+// This message extends a standardized diagnostic code with optional
+// vendor-specific codes and contextual information for troubleshooting.
+//
+// !!! example "Typical Communication Component Warning"
+//     ```json
+//     {
+//       "diagnosticCode": "COMMUNICATION_COMPONENT_DIAGNOSTIC_CODE_CONFIGURATION_ERR",
+//       "vendorErrorCode": 1002,
+//       "message": "VLAN mismatch detected on port 3"
+//     }
+//     ```
+//
+// !!! note "Vendor-Specific Codes"
+//     When available, `vendor_error_code` reflects manufacturer-defined error
+//     identifiers.
+//     These codes are vendor- and firmware-specific and must be interpreted
+//     using the vendor's official documentation.
+message CommunicationComponentDiagnostic {
+  // A standardized diagnostic code representing the category of the issue.
+  CommunicationComponentDiagnosticCode diagnostic_code = 1;
+
+  // Optional vendor-provided error code for more granular diagnostics.
+  optional uint32 vendor_error_code = 2;
+
+  // Human-readable message providing additional context.
+  string message = 3;
+}
 
 // `CommunicationComponent` represents a communication component within a
 // microgrid.
