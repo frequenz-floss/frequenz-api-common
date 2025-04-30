@@ -19,6 +19,7 @@
 - The enum `SensorErrorCode` has now been renamed to `SensorDiagnosticCode` to better reflect its shared usage with warnings and errors.
 - Added warnings to sensor `SensorState`.
 - Added a common `TimeIntervalFilter` message in `frequenz.api.common.v1.types` to standardize time interval filtering across APIs. This uses `start_time` (inclusive) and `end_time` (exclusive) fields, aligning with ISO 8601 and common programming conventions.
+- Added new message `CommunicationComponentDiagnostic` to represent warnings and errors in microgrid communication components.
 
 ## Bug Fixes
 
