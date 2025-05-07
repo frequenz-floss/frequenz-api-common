@@ -4377,9 +4377,9 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#frequenz.api.common.v1.microgrid.sensors.sensors_pb2.SensorDiagnostic.vendor_error_code" class="md-nav__link">
+  <a href="#frequenz.api.common.v1.microgrid.sensors.sensors_pb2.SensorDiagnostic.vendor_diagnostic_code" class="md-nav__link">
     <span class="md-ellipsis">
-      vendor_error_code
+      vendor_diagnostic_code
     </span>
   </a>
   
@@ -5570,9 +5570,9 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#frequenz.api.common.v1.microgrid.sensors.sensors_pb2.SensorDiagnostic.vendor_error_code" class="md-nav__link">
+  <a href="#frequenz.api.common.v1.microgrid.sensors.sensors_pb2.SensorDiagnostic.vendor_diagnostic_code" class="md-nav__link">
     <span class="md-ellipsis">
-      vendor_error_code
+      vendor_diagnostic_code
     </span>
   </a>
   
@@ -6811,19 +6811,19 @@ using the vendor's official documentation.</p>
 
 
 
-<h6 id="frequenz.api.common.v1.microgrid.sensors.sensors_pb2.SensorDiagnostic.vendor_error_code" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">vendor_error_code</span></code>
+<h6 id="frequenz.api.common.v1.microgrid.sensors.sensors_pb2.SensorDiagnostic.vendor_diagnostic_code" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">vendor_diagnostic_code</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
   </span>
 
-<a href="#frequenz.api.common.v1.microgrid.sensors.sensors_pb2.SensorDiagnostic.vendor_error_code" class="headerlink" title="Permanent link">¤</a></h6>
+<a href="#frequenz.api.common.v1.microgrid.sensors.sensors_pb2.SensorDiagnostic.vendor_diagnostic_code" class="headerlink" title="Permanent link">¤</a></h6>
 
 
     <div class="doc doc-contents ">
 
-        <p>Optional vendor-provided error code for the error, for vendor-specific
+        <p>Optional vendor-provided diagnostic code for the error, for vendor-specific
 insights or more granular diagnostics.</p>
 
     </div>
@@ -7097,13 +7097,13 @@ sensors.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 </div>
-<p>This list is expected to have errors if and only if the sensor is in
-   an error state.</p>
+<p>This list is treated as a set, and therefore its members will be unique,
+   i.e., no state will exist twice in this list.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 </div>
-<p>The list will contain unique members. No error will exist twice in
-   this list.</p>
+<p>This list is expected to have errors if and only if the sensor is in
+   an error state.</p>
 
     </div>
 
@@ -7151,8 +7151,14 @@ sensors.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 </div>
-<p>The list will contain unique members. No state will exist twice in
-   this list.</p>
+<p>This list is treated as a set, and therefore its members will be unique,
+   i.e., no state will exist twice in this list.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+</div>
+<p>If the state is <code>SENSOR_STATE_CODE_ERROR</code>, the sensor is in an error
+   state. In such cases, the <code>errors</code> field will be populated with the
+   list of errors.</p>
 
     </div>
 
@@ -7178,13 +7184,13 @@ sensors.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 </div>
-<p>This list is expected to have warnings if and only if the sensor is
-   reporting warnings.</p>
+<p>This list is treated as a set, and therefore its members will be unique,
+   i.e., no state will exist twice in this list.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 </div>
-<p>The list will contain unique members. No warning will exist twice in
-   this list.</p>
+<p>This list is expected to have warnings if and only if the sensor is
+   reporting warnings.</p>
 
     </div>
 

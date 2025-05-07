@@ -4493,9 +4493,9 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#frequenz.api.common.v1.microgrid.electrical_components.electrical_components_pb2.ElectricalComponentDiagnostic.vendor_error_code" class="md-nav__link">
+  <a href="#frequenz.api.common.v1.microgrid.electrical_components.electrical_components_pb2.ElectricalComponentDiagnostic.vendor_diagnostic_code" class="md-nav__link">
     <span class="md-ellipsis">
-      vendor_error_code
+      vendor_diagnostic_code
     </span>
   </a>
   
@@ -6665,9 +6665,9 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#frequenz.api.common.v1.microgrid.electrical_components.electrical_components_pb2.ElectricalComponentDiagnostic.vendor_error_code" class="md-nav__link">
+  <a href="#frequenz.api.common.v1.microgrid.electrical_components.electrical_components_pb2.ElectricalComponentDiagnostic.vendor_diagnostic_code" class="md-nav__link">
     <span class="md-ellipsis">
-      vendor_error_code
+      vendor_diagnostic_code
     </span>
   </a>
   
@@ -9297,14 +9297,14 @@ using the vendor's official documentation.</p>
 
 
 
-<h6 id="frequenz.api.common.v1.microgrid.electrical_components.electrical_components_pb2.ElectricalComponentDiagnostic.vendor_error_code" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">vendor_error_code</span></code>
+<h6 id="frequenz.api.common.v1.microgrid.electrical_components.electrical_components_pb2.ElectricalComponentDiagnostic.vendor_diagnostic_code" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">vendor_diagnostic_code</span></code>
 
   <span class="doc doc-labels">
       <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
   </span>
 
-<a href="#frequenz.api.common.v1.microgrid.electrical_components.electrical_components_pb2.ElectricalComponentDiagnostic.vendor_error_code" class="headerlink" title="Permanent link">¤</a></h6>
+<a href="#frequenz.api.common.v1.microgrid.electrical_components.electrical_components_pb2.ElectricalComponentDiagnostic.vendor_diagnostic_code" class="headerlink" title="Permanent link">¤</a></h6>
 
 
     <div class="doc doc-contents ">
@@ -9428,10 +9428,14 @@ component.</p>
         <p>List of critical errors currently affecting the component.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>This list is expected to be populated only when the component is in an
-error state.
-No duplicate error codes allowed.</p>
 </div>
+<p>This list is treated as a set, and therefore its members will be unique,
+   i.e., no state will exist twice in this list.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+</div>
+<p>This list is expected to have errors if and only if the electrical
+   component is in an error state.</p>
 
     </div>
 
@@ -9478,8 +9482,15 @@ No duplicate error codes allowed.</p>
         <p>List of operational states currently active for the component.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>The list must not contain duplicate state codes.</p>
 </div>
+<p>This list is treated as a set, and therefore its members will be unique,
+   i.e., no state will exist twice in this list.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+</div>
+<p>If the state is <code>ELECTRICAL_COMPONENT_STATE_CODE_ERROR</code>, then the
+   electrical component is in an error state. In such cases, the <code>errors</code>
+   field will be populated with the list of errors.</p>
 
     </div>
 
@@ -9504,8 +9515,12 @@ No duplicate error codes allowed.</p>
         <p>List of non-critical warnings detected for the component.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Warnings may be reported even when the component is operational.
-No duplicate warning codes allowed.</p>
+</div>
+<p>This list is treated as a set, and therefore its members will be unique,
+   i.e., no state will exist twice in this list.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Warnings may be reported even when the component is operational.</p>
 </div>
 
     </div>

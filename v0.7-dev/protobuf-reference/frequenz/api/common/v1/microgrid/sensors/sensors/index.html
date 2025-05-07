@@ -4952,10 +4952,10 @@ vendor-specific insights.</p>
 <td>A standardized error code representing the category of the issue.</td>
 </tr>
 <tr>
-<td>vendor_error_code</td>
+<td>vendor_diagnostic_code</td>
 <td><a href="#uint32">uint32</a></td>
 <td>optional</td>
-<td>Optional vendor-provided error code for the error, for vendor-specific insights or more granular diagnostics.</td>
+<td>Optional vendor-provided diagnostic code for the error, for vendor-specific insights or more granular diagnostics.</td>
 </tr>
 <tr>
 <td>message</td>
@@ -5025,13 +5025,14 @@ vendor-specific insights.</p>
 </tr>
 </tbody>
 </table>
-<p>!!! note The list will contain unique members. No state will exist twice in this list. |
+<p>!!! note This list is treated as a set, and therefore its members will be unique, i.e., no state will exist twice in this list.</p>
+<p>!!! note If the state is <code>SENSOR_STATE_CODE_ERROR</code>, the sensor is in an error state. In such cases, the <code>errors</code> field will be populated with the list of errors. |
 | warnings | <a href="#frequenz-api-common-v1-microgrid-sensors-SensorDiagnostic">SensorDiagnostic</a> | repeated | List of warnings for the microgrid sensor.</p>
-<p>!!! note This list is expected to have warnings if and only if the sensor is reporting warnings.</p>
-<p>!!! note The list will contain unique members. No warning will exist twice in this list. |
+<p>!!! note This list is treated as a set, and therefore its members will be unique, i.e., no state will exist twice in this list.</p>
+<p>!!! note This list is expected to have warnings if and only if the sensor is reporting warnings. |
 | errors | <a href="#frequenz-api-common-v1-microgrid-sensors-SensorDiagnostic">SensorDiagnostic</a> | repeated | List of errors for the microgrid sensor.</p>
-<p>!!! note This list is expected to have errors if and only if the sensor is in an error state.</p>
-<p>!!! note The list will contain unique members. No error will exist twice in this list. |</p>
+<p>!!! note This list is treated as a set, and therefore its members will be unique, i.e., no state will exist twice in this list.</p>
+<p>!!! note This list is expected to have errors if and only if the sensor is in an error state. |</p>
 <p><a name="frequenz-api-common-v1-microgrid-sensors-SensorCategory"></a></p>
 <h3 id="sensorcategory">SensorCategory<a class="headerlink" href="#sensorcategory" title="Permanent link">¤</a></h3>
 <p>Enumerated sensor categories.</p>

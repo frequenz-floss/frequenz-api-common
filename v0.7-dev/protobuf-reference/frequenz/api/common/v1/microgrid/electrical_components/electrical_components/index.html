@@ -5122,7 +5122,7 @@ vendor-specific insights.</p>
 <td>A standardized error code representing the category of the issue.</td>
 </tr>
 <tr>
-<td>vendor_error_code</td>
+<td>vendor_diagnostic_code</td>
 <td><a href="#uint32">uint32</a></td>
 <td>optional</td>
 <td>Optional vendor-provided error code for the error, for vendor-specific insights or more granular diagnostics.</td>
@@ -5162,11 +5162,14 @@ vendor-specific insights.</p>
 </tr>
 </tbody>
 </table>
-<p>!!! note The list must not contain duplicate state codes. |
+<p>!!! note This list is treated as a set, and therefore its members will be unique, i.e., no state will exist twice in this list.</p>
+<p>!!! note If the state is <code>ELECTRICAL_COMPONENT_STATE_CODE_ERROR</code>, then the electrical component is in an error state. In such cases, the <code>errors</code> field will be populated with the list of errors. |
 | warnings | <a href="#frequenz-api-common-v1-microgrid-electrical_components-ElectricalComponentDiagnostic">ElectricalComponentDiagnostic</a> | repeated | List of non-critical warnings detected for the component.</p>
-<p>!!! note Warnings may be reported even when the component is operational. No duplicate warning codes allowed. |
+<p>!!! note This list is treated as a set, and therefore its members will be unique, i.e., no state will exist twice in this list.</p>
+<p>!!! note Warnings may be reported even when the component is operational. |
 | errors | <a href="#frequenz-api-common-v1-microgrid-electrical_components-ElectricalComponentDiagnostic">ElectricalComponentDiagnostic</a> | repeated | List of critical errors currently affecting the component.</p>
-<p>!!! note This list is expected to be populated only when the component is in an error state. No duplicate error codes allowed. |</p>
+<p>!!! note This list is treated as a set, and therefore its members will be unique, i.e., no state will exist twice in this list.</p>
+<p>!!! note This list is expected to have errors if and only if the electrical component is in an error state. |</p>
 <p><a name="frequenz-api-common-v1-microgrid-electrical_components-MetricConfigBounds"></a></p>
 <h3 id="metricconfigbounds">MetricConfigBounds<a class="headerlink" href="#metricconfigbounds" title="Permanent link">¤</a></h3>
 <p>MetricConfigBounds describes a set of limits for a specific metric consisting
