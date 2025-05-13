@@ -23,17 +23,28 @@ enum CommunicationComponentDiagnosticCode {
   // Component is unreachable (e.g., no heartbeat from device, network down).
   COMMUNICATION_COMPONENT_DIAGNOSTIC_CODE_UNREACHABLE = 1;
 
+  // Communication component is unknown. This could happen in cases where the
+  // status could be read from the component, but it could not be identified
+  // as a known state.
+  COMMUNICATION_COMPONENT_DIAGNOSTIC_CODE_UNKNOWN = 2;
+
+  // Authentication error (e.g., invalid credentials, certificate issues).
+  COMMUNICATION_COMPONENT_DIAGNOSTIC_CODE_AUTHENTICATION_ERR = 3;
+
   // Configuration error detected (e.g., invalid VLAN, IP conflict).
-  COMMUNICATION_COMPONENT_DIAGNOSTIC_CODE_CONFIGURATION_ERR = 2;
+  COMMUNICATION_COMPONENT_DIAGNOSTIC_CODE_CONFIGURATION_ERR = 3;
 
   // High packet loss detected over a sustained period.
-  COMMUNICATION_COMPONENT_DIAGNOSTIC_CODE_PACKET_LOSS = 3;
+  COMMUNICATION_COMPONENT_DIAGNOSTIC_CODE_PACKET_LOSS = 4;
 
   // Excessive latency observed (e.g., ping time above threshold).
-  COMMUNICATION_COMPONENT_DIAGNOSTIC_CODE_HIGH_LATENCY = 4;
+  COMMUNICATION_COMPONENT_DIAGNOSTIC_CODE_HIGH_LATENCY = 5;
 
   // Hardware fault reported by device (e.g., port error, cable disconnected).
-  COMMUNICATION_COMPONENT_DIAGNOSTIC_CODE_HARDWARE_FAULT = 5;
+  COMMUNICATION_COMPONENT_DIAGNOSTIC_CODE_HARDWARE_GENERIC_FAULT = 6;
+
+  // Hardware fault due to overheating.
+  COMMUNICATION_COMPONENT_DIAGNOSTIC_CODE_OVER_TEMPERATURE = 7;
 }
 
 // Represents an error or warning condition reported by a microgrid
