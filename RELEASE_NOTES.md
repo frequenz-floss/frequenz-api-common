@@ -20,6 +20,7 @@
 - Added warnings to sensor `SensorState`.
 - Added a common `TimeIntervalFilter` message in `frequenz.api.common.v1.types` to standardize time interval filtering across APIs. This uses `start_time` (inclusive) and `end_time` (exclusive) fields, aligning with ISO 8601 and common programming conventions.
 - Added new message `CommunicationComponentDiagnostic` to represent warnings and errors in microgrid communication components.
+- Added new message `CommunicationComponentStateSnapshot` to represent the state of communication components.
 - Added new message definitions for streaming events (Deleted, Created, Updated)
 
 ## Bug Fixes
