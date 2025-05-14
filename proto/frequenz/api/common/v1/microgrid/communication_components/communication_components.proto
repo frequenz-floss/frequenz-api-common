@@ -12,6 +12,36 @@ syntax = "proto3";
 
 package frequenz.api.common.v1.microgrid.communication_components;
 
+import "google/protobuf/timestamp.proto";
+
+// Defines the high-level operational state of a communication component.
+// These codes can be used in a one-shot snapshot to show its current condition.
+enum CommunicationComponentStateCode {
+  // Default unset value.
+  COMMUNICATION_COMPONENT_STATE_CODE_UNSPECIFIED = 0;
+
+  // The component's internal status is unknown.
+  COMMUNICATION_COMPONENT_STATE_CODE_UNKNOWN = 1;
+
+  // The component is powered on and responding to network traffic.
+  COMMUNICATION_COMPONENT_STATE_CODE_ONLINE = 2;
+
+  // The component is powered off, unreachable, or administratively disabled.
+  COMMUNICATION_COMPONENT_STATE_CODE_OFFLINE = 3;
+
+  // The component is in the process of establishing connections.
+  COMMUNICATION_COMPONENT_STATE_CODE_CONNECTING = 4;
+
+  // The component is in the process of shutting down connections.
+  COMMUNICATION_COMPONENT_STATE_CODE_DISCONNECTING = 5;
+
+  // The component is undergoing maintenance (e.g., firmware upgrade).
+  COMMUNICATION_COMPONENT_STATE_CODE_MAINTENANCE = 6;
+
+  // The component is up but experiencing degraded performance (e.g., high packet loss).
+  COMMUNICATION_COMPONENT_STATE_CODE_DEGRADED = 7;
+}
+
 // Enumerated diagnostic codes for communication components.
 //
 // These codes indicate common network- or device-level faults that may affect
@@ -23,17 +53,59 @@ enum CommunicationComponentDiagnosticCode {
   // Component is unreachable (e.g., no heartbeat from device, network down).
   COMMUNICATION_COMPONENT_DIAGNOSTIC_CODE_UNREACHABLE = 1;
 
+  // Communication component is unknown. This could happen in cases where the
+  // status could be read from the component, but it could not be identified
+  // as a known state.
+  COMMUNICATION_COMPONENT_DIAGNOSTIC_CODE_UNKNOWN = 2;
+
+  // Authentication error (e.g., invalid credentials, certificate issues).
+  COMMUNICATION_COMPONENT_DIAGNOSTIC_CODE_AUTHENTICATION_ERR = 3;
+
   // Configuration error detected (e.g., invalid VLAN, IP conflict).
-  COMMUNICATION_COMPONENT_DIAGNOSTIC_CODE_CONFIGURATION_ERR = 2;
+  COMMUNICATION_COMPONENT_DIAGNOSTIC_CODE_CONFIGURATION_ERR = 4;
 
   // High packet loss detected over a sustained period.
-  COMMUNICATION_COMPONENT_DIAGNOSTIC_CODE_PACKET_LOSS = 3;
+  COMMUNICATION_COMPONENT_DIAGNOSTIC_CODE_PACKET_LOSS = 5;
 
   // Excessive latency observed (e.g., ping time above threshold).
-  COMMUNICATION_COMPONENT_DIAGNOSTIC_CODE_HIGH_LATENCY = 4;
+  COMMUNICATION_COMPONENT_DIAGNOSTIC_CODE_HIGH_LATENCY = 6;
 
   // Hardware fault reported by device (e.g., port error, cable disconnected).
-  COMMUNICATION_COMPONENT_DIAGNOSTIC_CODE_HARDWARE_FAULT = 5;
+  COMMUNICATION_COMPONENT_DIAGNOSTIC_CODE_HARDWARE_GENERIC_FAULT = 7;
+
+  // Hardware fault due to overheating.
+  COMMUNICATION_COMPONENT_DIAGNOSTIC_CODE_OVER_TEMPERATURE = 8;
+}
+
+// A single snapshot of a communication component's state, diagnostics, and timing.
+//
+// !!! note "snapshot semantics"
+//     all fields in this message represent the component's view at one point
+//     in time, so there is only a single `snapshot_time`. any parallel reads
+//     happening to produce this data are collapsed under that timestamp.
+message CommunicationComponentStateSnapshot {
+  // the utc time when this snapshot was taken.
+  google.protobuf.Timestamp snapshot_time = 1;
+
+  // one or more high-level state codes active at snapshot_time.
+  //
+  // !!! note
+  //     typical usage is a single state (e.g., online), but multiple may
+  //     apply (e.g., connecting + degraded) if that makes sense.
+  repeated CommunicationComponentStateCode states = 2;
+
+  // non-critical warnings detected for the component.
+  //
+  // !!! note
+  //     warnings may coexist with an online state, indicating potential
+  //     issues that do not prevent basic operation.
+  repeated CommunicationComponentDiagnostic warnings = 3;
+
+  // critical errors currently affecting the component.
+  //
+  // !!! note
+  //     an error state code should accompany entries here.
+  repeated CommunicationComponentDiagnostic errors = 4;
 }
 
 // Represents an error or warning condition reported by a microgrid
