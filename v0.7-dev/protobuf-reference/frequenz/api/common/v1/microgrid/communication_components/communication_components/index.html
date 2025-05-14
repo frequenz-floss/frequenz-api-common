@@ -1404,6 +1404,15 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#communicationcomponentstatesnapshot" class="md-nav__link">
+    <span class="md-ellipsis">
+      CommunicationComponentStateSnapshot
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#communicationcomponentcategory" class="md-nav__link">
     <span class="md-ellipsis">
       CommunicationComponentCategory
@@ -1416,6 +1425,15 @@
   <a href="#communicationcomponentdiagnosticcode" class="md-nav__link">
     <span class="md-ellipsis">
       CommunicationComponentDiagnosticCode
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#communicationcomponentstatecode" class="md-nav__link">
+    <span class="md-ellipsis">
+      CommunicationComponentStateCode
     </span>
   </a>
   
@@ -4625,6 +4643,15 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#communicationcomponentstatesnapshot" class="md-nav__link">
+    <span class="md-ellipsis">
+      CommunicationComponentStateSnapshot
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#communicationcomponentcategory" class="md-nav__link">
     <span class="md-ellipsis">
       CommunicationComponentCategory
@@ -4637,6 +4664,15 @@
   <a href="#communicationcomponentdiagnosticcode" class="md-nav__link">
     <span class="md-ellipsis">
       CommunicationComponentDiagnosticCode
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#communicationcomponentstatecode" class="md-nav__link">
+    <span class="md-ellipsis">
+      CommunicationComponentStateCode
     </span>
   </a>
   
@@ -4683,13 +4719,15 @@
 <p><a href="#frequenz_api_common_v1_microgrid_communication_components_communication_components-proto">frequenz/api/common/v1/microgrid/communication_components/communication_components.proto</a></p>
 <ul>
 <li><a href="#frequenz-api-common-v1-microgrid-communication_components-CommunicationComponent">CommunicationComponent</a></li>
+<li><a href="#frequenz-api-common-v1-microgrid-communication_components-CommunicationComponentDiagnostic">CommunicationComponentDiagnostic</a></li>
 <li>
-<p><a href="#frequenz-api-common-v1-microgrid-communication_components-CommunicationComponentDiagnostic">CommunicationComponentDiagnostic</a></p>
+<p><a href="#frequenz-api-common-v1-microgrid-communication_components-CommunicationComponentStateSnapshot">CommunicationComponentStateSnapshot</a></p>
 </li>
 <li>
 <p><a href="#frequenz-api-common-v1-microgrid-communication_components-CommunicationComponentCategory">CommunicationComponentCategory</a></p>
 </li>
 <li><a href="#frequenz-api-common-v1-microgrid-communication_components-CommunicationComponentDiagnosticCode">CommunicationComponentDiagnosticCode</a></li>
+<li><a href="#frequenz-api-common-v1-microgrid-communication_components-CommunicationComponentStateCode">CommunicationComponentStateCode</a></li>
 </ul>
 </li>
 <li>
@@ -4797,6 +4835,42 @@ vendor-specific codes and contextual information for troubleshooting.</p>
 </tr>
 </tbody>
 </table>
+<p><a name="frequenz-api-common-v1-microgrid-communication_components-CommunicationComponentStateSnapshot"></a></p>
+<h3 id="communicationcomponentstatesnapshot">CommunicationComponentStateSnapshot<a class="headerlink" href="#communicationcomponentstatesnapshot" title="Permanent link">¤</a></h3>
+<p>A single snapshot of a communication component&#39;s state, diagnostics, and timing.</p>
+<p>!!! note &#34;snapshot semantics&#34;
+    all fields in this message represent the component&#39;s view at one point
+    in time, so there is only a single <code>snapshot_time</code>. any parallel reads
+    happening to produce this data are collapsed under that timestamp.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>snapshot_time</td>
+<td><a href="#google-protobuf-Timestamp">google.protobuf.Timestamp</a></td>
+<td></td>
+<td>the utc time when this snapshot was taken.</td>
+</tr>
+<tr>
+<td>states</td>
+<td><a href="#frequenz-api-common-v1-microgrid-communication_components-CommunicationComponentStateCode">CommunicationComponentStateCode</a></td>
+<td>repeated</td>
+<td>one or more high-level state codes active at snapshot_time.</td>
+</tr>
+</tbody>
+</table>
+<p>!!! note typical usage is a single state (e.g., online), but multiple may apply (e.g., connecting &#43; degraded) if that makes sense. |
+| warnings | <a href="#frequenz-api-common-v1-microgrid-communication_components-CommunicationComponentDiagnostic">CommunicationComponentDiagnostic</a> | repeated | non-critical warnings detected for the component.</p>
+<p>!!! note warnings may coexist with an online state, indicating potential issues that do not prevent basic operation. |
+| errors | <a href="#frequenz-api-common-v1-microgrid-communication_components-CommunicationComponentDiagnostic">CommunicationComponentDiagnostic</a> | repeated | critical errors currently affecting the component.</p>
+<p>!!! note an error state code should accompany entries here. |</p>
 <p><a name="frequenz-api-common-v1-microgrid-communication_components-CommunicationComponentCategory"></a></p>
 <h3 id="communicationcomponentcategory">CommunicationComponentCategory<a class="headerlink" href="#communicationcomponentcategory" title="Permanent link">¤</a></h3>
 <p><code>CommunicationComponentCategory</code> enumerates possible types of communication
@@ -4851,24 +4925,94 @@ connectivity.</p>
 <td>Component is unreachable (e.g., no heartbeat from device, network down).</td>
 </tr>
 <tr>
-<td>COMMUNICATION_COMPONENT_DIAGNOSTIC_CODE_CONFIGURATION_ERR</td>
+<td>COMMUNICATION_COMPONENT_DIAGNOSTIC_CODE_UNKNOWN</td>
 <td>2</td>
+<td>Communication component is unknown. This could happen in cases where the status could be read from the component, but it could not be identified as a known state.</td>
+</tr>
+<tr>
+<td>COMMUNICATION_COMPONENT_DIAGNOSTIC_CODE_AUTHENTICATION_ERR</td>
+<td>3</td>
+<td>Authentication error (e.g., invalid credentials, certificate issues).</td>
+</tr>
+<tr>
+<td>COMMUNICATION_COMPONENT_DIAGNOSTIC_CODE_CONFIGURATION_ERR</td>
+<td>4</td>
 <td>Configuration error detected (e.g., invalid VLAN, IP conflict).</td>
 </tr>
 <tr>
 <td>COMMUNICATION_COMPONENT_DIAGNOSTIC_CODE_PACKET_LOSS</td>
-<td>3</td>
+<td>5</td>
 <td>High packet loss detected over a sustained period.</td>
 </tr>
 <tr>
 <td>COMMUNICATION_COMPONENT_DIAGNOSTIC_CODE_HIGH_LATENCY</td>
-<td>4</td>
+<td>6</td>
 <td>Excessive latency observed (e.g., ping time above threshold).</td>
 </tr>
 <tr>
-<td>COMMUNICATION_COMPONENT_DIAGNOSTIC_CODE_HARDWARE_FAULT</td>
-<td>5</td>
+<td>COMMUNICATION_COMPONENT_DIAGNOSTIC_CODE_HARDWARE_GENERIC_FAULT</td>
+<td>7</td>
 <td>Hardware fault reported by device (e.g., port error, cable disconnected).</td>
+</tr>
+<tr>
+<td>COMMUNICATION_COMPONENT_DIAGNOSTIC_CODE_OVER_TEMPERATURE</td>
+<td>8</td>
+<td>Hardware fault due to overheating.</td>
+</tr>
+</tbody>
+</table>
+<p><a name="frequenz-api-common-v1-microgrid-communication_components-CommunicationComponentStateCode"></a></p>
+<h3 id="communicationcomponentstatecode">CommunicationComponentStateCode<a class="headerlink" href="#communicationcomponentstatecode" title="Permanent link">¤</a></h3>
+<p>Defines the high-level operational state of a communication component.
+These codes can be used in a one-shot snapshot to show its current condition.</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Number</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>COMMUNICATION_COMPONENT_STATE_CODE_UNSPECIFIED</td>
+<td>0</td>
+<td>Default unset value.</td>
+</tr>
+<tr>
+<td>COMMUNICATION_COMPONENT_STATE_CODE_UNKNOWN</td>
+<td>1</td>
+<td>The component&#39;s internal status is unknown.</td>
+</tr>
+<tr>
+<td>COMMUNICATION_COMPONENT_STATE_CODE_ONLINE</td>
+<td>2</td>
+<td>The component is powered on and responding to network traffic.</td>
+</tr>
+<tr>
+<td>COMMUNICATION_COMPONENT_STATE_CODE_OFFLINE</td>
+<td>3</td>
+<td>The component is powered off, unreachable, or administratively disabled.</td>
+</tr>
+<tr>
+<td>COMMUNICATION_COMPONENT_STATE_CODE_CONNECTING</td>
+<td>4</td>
+<td>The component is in the process of establishing connections.</td>
+</tr>
+<tr>
+<td>COMMUNICATION_COMPONENT_STATE_CODE_DISCONNECTING</td>
+<td>5</td>
+<td>The component is in the process of shutting down connections.</td>
+</tr>
+<tr>
+<td>COMMUNICATION_COMPONENT_STATE_CODE_MAINTENANCE</td>
+<td>6</td>
+<td>The component is undergoing maintenance (e.g., firmware upgrade).</td>
+</tr>
+<tr>
+<td>COMMUNICATION_COMPONENT_STATE_CODE_DEGRADED</td>
+<td>7</td>
+<td>The component is up but experiencing degraded performance (e.g., high packet loss).</td>
 </tr>
 </tbody>
 </table>
