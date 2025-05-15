@@ -225,7 +225,7 @@ message SensorMetricSample {
 // !!! example
 //   Example output of a component data message:
 //   ```
-//    {
+//   {
 //      sensor_id: 13,
 //      metric_samples: [
 //        /* list of metrics for multiple timestamps */
@@ -247,9 +247,8 @@ message SensorMetricSample {
 //          errors: [],
 //        },
 //      ]
-//
-//    }
-//  ```
+//   }
+//   ```
 message SensorData {
   // The ID of the microgrid sensors.
   uint64 sensor_id = 1;
