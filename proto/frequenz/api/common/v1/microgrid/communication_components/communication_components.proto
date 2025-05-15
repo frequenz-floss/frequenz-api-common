@@ -145,7 +145,7 @@ message CommunicationComponent {
 //     ```json
 //     {
 //       "diagnosticCode": "COMMUNICATION_COMPONENT_DIAGNOSTIC_CODE_CONFIGURATION_ERR",
-//       "vendorErrorCode": 1002,
+//       "vendorDiagnosticCode": 1002,
 //       "message": "VLAN mismatch detected on port 3"
 //     }
 //     ```
