@@ -173,7 +173,7 @@ message CommunicationComponentDiagnostic {
 //     in time, so there is only a single `snapshot_time`. any parallel reads
 //     happening to produce this data are collapsed under that timestamp.
 message CommunicationComponentStateSnapshot {
-  // the utc time when this snapshot was taken.
+  // the UTC time when this snapshot was taken.
   google.protobuf.Timestamp snapshot_time = 1;
 
   // one or more high-level state codes active at snapshot_time.
