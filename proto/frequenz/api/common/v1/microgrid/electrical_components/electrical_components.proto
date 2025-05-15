@@ -87,22 +87,6 @@ enum ElectricalComponentCategory {
   ELECTRICAL_COMPONENT_CATEGORY_HVAC = 15;
 }
 
-// Metadata specific to a microgrid component.
-message ElectricalComponentCategoryMetadataVariant {
-  oneof metadata {
-    frequenz.api.common.v1.microgrid.electrical_components.Battery battery = 1;
-    frequenz.api.common.v1.microgrid.electrical_components.EvCharger
-      ev_charger = 2;
-    frequenz.api.common.v1.microgrid.electrical_components.Fuse fuse = 3;
-    frequenz.api.common.v1.microgrid.electrical_components.GridConnectionPoint
-      grid = 4;
-    frequenz.api.common.v1.microgrid.electrical_components.Inverter
-      inverter = 5;
-    frequenz.api.common.v1.microgrid.electrical_components.VoltageTransformer
-      voltage_transformer = 6;
-  }
-}
-
 // ElectricalComponentStatus defines the possible statuses for a component.
 //
 // !!! note
@@ -119,144 +103,6 @@ enum ElectricalComponentStatus {
 
   // The component is inactive.
   ELECTRICAL_COMPONENT_STATUS_INACTIVE = 2;
-}
-
-// Microgrid electrical component details.
-message ElectricalComponent {
-  // The component ID.
-  uint64 id = 1;
-
-  // Unique identifier of the parent microgrid_id.
-  uint64 microgrid_id = 2;
-
-  // The component name.
-  string name = 3;
-
-  // The component category. E.g., Inverter, Battery, etc.
-  ElectricalComponentCategory category = 4;
-
-  // The metadata specific to the component category type.
-  ElectricalComponentCategoryMetadataVariant category_type = 5;
-
-  // The component manufacturer.
-  string manufacturer = 6;
-
-  // The model name of the component.
-  string model_name = 7;
-
-  // The status of the component.
-  ElectricalComponentStatus status = 8;
-
-  // The operational lifetime of the component.
-  frequenz.api.common.v1.microgrid.Lifetime operational_lifetime = 9;
-
-  // List of rated bounds present for the component identified by Metric.
-  repeated MetricConfigBounds metric_config_bounds = 10;
-}
-
-// MetricConfigBounds describes a set of limits for a specific metric consisting
-// of a lower and upper bound for said metric.
-//
-// This can be used for example to specify an allowed range of power output
-// for a component.
-message MetricConfigBounds {
-  // Metric type the config bounds are for
-  frequenz.api.common.v1.metrics.Metric metric = 1;
-
-  // The set of bounds for the specified metric.
-  //
-  // This contains the lower and upper bounds for said metric.
-  // Sources these may be derived from include the component configuration,
-  // manufacturers limits, and limits of other devices.
-  frequenz.api.common.v1.metrics.Bounds config_bounds = 2;
-}
-
-// ElectricalComponentConnection describes a single electrical link between two
-// components within a microgrid, effectively representing the physical wiring
-// as viewed from the grid connection point, if one exists, or from the
-// islanding point, in case of an islanded microgrids.
-//
-// !!! note "Physical Representation"
-//     This message is not about data flow but rather about the physical
-//     electrical connections between components. Therefore, the IDs for the
-//     source and destination components correspond to the actual setup within
-//     the microgrid.
-//
-// !!! note "Direction"
-//     The direction of the connection follows the flow of current away from the
-//     grid connection point, or in case of islands, away from the islanding
-//     point. This direction is aligned with positive current according to the
-//     [Passive Sign Convention]
-//     (https://en.wikipedia.org/wiki/Passive_sign_convention).
-//
-// !!! info "Historical Data"
-//     The timestamps of when a connection was created and terminated allows for
-//     tracking the changes over time to a microgrid, providing insights into
-//     when and how the microgrid infrastructure has been modified.
-//
-message ElectricalComponentConnection {
-  // Unique identifier of the component where the connection originates. This is
-  // aligned with the direction of current flow away from the grid connection
-  // point, or in case of islands, away from the islanding point.
-  uint64 source_component_id = 1;
-
-  // Unique ID of the component where the connection terminates. This is the
-  // component towards which the current flows.
-  uint64 destination_component_id = 2;
-
-  // The operational lifetime of the connection.
-  frequenz.api.common.v1.microgrid.Lifetime operational_lifetime = 3;
-}
-
-// ElectricalComponentData message aggregates multiple metrics, operational
-// states, and errors, related to a specific microgrid component.
-//
-// !!! example
-//   Example output of a component data message:
-//   ```
-//    {
-//      ELECTRICAL_component_id: 13,
-//      metric_samples: [
-//        /* list of metrics for multiple timestamps */
-//        {
-//          sampled_at: "2023-10-01T00:00:00Z",
-//          metric: "DC_VOLTAGE_V",
-//          value: {},
-//          bounds: {},
-//        },
-//        {
-//          sampled_at: "2023-10-01T00:00:00Z",
-//          metric: "DC_VOLTAGE_V",
-//          value: {},
-//          bounds: {},
-//        }
-//      ],
-//      states: [
-//        /* list of states for multiple timestamps */
-//        {
-//          sampled_at: "2023-10-01T00:00:00Z",
-//          states: [],
-//          warnings: [],
-//          errors: [],
-//        },
-//        {
-//          sampled_at: "2023-10-01T00:00:00Z",
-//          states: [],
-//          warnings: [],
-//          errors: [],
-//        },
-//      ]
-//    }
-//  ```
-message ElectricalComponentData {
-  // The ID of the microgrid component.
-  uint64 component_id = 1;
-
-  // List of measurements for a metric of the specific microgrid component.
-  repeated frequenz.api.common.v1.metrics.MetricSample metric_samples = 2;
-
-  // List of states of a specific microgrid component.
-  repeated ElectricalComponentState states = 3;
 }
 
 // Enum to represent the various states that a component can be in.
@@ -455,6 +301,109 @@ enum ElectricalComponentDiagnosticCode {
   ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_RELAY_CYCLE_LIMIT_REACHED = 60;
 }
 
+// MetricConfigBounds describes a set of limits for a specific metric consisting
+// of a lower and upper bound for said metric.
+//
+// This can be used for example to specify an allowed range of power output
+// for a component.
+message MetricConfigBounds {
+  // Metric type the config bounds are for
+  frequenz.api.common.v1.metrics.Metric metric = 1;
+
+  // The set of bounds for the specified metric.
+  //
+  // This contains the lower and upper bounds for said metric.
+  // Sources these may be derived from include the component configuration,
+  // manufacturers limits, and limits of other devices.
+  frequenz.api.common.v1.metrics.Bounds config_bounds = 2;
+}
+
+// Metadata specific to a microgrid component.
+message ElectricalComponentCategoryMetadataVariant {
+  oneof metadata {
+    frequenz.api.common.v1.microgrid.electrical_components.Battery battery = 1;
+    frequenz.api.common.v1.microgrid.electrical_components.EvCharger
+      ev_charger = 2;
+    frequenz.api.common.v1.microgrid.electrical_components.Fuse fuse = 3;
+    frequenz.api.common.v1.microgrid.electrical_components.GridConnectionPoint
+      grid = 4;
+    frequenz.api.common.v1.microgrid.electrical_components.Inverter
+      inverter = 5;
+    frequenz.api.common.v1.microgrid.electrical_components.VoltageTransformer
+      voltage_transformer = 6;
+  }
+}
+
+// Microgrid electrical component details.
+message ElectricalComponent {
+  // The component ID.
+  uint64 id = 1;
+
+  // Unique identifier of the parent microgrid_id.
+  uint64 microgrid_id = 2;
+
+  // The component name.
+  string name = 3;
+
+  // The component category. E.g., Inverter, Battery, etc.
+  ElectricalComponentCategory category = 4;
+
+  // The metadata specific to the component category type.
+  ElectricalComponentCategoryMetadataVariant category_type = 5;
+
+  // The component manufacturer.
+  string manufacturer = 6;
+
+  // The model name of the component.
+  string model_name = 7;
+
+  // The status of the component.
+  ElectricalComponentStatus status = 8;
+
+  // The operational lifetime of the component.
+  frequenz.api.common.v1.microgrid.Lifetime operational_lifetime = 9;
+
+  // List of rated bounds present for the component identified by Metric.
+  repeated MetricConfigBounds metric_config_bounds = 10;
+}
+
+// ElectricalComponentConnection describes a single electrical link between two
+// components within a microgrid, effectively representing the physical wiring
+// as viewed from the grid connection point, if one exists, or from the
+// islanding point, in case of an islanded microgrids.
+//
+// !!! note "Physical Representation"
+//     This message is not about data flow but rather about the physical
+//     electrical connections between components. Therefore, the IDs for the
+//     source and destination components correspond to the actual setup within
+//     the microgrid.
+//
+// !!! note "Direction"
+//     The direction of the connection follows the flow of current away from the
+//     grid connection point, or in case of islands, away from the islanding
+//     point. This direction is aligned with positive current according to the
+//     [Passive Sign Convention]
+//     (https://en.wikipedia.org/wiki/Passive_sign_convention).
+//
+// !!! info "Historical Data"
+//     The timestamps of when a connection was created and terminated allows for
+//     tracking the changes over time to a microgrid, providing insights into
+//     when and how the microgrid infrastructure has been modified.
+//
+message ElectricalComponentConnection {
+  // Unique identifier of the component where the connection originates. This is
+  // aligned with the direction of current flow away from the grid connection
+  // point, or in case of islands, away from the islanding point.
+  uint64 source_component_id = 1;
+
+  // Unique ID of the component where the connection terminates. This is the
+  // component towards which the current flows.
+  uint64 destination_component_id = 2;
+
+  // The operational lifetime of the connection.
+  frequenz.api.common.v1.microgrid.Lifetime operational_lifetime = 3;
+}
+
 // Represents an error or warning condition reported by a microgrid electrical
 // component.
 //
@@ -532,4 +481,55 @@ message ElectricalComponentState {
   //    This list is expected to have errors if and only if the electrical
   //    component is in an error state.
   repeated ElectricalComponentDiagnostic errors = 4;
+}
+
+// ElectricalComponentData message aggregates multiple metrics, operational
+// states, and errors, related to a specific microgrid component.
+//
+// !!! example
+//   Example output of a component data message:
+//   ```
+//    {
+//      ELECTRICAL_component_id: 13,
+//      metric_samples: [
+//        /* list of metrics for multiple timestamps */
+//        {
+//          sampled_at: "2023-10-01T00:00:00Z",
+//          metric: "DC_VOLTAGE_V",
+//          value: {},
+//          bounds: {},
+//        },
+//        {
+//          sampled_at: "2023-10-01T00:00:00Z",
+//          metric: "DC_VOLTAGE_V",
+//          value: {},
+//          bounds: {},
+//        }
+//      ],
+//      states: [
+//        /* list of states for multiple timestamps */
+//        {
+//          sampled_at: "2023-10-01T00:00:00Z",
+//          states: [],
+//          warnings: [],
+//          errors: [],
+//        },
+//        {
+//          sampled_at: "2023-10-01T00:00:00Z",
+//          states: [],
+//          warnings: [],
+//          errors: [],
+//        },
+//      ]
+//    }
+//  ```
+message ElectricalComponentData {
+  // The ID of the microgrid component.
+  uint64 component_id = 1;
+
+  // List of measurements for a metric of the specific microgrid component.
+  repeated frequenz.api.common.v1.metrics.MetricSample metric_samples = 2;
+
+  // List of states of a specific microgrid component.
+  repeated ElectricalComponentState states = 3;
 }
