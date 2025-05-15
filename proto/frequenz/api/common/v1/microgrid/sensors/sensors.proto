@@ -42,31 +42,6 @@ enum SensorCategory {
   SENSOR_CATEGORY_GENERAL = 7;
 }
 
-// A sensor that measures a physical metric in the microgrid's surrounding
-// environment.
-message Sensor {
-  // A unique identifier for the sensor.
-  uint64 id = 1;
-
-  // Unique identifier of the parent microgrid_id.
-  uint64 microgrid_id = 2;
-
-  // An optional name for the sensor.
-  string name = 3;
-
-  // The category of the sensor.
-  SensorCategory category = 4;
-
-  // The sensor manufacturer.
-  string manufacturer = 5;
-
-  // The model name of the sensor.
-  string model_name = 6;
-
-  // The operational lifetime of the sensor.
-  frequenz.api.common.v1.microgrid.Lifetime operational_lifetime = 7;
-}
-
 // Enumrated sensor metrics.
 enum SensorMetric {
   // Unspecified.
@@ -107,46 +82,57 @@ enum SensorMetric {
   SENSOR_METRIC_DEW_POINT = 8;
 }
 
-// SensorData message aggregates multiple metrics, operational states, and
-// errors, related to a specific microgrid sensor.
-//
-// !!! example
-//   Example output of a component data message:
-//   ```
-//    {
-//      sensor_id: 13,
-//      metric_samples: [
-//        /* list of metrics for multiple timestamps */
-//        {
-//          sampled_at: "2023-10-01T00:00:00Z",
-//          metric: "METRIC_SENSOR_TEMPERATURE",
-//          value: metric_value_variant: {simple_metric: {value: 23.5},
-//        },
-//        {
-//          sampled_at: "2023-10-01T00:00:00Z",
-//          metric: "METRIC_SENSOR_RELATIVE_HUMIDITY",
-//          value: metric_value_variant: {simple_metric: {value: 23.5},
-//        }
-//      ],
-//      states: [
-//        {
-//          sampled_at: "2023-10-01T00:00:00Z",
-//          states: [],
-//          errors: [],
-//        },
-//      ]
-//
-//    }
-//  ```
-message SensorData {
-  // The ID of the microgrid sensors.
-  uint64 sensor_id = 1;
+// Enum to represent the various states that a sensor can be in.
+// This enum is unified across all sensor categories for consistency.
+enum SensorStateCode {
+  // Default value when the sensor state is not explicitly set.
+  // This is the zero value of the enum.
+  SENSOR_STATE_CODE_UNSPECIFIED = 0;
 
-  // List of measurements for a metric of the specific microgrid sensor.
-  repeated SensorMetricSample metric_samples = 2;
+  // The sensor is up and running.
+  SENSOR_STATE_CODE_ON = 1;
 
-  // List of states of a specific microgrid sensor.
-  repeated SensorState states = 3;
+  // The sensor is in an error state.
+  SENSOR_STATE_CODE_ERROR = 2;
+}
+
+// A representation of all possible warnings and errors that can occur in
+// sensors.
+enum SensorDiagnosticCode {
+  // Default value. No specific error is specified.
+  SENSOR_DIAGNOSTIC_CODE_UNSPECIFIED = 0;
+
+  // The sensor is reporting an unknown or an undefined error, and the sender
+  // cannot parse the sensor error to any of the variants below.
+  SENSOR_DIAGNOSTIC_CODE_UNKNOWN = 1;
+
+  // Error indicating an internal error within the sensor.
+  SENSOR_DIAGNOSTIC_CODE_INTERNAL = 2;
+}
+
+// A sensor that measures a physical metric in the microgrid's surrounding
+// environment.
+message Sensor {
+  // A unique identifier for the sensor.
+  uint64 id = 1;
+
+  // Unique identifier of the parent microgrid_id.
+  uint64 microgrid_id = 2;
+
+  // An optional name for the sensor.
+  string name = 3;
+
+  // The category of the sensor.
+  SensorCategory category = 4;
+
+  // The sensor manufacturer.
+  string manufacturer = 5;
+
+  // The model name of the sensor.
+  string model_name = 6;
+
+  // The operational lifetime of the sensor.
+  frequenz.api.common.v1.microgrid.Lifetime operational_lifetime = 7;
 }
 
 // Represents an error or warning condition reported by a microgrid sensor.
@@ -221,34 +207,6 @@ message SensorState {
   repeated SensorDiagnostic errors = 4;
 }
 
-// Enum to represent the various states that a sensor can be in.
-// This enum is unified across all sensor categories for consistency.
-enum SensorStateCode {
-  // Default value when the sensor state is not explicitly set.
-  // This is the zero value of the enum.
-  SENSOR_STATE_CODE_UNSPECIFIED = 0;
-
-  // The sensor is up and running.
-  SENSOR_STATE_CODE_ON = 1;
-
-  // The sensor is in an error state.
-  SENSOR_STATE_CODE_ERROR = 2;
-}
-
-// A representation of all possible warnings and errors that can occur in
-// sensors.
-enum SensorDiagnosticCode {
-  // Default value. No specific error is specified.
-  SENSOR_DIAGNOSTIC_CODE_UNSPECIFIED = 0;
-
-  // The sensor is reporting an unknown or an undefined error, and the sender
-  // cannot parse the sensor error to any of the variants below.
-  SENSOR_DIAGNOSTIC_CODE_UNKNOWN = 1;
-
-  // Error indicating an internal error within the sensor.
-  SENSOR_DIAGNOSTIC_CODE_INTERNAL = 2;
-}
-
 // Representation of a sampled sensor metric along with its value.
 message SensorMetricSample {
   // The UTC timestamp of when the metric was sampled.
@@ -260,3 +218,45 @@ message SensorMetricSample {
   // The value of the sampled metric.
   frequenz.api.common.v1.metrics.MetricValueVariant value = 3;
 }
+
+// SensorData message aggregates multiple metrics, operational states, and
+// errors, related to a specific microgrid sensor.
+//
+// !!! example
+//   Example output of a component data message:
+//   ```
+//   {
+//      sensor_id: 13,
+//      metric_samples: [
+//        /* list of metrics for multiple timestamps */
+//        {
+//          sampled_at: "2023-10-01T00:00:00Z",
+//          metric: "METRIC_SENSOR_TEMPERATURE",
+//          value: metric_value_variant: {simple_metric: {value: 23.5},
+//        },
+//        {
+//          sampled_at: "2023-10-01T00:00:00Z",
+//          metric: "METRIC_SENSOR_RELATIVE_HUMIDITY",
+//          value: metric_value_variant: {simple_metric: {value: 23.5},
+//        }
+//      ],
+//      states: [
+//        {
+//          sampled_at: "2023-10-01T00:00:00Z",
+//          states: [],
+//          errors: [],
+//        },
+//      ]
+//   }
+//   ```
+message SensorData {
+  // The ID of the microgrid sensors.
+  uint64 sensor_id = 1;
+
+  // List of measurements for a metric of the specific microgrid sensor.
+  repeated SensorMetricSample metric_samples = 2;
+
+  // List of states of a specific microgrid sensor.
+  repeated SensorState states = 3;
+}
+
