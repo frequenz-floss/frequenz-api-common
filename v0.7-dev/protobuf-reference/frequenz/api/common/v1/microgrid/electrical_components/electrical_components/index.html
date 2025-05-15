@@ -4966,20 +4966,20 @@ components within a microgrid, effectively representing the physical wiring
 as viewed from the grid connection point, if one exists, or from the
 islanding point, in case of an islanded microgrids.</p>
 <p>!!! note &#34;Physical Representation&#34;
-    This message is not about data flow but rather about the physical
-    electrical connections between components. Therefore, the IDs for the
-    source and destination components correspond to the actual setup within
-    the microgrid.</p>
+    This message is not about data flow but rather about the physical
+    electrical connections between components. Therefore, the IDs for the
+    source and destination components correspond to the actual setup within
+    the microgrid.</p>
 <p>!!! note &#34;Direction&#34;
-    The direction of the connection follows the flow of current away from the
-    grid connection point, or in case of islands, away from the islanding
-    point. This direction is aligned with positive current according to the
-    [Passive Sign Convention]
-    (https://en.wikipedia.org/wiki/Passive_sign_convention).</p>
+    The direction of the connection follows the flow of current away from the
+    grid connection point, or in case of islands, away from the islanding
+    point. This direction is aligned with positive current according to the
+    [Passive Sign Convention]
+    (https://en.wikipedia.org/wiki/Passive_sign_convention).</p>
 <p>!!! info &#34;Historical Data&#34;
-    The timestamps of when a connection was created and terminated allows for
-    tracking the changes over time to a microgrid, providing insights into
-    when and how the microgrid infrastructure has been modified.</p>
+    The timestamps of when a connection was created and terminated allows for
+    tracking the changes over time to a microgrid, providing insights into
+    when and how the microgrid infrastructure has been modified.</p>
 <table>
 <thead>
 <tr>
@@ -5018,7 +5018,7 @@ states, and errors, related to a specific microgrid component.</p>
 <p class="admonition-title">Example</p>
 </div>
 <p>Example output of a component data message:
-  <code>{
+  <code>{
      ELECTRICAL_component_id: 13,
      metric_samples: [
        /* list of metrics for multiple timestamps */
