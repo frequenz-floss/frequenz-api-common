@@ -23,6 +23,7 @@
 - Added new message `CommunicationComponentStateSnapshot` to represent the state of communication components.
 - Added new message definitions for streaming events (Deleted, Created, Updated)
 - Remove unnecessary gap in numbering in the `ElectricalComponentCategory` enum.
+- Renumber variants in the `Metric` enum to remove unnecessary gaps.
 
 ## Bug Fixes
 
