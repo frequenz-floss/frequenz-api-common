@@ -22,6 +22,7 @@
 - Added new message `CommunicationComponentDiagnostic` to represent warnings and errors in microgrid communication components.
 - Added new message `CommunicationComponentStateSnapshot` to represent the state of communication components.
 - Added new message definitions for streaming events (Deleted, Created, Updated)
+- Remove unnecessary gap in numbering in the `ElectricalComponentCategory` enum.
 
 ## Bug Fixes
 
