@@ -6,7 +6,7 @@
 
 ## Upgrading
 
-<!-- Here goes notes on how to upgrade from previous versions, including deprecations and what they should be replaced with -->
+- The `ElectricalComponentStatus` enum has ben removed in favour of the `ElectricalComponentControlMode` enum.
 
 ## New Features
 
