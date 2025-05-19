@@ -416,7 +416,7 @@ message ElectricalComponentConnection {
 //     {
 //       "diagnosticCode":
 //           "ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_OVERTEMPERATURE",
-//       "vendorErrorCode": 2003,
+//       "vendorDiagnosticCode": 2003,
 //       "message": "Temperature sensor 3 reported 61.5°C (limit: 60°C)"
 //     }
 //     ```
