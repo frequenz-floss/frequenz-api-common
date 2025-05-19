@@ -38,17 +38,17 @@ def test_module_import_metrics_bounds() -> None:
     assert bounds_pb2_grpc is not None
 
 
-def test_module_import_metrics_metric_sample() -> None:
+def test_module_import_metrics_metrics() -> None:
     """Test that the modules can be imported."""
     # pylint: disable=import-outside-toplevel
-    from frequenz.api.common.v1.metrics import metric_sample_pb2
+    from frequenz.api.common.v1.metrics import metrics_pb2
 
-    assert metric_sample_pb2 is not None
+    assert metrics_pb2 is not None
 
     # pylint: disable=import-outside-toplevel
-    from frequenz.api.common.v1.metrics import metric_sample_pb2_grpc
+    from frequenz.api.common.v1.metrics import metrics_pb2_grpc
 
-    assert metric_sample_pb2_grpc is not None
+    assert metrics_pb2_grpc is not None
 
 
 def test_module_import_grid() -> None:
