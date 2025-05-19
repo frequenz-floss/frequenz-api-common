@@ -1569,6 +1569,15 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#electricalcomponentcontrolmode" class="md-nav__link">
+    <span class="md-ellipsis">
+      ElectricalComponentControlMode
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#electricalcomponentdiagnosticcode" class="md-nav__link">
     <span class="md-ellipsis">
       ElectricalComponentDiagnosticCode
@@ -1581,15 +1590,6 @@
   <a href="#electricalcomponentstatecode" class="md-nav__link">
     <span class="md-ellipsis">
       ElectricalComponentStateCode
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#electricalcomponentstatus" class="md-nav__link">
-    <span class="md-ellipsis">
-      ElectricalComponentStatus
     </span>
   </a>
   
@@ -4742,6 +4742,15 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#electricalcomponentcontrolmode" class="md-nav__link">
+    <span class="md-ellipsis">
+      ElectricalComponentControlMode
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#electricalcomponentdiagnosticcode" class="md-nav__link">
     <span class="md-ellipsis">
       ElectricalComponentDiagnosticCode
@@ -4754,15 +4763,6 @@
   <a href="#electricalcomponentstatecode" class="md-nav__link">
     <span class="md-ellipsis">
       ElectricalComponentStateCode
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#electricalcomponentstatus" class="md-nav__link">
-    <span class="md-ellipsis">
-      ElectricalComponentStatus
     </span>
   </a>
   
@@ -4820,9 +4820,9 @@
 <li>
 <p><a href="#frequenz-api-common-v1-microgrid-electrical_components-ElectricalComponentCategory">ElectricalComponentCategory</a></p>
 </li>
+<li><a href="#frequenz-api-common-v1-microgrid-electrical_components-ElectricalComponentControlMode">ElectricalComponentControlMode</a></li>
 <li><a href="#frequenz-api-common-v1-microgrid-electrical_components-ElectricalComponentDiagnosticCode">ElectricalComponentDiagnosticCode</a></li>
 <li><a href="#frequenz-api-common-v1-microgrid-electrical_components-ElectricalComponentStateCode">ElectricalComponentStateCode</a></li>
-<li><a href="#frequenz-api-common-v1-microgrid-electrical_components-ElectricalComponentStatus">ElectricalComponentStatus</a></li>
 </ul>
 </li>
 <li>
@@ -4889,10 +4889,10 @@
 <td>The model name of the component.</td>
 </tr>
 <tr>
-<td>status</td>
-<td><a href="#frequenz-api-common-v1-microgrid-electrical_components-ElectricalComponentStatus">ElectricalComponentStatus</a></td>
+<td>control_mode</td>
+<td><a href="#frequenz-api-common-v1-microgrid-electrical_components-ElectricalComponentControlMode">ElectricalComponentControlMode</a></td>
 <td></td>
-<td>The status of the component.</td>
+<td>The control mode of the component.</td>
 </tr>
 <tr>
 <td>operational_lifetime</td>
@@ -5290,6 +5290,65 @@ for a component.</p>
 </tr>
 </tbody>
 </table>
+<p><a name="frequenz-api-common-v1-microgrid-electrical_components-ElectricalComponentControlMode"></a></p>
+<h3 id="electricalcomponentcontrolmode">ElectricalComponentControlMode<a class="headerlink" href="#electricalcomponentcontrolmode" title="Permanent link">¤</a></h3>
+<p><code>ElectricalComponentControlMode</code> explicitly defines whether an electrical
+component is intended to be active (enabled) or inactive (disabled). This
+intentional setting directly determines component availability to downstream
+agents, applications, and services.</p>
+<p>!!! note &#34;Control Mode &amp; Component Availability&#34;
+    The Control Mode explicitly represents the user&#39;s or automation&#39;s
+    intention to make the component either ACTIVE or INACTIVE. This directly
+    impacts availability:
+    - ACTIVE indicates the component is intended to be available and usable
+      by downstream agents and services.
+    - INACTIVE indicates the component is intended to be unavailable for use
+      by downstream agents and services.</p>
+<p>!!! note &#34;Relationship with Operational State&#34;
+    Control Mode explicitly represents intention, distinct from the
+    component&#39;s actual internal Operational State.
+    Operational State is independently reported by the component hardware
+    (e.g., READY, CHARGING, DISCHARGING, ERROR).</p>
+<p>!!! caution &#34;Immediate Operational Impact&#34;
+    Changing the Control Mode of an electrical component (e.g., via the
+    Microgrid API) takes immediate effect on its availability to downstream
+    agents and services. Setting a component to <code>INACTIVE</code> can thus instantly
+    interrupt ongoing operations or cause service disruptions. Setting a
+    component to <code>ACTIVE</code> may immediately connect it with other components,
+    potentially causing electrical damage. Therefore, ensure changes are
+    coordinated or planned appropriately to avoid unintended impact and/or
+    damages.</p>
+<p>!!! example &#34;Control Mode Change Impact&#34;
+    If a battery component&#39;s Control Mode is switched from <code>ACTIVE</code> to
+    <code>INACTIVE</code>, it immediately becomes unavailable to downstream
+    services and agents, potentially disrupting scheduled
+    charging/discharging cycles.</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Number</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ELECTRICAL_COMPONENT_CONTROL_MODE_UNSPECIFIED</td>
+<td>0</td>
+<td>The control mode is unspecified (should never be explicitly used).</td>
+</tr>
+<tr>
+<td>ELECTRICAL_COMPONENT_CONTROL_MODE_ACTIVE</td>
+<td>1</td>
+<td>The component is explicitly enabled and intended to be available for downstream usage.</td>
+</tr>
+<tr>
+<td>ELECTRICAL_COMPONENT_CONTROL_MODE_INACTIVE</td>
+<td>2</td>
+<td>The component is explicitly disabled and intended to be unavailable for downstream usage.</td>
+</tr>
+</tbody>
+</table>
 <p><a name="frequenz-api-common-v1-microgrid-electrical_components-ElectricalComponentDiagnosticCode"></a></p>
 <h3 id="electricalcomponentdiagnosticcode">ElectricalComponentDiagnosticCode<a class="headerlink" href="#electricalcomponentdiagnosticcode" title="Permanent link">¤</a></h3>
 <p>A representation of all possible diagnostic codes that can occur for
@@ -5599,41 +5658,6 @@ This enum is unified across all component categories for consistency.</p>
 <td>ELECTRICAL_COMPONENT_STATE_CODE_PRECHARGER_CLOSED</td>
 <td>42</td>
 <td>The precharger circuit is closed, allowing full current to flow to the main circuit.</td>
-</tr>
-</tbody>
-</table>
-<p><a name="frequenz-api-common-v1-microgrid-electrical_components-ElectricalComponentStatus"></a></p>
-<h3 id="electricalcomponentstatus">ElectricalComponentStatus<a class="headerlink" href="#electricalcomponentstatus" title="Permanent link">¤</a></h3>
-<p>ElectricalComponentStatus defines the possible statuses for a component.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>The status indicates the status set by the user via the user interface.
-The status is not yet included in the Component messages and should be
-added.</p>
-</div>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Number</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>ELECTRICAL_COMPONENT_STATUS_UNSPECIFIED</td>
-<td>0</td>
-<td>The status is unspecified. This should not be used.</td>
-</tr>
-<tr>
-<td>ELECTRICAL_COMPONENT_STATUS_ACTIVE</td>
-<td>1</td>
-<td>The component is active.</td>
-</tr>
-<tr>
-<td>ELECTRICAL_COMPONENT_STATUS_INACTIVE</td>
-<td>2</td>
-<td>The component is inactive.</td>
 </tr>
 </tbody>
 </table>
