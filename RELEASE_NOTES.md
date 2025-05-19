@@ -6,7 +6,7 @@
 
 ## Upgrading
 
-<!-- Here goes notes on how to upgrade from previous versions, including deprecations and what they should be replaced with -->
+- The `ElectricalComponentStatus` enum has ben removed in favour of the `ElectricalComponentControlMode` enum.
 
 ## New Features
 
@@ -24,6 +24,7 @@
 - Added new message definitions for streaming events (Deleted, Created, Updated)
 - Remove unnecessary gap in numbering in the `ElectricalComponentCategory` enum.
 - Renumber variants in the `Metric` enum to remove unnecessary gaps.
+- Added a new enum `ElectricalComponentControlMode` to define control modes for electrical components.
 
 ## Bug Fixes
 
