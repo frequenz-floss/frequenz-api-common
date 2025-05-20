@@ -159,8 +159,8 @@ message CommunicationComponentDiagnostic {
   // A standardized diagnostic code representing the category of the issue.
   CommunicationComponentDiagnosticCode diagnostic_code = 1;
 
-  // Optional vendor-provided error code for more granular diagnostics.
-  optional uint32 vendor_error_code = 2;
+  // Optional vendor-provided code for more granular diagnostics.
+  optional uint32 vendor_diagnostic_code = 2;
 
   // Human-readable message providing additional context.
   string message = 3;
