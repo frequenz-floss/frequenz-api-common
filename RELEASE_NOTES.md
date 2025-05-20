@@ -31,6 +31,8 @@
 - A new inverter type `INVERTER_TYPE_WIND_TURBINE` has been added to the `InverterType` enum.
 - Renamed `ComponentCategoryMetadataVariant` to `ElectricalComponentCategorySpecificInfo`.
 - Renamed field `ElectricalComponent.category_type` to `ElectricalComponent.category_specific_info` to better reflect its purpose.
+- Renamed `ElectricalComponentState` to `ElectricalComponentStateSnapshot` to better reflect its purpose.
+- Renamed `SensorState` to `SensorStateSnapshot` to better reflect its purpose.
 
 ## Bug Fixes
 

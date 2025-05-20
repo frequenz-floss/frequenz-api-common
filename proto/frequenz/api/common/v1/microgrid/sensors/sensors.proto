@@ -168,7 +168,7 @@ message SensorDiagnostic {
 }
 
 // Representation of a sensor state and errors.
-message SensorState {
+message SensorStateSnapshot {
   // The time at which the state was sampled.
   google.protobuf.Timestamp sampled_at = 1;
 
@@ -257,6 +257,6 @@ message SensorData {
   repeated SensorMetricSample metric_samples = 2;
 
   // List of states of a specific microgrid sensor.
-  repeated SensorState states = 3;
+  repeated SensorStateSnapshot states = 3;
 }
 
