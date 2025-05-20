@@ -349,8 +349,8 @@ message MetricConfigBounds {
 }
 
 // Metadata specific to a microgrid component.
-message ElectricalComponentCategoryMetadataVariant {
-  oneof metadata {
+message ElectricalComponentCategorySpecificInfo {
+  oneof kind {
     frequenz.api.common.v1.microgrid.electrical_components.Battery battery = 1;
     frequenz.api.common.v1.microgrid.electrical_components.EvCharger
       ev_charger = 2;
@@ -379,7 +379,7 @@ message ElectricalComponent {
   ElectricalComponentCategory category = 4;
 
   // The metadata specific to the component category type.
-  ElectricalComponentCategoryMetadataVariant category_type = 5;
+  ElectricalComponentCategorySpecificInfo category_specific_info = 5;
 
   // The component manufacturer.
   string manufacturer = 6;
