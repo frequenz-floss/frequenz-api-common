@@ -23,6 +23,9 @@ enum InverterType {
 
   // Hybrid inverter.
   INVERTER_TYPE_HYBRID = 3;
+
+  // Wind turbine inverter.
+  INVERTER_TYPE_WIND_TURBINE = 4;
 }
 
 // A representation of an inverter.
