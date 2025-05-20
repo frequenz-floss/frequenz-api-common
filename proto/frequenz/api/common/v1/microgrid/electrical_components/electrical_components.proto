@@ -30,7 +30,7 @@ enum ElectricalComponentCategory {
   ELECTRICAL_COMPONENT_CATEGORY_UNSPECIFIED = 0;
 
   // The point where the local microgrid is connected to the grid.
-  ELECTRICAL_COMPONENT_CATEGORY_GRID = 1;
+  ELECTRICAL_COMPONENT_CATEGORY_GRID_CONNECTION_POINT = 1;
 
   // A meter, for measuring electrical metrics, e.g., current, voltage, etc.
   ELECTRICAL_COMPONENT_CATEGORY_METER = 2;
@@ -356,7 +356,7 @@ message ElectricalComponentCategoryMetadataVariant {
       ev_charger = 2;
     frequenz.api.common.v1.microgrid.electrical_components.Fuse fuse = 3;
     frequenz.api.common.v1.microgrid.electrical_components.GridConnectionPoint
-      grid = 4;
+      grid_connection_point = 4;
     frequenz.api.common.v1.microgrid.electrical_components.Inverter
       inverter = 5;
     frequenz.api.common.v1.microgrid.electrical_components.VoltageTransformer
