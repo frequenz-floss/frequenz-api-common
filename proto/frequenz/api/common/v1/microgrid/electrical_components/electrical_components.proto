@@ -475,7 +475,7 @@ message ElectricalComponentDiagnostic {
 
 // Representation of a component state, warnings, and errors.
 message ElectricalComponentStateSnapshot {
-  // The time at which the state was sampled.
+  // The UTC time when the state was originally captured.
   google.protobuf.Timestamp origin_time = 1;
 
 
