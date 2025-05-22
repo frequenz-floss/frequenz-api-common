@@ -33,6 +33,8 @@
 - Renamed field `ElectricalComponent.category_type` to `ElectricalComponent.category_specific_info` to better reflect its purpose.
 - Renamed `ElectricalComponentState` to `ElectricalComponentStateSnapshot` to better reflect its purpose.
 - Renamed `SensorState` to `SensorStateSnapshot` to better reflect its purpose.
+- Renamed `sampled_at` timestamps for state snapshots to `origin_time`.
+- Renamed `sampled_at` timestamps for metric samples to `sample_time`.
 
 ## Bug Fixes
 

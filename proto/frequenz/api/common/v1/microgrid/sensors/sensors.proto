@@ -169,8 +169,8 @@ message SensorDiagnostic {
 
 // Representation of a sensor state and errors.
 message SensorStateSnapshot {
-  // The time at which the state was sampled.
-  google.protobuf.Timestamp sampled_at = 1;
+  // The UTC time when the state was originally captured.
+  google.protobuf.Timestamp origin_time = 1;
 
   // List of states of the microgrid sensor.
   //
@@ -210,7 +210,7 @@ message SensorStateSnapshot {
 // Representation of a sampled sensor metric along with its value.
 message SensorMetricSample {
   // The UTC timestamp of when the metric was sampled.
-  google.protobuf.Timestamp sampled_at = 1;
+  google.protobuf.Timestamp sample_time = 1;
 
   // The metric that was sampled.
   frequenz.api.common.v1.metrics.Metric metric = 2;
@@ -230,19 +230,19 @@ message SensorMetricSample {
 //      metric_samples: [
 //        /* list of metrics for multiple timestamps */
 //        {
-//          sampled_at: "2023-10-01T00:00:00Z",
+//          sample_time: "2023-10-01T00:00:00Z",
 //          metric: "METRIC_SENSOR_TEMPERATURE",
 //          value: metric_value_variant: {simple_metric: {value: 23.5},
 //        },
 //        {
-//          sampled_at: "2023-10-01T00:00:00Z",
+//          sample_time: "2023-10-01T00:00:00Z",
 //          metric: "METRIC_SENSOR_RELATIVE_HUMIDITY",
 //          value: metric_value_variant: {simple_metric: {value: 23.5},
 //        }
 //      ],
 //      states: [
 //        {
-//          sampled_at: "2023-10-01T00:00:00Z",
+//          sample_time: "2023-10-01T00:00:00Z",
 //          states: [],
 //          errors: [],
 //        },

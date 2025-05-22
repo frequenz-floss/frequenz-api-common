@@ -475,8 +475,8 @@ message ElectricalComponentDiagnostic {
 
 // Representation of a component state, warnings, and errors.
 message ElectricalComponentStateSnapshot {
-  // The time at which the state was sampled.
-  google.protobuf.Timestamp sampled_at = 1;
+  // The UTC time when the state was originally captured.
+  google.protobuf.Timestamp origin_time = 1;
 
 
   // List of operational states currently active for the component.
@@ -524,13 +524,13 @@ message ElectricalComponentStateSnapshot {
 //      metric_samples: [
 //        /* list of metrics for multiple timestamps */
 //        {
-//          sampled_at: "2023-10-01T00:00:00Z",
+//          sample_time: "2023-10-01T00:00:00Z",
 //          metric: "DC_VOLTAGE_V",
 //          value: {},
 //          bounds: {},
 //        },
 //        {
-//          sampled_at: "2023-10-01T00:00:00Z",
+//          sample_time: "2023-10-01T00:00:00Z",
 //          metric: "DC_VOLTAGE_V",
 //          value: {},
 //          bounds: {},
@@ -539,13 +539,13 @@ message ElectricalComponentStateSnapshot {
 //      states: [
 //        /* list of states for multiple timestamps */
 //        {
-//          sampled_at: "2023-10-01T00:00:00Z",
+//          sample_time: "2023-10-01T00:00:00Z",
 //          states: [],
 //          warnings: [],
 //          errors: [],
 //        },
 //        {
-//          sampled_at: "2023-10-01T00:00:00Z",
+//          sample_time: "2023-10-01T00:00:00Z",
 //          states: [],
 //          warnings: [],
 //          errors: [],
