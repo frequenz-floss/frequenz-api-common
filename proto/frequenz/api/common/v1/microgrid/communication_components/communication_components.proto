@@ -174,7 +174,7 @@ message CommunicationComponentDiagnostic {
 //     happening to produce this data are collapsed under that timestamp.
 message CommunicationComponentStateSnapshot {
   // The UTC time when the state was originally captured.
-  google.protobuf.Timestamp snapshot_time = 1;
+  google.protobuf.Timestamp origin_time = 1;
 
   // one or more high-level state codes active at snapshot_time.
   //
