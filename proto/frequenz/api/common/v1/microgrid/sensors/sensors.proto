@@ -42,46 +42,6 @@ enum SensorCategory {
   SENSOR_CATEGORY_GENERAL = 7;
 }
 
-// Enumrated sensor metrics.
-enum SensorMetric {
-  // Unspecified.
-  SENSOR_METRIC_UNSPECIFIED = 0;
-
-  // Temperature.
-  // In Celsius (°C).
-  SENSOR_METRIC_TEMPERATURE = 1;
-
-  // Humidity
-  // In percentage (%).
-  SENSOR_METRIC_HUMIDITY = 2;
-
-  // Pressure
-  // In Pascal (Pa).
-  SENSOR_METRIC_PRESSURE = 3;
-
-  // Irradiance / Radiation flux
-  // In watts per square meter (W / m^2).
-  SENSOR_METRIC_IRRADIANCE = 4;
-
-  // Velocity
-  // In meters per second (m / s).
-  SENSOR_METRIC_VELOCITY = 5;
-
-  // Acceleration.
-  // In meters per second per second (m / s^2)
-  SENSOR_METRIC_ACCELERATION = 6;
-
-  // Metric to represent angles, for metrics like direction.
-  // In angles with respect to the (magnetic) North (°).
-  SENSOR_METRIC_ANGLE = 7;
-
-  // Dew point.
-  // The temperature at which the air becomes saturated with water vapor.
-  //
-  // In Celsius (°C).
-  SENSOR_METRIC_DEW_POINT = 8;
-}
-
 // Enum to represent the various states that a sensor can be in.
 // This enum is unified across all sensor categories for consistency.
 enum SensorStateCode {
@@ -207,18 +167,6 @@ message SensorStateSnapshot {
   repeated SensorDiagnostic errors = 4;
 }
 
-// Representation of a sampled sensor metric along with its value.
-message SensorMetricSample {
-  // The UTC timestamp of when the metric was sampled.
-  google.protobuf.Timestamp sample_time = 1;
-
-  // The metric that was sampled.
-  frequenz.api.common.v1.metrics.Metric metric = 2;
-
-  // The value of the sampled metric.
-  frequenz.api.common.v1.metrics.MetricValueVariant value = 3;
-}
-
 // SensorData message aggregates multiple metrics, operational states, and
 // errors, related to a specific microgrid sensor.
 //
@@ -233,11 +181,15 @@ message SensorMetricSample {
 //          sample_time: "2023-10-01T00:00:00Z",
 //          metric: "METRIC_SENSOR_TEMPERATURE",
 //          value: metric_value_variant: {simple_metric: {value: 23.5},
+//          bounds: {}
+//          source: {}
 //        },
 //        {
 //          sample_time: "2023-10-01T00:00:00Z",
 //          metric: "METRIC_SENSOR_RELATIVE_HUMIDITY",
 //          value: metric_value_variant: {simple_metric: {value: 23.5},
+//          bounds: {}
+//          source: "humidity_sensor_1"
 //        }
 //      ],
 //      states: [
@@ -254,7 +206,7 @@ message SensorData {
   uint64 sensor_id = 1;
 
   // List of measurements for a metric of the specific microgrid sensor.
-  repeated SensorMetricSample metric_samples = 2;
+  repeated frequenz.api.common.v1.metrics.MetricSample metric_samples = 2;
 
   // List of states of a specific microgrid sensor.
   repeated SensorStateSnapshot states = 3;
