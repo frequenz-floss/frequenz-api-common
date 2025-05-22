@@ -4866,19 +4866,19 @@ errors, related to a specific microgrid sensor.</p>
 </span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>   metric_samples: [
 </span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>     /* list of metrics for multiple timestamps */
 </span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>     {
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>       sampled_at: &amp;#34;2023-10-01T00:00:00Z&amp;#34;,
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>       sample_time: &amp;#34;2023-10-01T00:00:00Z&amp;#34;,
 </span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>       metric: &amp;#34;METRIC_SENSOR_TEMPERATURE&amp;#34;,
 </span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>       value: metric_value_variant: {simple_metric: {value: 23.5},
 </span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>     },
 </span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>     {
-</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>       sampled_at: &amp;#34;2023-10-01T00:00:00Z&amp;#34;,
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>       sample_time: &amp;#34;2023-10-01T00:00:00Z&amp;#34;,
 </span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>       metric: &amp;#34;METRIC_SENSOR_RELATIVE_HUMIDITY&amp;#34;,
 </span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>       value: metric_value_variant: {simple_metric: {value: 23.5},
 </span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>     }
 </span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>   ],
 </span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>   states: [
 </span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>     {
-</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>       sampled_at: &amp;#34;2023-10-01T00:00:00Z&amp;#34;,
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>       sample_time: &amp;#34;2023-10-01T00:00:00Z&amp;#34;,
 </span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>       states: [],
 </span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>       errors: [],
 </span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>     },
@@ -4978,7 +4978,7 @@ vendor-specific insights.</p>
 </thead>
 <tbody>
 <tr>
-<td>sampled_at</td>
+<td>sample_time</td>
 <td><a href="#google-protobuf-Timestamp">google.protobuf.Timestamp</a></td>
 <td></td>
 <td>The UTC timestamp of when the metric was sampled.</td>
@@ -5011,10 +5011,10 @@ vendor-specific insights.</p>
 </thead>
 <tbody>
 <tr>
-<td>sampled_at</td>
+<td>origin_time</td>
 <td><a href="#google-protobuf-Timestamp">google.protobuf.Timestamp</a></td>
 <td></td>
-<td>The time at which the state was sampled.</td>
+<td>The UTC time when the state was originally captured.</td>
 </tr>
 <tr>
 <td>states</td>

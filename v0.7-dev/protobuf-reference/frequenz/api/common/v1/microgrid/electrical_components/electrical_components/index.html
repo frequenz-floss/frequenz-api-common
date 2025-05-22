@@ -5023,13 +5023,13 @@ states, and errors, related to a specific microgrid component.</p>
      metric_samples: [
        /* list of metrics for multiple timestamps */
        {
-         sampled_at: &amp;#34;2023-10-01T00:00:00Z&amp;#34;,
+         sample_time: &amp;#34;2023-10-01T00:00:00Z&amp;#34;,
          metric: &amp;#34;DC_VOLTAGE_V&amp;#34;,
          value: {},
          bounds: {},
        },
        {
-         sampled_at: &amp;#34;2023-10-01T00:00:00Z&amp;#34;,
+         sample_time: &amp;#34;2023-10-01T00:00:00Z&amp;#34;,
          metric: &amp;#34;DC_VOLTAGE_V&amp;#34;,
          value: {},
          bounds: {},
@@ -5038,13 +5038,13 @@ states, and errors, related to a specific microgrid component.</p>
      states: [
        /* list of states for multiple timestamps */
        {
-         sampled_at: &amp;#34;2023-10-01T00:00:00Z&amp;#34;,
+         sample_time: &amp;#34;2023-10-01T00:00:00Z&amp;#34;,
          states: [],
          warnings: [],
          errors: [],
        },
        {
-         sampled_at: &amp;#34;2023-10-01T00:00:00Z&amp;#34;,
+         sample_time: &amp;#34;2023-10-01T00:00:00Z&amp;#34;,
          states: [],
          warnings: [],
          errors: [],
@@ -5149,10 +5149,10 @@ vendor-specific insights.</p>
 </thead>
 <tbody>
 <tr>
-<td>sampled_at</td>
+<td>origin_time</td>
 <td><a href="#google-protobuf-Timestamp">google.protobuf.Timestamp</a></td>
 <td></td>
-<td>The time at which the state was sampled.</td>
+<td>The UTC time when the state was originally captured.</td>
 </tr>
 <tr>
 <td>states</td>
