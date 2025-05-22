@@ -513,7 +513,7 @@ message ElectricalComponentStateSnapshot {
   repeated ElectricalComponentDiagnostic errors = 4;
 }
 
-// ElectricalComponentData message aggregates multiple metrics, operational
+// ElectricalComponentTelemetry message aggregates multiple metrics, operational
 // states, and errors, related to a specific microgrid component.
 //
 // !!! example
@@ -555,7 +555,7 @@ message ElectricalComponentStateSnapshot {
 //      ]
 //    }
 //  ```
-message ElectricalComponentData {
+message ElectricalComponentTelemetry {
   // The ID of the microgrid component.
   uint64 component_id = 1;
 
