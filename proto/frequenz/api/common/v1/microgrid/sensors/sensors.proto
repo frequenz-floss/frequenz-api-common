@@ -50,7 +50,7 @@ enum SensorStateCode {
   SENSOR_STATE_CODE_UNSPECIFIED = 0;
 
   // The sensor is up and running.
-  SENSOR_STATE_CODE_ON = 1;
+  SENSOR_STATE_CODE_OK = 1;
 
   // The sensor is in an error state.
   SENSOR_STATE_CODE_ERROR = 2;
