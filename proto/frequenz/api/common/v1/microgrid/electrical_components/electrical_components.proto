@@ -524,13 +524,13 @@ message ElectricalComponentStateSnapshot {
 //      metric_samples: [
 //        /* list of metrics for multiple timestamps */
 //        {
-//          sampled_at: "2023-10-01T00:00:00Z",
+//          sample_time: "2023-10-01T00:00:00Z",
 //          metric: "DC_VOLTAGE_V",
 //          value: {},
 //          bounds: {},
 //        },
 //        {
-//          sampled_at: "2023-10-01T00:00:00Z",
+//          sample_time: "2023-10-01T00:00:00Z",
 //          metric: "DC_VOLTAGE_V",
 //          value: {},
 //          bounds: {},
@@ -539,13 +539,13 @@ message ElectricalComponentStateSnapshot {
 //      states: [
 //        /* list of states for multiple timestamps */
 //        {
-//          sampled_at: "2023-10-01T00:00:00Z",
+//          sample_time: "2023-10-01T00:00:00Z",
 //          states: [],
 //          warnings: [],
 //          errors: [],
 //        },
 //        {
-//          sampled_at: "2023-10-01T00:00:00Z",
+//          sample_time: "2023-10-01T00:00:00Z",
 //          states: [],
 //          warnings: [],
 //          errors: [],
