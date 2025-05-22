@@ -35,6 +35,7 @@
 - Renamed `SensorState` to `SensorStateSnapshot` to better reflect its purpose.
 - Renamed `sampled_at` timestamps for state snapshots to `origin_time`.
 - Renamed `sampled_at` timestamps for metric samples to `sample_time`.
+- Remove `SensorMetricSample` in favour of using `MetricSample` for sensors.
 
 ## Bug Fixes
 
