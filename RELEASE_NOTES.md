@@ -39,6 +39,8 @@
 - Remove `SensorMetric` enum, since it was unused and redundant.
 - Renamed `MetricSample.source` to `MetricSample.connection` to make it more specific as to what it refers to.
 - Rename `SensorStateCode.SENSOR_STATE_CODE_ON` to `SensorStateCode.SENSOR_STATE_CODE_OK`, to better indicate that we do not control on/off state of sensors.
+- Rename `ComponentData` to `ElectricalComponentTelemetry` to better specify its purpose of encapsulating general telemetry data from electrical components.
+- Rename `SensorData` to `SensorTelemetry` to better specify its purpose of encapsulating general telemetry data from sensors.
 
 ## Bug Fixes
 
