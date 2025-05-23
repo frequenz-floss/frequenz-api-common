@@ -43,6 +43,8 @@
 - Rename `SensorData` to `SensorTelemetry` to better specify its purpose of encapsulating general telemetry data from sensors.
 - The following changes have been made to the `ElectricalComponentDiagnosticCode` enum (previously `ComponentErrorCode`):
     - The code `UNDERVOLTAGE_SHUTDOWN` has been removed in favour of `UNDERVOLTAGE`.
+    - New diagnostic codes have been added to cover more cases, especially for inverters.
+    - The codes have been renumbered.
 
 ## Bug Fixes
 

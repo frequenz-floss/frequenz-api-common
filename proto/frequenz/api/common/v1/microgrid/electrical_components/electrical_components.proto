@@ -286,6 +286,56 @@ enum ElectricalComponentDiagnosticCode {
   // The component is unauthorized to perform the last requested action.
   ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_UNAUTHORIZED = 20;
 
+  // There is excessive leakage current in the component.
+  // The threshold for excessive leakage current is defined by the component
+  // manufacturer.
+  ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_EXCESS_LEAKAGE_CURRENT = 21;
+
+  // The component is inoperable due to the insulation resistance being too low.
+  // The threshold for low insulation resistance is defined by the component
+  // manufacturer, or can be configured by the user in the component.
+  ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_LOW_SYSTEM_INSULATION_RESISTANCE = 22;
+
+  // The component is inoperable due to the faulty grounding.
+  ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_GROUND_FAULT = 23;
+
+  // The component is inoperable due to arcing.
+  ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_ARC_FAULT = 24;
+
+  // The component is inoperable due to its fan being faulty.
+  ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_FAN_FAULT = 25;
+
+  // The component is inoperable due to the component's hardware being faulty.
+  ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_HARDWARE_FAULT = 26;
+
+  // the component is inoperable due to it hardware being faulty.
+  ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_PROTECTIVE_SHUTDOWN = 27;
+
+  // The component is inoperable due to the grid voltage being too high.
+  ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_GRID_OVERVOLTAGE = 30;
+
+  // The component is inoperable due to the grid voltage being too low.
+  ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_GRID_UNDERVOLTAGE = 31;
+
+  // The component is inoperable due to the grid frequency being too high.
+  ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_GRID_OVERFREQUENCY = 32;
+
+  // The component is inoperable due to the grid frequency being too low.
+  ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_GRID_UNDERFREQUENCY = 33;
+
+  // The component is inoperable due to the grid being disconnected, despite
+  // the AC relay being closed.
+  ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_GRID_DISCONNECTED = 34;
+
+  // The component is inoperable due to the grid voltage being imbalanced.
+  // This happens when the voltage of one or more phases is outside the
+  // acceptable range.
+  ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_GRID_VOLTAGE_IMBALANCE = 35;
+
+  // The component is inoperable due to the grid being in a non-standard
+  // configuration.
+  ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_GRID_ABNORMAL = 36;
+
   // There is an unexpected pilot failure in an electric vehicle (EV) component.
   ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_EV_UNEXPECTED_PILOT_FAILURE = 40;
 
@@ -326,6 +376,28 @@ enum ElectricalComponentDiagnosticCode {
 
   // The battery's DC contactor or relays have reached end of life.
   ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_RELAY_CYCLE_LIMIT_REACHED = 60;
+
+  // The PV panels have been connected with reversed polarity.
+  ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_PV_REVERSAL_POLARITY = 70;
+
+  // The PV panels are underperforming.
+  ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_PV_UNDERPERFORMANCE = 71;
+
+  // The PV panels have a fault.
+  // The component is not able to determine or specify the fault.
+  ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_PV_FAULT = 72;
+
+  // The PV panels are receiving a reverse current.
+  ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_PV_REVERSE_CURRENT = 73;
+
+  // The PV panels are not grounded properly.
+  ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_PV_GROUND_FAULT = 74;
+
+  // The inverter is inoperable due to the DC voltage being too low.
+  ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_INVERTER_DC_UNDERVOLTAGE = 80;
+
+  // The inverter is inoperable due to the DC voltage being too high.
+  ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_INVERTER_DC_OVERVOLTAGE = 81;
 }
 
 // MetricConfigBounds describes a set of limits for a specific metric consisting
