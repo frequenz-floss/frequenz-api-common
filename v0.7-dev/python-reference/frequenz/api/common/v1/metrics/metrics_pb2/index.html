@@ -3397,6 +3397,15 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#frequenz.api.common.v1.metrics.metrics_pb2.MetricSample.connection" class="md-nav__link">
+    <span class="md-ellipsis">
+      connection
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#frequenz.api.common.v1.metrics.metrics_pb2.MetricSample.metric" class="md-nav__link">
     <span class="md-ellipsis">
       metric
@@ -3409,15 +3418,6 @@
   <a href="#frequenz.api.common.v1.metrics.metrics_pb2.MetricSample.sample_time" class="md-nav__link">
     <span class="md-ellipsis">
       sample_time
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#frequenz.api.common.v1.metrics.metrics_pb2.MetricSample.source" class="md-nav__link">
-    <span class="md-ellipsis">
-      source
     </span>
   </a>
   
@@ -5145,6 +5145,15 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#frequenz.api.common.v1.metrics.metrics_pb2.MetricSample.connection" class="md-nav__link">
+    <span class="md-ellipsis">
+      connection
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#frequenz.api.common.v1.metrics.metrics_pb2.MetricSample.metric" class="md-nav__link">
     <span class="md-ellipsis">
       metric
@@ -5157,15 +5166,6 @@
   <a href="#frequenz.api.common.v1.metrics.metrics_pb2.MetricSample.sample_time" class="md-nav__link">
     <span class="md-ellipsis">
       sample_time
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#frequenz.api.common.v1.metrics.metrics_pb2.MetricSample.source" class="md-nav__link">
-    <span class="md-ellipsis">
-      source
     </span>
   </a>
   
@@ -5840,6 +5840,46 @@ positive and negative values depending on the metric they represent.</p>
 
 
 
+<h6 id="frequenz.api.common.v1.metrics.metrics_pb2.MetricSample.connection" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">connection</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+<a href="#frequenz.api.common.v1.metrics.metrics_pb2.MetricSample.connection" class="headerlink" title="Permanent link">¤</a></h6>
+
+
+    <div class="doc doc-contents ">
+
+        <p>An optional string that can be used to identify the specific connection
+from which the metric was obtained.</p>
+<p>This is expected to be populated when the same <code>Metric</code> variant can be
+obtained from multiple distinct inputs or connection points on the
+component. Knowing the connection for the metric can help in certain
+control and monitoring applications.</p>
+<p>E.g.,
+- A PV inverter might have multiple PV strings connected (e.g.,
+  <code>pv_string_1</code>, <code>pv_string_2</code>).
+- A hybrid inverter can have a DC connection for a battery (e.g.,
+  <code>dc_battery_0</code>) and another for a PV array (e.g., <code>dc_pv_0</code>). A metric
+  like DC voltage can be obtained from both connections. For an application
+  to determine the SoC of the battery using its voltage, identifying the
+  <code>dc_battery_0</code> connection is important.
+- A sensor unit might report temperature from different connected probes
+  (e.g., <code>temp_sensor_outdoor</code>, <code>temp_sensor_indoor</code>).</p>
+<p>In cases where the component has just one such connection for a metric,
+or the context is otherwise unambiguous, this field is not expected to
+be present, because the connection is implicit.</p>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
 <h6 id="frequenz.api.common.v1.metrics.metrics_pb2.MetricSample.metric" class="doc doc-heading">
             <code class="highlight language-python"><span class="n">metric</span></code>
 
@@ -5875,38 +5915,6 @@ positive and negative values depending on the metric they represent.</p>
     <div class="doc doc-contents ">
 
         <p>The UTC timestamp of when the metric was sampled.</p>
-
-    </div>
-
-</div>
-
-<div class="doc doc-object doc-attribute">
-
-
-
-<h6 id="frequenz.api.common.v1.metrics.metrics_pb2.MetricSample.source" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">source</span></code>
-
-  <span class="doc doc-labels">
-      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
-  </span>
-
-<a href="#frequenz.api.common.v1.metrics.metrics_pb2.MetricSample.source" class="headerlink" title="Permanent link">¤</a></h6>
-
-
-    <div class="doc doc-contents ">
-
-        <p>An optional string that can be used to identify the source of the metric.</p>
-<p>This is expected to be populated when the same <code>Metric</code> variant can be
-obtained from multiple sensors in the component. Knowing the source of the
-metric can help in certain control and monitoring applications.</p>
-<p>E.g., a hybrid inverter can have a DC string for a battery and another DC
-string for a PV array. The source names could resemble, say,
-<code>dc_battery_0</code> and <code>`dc_pv_0</code>. A metric like DC voltage can be obtained
-from both sources. For an application to determine the SoC of the battery
-using the battery voltage, the source of the voltage metric is important.</p>
-<p>In cases where the component has just one source for a metric, then this
-field is not expected to be present, because the source is implicit.</p>
 
     </div>
 

@@ -4832,14 +4832,14 @@ errors, related to a specific microgrid sensor.</p>
 </span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>       metric: &amp;#34;METRIC_SENSOR_TEMPERATURE&amp;#34;,
 </span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>       value: metric_value_variant: {simple_metric: {value: 23.5},
 </span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>       bounds: {}
-</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>       source: {}
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>       connection: {}
 </span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>     },
 </span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>     {
 </span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>       sample_time: &amp;#34;2023-10-01T00:00:00Z&amp;#34;,
 </span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>       metric: &amp;#34;METRIC_SENSOR_RELATIVE_HUMIDITY&amp;#34;,
 </span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>       value: metric_value_variant: {simple_metric: {value: 23.5},
 </span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>       bounds: {}
-</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>       source: &amp;#34;humidity_sensor_1&amp;#34;
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>       connection: &amp;#34;humidity_sensor_1&amp;#34;
 </span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>     }
 </span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>   ],
 </span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>   states: [
@@ -4873,14 +4873,10 @@ errors, related to a specific microgrid sensor.</p>
 <td>repeated</td>
 <td>List of measurements for a metric of the specific microgrid sensor.</td>
 </tr>
-<tr>
-<td>states</td>
-<td><a href="#frequenz-api-common-v1-microgrid-sensors-SensorStateSnapshot">SensorStateSnapshot</a></td>
-<td>repeated</td>
-<td>List of states of a specific microgrid sensor.</td>
-</tr>
 </tbody>
 </table>
+<p>Note that these metric samples will not necessarily contain bounds, since bounds are required for control operations, which are not applicable to sensors. |
+| states | <a href="#frequenz-api-common-v1-microgrid-sensors-SensorStateSnapshot">SensorStateSnapshot</a> | repeated | List of states of a specific microgrid sensor. |</p>
 <p><a name="frequenz-api-common-v1-microgrid-sensors-SensorDiagnostic"></a></p>
 <h3 id="sensordiagnostic">SensorDiagnostic<a class="headerlink" href="#sensordiagnostic" title="Permanent link">¤</a></h3>
 <p>Represents an error or warning condition reported by a microgrid sensor.</p>
