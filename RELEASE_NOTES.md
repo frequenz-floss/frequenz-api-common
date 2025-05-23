@@ -41,6 +41,8 @@
 - Rename `SensorStateCode.SENSOR_STATE_CODE_ON` to `SensorStateCode.SENSOR_STATE_CODE_OK`, to better indicate that we do not control on/off state of sensors.
 - Rename `ComponentData` to `ElectricalComponentTelemetry` to better specify its purpose of encapsulating general telemetry data from electrical components.
 - Rename `SensorData` to `SensorTelemetry` to better specify its purpose of encapsulating general telemetry data from sensors.
+- The following changes have been made to the `ElectricalComponentDiagnosticCode` enum (previously `ComponentErrorCode`):
+    - The code `UNDERVOLTAGE_SHUTDOWN` has been removed in favour of `UNDERVOLTAGE`.
 
 ## Bug Fixes
 

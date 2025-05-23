@@ -264,50 +264,47 @@ enum ElectricalComponentDiagnosticCode {
   // sanity checks to fail.
   ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_PLAUSIBILITY_ERROR = 13;
 
-  // There is or was a system shutdown due to undervoltage.
-  ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_UNDERVOLTAGE_SHUTDOWN = 14;
-
-  // There is an unexpected pilot failure in an electric vehicle (EV) component.
-  ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_EV_UNEXPECTED_PILOT_FAILURE = 15;
-
   // A fault current has been detected in the component.
-  ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_FAULT_CURRENT = 16;
+  ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_FAULT_CURRENT = 14;
 
   // A short circuit has been detected in the component.
-  ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_SHORT_CIRCUIT = 17;
+  ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_SHORT_CIRCUIT = 15;
 
   // The component has been configured incorrectly.
-  ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_CONFIG_ERROR = 18;
+  ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_CONFIG_ERROR = 16;
 
   // A illegal state has been requested for the component.
   ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_ILLEGAL_COMPONENT_STATE_CODE_REQUESTED
-    = 19;
+    = 17;
 
   // The hardware of the component is inaccessible.
-  ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_HARDWARE_INACCESSIBLE = 20;
+  ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_HARDWARE_INACCESSIBLE = 18;
 
   // There is an internal error within the component.
-  ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_INTERNAL = 21;
+  ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_INTERNAL = 19;
 
   // The component is unauthorized to perform the last requested action.
-  ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_UNAUTHORIZED = 22;
+  ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_UNAUTHORIZED = 20;
+
+  // There is an unexpected pilot failure in an electric vehicle (EV) component.
+  ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_EV_UNEXPECTED_PILOT_FAILURE = 40;
 
   // The electric vehicle (EV) cable was abruptly unplugged from the charging
   // station.
   ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_EV_CHARGING_CABLE_UNPLUGGED_FROM_STATION
-    = 40;
+    = 41;
 
   // The electric vehicle (EV) cable was abruptly unplugged from the vehicle.
-  ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_EV_CHARGING_CABLE_UNPLUGGED_FROM_EV = 41;
+  ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_EV_CHARGING_CABLE_UNPLUGGED_FROM_EV = 42;
 
   // There is a cable lock failure with the electric vehicle (EV).
-  ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_EV_CHARGING_CABLE_LOCK_FAILED = 42;
+  ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_EV_CHARGING_CABLE_LOCK_FAILED = 43;
 
   // The electric vehicle (EV) charging cable is invalid.
-  ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_EV_CHARGING_CABLE_INVALID = 43;
+  ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_EV_CHARGING_CABLE_INVALID = 44;
 
   // The incompatible electric vehicle (EV) charging plug is invalid.
-  ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_EV_CONSUMER_INCOMPATIBLE = 44;
+  ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_EV_CONSUMER_INCOMPATIBLE = 45;
 
   // There is a battery system imbalance.
   ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_BATTERY_IMBALANCE = 50;
