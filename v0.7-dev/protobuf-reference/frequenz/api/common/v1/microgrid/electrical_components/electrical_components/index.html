@@ -1524,15 +1524,6 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#electricalcomponentdata" class="md-nav__link">
-    <span class="md-ellipsis">
-      ElectricalComponentData
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#electricalcomponentdiagnostic" class="md-nav__link">
     <span class="md-ellipsis">
       ElectricalComponentDiagnostic
@@ -1545,6 +1536,15 @@
   <a href="#electricalcomponentstatesnapshot" class="md-nav__link">
     <span class="md-ellipsis">
       ElectricalComponentStateSnapshot
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#electricalcomponenttelemetry" class="md-nav__link">
+    <span class="md-ellipsis">
+      ElectricalComponentTelemetry
     </span>
   </a>
   
@@ -4697,15 +4697,6 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#electricalcomponentdata" class="md-nav__link">
-    <span class="md-ellipsis">
-      ElectricalComponentData
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#electricalcomponentdiagnostic" class="md-nav__link">
     <span class="md-ellipsis">
       ElectricalComponentDiagnostic
@@ -4718,6 +4709,15 @@
   <a href="#electricalcomponentstatesnapshot" class="md-nav__link">
     <span class="md-ellipsis">
       ElectricalComponentStateSnapshot
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#electricalcomponenttelemetry" class="md-nav__link">
+    <span class="md-ellipsis">
+      ElectricalComponentTelemetry
     </span>
   </a>
   
@@ -4811,9 +4811,9 @@
 <li><a href="#frequenz-api-common-v1-microgrid-electrical_components-ElectricalComponent">ElectricalComponent</a></li>
 <li><a href="#frequenz-api-common-v1-microgrid-electrical_components-ElectricalComponentCategorySpecificInfo">ElectricalComponentCategorySpecificInfo</a></li>
 <li><a href="#frequenz-api-common-v1-microgrid-electrical_components-ElectricalComponentConnection">ElectricalComponentConnection</a></li>
-<li><a href="#frequenz-api-common-v1-microgrid-electrical_components-ElectricalComponentData">ElectricalComponentData</a></li>
 <li><a href="#frequenz-api-common-v1-microgrid-electrical_components-ElectricalComponentDiagnostic">ElectricalComponentDiagnostic</a></li>
 <li><a href="#frequenz-api-common-v1-microgrid-electrical_components-ElectricalComponentStateSnapshot">ElectricalComponentStateSnapshot</a></li>
+<li><a href="#frequenz-api-common-v1-microgrid-electrical_components-ElectricalComponentTelemetry">ElectricalComponentTelemetry</a></li>
 <li>
 <p><a href="#frequenz-api-common-v1-microgrid-electrical_components-MetricConfigBounds">MetricConfigBounds</a></p>
 </li>
@@ -5010,79 +5010,6 @@ islanding point, in case of an islanded microgrids.</p>
 </tr>
 </tbody>
 </table>
-<p><a name="frequenz-api-common-v1-microgrid-electrical_components-ElectricalComponentData"></a></p>
-<h3 id="electricalcomponentdata">ElectricalComponentData<a class="headerlink" href="#electricalcomponentdata" title="Permanent link">¤</a></h3>
-<p>ElectricalComponentData message aggregates multiple metrics, operational
-states, and errors, related to a specific microgrid component.</p>
-<div class="admonition example">
-<p class="admonition-title">Example</p>
-</div>
-<p>Example output of a component data message:
-  <code>{
-     ELECTRICAL_component_id: 13,
-     metric_samples: [
-       /* list of metrics for multiple timestamps */
-       {
-         sample_time: &amp;#34;2023-10-01T00:00:00Z&amp;#34;,
-         metric: &amp;#34;DC_VOLTAGE_V&amp;#34;,
-         value: {},
-         bounds: {},
-         connection: &amp;#34;battery_0&amp;#34;
-       },
-       {
-         sample_time: &amp;#34;2023-10-01T00:00:00Z&amp;#34;,
-         metric: &amp;#34;DC_VOLTAGE_V&amp;#34;,
-         value: {},
-         bounds: {},
-         connection: &amp;#34;pv_0&amp;#34;
-       }
-     ],
-     states: [
-       /* list of states for multiple timestamps */
-       {
-         sample_time: &amp;#34;2023-10-01T00:00:00Z&amp;#34;,
-         states: [],
-         warnings: [],
-         errors: [],
-       },
-       {
-         sample_time: &amp;#34;2023-10-01T00:00:00Z&amp;#34;,
-         states: [],
-         warnings: [],
-         errors: [],
-       },
-     ]
-   }</code></p>
-<table>
-<thead>
-<tr>
-<th>Field</th>
-<th>Type</th>
-<th>Label</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>component_id</td>
-<td><a href="#uint64">uint64</a></td>
-<td></td>
-<td>The ID of the microgrid component.</td>
-</tr>
-<tr>
-<td>metric_samples</td>
-<td><a href="#frequenz-api-common-v1-metrics-MetricSample">frequenz.api.common.v1.metrics.MetricSample</a></td>
-<td>repeated</td>
-<td>List of measurements for a metric of the specific microgrid component.</td>
-</tr>
-<tr>
-<td>states</td>
-<td><a href="#frequenz-api-common-v1-microgrid-electrical_components-ElectricalComponentStateSnapshot">ElectricalComponentStateSnapshot</a></td>
-<td>repeated</td>
-<td>List of states of a specific microgrid component.</td>
-</tr>
-</tbody>
-</table>
 <p><a name="frequenz-api-common-v1-microgrid-electrical_components-ElectricalComponentDiagnostic"></a></p>
 <h3 id="electricalcomponentdiagnostic">ElectricalComponentDiagnostic<a class="headerlink" href="#electricalcomponentdiagnostic" title="Permanent link">¤</a></h3>
 <p>Represents an error or warning condition reported by a microgrid electrical
@@ -5172,6 +5099,79 @@ vendor-specific insights.</p>
 | errors | <a href="#frequenz-api-common-v1-microgrid-electrical_components-ElectricalComponentDiagnostic">ElectricalComponentDiagnostic</a> | repeated | List of critical errors currently affecting the component.</p>
 <p>!!! note This list is treated as a set, and therefore its members will be unique, i.e., no state will exist twice in this list.</p>
 <p>!!! note This list is expected to have errors if and only if the electrical component is in an error state. |</p>
+<p><a name="frequenz-api-common-v1-microgrid-electrical_components-ElectricalComponentTelemetry"></a></p>
+<h3 id="electricalcomponenttelemetry">ElectricalComponentTelemetry<a class="headerlink" href="#electricalcomponenttelemetry" title="Permanent link">¤</a></h3>
+<p>ElectricalComponentTelemetry message aggregates multiple metrics, operational
+states, and errors, related to a specific microgrid component.</p>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+</div>
+<p>Example output of a component data message:
+  <code>{
+     ELECTRICAL_component_id: 13,
+     metric_samples: [
+       /* list of metrics for multiple timestamps */
+       {
+         sample_time: &amp;#34;2023-10-01T00:00:00Z&amp;#34;,
+         metric: &amp;#34;DC_VOLTAGE_V&amp;#34;,
+         value: {},
+         bounds: {},
+         connection: &amp;#34;battery_0&amp;#34;
+       },
+       {
+         sample_time: &amp;#34;2023-10-01T00:00:00Z&amp;#34;,
+         metric: &amp;#34;DC_VOLTAGE_V&amp;#34;,
+         value: {},
+         bounds: {},
+         connection: &amp;#34;pv_0&amp;#34;
+       }
+     ],
+     states: [
+       /* list of states for multiple timestamps */
+       {
+         sample_time: &amp;#34;2023-10-01T00:00:00Z&amp;#34;,
+         states: [],
+         warnings: [],
+         errors: [],
+       },
+       {
+         sample_time: &amp;#34;2023-10-01T00:00:00Z&amp;#34;,
+         states: [],
+         warnings: [],
+         errors: [],
+       },
+     ]
+   }</code></p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>component_id</td>
+<td><a href="#uint64">uint64</a></td>
+<td></td>
+<td>The ID of the microgrid component.</td>
+</tr>
+<tr>
+<td>metric_samples</td>
+<td><a href="#frequenz-api-common-v1-metrics-MetricSample">frequenz.api.common.v1.metrics.MetricSample</a></td>
+<td>repeated</td>
+<td>List of measurements for a metric of the specific microgrid component.</td>
+</tr>
+<tr>
+<td>states</td>
+<td><a href="#frequenz-api-common-v1-microgrid-electrical_components-ElectricalComponentStateSnapshot">ElectricalComponentStateSnapshot</a></td>
+<td>repeated</td>
+<td>List of states of a specific microgrid component.</td>
+</tr>
+</tbody>
+</table>
 <p><a name="frequenz-api-common-v1-microgrid-electrical_components-MetricConfigBounds"></a></p>
 <h3 id="metricconfigbounds">MetricConfigBounds<a class="headerlink" href="#metricconfigbounds" title="Permanent link">¤</a></h3>
 <p>MetricConfigBounds describes a set of limits for a specific metric consisting
