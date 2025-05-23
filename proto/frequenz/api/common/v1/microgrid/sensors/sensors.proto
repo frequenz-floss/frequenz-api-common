@@ -182,14 +182,14 @@ message SensorStateSnapshot {
 //          metric: "METRIC_SENSOR_TEMPERATURE",
 //          value: metric_value_variant: {simple_metric: {value: 23.5},
 //          bounds: {}
-//          source: {}
+//          connection: {}
 //        },
 //        {
 //          sample_time: "2023-10-01T00:00:00Z",
 //          metric: "METRIC_SENSOR_RELATIVE_HUMIDITY",
 //          value: metric_value_variant: {simple_metric: {value: 23.5},
 //          bounds: {}
-//          source: "humidity_sensor_1"
+//          connection: "humidity_sensor_1"
 //        }
 //      ],
 //      states: [
@@ -206,6 +206,10 @@ message SensorData {
   uint64 sensor_id = 1;
 
   // List of measurements for a metric of the specific microgrid sensor.
+  //
+  // Note that these metric samples will not necessarily contain bounds, since
+  // bounds are required for control operations, which are not applicable to
+  // sensors.
   repeated frequenz.api.common.v1.metrics.MetricSample metric_samples = 2;
 
   // List of states of a specific microgrid sensor.

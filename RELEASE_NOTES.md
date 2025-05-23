@@ -37,6 +37,7 @@
 - Renamed `sampled_at` timestamps for metric samples to `sample_time`.
 - Remove `SensorMetricSample` in favour of using `MetricSample` for sensors.
 - Remove `SensorMetric` enum, since it was unused and redundant.
+- Renamed `MetricSample.source` to `MetricSample.connection` to make it more specific as to what it refers to.
 
 ## Bug Fixes
 
