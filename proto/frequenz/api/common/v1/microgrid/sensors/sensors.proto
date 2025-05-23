@@ -167,7 +167,7 @@ message SensorStateSnapshot {
   repeated SensorDiagnostic errors = 4;
 }
 
-// SensorData message aggregates multiple metrics, operational states, and
+// SensorTelemetry message aggregates multiple metrics, operational states, and
 // errors, related to a specific microgrid sensor.
 //
 // !!! example
@@ -201,7 +201,7 @@ message SensorStateSnapshot {
 //      ]
 //   }
 //   ```
-message SensorData {
+message SensorTelemetry {
   // The ID of the microgrid sensors.
   uint64 sensor_id = 1;
 
