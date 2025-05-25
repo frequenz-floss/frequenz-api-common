@@ -308,7 +308,7 @@ enum ElectricalComponentDiagnosticCode {
   // The component is inoperable due to the component's hardware being faulty.
   ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_HARDWARE_FAULT = 26;
 
-  // the component is inoperable due to it hardware being faulty.
+  // The component is inoperable due to its hardware being faulty.
   ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_PROTECTIVE_SHUTDOWN = 27;
 
   // The component is inoperable due to the grid voltage being too high.
