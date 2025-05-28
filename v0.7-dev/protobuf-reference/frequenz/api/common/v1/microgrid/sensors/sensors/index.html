@@ -1770,15 +1770,6 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#sensorcategory" class="md-nav__link">
-    <span class="md-ellipsis">
-      SensorCategory
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#sensordiagnosticcode" class="md-nav__link">
     <span class="md-ellipsis">
       SensorDiagnosticCode
@@ -4670,15 +4661,6 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#sensorcategory" class="md-nav__link">
-    <span class="md-ellipsis">
-      SensorCategory
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#sensordiagnosticcode" class="md-nav__link">
     <span class="md-ellipsis">
       SensorDiagnosticCode
@@ -4743,9 +4725,8 @@
 <p><a href="#frequenz-api-common-v1-microgrid-sensors-SensorTelemetry">SensorTelemetry</a></p>
 </li>
 <li>
-<p><a href="#frequenz-api-common-v1-microgrid-sensors-SensorCategory">SensorCategory</a></p>
+<p><a href="#frequenz-api-common-v1-microgrid-sensors-SensorDiagnosticCode">SensorDiagnosticCode</a></p>
 </li>
-<li><a href="#frequenz-api-common-v1-microgrid-sensors-SensorDiagnosticCode">SensorDiagnosticCode</a></li>
 <li><a href="#frequenz-api-common-v1-microgrid-sensors-SensorStateCode">SensorStateCode</a></li>
 </ul>
 </li>
@@ -4788,12 +4769,6 @@ environment.</p>
 <td><a href="#string">string</a></td>
 <td></td>
 <td>An optional name for the sensor.</td>
-</tr>
-<tr>
-<td>category</td>
-<td><a href="#frequenz-api-common-v1-microgrid-sensors-SensorCategory">SensorCategory</a></td>
-<td></td>
-<td>The category of the sensor.</td>
 </tr>
 <tr>
 <td>manufacturer</td>
@@ -4961,60 +4936,6 @@ errors, related to a specific microgrid sensor.</p>
 </table>
 <p>Note that these metric samples will not necessarily contain bounds, since bounds are required for control operations, which are not applicable to sensors. |
 | states | <a href="#frequenz-api-common-v1-microgrid-sensors-SensorStateSnapshot">SensorStateSnapshot</a> | repeated | List of states of a specific microgrid sensor. |</p>
-<p><a name="frequenz-api-common-v1-microgrid-sensors-SensorCategory"></a></p>
-<h3 id="sensorcategory">SensorCategory<a class="headerlink" href="#sensorcategory" title="Permanent link">¤</a></h3>
-<p>Enumerated sensor categories.</p>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Number</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>SENSOR_CATEGORY_UNSPECIFIED</td>
-<td>0</td>
-<td>Unspecified</td>
-</tr>
-<tr>
-<td>SENSOR_CATEGORY_THERMOMETER</td>
-<td>1</td>
-<td>Thermometer (temperature sensor)</td>
-</tr>
-<tr>
-<td>SENSOR_CATEGORY_HYGROMETER</td>
-<td>2</td>
-<td>Hygrometer (humidity sensor)</td>
-</tr>
-<tr>
-<td>SENSOR_CATEGORY_BAROMETER</td>
-<td>3</td>
-<td>Barometer (pressure sensor).</td>
-</tr>
-<tr>
-<td>SENSOR_CATEGORY_PYRANOMETER</td>
-<td>4</td>
-<td>Pyranometer (solar irradiance sensor).</td>
-</tr>
-<tr>
-<td>SENSOR_CATEGORY_ANEMOMETER</td>
-<td>5</td>
-<td>Anemometer (wind velocity and direction sensor).</td>
-</tr>
-<tr>
-<td>SENSOR_CATEGORY_ACCELEROMETER</td>
-<td>6</td>
-<td>Accelerometers (acceleration sensor).</td>
-</tr>
-<tr>
-<td>SENSOR_CATEGORY_GENERAL</td>
-<td>7</td>
-<td>General sensors, which do not fall in any of the above categories</td>
-</tr>
-</tbody>
-</table>
 <p><a name="frequenz-api-common-v1-microgrid-sensors-SensorDiagnosticCode"></a></p>
 <h3 id="sensordiagnosticcode">SensorDiagnosticCode<a class="headerlink" href="#sensordiagnosticcode" title="Permanent link">¤</a></h3>
 <p>A representation of all possible warnings and errors that can occur in
