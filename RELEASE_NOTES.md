@@ -45,6 +45,7 @@
     - The code `UNDERVOLTAGE_SHUTDOWN` has been removed in favour of `UNDERVOLTAGE`.
     - New diagnostic codes have been added to cover more cases, especially for inverters.
     - The codes have been renumbered.
+- Removed `SensorCategory` enum, since it was not useful and potentially confusing. Sensors can report different sensor metrics, and they could belong to several of these categories simultaneously. This defeats the purpose of having singular categories for sensors. We need to rethink how to categorize sensors. Until then, having it does not add any value, and therefore it has been removed.
 
 ## Bug Fixes
 
