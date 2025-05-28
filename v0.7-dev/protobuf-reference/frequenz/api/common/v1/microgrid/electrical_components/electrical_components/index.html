@@ -5437,73 +5437,138 @@ component.</p>
 <td>There are plausibility issues within the component, causing its internal sanity checks to fail.</td>
 </tr>
 <tr>
-<td>ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_UNDERVOLTAGE_SHUTDOWN</td>
-<td>14</td>
-<td>There is or was a system shutdown due to undervoltage.</td>
-</tr>
-<tr>
-<td>ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_EV_UNEXPECTED_PILOT_FAILURE</td>
-<td>15</td>
-<td>There is an unexpected pilot failure in an electric vehicle (EV) component.</td>
-</tr>
-<tr>
 <td>ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_FAULT_CURRENT</td>
-<td>16</td>
+<td>14</td>
 <td>A fault current has been detected in the component.</td>
 </tr>
 <tr>
 <td>ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_SHORT_CIRCUIT</td>
-<td>17</td>
+<td>15</td>
 <td>A short circuit has been detected in the component.</td>
 </tr>
 <tr>
 <td>ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_CONFIG_ERROR</td>
-<td>18</td>
+<td>16</td>
 <td>The component has been configured incorrectly.</td>
 </tr>
 <tr>
 <td>ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_ILLEGAL_COMPONENT_STATE_CODE_REQUESTED</td>
-<td>19</td>
+<td>17</td>
 <td>A illegal state has been requested for the component.</td>
 </tr>
 <tr>
 <td>ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_HARDWARE_INACCESSIBLE</td>
-<td>20</td>
+<td>18</td>
 <td>The hardware of the component is inaccessible.</td>
 </tr>
 <tr>
 <td>ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_INTERNAL</td>
-<td>21</td>
+<td>19</td>
 <td>There is an internal error within the component.</td>
 </tr>
 <tr>
 <td>ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_UNAUTHORIZED</td>
-<td>22</td>
+<td>20</td>
 <td>The component is unauthorized to perform the last requested action.</td>
 </tr>
 <tr>
-<td>ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_EV_CHARGING_CABLE_UNPLUGGED_FROM_STATION</td>
+<td>ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_EXCESS_LEAKAGE_CURRENT</td>
+<td>21</td>
+<td>There is excessive leakage current in the component. The threshold for excessive leakage current is defined by the component manufacturer.</td>
+</tr>
+<tr>
+<td>ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_LOW_SYSTEM_INSULATION_RESISTANCE</td>
+<td>22</td>
+<td>The component is inoperable due to the insulation resistance being too low. The threshold for low insulation resistance is defined by the component manufacturer, or can be configured by the user in the component.</td>
+</tr>
+<tr>
+<td>ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_GROUND_FAULT</td>
+<td>23</td>
+<td>The component is inoperable due to the faulty grounding.</td>
+</tr>
+<tr>
+<td>ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_ARC_FAULT</td>
+<td>24</td>
+<td>The component is inoperable due to arcing.</td>
+</tr>
+<tr>
+<td>ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_FAN_FAULT</td>
+<td>25</td>
+<td>The component is inoperable due to its fan being faulty.</td>
+</tr>
+<tr>
+<td>ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_HARDWARE_FAULT</td>
+<td>26</td>
+<td>The component is inoperable due to the component&#39;s hardware being faulty.</td>
+</tr>
+<tr>
+<td>ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_PROTECTIVE_SHUTDOWN</td>
+<td>27</td>
+<td>The component is inoperable due to its hardware being faulty.</td>
+</tr>
+<tr>
+<td>ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_GRID_OVERVOLTAGE</td>
+<td>30</td>
+<td>The component is inoperable due to the grid voltage being too high.</td>
+</tr>
+<tr>
+<td>ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_GRID_UNDERVOLTAGE</td>
+<td>31</td>
+<td>The component is inoperable due to the grid voltage being too low.</td>
+</tr>
+<tr>
+<td>ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_GRID_OVERFREQUENCY</td>
+<td>32</td>
+<td>The component is inoperable due to the grid frequency being too high.</td>
+</tr>
+<tr>
+<td>ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_GRID_UNDERFREQUENCY</td>
+<td>33</td>
+<td>The component is inoperable due to the grid frequency being too low.</td>
+</tr>
+<tr>
+<td>ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_GRID_DISCONNECTED</td>
+<td>34</td>
+<td>The component is inoperable due to the grid being disconnected, despite the AC relay being closed.</td>
+</tr>
+<tr>
+<td>ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_GRID_VOLTAGE_IMBALANCE</td>
+<td>35</td>
+<td>The component is inoperable due to the grid voltage being imbalanced. This happens when the voltage of one or more phases is outside the acceptable range.</td>
+</tr>
+<tr>
+<td>ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_GRID_ABNORMAL</td>
+<td>36</td>
+<td>The component is inoperable due to the grid being in a non-standard configuration.</td>
+</tr>
+<tr>
+<td>ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_EV_UNEXPECTED_PILOT_FAILURE</td>
 <td>40</td>
+<td>There is an unexpected pilot failure in an electric vehicle (EV) component.</td>
+</tr>
+<tr>
+<td>ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_EV_CHARGING_CABLE_UNPLUGGED_FROM_STATION</td>
+<td>41</td>
 <td>The electric vehicle (EV) cable was abruptly unplugged from the charging station.</td>
 </tr>
 <tr>
 <td>ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_EV_CHARGING_CABLE_UNPLUGGED_FROM_EV</td>
-<td>41</td>
+<td>42</td>
 <td>The electric vehicle (EV) cable was abruptly unplugged from the vehicle.</td>
 </tr>
 <tr>
 <td>ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_EV_CHARGING_CABLE_LOCK_FAILED</td>
-<td>42</td>
+<td>43</td>
 <td>There is a cable lock failure with the electric vehicle (EV).</td>
 </tr>
 <tr>
 <td>ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_EV_CHARGING_CABLE_INVALID</td>
-<td>43</td>
+<td>44</td>
 <td>The electric vehicle (EV) charging cable is invalid.</td>
 </tr>
 <tr>
 <td>ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_EV_CONSUMER_INCOMPATIBLE</td>
-<td>44</td>
+<td>45</td>
 <td>The incompatible electric vehicle (EV) charging plug is invalid.</td>
 </tr>
 <tr>
@@ -5540,6 +5605,41 @@ component.</p>
 <td>ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_RELAY_CYCLE_LIMIT_REACHED</td>
 <td>60</td>
 <td>The battery&#39;s DC contactor or relays have reached end of life.</td>
+</tr>
+<tr>
+<td>ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_PV_REVERSAL_POLARITY</td>
+<td>70</td>
+<td>The PV panels have been connected with reversed polarity.</td>
+</tr>
+<tr>
+<td>ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_PV_UNDERPERFORMANCE</td>
+<td>71</td>
+<td>The PV panels are underperforming.</td>
+</tr>
+<tr>
+<td>ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_PV_FAULT</td>
+<td>72</td>
+<td>The PV panels have a fault. The component is not able to determine or specify the fault.</td>
+</tr>
+<tr>
+<td>ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_PV_REVERSE_CURRENT</td>
+<td>73</td>
+<td>The PV panels are receiving a reverse current.</td>
+</tr>
+<tr>
+<td>ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_PV_GROUND_FAULT</td>
+<td>74</td>
+<td>The PV panels are not grounded properly.</td>
+</tr>
+<tr>
+<td>ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_INVERTER_DC_UNDERVOLTAGE</td>
+<td>80</td>
+<td>The inverter is inoperable due to the DC voltage being too low.</td>
+</tr>
+<tr>
+<td>ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_INVERTER_DC_OVERVOLTAGE</td>
+<td>81</td>
+<td>The inverter is inoperable due to the DC voltage being too high.</td>
 </tr>
 </tbody>
 </table>
