@@ -15,33 +15,6 @@ import "frequenz/api/common/v1/microgrid/lifetime.proto";
 
 import "google/protobuf/timestamp.proto";
 
-// Enumerated sensor categories.
-enum SensorCategory {
-  // Unspecified
-  SENSOR_CATEGORY_UNSPECIFIED = 0;
-
-  // Thermometer (temperature sensor)
-  SENSOR_CATEGORY_THERMOMETER = 1;
-
-  // Hygrometer (humidity sensor)
-  SENSOR_CATEGORY_HYGROMETER = 2;
-
-  // Barometer (pressure sensor).
-  SENSOR_CATEGORY_BAROMETER = 3;
-
-  // Pyranometer (solar irradiance sensor).
-  SENSOR_CATEGORY_PYRANOMETER = 4;
-
-  // Anemometer (wind velocity and direction sensor).
-  SENSOR_CATEGORY_ANEMOMETER = 5;
-
-  // Accelerometers (acceleration sensor).
-  SENSOR_CATEGORY_ACCELEROMETER = 6;
-
-  // General sensors, which do not fall in any of the above categories
-  SENSOR_CATEGORY_GENERAL = 7;
-}
-
 // Enum to represent the various states that a sensor can be in.
 // This enum is unified across all sensor categories for consistency.
 enum SensorStateCode {
@@ -81,9 +54,6 @@ message Sensor {
 
   // An optional name for the sensor.
   string name = 3;
-
-  // The category of the sensor.
-  SensorCategory category = 4;
 
   // The sensor manufacturer.
   string manufacturer = 5;
