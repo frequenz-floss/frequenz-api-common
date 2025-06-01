@@ -3,7 +3,7 @@
 
 [build-system]
 requires = [
-  "setuptools == 80.8.0",
+  "setuptools == 80.9.0",
   "setuptools_scm[toml] == 8.3.1",
   "frequenz-repo-config[api] == 0.13.4",
   # We need to pin the protobuf, grpcio and  grpcio-tools dependencies to make
@@ -66,7 +66,7 @@ dev-mkdocs = [
   "frequenz-repo-config[api] == 0.13.4",
 ]
 dev-mypy = [
-  "mypy == 1.15.0",
+  "mypy == 1.16.0",
   "grpc-stubs == 1.53.0.6",
   # For checking the noxfile, docs/ script, and tests
   "frequenz-api-common[dev-mkdocs,dev-noxfile,dev-pytest]",
