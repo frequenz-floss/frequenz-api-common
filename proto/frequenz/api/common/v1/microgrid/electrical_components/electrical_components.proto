@@ -456,7 +456,7 @@ message ElectricalComponent {
   // The model name of the component.
   string model_name = 7;
 
-  // The control mode of the component.
+  // The currently applied control mode of the component.
   ElectricalComponentControlMode control_mode = 8;
 
   // The operational lifetime of the component.
