@@ -50,3 +50,4 @@
 ## Bug Fixes
 
 <!-- Here goes notable bug fixes that are worth a special mention or explanation -->
+- Documentation updated for the `control_mode` field of `ElectricalComponent`.
