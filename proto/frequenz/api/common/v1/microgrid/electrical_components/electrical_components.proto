@@ -164,54 +164,6 @@ enum ElectricalComponentStateCode {
   ELECTRICAL_COMPONENT_STATE_CODE_PRECHARGER_CLOSED = 42;
 }
 
-// `ElectricalComponentControlMode` explicitly defines whether an electrical
-// component is intended to be active (enabled) or inactive (disabled). This
-// intentional setting directly determines component availability to downstream
-// agents, applications, and services.
-//
-// !!! note "Control Mode & Component Availability"
-//     The Control Mode explicitly represents the user's or automation's
-//     intention to make the component either ACTIVE or INACTIVE. This directly
-//     impacts availability:
-//     - ACTIVE indicates the component is intended to be available and usable
-//       by downstream agents and services.
-//     - INACTIVE indicates the component is intended to be unavailable for use
-//       by downstream agents and services.
-//
-// !!! note "Relationship with Operational State"
-//     Control Mode explicitly represents intention, distinct from the
-//     component's actual internal Operational State.
-//     Operational State is independently reported by the component hardware
-//     (e.g., READY, CHARGING, DISCHARGING, ERROR).
-//
-// !!! caution "Immediate Operational Impact"
-//     Changing the Control Mode of an electrical component (e.g., via the
-//     Microgrid API) takes immediate effect on its availability to downstream
-//     agents and services. Setting a component to `INACTIVE` can thus instantly
-//     interrupt ongoing operations or cause service disruptions. Setting a
-//     component to `ACTIVE` may immediately connect it with other components,
-//     potentially causing electrical damage. Therefore, ensure changes are
-//     coordinated or planned appropriately to avoid unintended impact and/or
-//     damages.
-//
-// !!! example "Control Mode Change Impact"
-//     If a battery component's Control Mode is switched from `ACTIVE` to
-//     `INACTIVE`, it immediately becomes unavailable to downstream
-//     services and agents, potentially disrupting scheduled
-//     charging/discharging cycles.
-enum ElectricalComponentControlMode {
-  // The control mode is unspecified (should never be explicitly used).
-  ELECTRICAL_COMPONENT_CONTROL_MODE_UNSPECIFIED = 0;
-
-  // The component is explicitly enabled and intended to be available for
-  // downstream usage.
-  ELECTRICAL_COMPONENT_CONTROL_MODE_ACTIVE = 1;
-
-  // The component is explicitly disabled and intended to be unavailable for
-  // downstream usage.
-  ELECTRICAL_COMPONENT_CONTROL_MODE_INACTIVE = 2;
-}
-
 // A representation of all possible diagnostic codes that can occur for
 // electrical component, across all their categories. These diagnostic codes
 // can be used to refer to warnings or errors that are reported by the
@@ -456,14 +408,11 @@ message ElectricalComponent {
   // The model name of the component.
   string model_name = 7;
 
-  // The control mode of the component.
-  ElectricalComponentControlMode control_mode = 8;
-
   // The operational lifetime of the component.
-  frequenz.api.common.v1.microgrid.Lifetime operational_lifetime = 9;
+  frequenz.api.common.v1.microgrid.Lifetime operational_lifetime = 8;
 
   // List of rated bounds present for the component identified by Metric.
-  repeated MetricConfigBounds metric_config_bounds = 10;
+  repeated MetricConfigBounds metric_config_bounds = 9;
 }
 
 // ElectricalComponentConnection describes a single electrical link between two

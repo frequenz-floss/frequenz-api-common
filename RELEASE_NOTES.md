@@ -24,7 +24,6 @@
 - Added new message definitions for streaming events (Deleted, Created, Updated)
 - Remove unnecessary gap in numbering in the `ElectricalComponentCategory` enum.
 - Renumber variants in the `Metric` enum to remove unnecessary gaps.
-- Added a new enum `ElectricalComponentControlMode` to define control modes for electrical components.
 - Renamed `metric_sample.proto` to `metrics.proto` to better reflect its content.
 - Renamed electrical component category `COMPONENT_CATEGORY_GRID` to `ELECTRICAL_COMPONENT_CATEGORY_GRID_CONNECTION_POINT` to clarify its meaning. Note that the change in the enum change is a part of a larger refactoring of the electrical component category enum.
 - The oneof variant `ComponentCategoryMetadataVariant.metadata.grid` has been renamed to `ElectricalComponentCategorySpecificInfo.info.grid_connection_point` to better reflect its purpose.
