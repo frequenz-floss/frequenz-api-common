@@ -76,7 +76,7 @@ message Sensor {
 //     {
 //       "diagnosticCode":
 //           "SENSOR_DIAGNOSTIC_CODE_INTERNAL",
-//       "vendorErrorCode": 2003,
+//       "vendorErrorCode": "2003",
 //       "message": "Temperature sensor 3 reported 61.5°C (limit: 60°C)"
 //     }
 //     ```
@@ -91,7 +91,7 @@ message SensorDiagnostic {
 
   // Optional vendor-provided diagnostic code for the error, for vendor-specific
   // insights or more granular diagnostics.
-  optional uint32 vendor_diagnostic_code = 2;
+  optional string vendor_diagnostic_code = 2;
 
   // Optional human-readable message providing additional context.
   string message = 3;

@@ -145,7 +145,7 @@ message CommunicationComponent {
 //     ```json
 //     {
 //       "diagnosticCode": "COMMUNICATION_COMPONENT_DIAGNOSTIC_CODE_CONFIGURATION_ERR",
-//       "vendorDiagnosticCode": 1002,
+//       "vendorDiagnosticCode": "ERR_1002",
 //       "message": "VLAN mismatch detected on port 3"
 //     }
 //     ```
@@ -160,7 +160,7 @@ message CommunicationComponentDiagnostic {
   CommunicationComponentDiagnosticCode diagnostic_code = 1;
 
   // Optional vendor-provided code for more granular diagnostics.
-  optional uint32 vendor_diagnostic_code = 2;
+  optional string vendor_diagnostic_code = 2;
 
   // Human-readable message providing additional context.
   string message = 3;
