@@ -1,0 +1,25 @@
+// An arbitrary precision real number.
+//
+// Copyright 2024 Frequenz Energy-as-a-Service GmbH
+//
+// Licensed under the MIT License (the "License");
+// you may not use this file except in compliance with the License.
+
+syntax = "proto3";
+
+package frequenz.api.common.v1.types;
+
+// protolint:disable MAX_LINE_LENGTH
+// (the link is too long)
+
+// An arbitrary precision real number.
+//
+// This message is based (and compatible) with Google's `google.type.Decimal`
+// present in: https://github.com/googleapis/googleapis/
+// You should read the documentation there and follow all the guidelines (which
+// are many, so please go and read the docs in:
+// https://github.com/googleapis/googleapis/blob/master/google/type/decimal.proto)
+message Decimal {
+  // The string representation of the `Decimal` value.
+  string value = 1;
+}

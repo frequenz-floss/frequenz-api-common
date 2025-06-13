@@ -1,0 +1,30 @@
+// Frequenz definitions of power.
+//
+// Copyright 2024 Frequenz Energy-as-a-Service GmbH
+//
+// Licensed under the MIT License (the "License");
+// you may not use this file except in compliance with the License.
+
+syntax = "proto3";
+
+package frequenz.api.common.v1.market;
+
+import "frequenz/api/common/v1/types/decimal.proto";
+
+// Represents a single unit of power.
+//
+// !!! note
+//     The power unit is denominated in MW (Megawatts), which is a unit of
+//     power representing the rate of energy production or consumption at any
+//     given moment. This differs from MWh (Megawatt-hours), which measures
+//     the total amount of energy delivered or consumed over a period.
+//
+// Example:
+//     A power plant running at 10 MW for 1 hour generates 10 MWh of energy.
+//
+// This message standardizes the representation of power in MW across all
+// market applications.
+message Power {
+  // Power amount in Megawatts (MW).
+  frequenz.api.common.v1.types.Decimal mw = 1;
+}

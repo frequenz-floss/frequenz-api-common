@@ -1,0 +1,27 @@
+// Parameters for pagination.
+//
+// Copyright 2023 Frequenz Energy-as-a-Service GmbH
+//
+// Licensed under the MIT License (the "License");
+// you may not use this file except in compliance with the License.
+
+syntax = "proto3";
+
+package frequenz.api.common.v1.pagination;
+
+// A message providing metadata about paginated list results.
+// The PaginationInfo message delivers metadata concerning the paginated list
+// results and should be appended to the response message of a list request. The
+// total_items field must be set to the total count of items that adhere to the
+// filter criteria defined in the request. The next_page_token field should be
+// populated with the token to be used in the subsequent request to fetch the
+// next page of results. If there are no additional results, the next_page_token
+// field should be omitted.
+message PaginationInfo {
+  // The total number of items that match the filter criteria defined in the
+  // request.
+  uint32 total_items = 1;
+
+  // Token for retrieving the next set of results.
+  optional string next_page_token = 2;
+}

@@ -1,0 +1,213 @@
+// Frequenz microgrid sensor definitions.
+//
+// Copyright:
+// Copyright 2023 Frequenz Energy-as-a-Service GmbH
+//
+// License:
+// MIT
+
+syntax = "proto3";
+
+package frequenz.api.common.v1.microgrid.sensors;
+
+import "frequenz/api/common/v1/metrics/metric_sample.proto";
+import "frequenz/api/common/v1/microgrid/lifetime.proto";
+
+import "google/protobuf/timestamp.proto";
+
+// Enumerated sensor categories.
+enum SensorCategory {
+  // Unspecified
+  SENSOR_CATEGORY_UNSPECIFIED = 0;
+
+  // Thermometer (temperature sensor)
+  SENSOR_CATEGORY_THERMOMETER = 1;
+
+  // Hygrometer (humidity sensor)
+  SENSOR_CATEGORY_HYGROMETER = 2;
+
+  // Barometer (pressure sensor).
+  SENSOR_CATEGORY_BAROMETER = 3;
+
+  // Pyranometer (solar irradiance sensor).
+  SENSOR_CATEGORY_PYRANOMETER = 4;
+
+  // Anemometer (wind velocity and direction sensor).
+  SENSOR_CATEGORY_ANEMOMETER = 5;
+
+  // Accelerometers (acceleration sensor).
+  SENSOR_CATEGORY_ACCELEROMETER = 6;
+
+  // General sensors, which do not fall in any of the above categories
+  SENSOR_CATEGORY_GENERAL = 7;
+}
+
+// A sensor that measures a physical metric in the microgrid's surrounding
+// environment.
+message Sensor {
+  // A unique identifier for the sensor.
+  uint64 id = 1;
+
+  // Unique identifier of the parent microgrid_id.
+  uint64 microgrid_id = 2;
+
+  // An optional name for the sensor.
+  string name = 3;
+
+  // The category of the sensor.
+  SensorCategory category = 4;
+
+  // The sensor manufacturer.
+  string manufacturer = 5;
+
+  // The model name of the sensor.
+  string model_name = 6;
+
+  // The operational lifetime of the sensor.
+  frequenz.api.common.v1.microgrid.Lifetime operational_lifetime = 7;
+}
+
+// Enumrated sensor metrics.
+enum SensorMetric {
+  // Unspecified.
+  SENSOR_METRIC_UNSPECIFIED = 0;
+
+  // Temperature.
+  // In Celsius (°C).
+  SENSOR_METRIC_TEMPERATURE = 1;
+
+  // Humidity
+  // In percentage (%).
+  SENSOR_METRIC_HUMIDITY = 2;
+
+  // Pressure
+  // In Pascal (Pa).
+  SENSOR_METRIC_PRESSURE = 3;
+
+  // Irradiance / Radiation flux
+  // In watts per square meter (W / m^2).
+  SENSOR_METRIC_IRRADIANCE = 4;
+
+  // Velocity
+  // In meters per second (m / s).
+  SENSOR_METRIC_VELOCITY = 5;
+
+  // Acceleration.
+  // In meters per second per second (m / s^2)
+  SENSOR_METRIC_ACCELERATION = 6;
+
+  // Metric to represent angles, for metrics like direction.
+  // In angles with respect to the (magnetic) North (°).
+  SENSOR_METRIC_ANGLE = 7;
+
+  // Dew point.
+  // The temperature at which the air becomes saturated with water vapor.
+  //
+  // In Celsius (°C).
+  SENSOR_METRIC_DEW_POINT = 8;
+}
+
+// SensorData message aggregates multiple metrics, operational states, and
+// errors, related to a specific microgrid sensor.
+//
+// !!! example
+//   Example output of a component data message:
+//   ```
+//    {
+//      sensor_id: 13,
+//      metric_samples: [
+//        /* list of metrics for multiple timestamps */
+//        {
+//          sampled_at: "2023-10-01T00:00:00Z",
+//          metric: "METRIC_SENSOR_TEMPERATURE",
+//          value: metric_value_variant: {simple_metric: {value: 23.5},
+//        },
+//        {
+//          sampled_at: "2023-10-01T00:00:00Z",
+//          metric: "METRIC_SENSOR_RELATIVE_HUMIDITY",
+//          value: metric_value_variant: {simple_metric: {value: 23.5},
+//        }
+//      ],
+//      states: [
+//        {
+//          sampled_at: "2023-10-01T00:00:00Z",
+//          states: [],
+//          errors: [],
+//        },
+//      ]
+//
+//    }
+//  ```
+message SensorData {
+  // The ID of the microgrid sensors.
+  uint64 sensor_id = 1;
+
+  // List of measurements for a metric of the specific microgrid sensor.
+  repeated SensorMetricSample metric_samples = 2;
+
+  // List of states of a specific microgrid sensor.
+  repeated SensorState states = 3;
+}
+
+// Representation of a sensor state and errors.
+message SensorState {
+  // The time at which the state was sampled.
+  google.protobuf.Timestamp sampled_at = 1;
+
+  // List of states of the microgrid sensor.
+  //
+  // !!! note
+  //    The list will contain unique members. No state will exist twice in
+  //    this list.
+  repeated SensorStateCode states = 2;
+
+  // List of errors for the microgrid sensor.
+  //
+  // !!! note
+  //    This list is expected to have errors if and only if the sensor is in
+  //    an error state.
+  //
+  // !!! note
+  //    The list will contain unique members. No error will exist twice in
+  //    this list.
+  repeated SensorErrorCode errors = 4;
+}
+
+// Enum to represent the various states that a sensor can be in.
+// This enum is unified across all sensor categories for consistency.
+enum SensorStateCode {
+  // Default value when the sensor state is not explicitly set.
+  // This is the zero value of the enum.
+  SENSOR_STATE_CODE_UNSPECIFIED = 0;
+
+  // The sensor is up and running.
+  SENSOR_STATE_CODE_ON = 1;
+
+  // The sensor is in an error state.
+  SENSOR_STATE_CODE_ERROR = 2;
+}
+
+// A representation of all possible errors that can occur in sensors.
+enum SensorErrorCode {
+  // Default value. No specific error is specified.
+  SENSOR_ERROR_CODE_UNSPECIFIED = 0;
+
+  // The sensor is reporting an unknown or an undefined error, and the sender
+  // cannot parse the sensor error to any of the variants below.
+  SENSOR_ERROR_CODE_UNKNOWN = 1;
+
+  // Error indicating an internal error within the sensor.
+  SENSOR_ERROR_CODE_INTERNAL = 2;
+}
+
+// Representation of a sampled sensor metric along with its value.
+message SensorMetricSample {
+  // The UTC timestamp of when the metric was sampled.
+  google.protobuf.Timestamp sampled_at = 1;
+
+  // The metric that was sampled.
+  frequenz.api.common.v1.metrics.Metric metric = 2;
+
+  // The value of the sampled metric.
+  frequenz.api.common.v1.metrics.MetricValueVariant value = 3;
+}

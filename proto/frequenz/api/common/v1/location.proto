@@ -1,0 +1,22 @@
+// Geographical co-ordinates of a place.
+//
+// Copyright 2023 Frequenz Energy-as-a-Service GmbH
+//
+// Licensed under the MIT License (the "License");
+// you may not use this file except in compliance with the License.
+
+syntax = "proto3";
+
+package frequenz.api.common.v1;
+
+// A pair of geographical co-ordinates, representing the location of a place.
+message Location {
+  // Latitude ranges from -90 (South) to 90 (North)
+  float latitude = 1;
+
+  // Longitude ranges from -180 (West) to 180 (East)
+  float longitude = 2;
+
+  // Country ISO 3166-1 Alpha 2
+  string country_code = 3;
+}
