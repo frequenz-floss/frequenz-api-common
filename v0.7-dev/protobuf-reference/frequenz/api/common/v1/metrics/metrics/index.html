@@ -1239,6 +1239,15 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#metricconnection" class="md-nav__link">
+    <span class="md-ellipsis">
+      MetricConnection
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#metricsample" class="md-nav__link">
     <span class="md-ellipsis">
       MetricSample
@@ -1302,6 +1311,15 @@
   <a href="#metric" class="md-nav__link">
     <span class="md-ellipsis">
       Metric
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metricconnectioncategory" class="md-nav__link">
+    <span class="md-ellipsis">
+      MetricConnectionCategory
     </span>
   </a>
   
@@ -4656,6 +4674,15 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#metricconnection" class="md-nav__link">
+    <span class="md-ellipsis">
+      MetricConnection
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#metricsample" class="md-nav__link">
     <span class="md-ellipsis">
       MetricSample
@@ -4724,6 +4751,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#metricconnectioncategory" class="md-nav__link">
+    <span class="md-ellipsis">
+      MetricConnectionCategory
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -4765,6 +4801,7 @@
 <p><a href="#frequenz_api_common_v1_metrics_metrics-proto">frequenz/api/common/v1/metrics/metrics.proto</a></p>
 <ul>
 <li><a href="#frequenz-api-common-v1-metrics-AggregatedMetricValue">AggregatedMetricValue</a></li>
+<li><a href="#frequenz-api-common-v1-metrics-MetricConnection">MetricConnection</a></li>
 <li><a href="#frequenz-api-common-v1-metrics-MetricSample">MetricSample</a></li>
 <li><a href="#frequenz-api-common-v1-metrics-MetricValueVariant">MetricValueVariant</a></li>
 <li>
@@ -4773,6 +4810,7 @@
 <li>
 <p><a href="#frequenz-api-common-v1-metrics-Metric">Metric</a></p>
 </li>
+<li><a href="#frequenz-api-common-v1-metrics-MetricConnectionCategory">MetricConnectionCategory</a></li>
 </ul>
 </li>
 <li>
@@ -4829,6 +4867,34 @@ are available.</p>
 </tr>
 </tbody>
 </table>
+<p><a name="frequenz-api-common-v1-metrics-MetricConnection"></a></p>
+<h3 id="metricconnection">MetricConnection<a class="headerlink" href="#metricconnection" title="Permanent link">¤</a></h3>
+<p>A connection to a metric representing from which a metric was obtained.</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>category</td>
+<td><a href="#frequenz-api-common-v1-metrics-MetricConnectionCategory">MetricConnectionCategory</a></td>
+<td></td>
+<td>The category of the connection from which the metric was obtained.</td>
+</tr>
+<tr>
+<td>name</td>
+<td><a href="#string">string</a></td>
+<td></td>
+<td>A string that can be used to identify the specific connection from which the metric was obtained.</td>
+</tr>
+</tbody>
+</table>
+<p>This is expected to be populated when the same <code>Metric</code> variant can be obtained from multiple distinct inputs or connection points on the component. Knowing the connection for the metric can help in certain control and monitoring applications. |</p>
 <p><a name="frequenz-api-common-v1-metrics-MetricSample"></a></p>
 <h3 id="metricsample">MetricSample<a class="headerlink" href="#metricsample" title="Permanent link">¤</a></h3>
 <p>Representation of a sampled metric along with its value.</p>
@@ -4886,10 +4952,11 @@ command, clients need to request current values within the bounds.</p>
 <p>In the case of certain components like batteries, multiple bounds might exist. These multiple bounds collectively extend the range of allowable values, effectively forming a union of all given bounds. In such cases, the value of the metric must be within at least one of the bounds. In accordance with the passive sign convention, bounds that limit discharge would have negative numbers, while those limiting charge, such as for the State of Power (SoP) metric, would be positive. Hence bounds can have positive and negative values depending on the metric they represent.</p>
 <h4 id="example">Example<a class="headerlink" href="#example" title="Permanent link">¤</a></h4>
 <p>The diagram below illustrates the relationship between the bounds. <code>bound[0].lower bound[1].upper &amp;lt;-------|============|------------------|============|---------&amp;gt; bound[0].upper bound[1].lower</code> ---- values here are disallowed and will be rejected ==== values here are allowed and will be accepted |
-| connection | <a href="#string">string</a> | optional | An optional string that can be used to identify the specific connection from which the metric was obtained.</p>
+| connection | <a href="#frequenz-api-common-v1-metrics-MetricConnection">MetricConnection</a> | optional | An optional field that can be used to identify the specific connection from which the metric was obtained.</p>
 <p>This is expected to be populated when the same <code>Metric</code> variant can be obtained from multiple distinct inputs or connection points on the component. Knowing the connection for the metric can help in certain control and monitoring applications.</p>
-<p>E.g., - A PV inverter might have multiple PV strings connected (e.g., <code>pv_string_1</code>, <code>pv_string_2</code>). - A hybrid inverter can have a DC connection for a battery (e.g., <code>dc_battery_0</code>) and another for a PV array (e.g., <code>dc_pv_0</code>). A metric like DC voltage can be obtained from both connections. For an application to determine the SoC of the battery using its voltage, identifying the <code>dc_battery_0</code> connection is important. - A sensor unit might report temperature from different connected probes (e.g., <code>temp_sensor_outdoor</code>, <code>temp_sensor_indoor</code>).</p>
-<p>In cases where the component has just one such connection for a metric, or the context is otherwise unambiguous, this field is not expected to be present, because the connection is implicit. |</p>
+<p>E.g., - A PV inverter might have multiple PV strings connected (e.g., <code>pv_string_1</code>, <code>pv_string_2</code>). - A hybrid inverter can have a DC connection for a battery (e.g., <code>dc_battery_0</code>) and another for a PV array (e.g., <code>dc_pv_0</code>). A metric like DC voltage can be obtained from both connections. For an application to determine the SoC of the battery using its voltage, identifying the <code>dc_battery_0</code> connection is important. - A sensor unit might report temperature from different connected probes (e.g., <code>temp_sensor_outdoor</code>, <code>temp_sensor_transformer</code>).</p>
+<p>!!! note &#34;Default Connection Behavior&#34; If this field is unset, it is implicitly assumed that the component only has a single connection for this metric, and the connection is uniquely identified by the component itself.</p>
+<p>!!! example <code>// DC power from battery string 0 in a hybrid inverter source { category: METRIC_CONNECTION_CATEGORY_BATTERY name: &amp;#34;dc_battery_0&amp;#34; }</code> |</p>
 <p><a name="frequenz-api-common-v1-metrics-MetricValueVariant"></a></p>
 <h3 id="metricvaluevariant">MetricValueVariant<a class="headerlink" href="#metricvaluevariant" title="Permanent link">¤</a></h3>
 <p><code>MetricValueVariant</code> serves as a union type that can encapsulate either a
@@ -5332,6 +5399,61 @@ measured or derived at a particular time.</p>
 <td>METRIC_SENSOR_IRRADIANCE</td>
 <td>166</td>
 <td></td>
+</tr>
+</tbody>
+</table>
+<p><a name="frequenz-api-common-v1-metrics-MetricConnectionCategory"></a></p>
+<h3 id="metricconnectioncategory">MetricConnectionCategory<a class="headerlink" href="#metricconnectioncategory" title="Permanent link">¤</a></h3>
+<p>Enumerated categories of connections from which metrics can be obtained for a
+given electrical component or sensor.</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Number</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>METRIC_CONNECTION_CATEGORY_UNSPECIFIED</td>
+<td>0</td>
+<td>Default value. Do not use this value.</td>
+</tr>
+<tr>
+<td>METRIC_CONNECTION_CATEGORY_OTHER</td>
+<td>1</td>
+<td>A generic connection for metrics that do not fit into any other category.</td>
+</tr>
+<tr>
+<td>METRIC_CONNECTION_CATEGORY_BATTERY</td>
+<td>2</td>
+<td>A connection to a metric representing a battery.</td>
+</tr>
+<tr>
+<td>METRIC_CONNECTION_CATEGORY_PHOTOVOLTAIC</td>
+<td>3</td>
+<td>A connection to a metric representing a photovoltaic (PV) array or string.</td>
+</tr>
+<tr>
+<td>METRIC_CONNECTION_CATEGORY_AMBIENT</td>
+<td>10</td>
+<td>A connection to a metric representing ambient conditions.</td>
+</tr>
+<tr>
+<td>METRIC_CONNECTION_CATEGORY_CABINET</td>
+<td>11</td>
+<td>A connection to a metric representing a cabinet or an enclosure.</td>
+</tr>
+<tr>
+<td>METRIC_CONNECTION_CATEGORY_HEATSINK</td>
+<td>12</td>
+<td>A connection to a metric representing a heatsink.</td>
+</tr>
+<tr>
+<td>METRIC_CONNECTION_CATEGORY_TRANSFORMER</td>
+<td>13</td>
+<td>A connection to a metric representing a transformer.</td>
 </tr>
 </tbody>
 </table>
