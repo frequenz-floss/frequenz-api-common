@@ -172,6 +172,50 @@ enum Metric {
   METRIC_SENSOR_IRRADIANCE = 166;
 }
 
+// Enumerated categories of connections from which metrics can be obtained for a
+// given electrical component or sensor.
+enum MetricConnectionCategory {
+  // Default value.
+  // Do not use this value.
+  METRIC_CONNECTION_CATEGORY_UNSPECIFIED = 0;
+
+  // A generic connection for metrics that do not fit into any other category.
+  METRIC_CONNECTION_CATEGORY_OTHER = 1;
+
+  // A connection to a metric representing a battery.
+  METRIC_CONNECTION_CATEGORY_BATTERY = 2;
+
+  // A connection to a metric representing a photovoltaic (PV) array or string.
+  METRIC_CONNECTION_CATEGORY_PHOTOVOLTAIC = 3;
+
+  // A connection to a metric representing ambient conditions.
+  METRIC_CONNECTION_CATEGORY_AMBIENT = 10;
+
+  // A connection to a metric representing a cabinet or an enclosure.
+  METRIC_CONNECTION_CATEGORY_CABINET = 11;
+
+  // A connection to a metric representing a heatsink.
+  METRIC_CONNECTION_CATEGORY_HEATSINK = 12;
+
+  // A connection to a metric representing a transformer.
+  METRIC_CONNECTION_CATEGORY_TRANSFORMER = 13;
+}
+
+// A connection to a metric representing from which a metric was obtained.
+message MetricConnection {
+  // The category of the connection from which the metric was obtained.
+  MetricConnectionCategory category = 1;
+
+  // A  string that can be used to identify the specific connection from which
+  // the metric was obtained.
+  //
+  // This is expected to be populated when the same `Metric` variant can be
+  // obtained from multiple distinct inputs or connection points on the
+  // component. Knowing the connection for the metric can help in certain
+  // control and monitoring applications.
+  string name = 2;
+}
+
 // Representation of a sampled metric along with its value.
 //
 // !!! note
@@ -222,7 +266,7 @@ message MetricSample {
   // ==== values here are allowed and will be accepted
   repeated Bounds bounds = 4;
 
-  // An optional string that can be used to identify the specific connection
+  // An optional field that can be used to identify the specific connection
   // from which the metric was obtained.
   //
   // This is expected to be populated when the same `Metric` variant can be
@@ -239,10 +283,20 @@ message MetricSample {
   //   to determine the SoC of the battery using its voltage, identifying the
   //   `dc_battery_0` connection is important.
   // - A sensor unit might report temperature from different connected probes
-  //   (e.g., `temp_sensor_outdoor`, `temp_sensor_indoor`).
+  //   (e.g., `temp_sensor_outdoor`, `temp_sensor_transformer`).
   //
-  // In cases where the component has just one such connection for a metric,
-  // or the context is otherwise unambiguous, this field is not expected to
-  // be present, because the connection is implicit.
-  optional string connection = 5;
+  // !!! note "Default Connection Behavior"
+  //     If this field is unset, it is implicitly assumed that the component
+  //     only has a single connection for this metric, and the connection is
+  //     uniquely identified by the component itself.
+  //
+  // !!! example
+  //     ```
+  //     // DC power from battery string 0 in a hybrid inverter
+  //     source {
+  //       category: METRIC_CONNECTION_CATEGORY_BATTERY
+  //       name: "dc_battery_0"
+  //     }
+  //     ```
+  optional MetricConnection connection = 5;
 }
