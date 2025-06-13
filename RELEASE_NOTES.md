@@ -73,6 +73,8 @@
 
 - The file `location.proto` has been moved to the `types` package, moving the message `Location` to `types.Location`.
 
+- The type of the field `metrics.MetricSample.connection` has been changed from `string` to `metrics.MetricConnection`. The latter is a newly added message that provides a better categorization of the connection type.
+
 ## New Features
 
 Added many new messages and enum values:
