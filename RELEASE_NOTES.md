@@ -94,7 +94,7 @@ Added many new messages and enum values:
 
 - `types`
 
-    + `TimeIntervalFilter`: Message to standardize time interval filtering across APIs
+    + `Interval`: Message to standardize time interval filtering across APIs
 
         This uses `start_time` (inclusive) and `end_time` (exclusive) fields, aligning with ISO 8601 and common programming conventions.
 

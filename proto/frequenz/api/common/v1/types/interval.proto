@@ -22,7 +22,7 @@ import "google/protobuf/timestamp.proto";
 //   considered unbounded at the start.
 // * If `end_time` is omitted, the interval is
 //   considered unbounded at the end.
-message TimeIntervalFilter {
+message Interval {
   // The beginning of the time interval (inclusive).
   //
   // Must be a UTC timestamp.
