@@ -212,12 +212,12 @@ def test_module_import_microgrid_communication_components() -> None:
 def test_module_import_location() -> None:
     """Test that the modules can be imported."""
     # pylint: disable=import-outside-toplevel
-    from frequenz.api.common.v1 import location_pb2
+    from frequenz.api.common.v1.types import location_pb2
 
     assert location_pb2 is not None
 
     # pylint: disable=import-outside-toplevel
-    from frequenz.api.common.v1 import location_pb2_grpc
+    from frequenz.api.common.v1.types import location_pb2_grpc
 
     assert location_pb2_grpc is not None
 
