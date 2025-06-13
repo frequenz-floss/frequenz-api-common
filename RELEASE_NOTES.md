@@ -28,6 +28,7 @@
         * `ComponentState` to `ElectricalComponentStateSnapshot`
         * `ComponentState.sampled_at` to `ElectricalComponentStateSnapshot.origin_time`
         * `ComponentData` to `ElectricalComponentTelemetry` (to better specify its purpose of encapsulating general telemetry data from electrical components)
+        * `ComponentData.states` to `ElectricalComponentTelemetry.state_snapshots`
         * Grid-related terms to clarify their meaning and purpose:
 
             + `COMPONENT_CATEGORY_GRID` to `ELECTRICAL_COMPONENT_CATEGORY_GRID_CONNECTION_POINT`
@@ -38,6 +39,7 @@
         * `SensorErrorCode` to `SensorDiagnosticCode`
         * `SensorData` to `SensorTelemetry` (to better specify its purpose of encapsulating general telemetry data from sensors)
         * `SensorState` to `SensorStateSnapshot`
+        * `SensorData.states` to `SensorTelemetry.state_snapshots`
         * `SensorState.sampled_at` to `SensorStateSnapshot.origin_time`
         * `SensorStateCode.SENSOR_STATE_CODE_ON` to `SensorStateCode.SENSOR_STATE_CODE_OK` (to better indicate that we do not control on/off state of sensors)
 

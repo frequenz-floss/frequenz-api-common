@@ -182,7 +182,7 @@ message SensorTelemetry {
   // sensors.
   repeated frequenz.api.common.v1.metrics.MetricSample metric_samples = 2;
 
-  // List of states of a specific microgrid sensor.
-  repeated SensorStateSnapshot states = 3;
+  // List of state snapshots of a specific microgrid sensor.
+  repeated SensorStateSnapshot state_snapshots = 3;
 }
 

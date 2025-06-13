@@ -580,6 +580,6 @@ message ElectricalComponentTelemetry {
   // List of measurements for a metric of the specific microgrid component.
   repeated frequenz.api.common.v1.metrics.MetricSample metric_samples = 2;
 
-  // List of states of a specific microgrid component.
-  repeated ElectricalComponentStateSnapshot states = 3;
+  // List of state snapshots of a specific microgrid component.
+  repeated ElectricalComponentStateSnapshot state_snapshots = 3;
 }
