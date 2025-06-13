@@ -57,6 +57,10 @@
        * `METRIC_AC_ACTIVE_ENERGY*` to `METRIC_AC_ENERGY_ACTIVE*`
        * `METRIC_AC_REACTIVE_ENERGY*` to `METRIC_AC_ENERGY_REACTIVE*`
 
+    + `types`:
+
+        * The whole package has been renamed to `type`.
+
 - Renumbered some enum values to remove unnecessary gaps:
 
     + `microgrid.components.ComponentCategory` (`microgrid.electrical_components.ElectricalComponentCategory`)
