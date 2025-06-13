@@ -18,8 +18,8 @@ enum InverterType {
   // Battery inverter.
   INVERTER_TYPE_BATTERY = 1;
 
-  // Solar inverter.
-  INVERTER_TYPE_SOLAR = 2;
+  // Photovoltaic (PV) inverter.
+  INVERTER_TYPE_PHOTOVOLTAIC = 2;
 
   // Hybrid inverter.
   INVERTER_TYPE_HYBRID = 3;
