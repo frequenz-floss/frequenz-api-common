@@ -33,6 +33,7 @@
 
             + `COMPONENT_CATEGORY_GRID` to `ELECTRICAL_COMPONENT_CATEGORY_GRID_CONNECTION_POINT`
             + `ComponentCategoryMetadataVariant.metadata.grid` to `ElectricalComponentCategorySpecificInfo.kind.grid_connection_point`
+        * `InverterType.INVERTER_TYPE_SOLAR` to `InverterType.INVERTER_TYPE_PHOTOVOLTAIC` (to align with the more colloquial term "PV inverter", but without using abbreviations)
 
     + `microgrid.sensors`:
 
