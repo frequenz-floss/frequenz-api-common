@@ -47,6 +47,16 @@
         * `MetricSample.source` to `MetricSample.connection`
         * `MetricSample.sampled_at` to `sample_time`
 
+    + `metrics.Metric`:
+
+       * The enum variants to follow a more consistent naming scheme of core-concept to modifier.
+       * `METRIC_AC_APPARENT_POWER*` to `METRIC_AC_POWER_APPARENT*`
+       * `METRIC_AC_ACTIVE_POWER*` to `METRIC_AC_POWER_ACTIVE*`
+       * `METRIC_AC_REACTIVE_POWER*` to `METRIC_AC_POWER_REACTIVE*`
+       * `METRIC_AC_APPARENT_ENERGY*` to `METRIC_AC_ENERGY_APPARENT*`
+       * `METRIC_AC_ACTIVE_ENERGY*` to `METRIC_AC_ENERGY_ACTIVE*`
+       * `METRIC_AC_REACTIVE_ENERGY*` to `METRIC_AC_ENERGY_REACTIVE*`
+
 - Renumbered some enum values to remove unnecessary gaps:
 
     + `microgrid.components.ComponentCategory` (`microgrid.electrical_components.ElectricalComponentCategory`)
