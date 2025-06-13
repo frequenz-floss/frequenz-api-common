@@ -1,0 +1,199 @@
+// protolint:disable MAX_LINE_LENGTH
+
+// Frequenz microgrid communication components definitions.
+//
+// Copyright:
+// Copyright 2025 Frequenz Energy-as-a-Service GmbH
+//
+// License:
+// MIT
+
+syntax = "proto3";
+
+package frequenz.api.common.v1alpha7.microgrid.communication_components;
+
+import "google/protobuf/timestamp.proto";
+
+// Defines the high-level operational state of a communication component.
+// These codes can be used in a one-shot snapshot to show its current condition.
+enum CommunicationComponentStateCode {
+  // Default unset value.
+  COMMUNICATION_COMPONENT_STATE_CODE_UNSPECIFIED = 0;
+
+  // The component's internal status is unknown.
+  COMMUNICATION_COMPONENT_STATE_CODE_UNKNOWN = 1;
+
+  // The component is powered on and responding to network traffic.
+  COMMUNICATION_COMPONENT_STATE_CODE_ONLINE = 2;
+
+  // The component is powered off, unreachable, or administratively disabled.
+  COMMUNICATION_COMPONENT_STATE_CODE_OFFLINE = 3;
+
+  // The component is in the process of establishing connections.
+  COMMUNICATION_COMPONENT_STATE_CODE_CONNECTING = 4;
+
+  // The component is in the process of shutting down connections.
+  COMMUNICATION_COMPONENT_STATE_CODE_DISCONNECTING = 5;
+
+  // The component is undergoing maintenance (e.g., firmware upgrade).
+  COMMUNICATION_COMPONENT_STATE_CODE_MAINTENANCE = 6;
+
+  // The component is up but experiencing degraded performance (e.g., high packet loss).
+  COMMUNICATION_COMPONENT_STATE_CODE_DEGRADED = 7;
+}
+
+// Enumerated diagnostic codes for communication components.
+//
+// These codes indicate common network- or device-level faults that may affect
+// connectivity.
+enum CommunicationComponentDiagnosticCode {
+  // Default value; no specific diagnostic is specified.
+  COMMUNICATION_COMPONENT_DIAGNOSTIC_CODE_UNSPECIFIED = 0;
+
+  // Component is unreachable (e.g., no heartbeat from device, network down).
+  COMMUNICATION_COMPONENT_DIAGNOSTIC_CODE_UNREACHABLE = 1;
+
+  // Communication component is unknown. This could happen in cases where the
+  // status could be read from the component, but it could not be identified
+  // as a known state.
+  COMMUNICATION_COMPONENT_DIAGNOSTIC_CODE_UNKNOWN = 2;
+
+  // Authentication error (e.g., invalid credentials, certificate issues).
+  COMMUNICATION_COMPONENT_DIAGNOSTIC_CODE_AUTHENTICATION_ERR = 3;
+
+  // Configuration error detected (e.g., invalid VLAN, IP conflict).
+  COMMUNICATION_COMPONENT_DIAGNOSTIC_CODE_CONFIGURATION_ERR = 4;
+
+  // High packet loss detected over a sustained period.
+  COMMUNICATION_COMPONENT_DIAGNOSTIC_CODE_PACKET_LOSS = 5;
+
+  // Excessive latency observed (e.g., ping time above threshold).
+  COMMUNICATION_COMPONENT_DIAGNOSTIC_CODE_HIGH_LATENCY = 6;
+
+  // Hardware fault reported by device (e.g., port error, cable disconnected).
+  COMMUNICATION_COMPONENT_DIAGNOSTIC_CODE_HARDWARE_GENERIC_FAULT = 7;
+
+  // Hardware fault due to overheating.
+  COMMUNICATION_COMPONENT_DIAGNOSTIC_CODE_OVER_TEMPERATURE = 8;
+}
+// `CommunicationComponentCategory` enumerates possible types of communication
+// components within the microgrid.
+//
+// Categories help distinguish communication devices according to their roles,
+// capabilities, and protocols they handle within the microgrid infrastructure.
+enum CommunicationComponentCategory {
+  // Unspecified communication component category.
+  //
+  // !!! caution
+  //     This default value should never be used explicitly and indicates that
+  //     the category has not been properly defined.
+  COMMUNICATION_COMPONENT_CATEGORY_UNSPECIFIED = 0;
+
+  // Modbus Gateway used for protocol translation and managing Modbus
+  // communication.
+  COMMUNICATION_COMPONENT_CATEGORY_MODBUS_GATEWAY = 1;
+
+  // LTE Router providing cellular connectivity (LTE, 4G, 5G) for the microgrid.
+  COMMUNICATION_COMPONENT_CATEGORY_ROUTER = 2;
+
+  // Ethernet Switch enabling wired network connections within the microgrid.
+  COMMUNICATION_COMPONENT_CATEGORY_ETHERNET_SWITCH = 3;
+
+  // Digital Input/Output (DIO) Gateway enabling communication and control
+  // of digital signals between microgrid devices.
+  COMMUNICATION_COMPONENT_CATEGORY_DIO_GATEWAY = 4;
+
+  // Programmable Logic Controller (PLC) used for automation tasks,
+  // process control, and operational logic in the microgrid.
+  COMMUNICATION_COMPONENT_CATEGORY_PLC = 5;
+
+  // Serial Gateway (RS-232, RS-485, etc.) facilitating serial communication
+  // between legacy equipment and modern network infrastructures.
+  COMMUNICATION_COMPONENT_CATEGORY_SERIAL_GATEWAY = 6;
+}
+
+// `CommunicationComponent` represents a communication component within a
+// microgrid.
+//
+// Communication components are networked devices responsible for enabling
+// communication between electrical components, sensors, controllers, and other
+// network devices.
+message CommunicationComponent {
+  // Unique identifier of the communication component.
+  uint64 id = 1;
+
+  // Unique identifier of the parent microgrid.
+  uint64 microgrid_id = 2;
+
+  // Human-readable name of the communication component.
+  string name = 3;
+
+  // Category identifying the type of the communication component.
+  CommunicationComponentCategory category = 4;
+
+  // List of IP addresses assigned to this communication component.
+  repeated string ip_addresses = 5;
+}
+
+// Represents an error or warning condition reported by a microgrid
+// communication component.
+//
+// This message extends a standardized diagnostic code with optional
+// vendor-specific codes and contextual information for troubleshooting.
+//
+// !!! example "Typical Communication Component Warning"
+//     ```json
+//     {
+//       "diagnosticCode": "COMMUNICATION_COMPONENT_DIAGNOSTIC_CODE_CONFIGURATION_ERR",
+//       "vendorDiagnosticCode": "ERR_1002",
+//       "message": "VLAN mismatch detected on port 3"
+//     }
+//     ```
+//
+// !!! note "Vendor-Specific Codes"
+//     When available, `vendor_error_code` reflects manufacturer-defined error
+//     identifiers.
+//     These codes are vendor- and firmware-specific and must be interpreted
+//     using the vendor's official documentation.
+message CommunicationComponentDiagnostic {
+  // A standardized diagnostic code representing the category of the issue.
+  CommunicationComponentDiagnosticCode diagnostic_code = 1;
+
+  // Optional vendor-provided code for more granular diagnostics.
+  optional string vendor_diagnostic_code = 2;
+
+  // Human-readable message providing additional context.
+  string message = 3;
+}
+
+// A single snapshot of a communication component's state, diagnostics, and timing.
+//
+// !!! note "snapshot semantics"
+//     all fields in this message represent the component's view at one point
+//     in time, so there is only a single `snapshot_time`. any parallel reads
+//     happening to produce this data are collapsed under that timestamp.
+message CommunicationComponentStateSnapshot {
+  // The UTC time when the state was originally captured.
+  google.protobuf.Timestamp origin_time = 1;
+
+  // one or more high-level state codes active at snapshot_time.
+  //
+  // !!! note
+  //     typical usage is a single state (e.g., online), but multiple may
+  //     apply (e.g., connecting + degraded) if that makes sense.
+  repeated CommunicationComponentStateCode states = 2;
+
+  // non-critical warnings detected for the component.
+  //
+  // !!! note
+  //     warnings may coexist with an online state, indicating potential
+  //     issues that do not prevent basic operation.
+  repeated CommunicationComponentDiagnostic warnings = 3;
+
+  // critical errors currently affecting the component.
+  //
+  // !!! note
+  //     an error state code should accompany entries here.
+  repeated CommunicationComponentDiagnostic errors = 4;
+}
+
