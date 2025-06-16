@@ -185,8 +185,8 @@ enum MetricConnectionCategory {
   // A connection to a metric representing a battery.
   METRIC_CONNECTION_CATEGORY_BATTERY = 2;
 
-  // A connection to a metric representing a photovoltaic (PV) array or string.
-  METRIC_CONNECTION_CATEGORY_PHOTOVOLTAIC = 3;
+  // A connection to a metric representing a PV (photovoltaic) array or string.
+  METRIC_CONNECTION_CATEGORY_PV = 3;
 
   // A connection to a metric representing ambient conditions.
   METRIC_CONNECTION_CATEGORY_AMBIENT = 10;
