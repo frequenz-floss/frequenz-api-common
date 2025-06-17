@@ -7828,6 +7828,9 @@ for a component.</p>
 <p><a name="frequenz-api-common-v1alpha7-microgrid-electrical_components-ElectricalComponentCategory"></a></p>
 <h3 id="electricalcomponentcategory">ElectricalComponentCategory<a class="headerlink" href="#electricalcomponentcategory" title="Permanent link">¤</a></h3>
 <p>Enumerated electrical component categories.</p>
+<p>This enum lists key microgrid components, most of which are typically capable
+of being remotely controlled via digital interfaces (e.g., Modbus, MQTT,
+OPC-UA).</p>
 <table>
 <thead>
 <tr>
@@ -7847,73 +7850,43 @@ for a component.</p>
 <td>1</td>
 <td>The point where the local microgrid is connected to the grid.</td>
 </tr>
-<tr>
-<td>ELECTRICAL_COMPONENT_CATEGORY_METER</td>
-<td>2</td>
-<td>A meter, for measuring electrical metrics, e.g., current, voltage, etc.</td>
-</tr>
-<tr>
-<td>ELECTRICAL_COMPONENT_CATEGORY_INVERTER</td>
-<td>3</td>
-<td>An electricity generator, with batteries or solar energy.</td>
-</tr>
-<tr>
-<td>ELECTRICAL_COMPONENT_CATEGORY_CONVERTER</td>
-<td>4</td>
-<td>A DC-DC converter.</td>
-</tr>
-<tr>
-<td>ELECTRICAL_COMPONENT_CATEGORY_BATTERY</td>
-<td>5</td>
-<td>A storage system for electrical energy, used by inverters.</td>
-</tr>
-<tr>
-<td>ELECTRICAL_COMPONENT_CATEGORY_EV_CHARGER</td>
-<td>6</td>
-<td>A station for charging electrical vehicles.</td>
-</tr>
-<tr>
-<td>ELECTRICAL_COMPONENT_CATEGORY_CRYPTO_MINER</td>
-<td>7</td>
-<td>A crypto miner.</td>
-</tr>
-<tr>
-<td>ELECTRICAL_COMPONENT_CATEGORY_ELECTROLYZER</td>
-<td>8</td>
-<td>An electrolyzer for converting water into hydrogen and oxygen.</td>
-</tr>
-<tr>
-<td>ELECTRICAL_COMPONENT_CATEGORY_CHP</td>
-<td>9</td>
-<td>A heat and power combustion plant (CHP stands for combined heat and power).</td>
-</tr>
-<tr>
-<td>ELECTRICAL_COMPONENT_CATEGORY_RELAY</td>
-<td>10</td>
-<td>A relay. Relays generally have two states: open (connected) and closed (disconnected). They are generally placed in front of a component, e.g., an inverter, to control whether the component is connected to the grid or not.</td>
-</tr>
-<tr>
-<td>ELECTRICAL_COMPONENT_CATEGORY_PRECHARGER</td>
-<td>11</td>
-<td>A precharge module. Precharging involves gradually ramping up the DC voltage to prevent any potential damage to sensitive electrical components like capacitors. While many inverters and batteries come equipped with in-built precharging mechanisms, some may lack this feature. In such cases, we need to use external precharging modules.</td>
-</tr>
-<tr>
-<td>ELECTRICAL_COMPONENT_CATEGORY_FUSE</td>
-<td>12</td>
-<td>A fuse. Fuses are used to protect electrical components from overcurrents.</td>
-</tr>
-<tr>
-<td>ELECTRICAL_COMPONENT_CATEGORY_VOLTAGE_TRANSFORMER</td>
-<td>13</td>
-<td>A voltage transformer. Voltage transformers are used to step up or step down the voltage, keeping the power somewhat constant by increasing or decreasing the current. If voltage is stepped up, current is stepped down, and vice versa. Note that voltage transformers have efficiency losses, so the output power is always less than the input power.</td>
-</tr>
-<tr>
-<td>ELECTRICAL_COMPONENT_CATEGORY_HVAC</td>
-<td>14</td>
-<td>An HVAC (Heating, Ventilation, and Air Conditioning) system.</td>
-</tr>
 </tbody>
 </table>
+<p>Represents the interface between a local microgrid and the public electricity grid, typically used for metering, protection, and isolation. This category itself is not remotely controllable, but can be associated with other devices (inverters, relays, etc.) that can be controlled to affect the grid connection point. |
+| ELECTRICAL_COMPONENT_CATEGORY_METER | 2 | A meter for measuring electrical parameters.</p>
+<p>Measures electrical parameters such as voltage, current, power, energy, and frequency. Meters typically cannot be controlled remotely, but they can provide telemetry data. Examples: Janitza UMG 604, Janitza B24, ABB B24, etc. |
+| ELECTRICAL_COMPONENT_CATEGORY_INVERTER | 3 | An inverter.</p>
+<p>Converts DC to AC power and vice-versa, enabling integration of batteries, PV arrays, or other renewables. Remotely controllable via digital protocols for power setpoints, modes, and status. Examples: SMA Sunny Tripower, Kaco Blueplanet, Refu RefuStore88k, etc. |
+| ELECTRICAL_COMPONENT_CATEGORY_CONVERTER | 4 | A DC-DC converter.</p>
+<p>Converts electrical energy between different DC voltage levels. Typically remotely controllable for voltage, current, or mode adjustment. Examples: Victron Orion, Delta Electronics DC-DC converters, TDK Lambda. |
+| ELECTRICAL_COMPONENT_CATEGORY_BATTERY | 5 | A battery energy storage system.</p>
+<p>Stores electrical energy and can be dispatched for load balancing, backup, or arbitrage. Remotely controllable for charging, discharging, and operational mode. Examples: Tesla Megapack, LG Chem RESU, etc. |
+| ELECTRICAL_COMPONENT_CATEGORY_EV_CHARGER | 6 | An EV charger.</p>
+<p>Provides controlled charging for electric vehicles. Remotely controllable for starting/stopping charging and setting power limits. Examples: Alfen NG 9xx, KEBA KeContact P30, Siemens VersiCharge, etc. |
+| ELECTRICAL_COMPONENT_CATEGORY_BREAKER | 7 | A circuit breaker.</p>
+<p>Provides protection and switching by disconnecting circuits as needed. Remotely controllable for opening/closing and status monitoring. Examples: Finder Series 62, Phoenix Contact PLC-Interface, Siemens Sirius, Schneider Electric Zelio, etc. |
+| ELECTRICAL_COMPONENT_CATEGORY_PRECHARGER | 8 | A pre-charge module.</p>
+<p>Ramps up DC voltage gradually to protect components during power-up. Remotely controllable to initiate or manage the pre-charge sequence. Examples: Precharge modules from Bender, Precharge controllers by Elcon, custom PLC-controlled circuits. |
+| ELECTRICAL_COMPONENT_CATEGORY_CHP | 9 | A combined heat and power (CHP) plant.</p>
+<p>Generates electricity and useful heat from a single energy source. Remotely controllable for start/stop commands and setpoint adjustments. Examples: 2G Agenitor, Viessmann Vitobloc, TEDOM Micro series, Bosch CHP. |
+| ELECTRICAL_COMPONENT_CATEGORY_ELECTROLYZER | 10 | An electrolyzer.</p>
+<p>Converts electrical energy into hydrogen and oxygen by electrolyzing water. Remotely controllable for operating mode and production rate. Examples: Siemens Silyzer, Nel Hydrogen PEM, ITM Power electrolyzers. |
+| ELECTRICAL_COMPONENT_CATEGORY_VOLTAGE_TRANSFORMER | 11 | A voltage transformer.</p>
+<p>Voltage transformers are used to step up or step down the voltage, keeping the power somewhat constant by increasing or decreasing the current. If voltage is stepped up, current is stepped down, and vice versa. Note that voltage transformers have efficiency losses, so the output power is always less than the input power. |
+| ELECTRICAL_COMPONENT_CATEGORY_HVAC | 12 | An HVAC system (Heating, Ventilation, and Air Conditioning).</p>
+<p>Manages indoor climate by controlling heating, cooling, and ventilation. Remotely controllable for setpoint and operational scheduling. Examples: Siemens Desigo, Trane Voyager, Daikin VRV, Schneider Electric SmartStruxure. |
+| ELECTRICAL_COMPONENT_CATEGORY_PLC | 13 | An industrial controller or PLC (Programmable Logic Controller).</p>
+<p>Automates industrial processes, load shedding, and custom logic. Remotely controllable for process execution and telemetry via digital protocols. Examples: Siemens SIMATIC S7-1200/1500, Beckhoff CX-series IPC, Schneider M340, Wago PFC 200. |
+| ELECTRICAL_COMPONENT_CATEGORY_CRYPTO_MINER | 14 | A crypto miner.</p>
+<p>Consumes power for blockchain computations and can be remotely curtailed or powered down. Examples: Bitmain Antminer, MicroBT WhatsMiner, Canaan AvalonMiner. |
+| ELECTRICAL_COMPONENT_CATEGORY_STATIC_TRANSFER_SWITCH | 15 | A static transfer switch (STS).</p>
+<p>Switches between multiple power sources with minimal transfer time to maintain continuity. Remotely controllable for source selection and transfer commands. Examples: Socomec ATyS, ABB TruONE, Eaton Automatic Transfer Switch, ASCO Series 7000. |
+| ELECTRICAL_COMPONENT_CATEGORY_UNINTERRUPTIBLE_POWER_SUPPLY | 16 | An uninterruptible power supply (UPS).</p>
+<p>Provides immediate backup power with battery and inverter integration. Remotely controllable for status, diagnostics, and sometimes operational commands. Examples: APC Symmetra PX, Eaton 93PM, Schneider Electric Galaxy, Vertiv Liebert EXL. |
+| ELECTRICAL_COMPONENT_CATEGORY_CAPACITOR_BANK | 17 | A capacitor bank for power factor correction.</p>
+<p>Improves power quality by compensating reactive power. Remotely controllable for switching capacitors in or out. Examples: Siemens 3FK, ABB Capacitor Banks, Schneider Electric VarSet, Eaton PowerXL. |
+| ELECTRICAL_COMPONENT_CATEGORY_WIND_TURBINE | 18 | A wind turbine.</p>
+<p>Converts wind energy into electricity. Remotely controllable (in most commercial systems) for start/stop, output regulation, and status. Examples: Siemens Gamesa SG, Vestas V series, GE Cypress, Nordex Delta. |</p>
 <p><a name="frequenz-api-common-v1alpha7-microgrid-electrical_components-ElectricalComponentDiagnosticCode"></a></p>
 <h3 id="electricalcomponentdiagnosticcode">ElectricalComponentDiagnosticCode<a class="headerlink" href="#electricalcomponentdiagnosticcode" title="Permanent link">¤</a></h3>
 <p>A representation of all possible diagnostic codes that can occur for
