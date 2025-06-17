@@ -22,6 +22,7 @@
 
         * The whole package and all proto files, messages, field, enums were renamed to `electrical_components`
         * `ComponentCategoryMetadataVariant` to `ElectricalComponentCategorySpecificInfo`
+        * `ComponentCategory` to `ElectricalComponentCategory`
         * `Component.category_type` to `ElectricalComponent.category_specific_info`
         * `ComponentCategoryMetadataVariant.metadata` to `ElectricalComponentCategorySpecificInfo.kind`
         * `ComponentErrorCode` to `ElectricalComponentDiagnosticCode`
@@ -34,6 +35,7 @@
             + `COMPONENT_CATEGORY_GRID` to `ELECTRICAL_COMPONENT_CATEGORY_GRID_CONNECTION_POINT`
             + `ComponentCategoryMetadataVariant.metadata.grid` to `ElectricalComponentCategorySpecificInfo.kind.grid_connection_point`
         * `InverterType.INVERTER_TYPE_SOLAR` to `InverterType.INVERTER_TYPE_PV` (to align with the more colloquial term "PV inverter")
+        * `ComponentCategory.COMPONENT_CATEGORY_RELAY` to `ElectricalComponentCategory.ELECTRICAL_COMPONENT_CATEGORY_BREAKER` (to better align with the common terminology used in electrical engineering).
 
     + `microgrid.sensors`:
 
@@ -78,6 +80,8 @@
 
 - The `v1` package has been renamed to `v1alpha7`. The current `v1` package now consists of the contents the same directory from the v0.6.x branch, which is the latest stable version of the API.
 
+- The enum `ComponentCategory` (now `ElectricalComponentCategory`) has been extended with new variants.
+
 ## New Features
 
 Added many new messages and enum values:
@@ -92,6 +96,14 @@ Added many new messages and enum values:
     + `ElectricalComponentDiagnostic`: Message to represent warnings and errors in microgrid electrical components
     + `ElectricalComponentDiagnosticCode` (previously `ComponentErrorCode`): New diagnostic codes to cover more cases, especially for inverters
     + `InverterType.INVERTER_TYPE_WIND_TURBINE`: Enum value to represent wind turbine inverters
+
+- `microgrid.ElectricalComponentCategory` (previously `microgrid.ComponentCategory`) has been extended with new enum values:
+    + `ELECTRICAL_COMPONENT_CATEGORY_PLC`
+    + `ELECTRICAL_COMPONENT_CATEGORY_STATIC_TRANSFER_SWITCH`
+    + `ELECTRICAL_COMPONENT_CATEGORY_UNINTERRUPTIBLE_POWER_SUPPLY`
+    + `ELECTRICAL_COMPONENT_CATEGORY_CAPACITOR_BANK`
+    + `ELECTRICAL_COMPONENT_CATEGORY_SMART_LOAD`
+    + `ELECTRICAL_COMPONENT_CATEGORY_WIND_TURBINE`
 
 - `microgrid.sensors`
 
