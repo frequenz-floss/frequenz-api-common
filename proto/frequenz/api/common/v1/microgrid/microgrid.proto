@@ -10,7 +10,7 @@ syntax = "proto3";
 package frequenz.api.common.v1.microgrid;
 
 import "frequenz/api/common/v1/grid/delivery_area.proto";
-import "frequenz/api/common/v1/type/location.proto";
+import "frequenz/api/common/v1/location.proto";
 
 import "google/protobuf/timestamp.proto";
 
@@ -60,7 +60,7 @@ message Microgrid {
   // Physical location of the microgrid, in geographical co-ordinates.
   //
   // If the location is not known, this field will be missing.
-  frequenz.api.common.v1.type.Location location = 5;
+  frequenz.api.common.v1.Location location = 5;
 
   // The current status of the microgrid.
   MicrogridStatus status = 6;

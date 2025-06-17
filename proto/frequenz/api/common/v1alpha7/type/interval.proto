@@ -1,0 +1,35 @@
+// A time interval filter.
+//
+// Copyright 2025 Frequenz Energy-as-a-Service GmbH
+//
+// Licensed under the MIT License (the "License");
+// you may not use this file except in compliance with the License.
+
+syntax = "proto3";
+
+package frequenz.api.common.v1alpha7.type;
+
+import "google/protobuf/timestamp.proto";
+
+
+// Represents a time interval filter.
+//
+// The interval includes the start time and excludes the end time.
+// This follows the convention used in ISO 8601 for time intervals,
+// Pandas slicing, and Python slicing: [start_time, end_time).
+//
+// * If `start_time` is omitted, the interval is
+//   considered unbounded at the start.
+// * If `end_time` is omitted, the interval is
+//   considered unbounded at the end.
+message Interval {
+  // The beginning of the time interval (inclusive).
+  //
+  // Must be a UTC timestamp.
+  google.protobuf.Timestamp start_time = 1;
+
+  // The end of the time interval (exclusive).
+  //
+  // Must be a UTC timestamp.
+  google.protobuf.Timestamp end_time = 2;
+}

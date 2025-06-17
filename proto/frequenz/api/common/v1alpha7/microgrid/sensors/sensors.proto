@@ -1,0 +1,188 @@
+// Frequenz microgrid sensor definitions.
+//
+// Copyright:
+// Copyright 2023 Frequenz Energy-as-a-Service GmbH
+//
+// License:
+// MIT
+
+syntax = "proto3";
+
+package frequenz.api.common.v1alpha7.microgrid.sensors;
+
+import "frequenz/api/common/v1alpha7/metrics/metrics.proto";
+import "frequenz/api/common/v1alpha7/microgrid/lifetime.proto";
+
+import "google/protobuf/timestamp.proto";
+
+// Enum to represent the various states that a sensor can be in.
+// This enum is unified across all sensor categories for consistency.
+enum SensorStateCode {
+  // Default value when the sensor state is not explicitly set.
+  // This is the zero value of the enum.
+  SENSOR_STATE_CODE_UNSPECIFIED = 0;
+
+  // The sensor is up and running.
+  SENSOR_STATE_CODE_OK = 1;
+
+  // The sensor is in an error state.
+  SENSOR_STATE_CODE_ERROR = 2;
+}
+
+// A representation of all possible warnings and errors that can occur in
+// sensors.
+enum SensorDiagnosticCode {
+  // Default value. No specific error is specified.
+  SENSOR_DIAGNOSTIC_CODE_UNSPECIFIED = 0;
+
+  // The sensor is reporting an unknown or an undefined error, and the sender
+  // cannot parse the sensor error to any of the variants below.
+  SENSOR_DIAGNOSTIC_CODE_UNKNOWN = 1;
+
+  // Error indicating an internal error within the sensor.
+  SENSOR_DIAGNOSTIC_CODE_INTERNAL = 2;
+}
+
+// A sensor that measures a physical metric in the microgrid's surrounding
+// environment.
+message Sensor {
+  // A unique identifier for the sensor.
+  uint64 id = 1;
+
+  // Unique identifier of the parent microgrid_id.
+  uint64 microgrid_id = 2;
+
+  // An optional name for the sensor.
+  string name = 3;
+
+  // The sensor manufacturer.
+  string manufacturer = 5;
+
+  // The model name of the sensor.
+  string model_name = 6;
+
+  // The operational lifetime of the sensor.
+  frequenz.api.common.v1alpha7.microgrid.Lifetime operational_lifetime = 7;
+}
+
+// Represents an error or warning condition reported by a microgrid sensor.
+//
+// This message extends a standardized error code with contextual information
+// useful for diagnostics, such as subsystem names, measured values, or
+// vendor-specific insights.
+//
+// !!! example "Typical Sensor Error"
+//     ```json
+//     {
+//       "diagnosticCode":
+//           "SENSOR_DIAGNOSTIC_CODE_INTERNAL",
+//       "vendorErrorCode": "2003",
+//       "message": "Temperature sensor 3 reported 61.5°C (limit: 60°C)"
+//     }
+//     ```
+// !!! note "Vendor-Specific Codes"
+//     When available, `vendor_error_code` will reflect manufacturer-defined
+//     error identifiers, typically exposed via Modbus or similar interfaces.
+//     These codes are vendor- and firmware-specific and must be interpreted
+//     using the vendor's official documentation.
+message SensorDiagnostic {
+  // A standardized error code representing the category of the issue.
+  SensorDiagnosticCode diagnostic_code = 1;
+
+  // Optional vendor-provided diagnostic code for the error, for vendor-specific
+  // insights or more granular diagnostics.
+  optional string vendor_diagnostic_code = 2;
+
+  // Optional human-readable message providing additional context.
+  string message = 3;
+}
+
+// Representation of a sensor state and errors.
+message SensorStateSnapshot {
+  // The UTC time when the state was originally captured.
+  google.protobuf.Timestamp origin_time = 1;
+
+  // List of states of the microgrid sensor.
+  //
+  // !!! note
+  //    This list is treated as a set, and therefore its members will be unique,
+  //    i.e., no state will exist twice in this list.
+  //
+  // !!! note
+  //    If the state is `SENSOR_STATE_CODE_ERROR`, the sensor is in an error
+  //    state. In such cases, the `errors` field will be populated with the
+  //    list of errors.
+  repeated SensorStateCode states = 2;
+
+  // List of warnings for the microgrid sensor.
+  //
+  // !!! note
+  //    This list is treated as a set, and therefore its members will be unique,
+  //    i.e., no state will exist twice in this list.
+  //
+  // !!! note
+  //    This list is expected to have warnings if and only if the sensor is
+  //    reporting warnings.
+  repeated SensorDiagnostic warnings = 3;
+
+  // List of errors for the microgrid sensor.
+  //
+  // !!! note
+  //    This list is treated as a set, and therefore its members will be unique,
+  //    i.e., no state will exist twice in this list.
+  //
+  // !!! note
+  //    This list is expected to have errors if and only if the sensor is in
+  //    an error state.
+  repeated SensorDiagnostic errors = 4;
+}
+
+// SensorTelemetry message aggregates multiple metrics, operational states, and
+// errors, related to a specific microgrid sensor.
+//
+// !!! example
+//   Example output of a component data message:
+//   ```
+//   {
+//      sensor_id: 13,
+//      metric_samples: [
+//        /* list of metrics for multiple timestamps */
+//        {
+//          sample_time: "2023-10-01T00:00:00Z",
+//          metric: "METRIC_SENSOR_TEMPERATURE",
+//          value: metric_value_variant: {simple_metric: {value: 23.5},
+//          bounds: {}
+//          connection: {}
+//        },
+//        {
+//          sample_time: "2023-10-01T00:00:00Z",
+//          metric: "METRIC_SENSOR_RELATIVE_HUMIDITY",
+//          value: metric_value_variant: {simple_metric: {value: 23.5},
+//          bounds: {}
+//          connection: "humidity_sensor_1"
+//        }
+//      ],
+//      states: [
+//        {
+//          sample_time: "2023-10-01T00:00:00Z",
+//          states: [],
+//          errors: [],
+//        },
+//      ]
+//   }
+//   ```
+message SensorTelemetry {
+  // The ID of the microgrid sensors.
+  uint64 sensor_id = 1;
+
+  // List of measurements for a metric of the specific microgrid sensor.
+  //
+  // Note that these metric samples will not necessarily contain bounds, since
+  // bounds are required for control operations, which are not applicable to
+  // sensors.
+  repeated frequenz.api.common.v1alpha7.metrics.MetricSample metric_samples = 2;
+
+  // List of state snapshots of a specific microgrid sensor.
+  repeated SensorStateSnapshot state_snapshots = 3;
+}
+

@@ -1,0 +1,32 @@
+// Frequenz definitions for EV chargers.
+//
+// Copyright:
+// Copyright 2023 Frequenz Energy-as-a-Service GmbH
+//
+// License:
+// MIT
+
+syntax = "proto3";
+
+package frequenz.api.common.v1.microgrid.components;
+
+// Enumerated EV charger types.
+enum EvChargerType {
+  // Default type.
+  EV_CHARGER_TYPE_UNSPECIFIED = 0;
+
+  // The EV charging station supports AC charging only.
+  EV_CHARGER_TYPE_AC = 1;
+
+  // The EV charging station supports DC charging only.
+  EV_CHARGER_TYPE_DC = 2;
+
+  // The EV charging station supports both AC and DC.
+  EV_CHARGER_TYPE_HYBRID = 3;
+}
+
+// A representation of an EV chaging station.
+message EvCharger {
+  // The EV charger type.
+  EvChargerType type = 1;
+}

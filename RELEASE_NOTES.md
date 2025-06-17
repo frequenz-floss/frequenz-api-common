@@ -76,6 +76,8 @@
 
 - The type of the field `metrics.MetricSample.connection` has been changed from `string` to `metrics.MetricConnection`. The latter is a newly added message that provides a better categorization of the connection type.
 
+- The `v1` package has been renamed to `v1alpha7`. The current `v1` package now consists of the contents the same directory from the v0.6.x branch, which is the latest stable version of the API.
+
 ## New Features
 
 Added many new messages and enum values:
