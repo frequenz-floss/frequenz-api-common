@@ -36,6 +36,7 @@
             + `ComponentCategoryMetadataVariant.metadata.grid` to `ElectricalComponentCategorySpecificInfo.kind.grid_connection_point`
         * `InverterType.INVERTER_TYPE_SOLAR` to `InverterType.INVERTER_TYPE_PV` (to align with the more colloquial term "PV inverter")
         * `ComponentCategory.COMPONENT_CATEGORY_RELAY` to `ElectricalComponentCategory.ELECTRICAL_COMPONENT_CATEGORY_BREAKER` (to better align with the common terminology used in electrical engineering).
+        * All contents of all the files in the `electrical_components` directory (previously `components`) are now moved into the `electrical_components.proto` file.
 
     + `microgrid.sensors`:
 
