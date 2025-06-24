@@ -2,7 +2,7 @@
 
 ## Summary
 
-<!-- Here goes a general summary of what this release is about -->
+This release introduces several breaking changes, new features, and improvements to the existing API. The most significant changes include renaming and restructuring of the `components` package to `electrical_components`, the introduction of new diagnostic codes, and the addition of new messages for communication components and streaming events.
 
 ## Upgrading
 
@@ -122,6 +122,3 @@ Added many new messages and enum values:
 
         This uses `start_time` (inclusive) and `end_time` (exclusive) fields, aligning with ISO 8601 and common programming conventions.
 
-## Bug Fixes
-
-<!-- Here goes notable bug fixes that are worth a special mention or explanation -->
