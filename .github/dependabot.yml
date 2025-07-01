@@ -35,10 +35,13 @@ updates:
         exclude-patterns:
           - "async-solipsism"
           - "frequenz-repo-config*"
+          - "grpcio"
+          - "grpcio-tools"
           - "markdown-callouts"
           - "mkdocs-gen-files"
           - "mkdocs-literate-nav"
           - "mkdocstrings*"
+          - "protobuf"
           - "pydoclint"
           - "pytest-asyncio"
       # We group repo-config updates as it uses optional dependencies that are
@@ -50,6 +53,14 @@ updates:
       mkdocstrings:
         patterns:
           - "mkdocstrings*"
+      # We group grpcio and protobuf updates together, as they need special
+      # handling on the pyproject.toml file because of the protobuf/grpcio
+      # build/runtime cross-version guarantees
+      grpc:
+        patterns:
+          - "grpcio"
+          - "grpcio-tools"
+          - "protobuf"
 
   - package-ecosystem: "github-actions"
     directory: "/"
