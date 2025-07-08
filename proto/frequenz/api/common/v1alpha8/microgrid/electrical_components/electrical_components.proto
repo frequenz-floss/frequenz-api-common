@@ -1,0 +1,800 @@
+// Frequenz microgrid components definitions.
+//
+// Copyright:
+// Copyright 2025 Frequenz Energy-as-a-Service GmbH
+//
+// License:
+// MIT
+
+// protolint:disable MAX_LINE_LENGTH
+syntax = "proto3";
+
+package frequenz.api.common.v1alpha8.microgrid.electrical_components;
+
+import "frequenz/api/common/v1alpha8/metrics/bounds.proto";
+import "frequenz/api/common/v1alpha8/metrics/metrics.proto";
+import "frequenz/api/common/v1alpha8/microgrid/lifetime.proto";
+
+import "google/protobuf/timestamp.proto";
+
+// Enumerated electrical component categories.
+//
+// This enum lists key microgrid components, most of which are typically capable
+// of being remotely controlled via digital interfaces (e.g., Modbus, MQTT,
+// OPC-UA).
+enum ElectricalComponentCategory {
+  // The component category is unspecified. This should not be used.
+  ELECTRICAL_COMPONENT_CATEGORY_UNSPECIFIED = 0;
+
+  // The point where the local microgrid is connected to the grid.
+  //
+  // Represents the interface between a local microgrid and the public
+  // electricity grid, typically used for metering, protection, and isolation.
+  // This category itself is not remotely controllable, but can be associated
+  // with other devices (inverters, relays, etc.) that can be controlled to
+  // affect the grid connection point.
+  ELECTRICAL_COMPONENT_CATEGORY_GRID_CONNECTION_POINT = 1;
+
+  // A meter for measuring electrical parameters.
+  //
+  // Measures electrical parameters such as voltage, current, power, energy,
+  // and frequency.
+  // Meters typically cannot be controlled remotely, but they can provide
+  // telemetry data.
+  // Examples: Janitza UMG 604, Janitza B24, ABB B24, etc.
+  ELECTRICAL_COMPONENT_CATEGORY_METER = 2;
+
+  // An inverter.
+  //
+  // Converts DC to AC power and vice-versa, enabling integration of batteries,
+  // PV arrays, or other renewables.
+  // Remotely controllable via digital protocols for power setpoints, modes,
+  // and status.
+  // Examples: SMA Sunny Tripower, Kaco Blueplanet, Refu RefuStore88k, etc.
+  ELECTRICAL_COMPONENT_CATEGORY_INVERTER = 3;
+
+  // A DC-DC converter.
+  //
+  // Converts electrical energy between different DC voltage levels.
+  // Typically remotely controllable for voltage, current, or mode adjustment.
+  // Examples: Victron Orion, Delta Electronics DC-DC converters, TDK Lambda.
+  ELECTRICAL_COMPONENT_CATEGORY_CONVERTER = 4;
+
+  // A battery energy storage system.
+  //
+  // Stores electrical energy and can be dispatched for load balancing, backup,
+  // or arbitrage.
+  // Remotely controllable for charging, discharging, and operational mode.
+  // Examples: Tesla Megapack, LG Chem RESU, etc.
+  ELECTRICAL_COMPONENT_CATEGORY_BATTERY = 5;
+
+  // An EV charger.
+  //
+  // Provides controlled charging for electric vehicles.
+  // Remotely controllable for starting/stopping charging and setting power
+  // limits.
+  // Examples: Alfen NG 9xx, KEBA KeContact P30, Siemens VersiCharge, etc.
+  ELECTRICAL_COMPONENT_CATEGORY_EV_CHARGER = 6;
+
+  // A circuit breaker.
+  //
+  // Provides protection and switching by disconnecting circuits as needed.
+  // Remotely controllable for opening/closing and status monitoring.
+  // Examples: Finder Series 62, Phoenix Contact PLC-Interface, Siemens Sirius,
+  // Schneider Electric Zelio, etc.
+  ELECTRICAL_COMPONENT_CATEGORY_BREAKER = 7;
+
+  // A pre-charge module.
+  //
+  // Ramps up DC voltage gradually to protect components during power-up.
+  // Remotely controllable to initiate or manage the pre-charge sequence.
+  // Examples: Precharge modules from Bender, Precharge controllers by Elcon,
+  // custom PLC-controlled circuits.
+  ELECTRICAL_COMPONENT_CATEGORY_PRECHARGER = 8;
+
+  // A combined heat and power (CHP) plant.
+  //
+  // Generates electricity and useful heat from a single energy source.
+  // Remotely controllable for start/stop commands and setpoint adjustments.
+  // Examples: 2G Agenitor, Viessmann Vitobloc, TEDOM Micro series, Bosch CHP.
+  ELECTRICAL_COMPONENT_CATEGORY_CHP = 9;
+
+  // An electrolyzer.
+  //
+  // Converts electrical energy into hydrogen and oxygen by electrolyzing water.
+  // Remotely controllable for operating mode and production rate.
+  // Examples: Siemens Silyzer, Nel Hydrogen PEM, ITM Power electrolyzers.
+  ELECTRICAL_COMPONENT_CATEGORY_ELECTROLYZER = 10;
+
+  // A voltage transformer.
+  //
+  // Voltage transformers are used to step up or step down the voltage, keeping
+  // the power somewhat constant by increasing or decreasing the current.
+  // If voltage is stepped up, current is stepped down, and vice versa.
+  // Note that voltage transformers have efficiency losses, so the output power
+  // is always less than the input power.
+  ELECTRICAL_COMPONENT_CATEGORY_VOLTAGE_TRANSFORMER = 11;
+
+  // An HVAC system (Heating, Ventilation, and Air Conditioning).
+  //
+  // Manages indoor climate by controlling heating, cooling, and ventilation.
+  // Remotely controllable for setpoint and operational scheduling.
+  // Examples: Siemens Desigo, Trane Voyager, Daikin VRV, Schneider Electric
+  // SmartStruxure.
+  ELECTRICAL_COMPONENT_CATEGORY_HVAC = 12;
+
+  // An industrial controller or PLC (Programmable Logic Controller).
+  //
+  // Automates industrial processes, load shedding, and custom logic.
+  // Remotely controllable for process execution and telemetry via digital
+  // protocols.
+  // Examples: Siemens SIMATIC S7-1200/1500, Beckhoff CX-series IPC, Schneider
+  // M340, Wago PFC 200.
+  ELECTRICAL_COMPONENT_CATEGORY_PLC = 13;
+
+  // A crypto miner.
+  //
+  // Consumes power for blockchain computations and can be remotely curtailed or
+  // powered down.
+  // Examples: Bitmain Antminer, MicroBT WhatsMiner, Canaan AvalonMiner.
+  ELECTRICAL_COMPONENT_CATEGORY_CRYPTO_MINER = 14;
+
+  // A static transfer switch (STS).
+  //
+  // Switches between multiple power sources with minimal transfer time to
+  // maintain continuity.
+  // Remotely controllable for source selection and transfer commands.
+  // Examples: Socomec ATyS, ABB TruONE, Eaton Automatic Transfer Switch, ASCO
+  // Series 7000.
+  ELECTRICAL_COMPONENT_CATEGORY_STATIC_TRANSFER_SWITCH = 15;
+
+  // An uninterruptible power supply (UPS).
+  //
+  // Provides immediate backup power with battery and inverter integration.
+  // Remotely controllable for status, diagnostics, and sometimes operational
+  // commands.
+  // Examples: APC Symmetra PX, Eaton 93PM, Schneider Electric Galaxy, Vertiv
+  // Liebert EXL.
+  ELECTRICAL_COMPONENT_CATEGORY_UNINTERRUPTIBLE_POWER_SUPPLY = 16;
+
+  // A capacitor bank for power factor correction.
+  //
+  // Improves power quality by compensating reactive power.
+  // Remotely controllable for switching capacitors in or out.
+  // Examples: Siemens 3FK, ABB Capacitor Banks, Schneider Electric VarSet,
+  // Eaton PowerXL.
+  ELECTRICAL_COMPONENT_CATEGORY_CAPACITOR_BANK = 17;
+
+  // A wind turbine.
+  //
+  // Converts wind energy into electricity.
+  // Remotely controllable (in most commercial systems) for start/stop, output
+  // regulation, and status.
+  // Examples: Siemens Gamesa SG, Vestas V series, GE Cypress, Nordex Delta.
+  ELECTRICAL_COMPONENT_CATEGORY_WIND_TURBINE = 18;
+}
+
+// Enum to represent the various states that a component can be in.
+// This enum is unified across all component categories for consistency.
+enum ElectricalComponentStateCode {
+  // Default value when the component state is not explicitly set.
+  // This is the zero value of the enum.
+  ELECTRICAL_COMPONENT_STATE_CODE_UNSPECIFIED = 0;
+
+  // State when the component is in an unknown or undefined condition.
+  // This is used when the sender is unable to classify the component into any
+  // other state.
+  ELECTRICAL_COMPONENT_STATE_CODE_UNKNOWN = 1;
+
+  // State when the component is temporarily unavailable for operation.
+  ELECTRICAL_COMPONENT_STATE_CODE_UNAVAILABLE = 2;
+
+  // State when the component is in the process of switching off.
+  ELECTRICAL_COMPONENT_STATE_CODE_SWITCHING_OFF = 3;
+
+  // State when the component has successfully switched off.
+  ELECTRICAL_COMPONENT_STATE_CODE_OFF = 4;
+
+  // State when the component is in the process of switching on from an off
+  // state.
+  ELECTRICAL_COMPONENT_STATE_CODE_SWITCHING_ON = 5;
+
+  // State when the component is in standby mode, and not immediately ready for
+  // immediate operations.
+  ELECTRICAL_COMPONENT_STATE_CODE_STANDBY = 6;
+
+  // State when the component is fully operational and ready for use.
+  ELECTRICAL_COMPONENT_STATE_CODE_READY = 7;
+
+  // State when the component is actively consuming energy.
+  ELECTRICAL_COMPONENT_STATE_CODE_CHARGING = 8;
+
+  // State when the component is actively producing or releasing energy.
+  ELECTRICAL_COMPONENT_STATE_CODE_DISCHARGING = 9;
+
+  // State when the component is in an error state and may need attention.
+  ELECTRICAL_COMPONENT_STATE_CODE_ERROR = 10;
+
+  // The Electric Vehicle (EV) charging cable is unplugged from the charging
+  // station.
+  ELECTRICAL_COMPONENT_STATE_CODE_EV_CHARGING_CABLE_UNPLUGGED = 20;
+
+  // The EV charging cable is plugged into the charging station.
+  ELECTRICAL_COMPONENT_STATE_CODE_EV_CHARGING_CABLE_PLUGGED_AT_STATION = 21;
+
+  // The EV charging cable is plugged into the vehicle.
+  ELECTRICAL_COMPONENT_STATE_CODE_EV_CHARGING_CABLE_PLUGGED_AT_EV = 22;
+
+  // The EV charging cable is locked at the charging station end, indicating
+  // readiness for charging.
+  ELECTRICAL_COMPONENT_STATE_CODE_EV_CHARGING_CABLE_LOCKED_AT_STATION = 23;
+
+  // The EV charging cable is locked at the vehicle end, indicating that
+  // charging is active.
+  ELECTRICAL_COMPONENT_STATE_CODE_EV_CHARGING_CABLE_LOCKED_AT_EV = 24;
+
+  // The relay is in an open state, meaning no current can flow through.
+  ELECTRICAL_COMPONENT_STATE_CODE_RELAY_OPEN = 30;
+
+  // The relay is in a closed state, allowing current to flow.
+  ELECTRICAL_COMPONENT_STATE_CODE_RELAY_CLOSED = 31;
+
+  // The precharger circuit is open, meaning it's not currently active.
+  ELECTRICAL_COMPONENT_STATE_CODE_PRECHARGER_OPEN = 40;
+
+  // The precharger is in a precharging state, preparing the main circuit for
+  // activation.
+  ELECTRICAL_COMPONENT_STATE_CODE_PRECHARGER_PRECHARGING = 41;
+
+  // The precharger circuit is closed, allowing full current to flow to the main
+  // circuit.
+  ELECTRICAL_COMPONENT_STATE_CODE_PRECHARGER_CLOSED = 42;
+}
+
+// A representation of all possible diagnostic codes that can occur for
+// electrical component, across all their categories. These diagnostic codes
+// can be used to refer to warnings or errors that are reported by the
+// component.
+enum ElectricalComponentDiagnosticCode {
+  // Default value. No specific error is specified.
+  ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_UNSPECIFIED = 0;
+
+  // The component is reporting an unknown or an undefined error, and the sender
+  // cannot parse the component error to any of the variants below.
+  ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_UNKNOWN = 1;
+
+  // The component could not be switched on.
+  ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_SWITCH_ON_FAULT = 2;
+
+  // The component is operating under the minimum rated voltage.
+  ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_UNDERVOLTAGE = 3;
+
+  // The component is operating over the maximum rated voltage.
+  ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_OVERVOLTAGE = 4;
+
+  // The component is drawing more current than the maximum rated value.
+  ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_OVERCURRENT = 5;
+
+  // The component's consumption current is over the maximum rated value during
+  // charging.
+  ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_OVERCURRENT_CHARGING = 6;
+
+  // The component's production current is over the maximum rated value during
+  // discharging.
+  ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_OVERCURRENT_DISCHARGING = 7;
+
+  // The component is operating over the maximum rated temperature.
+  ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_OVERTEMPERATURE = 8;
+
+  // The component is operating under the minimum rated temperature.
+  ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_UNDERTEMPERATURE = 9;
+
+  // The component is exposed to high humidity levels over the maximum rated
+  // value.
+  ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_HIGH_HUMIDITY = 10;
+
+  // The component's fuse has blown.
+  ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_FUSE_ERROR = 11;
+
+  // The component's precharge unit has failed.
+  ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_PRECHARGE_ERROR = 12;
+
+  // There are plausibility issues within the component, causing its internal
+  // sanity checks to fail.
+  ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_PLAUSIBILITY_ERROR = 13;
+
+  // A fault current has been detected in the component.
+  ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_FAULT_CURRENT = 14;
+
+  // A short circuit has been detected in the component.
+  ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_SHORT_CIRCUIT = 15;
+
+  // The component has been configured incorrectly.
+  ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_CONFIG_ERROR = 16;
+
+  // A illegal state has been requested for the component.
+  ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_ILLEGAL_COMPONENT_STATE_CODE_REQUESTED
+    = 17;
+
+  // The hardware of the component is inaccessible.
+  ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_HARDWARE_INACCESSIBLE = 18;
+
+  // There is an internal error within the component.
+  ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_INTERNAL = 19;
+
+  // The component is unauthorized to perform the last requested action.
+  ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_UNAUTHORIZED = 20;
+
+  // There is excessive leakage current in the component.
+  // The threshold for excessive leakage current is defined by the component
+  // manufacturer.
+  ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_EXCESS_LEAKAGE_CURRENT = 21;
+
+  // The component is inoperable due to the insulation resistance being too low.
+  // The threshold for low insulation resistance is defined by the component
+  // manufacturer, or can be configured by the user in the component.
+  ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_LOW_SYSTEM_INSULATION_RESISTANCE = 22;
+
+  // The component is inoperable due to the faulty grounding.
+  ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_GROUND_FAULT = 23;
+
+  // The component is inoperable due to arcing.
+  ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_ARC_FAULT = 24;
+
+  // The component is inoperable due to its fan being faulty.
+  ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_FAN_FAULT = 25;
+
+  // The component is inoperable due to the component's hardware being faulty.
+  ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_HARDWARE_FAULT = 26;
+
+  // The component is inoperable due to its hardware being faulty.
+  ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_PROTECTIVE_SHUTDOWN = 27;
+
+  // The component is inoperable due to the grid voltage being too high.
+  ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_GRID_OVERVOLTAGE = 30;
+
+  // The component is inoperable due to the grid voltage being too low.
+  ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_GRID_UNDERVOLTAGE = 31;
+
+  // The component is inoperable due to the grid frequency being too high.
+  ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_GRID_OVERFREQUENCY = 32;
+
+  // The component is inoperable due to the grid frequency being too low.
+  ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_GRID_UNDERFREQUENCY = 33;
+
+  // The component is inoperable due to the grid being disconnected, despite
+  // the AC relay being closed.
+  ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_GRID_DISCONNECTED = 34;
+
+  // The component is inoperable due to the grid voltage being imbalanced.
+  // This happens when the voltage of one or more phases is outside the
+  // acceptable range.
+  ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_GRID_VOLTAGE_IMBALANCE = 35;
+
+  // The component is inoperable due to the grid being in a non-standard
+  // configuration.
+  ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_GRID_ABNORMAL = 36;
+
+  // There is an unexpected pilot failure in an electric vehicle (EV) component.
+  ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_EV_UNEXPECTED_PILOT_FAILURE = 40;
+
+  // The electric vehicle (EV) cable was abruptly unplugged from the charging
+  // station.
+  ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_EV_CHARGING_CABLE_UNPLUGGED_FROM_STATION
+    = 41;
+
+  // The electric vehicle (EV) cable was abruptly unplugged from the vehicle.
+  ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_EV_CHARGING_CABLE_UNPLUGGED_FROM_EV = 42;
+
+  // There is a cable lock failure with the electric vehicle (EV).
+  ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_EV_CHARGING_CABLE_LOCK_FAILED = 43;
+
+  // The electric vehicle (EV) charging cable is invalid.
+  ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_EV_CHARGING_CABLE_INVALID = 44;
+
+  // The incompatible electric vehicle (EV) charging plug is invalid.
+  ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_EV_CONSUMER_INCOMPATIBLE = 45;
+
+  // There is a battery system imbalance.
+  ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_BATTERY_IMBALANCE = 50;
+
+  // The battery has a low state of health (SOH).
+  ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_BATTERY_LOW_SOH = 51;
+
+  // At least one of the battery blocks is in an error state.
+  ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_BATTERY_BLOCK_ERROR = 52;
+
+  // The battery controller is in an error state.
+  ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_BATTERY_CONTROLLER_ERROR = 53;
+
+  // The battery's DC contactor or relay is in an error state.
+  ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_BATTERY_RELAY_ERROR = 54;
+
+  // The battery needs calibration.
+  ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_BATTERY_CALIBRATION_NEEDED = 56;
+
+  // The battery's DC contactor or relays have reached end of life.
+  ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_RELAY_CYCLE_LIMIT_REACHED = 60;
+
+  // The PV panels have been connected with reversed polarity.
+  ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_PV_REVERSAL_POLARITY = 70;
+
+  // The PV panels are underperforming.
+  ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_PV_UNDERPERFORMANCE = 71;
+
+  // The PV panels have a fault.
+  // The component is not able to determine or specify the fault.
+  ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_PV_FAULT = 72;
+
+  // The PV panels are receiving a reverse current.
+  ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_PV_REVERSE_CURRENT = 73;
+
+  // The PV panels are not grounded properly.
+  ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_PV_GROUND_FAULT = 74;
+
+  // The inverter is inoperable due to the DC voltage being too low.
+  ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_INVERTER_DC_UNDERVOLTAGE = 80;
+
+  // The inverter is inoperable due to the DC voltage being too high.
+  ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_INVERTER_DC_OVERVOLTAGE = 81;
+}
+
+// Enumerated battery types.
+enum BatteryType {
+  // Unspecified.
+  BATTERY_TYPE_UNSPECIFIED = 0;
+
+  // Li-ion batteries.
+  BATTERY_TYPE_LI_ION = 1;
+
+  // Sodium-ion batteries
+  BATTERY_TYPE_NA_ION = 2;
+}
+
+// A representation of a battery.
+message Battery {
+  // The battery type.
+  BatteryType type = 1;
+}
+
+// Enumerated EV charger types.
+enum EvChargerType {
+  // Default type.
+  EV_CHARGER_TYPE_UNSPECIFIED = 0;
+
+  // The EV charging station supports AC charging only.
+  EV_CHARGER_TYPE_AC = 1;
+
+  // The EV charging station supports DC charging only.
+  EV_CHARGER_TYPE_DC = 2;
+
+  // The EV charging station supports both AC and DC.
+  EV_CHARGER_TYPE_HYBRID = 3;
+}
+
+// A representation of an EV charging station.
+message EvCharger {
+  // The EV charger type.
+  EvChargerType type = 1;
+}
+
+// A representation of a fuse.
+// The fuse component represents a fuse in the microgrid. It is used to protect
+// components from overcurrents.
+message Fuse {
+  // The rated current of the fuse in amperes.
+  // This is the maximum current that the fuse can withstand for a long time.
+  // This limit applies to currents both flowing in or out of each of the 3
+  // phases individually.
+  //
+  // In other words, a current _i_ A at one of the phases of the node must
+  // comply with the following constraint:
+  // `-rated_fuse_current <= i <= rated_fuse_current`
+  uint32 rated_current = 1;
+}
+
+// A representation of a grid connection point. This is the point where a
+// microgrid connects to the grid.
+//
+// The terms "Grid Connection Point" and "Point of Common Coupling" (PCC) are
+// commonly used in the context.
+//
+// While both terms describe a connection point to the grid, the
+// `GridConnectionPoint` is specifically the physical connection point of the
+// generation facility to the grid, often concerned with the technical and
+// ownership aspects of the connection.
+//
+// In contrast, the PCC is is more specific in terms of electrical engineering.
+// It refers to the point where a customer's local electrical system (such as a
+// microgrid) connects to the utility distribution grid in such a way that it
+// can affect other customers’ systems connected to the same network. It is the
+// point where the grid and customer's electrical systems interface and where
+// issues like power quality and supply regulations are assessed.
+//
+// The term `GridConnectionPoint` is used to make it clear that what is referred
+// to here is the physical connection point of the local facility to the grid.
+// Note that this may also be the PCC in some cases.
+message GridConnectionPoint {
+  // This refers to the maximum amount of electrical current, in amperes, that a
+  // fuse at the grid connection point is designed to safely carry under normal
+  // operating conditions.
+  //
+  // This limit applies to currents both flowing in or out of each of the 3
+  // phases individually.
+  //
+  // In other words, a current _i_ A at one of the phases of the grid connection
+  // point must comply with the following constraint:
+  // `-rated_fuse_current <= i <= rated_fuse_current`
+  uint32 rated_fuse_current = 1;
+}
+
+// Enumerated inverter types.
+enum InverterType {
+  // Unspecified.
+  INVERTER_TYPE_UNSPECIFIED = 0;
+
+  // Battery inverter.
+  INVERTER_TYPE_BATTERY = 1;
+
+  // PV (photovoltaic) inverter.
+  INVERTER_TYPE_PV = 2;
+
+  // Hybrid inverter.
+  INVERTER_TYPE_HYBRID = 3;
+
+  // Wind turbine inverter.
+  INVERTER_TYPE_WIND_TURBINE = 4;
+}
+
+// A representation of an inverter.
+// The inverter metadata.
+message Inverter {
+  // The inverter type.
+  InverterType type = 1;
+}
+
+// A representation of a voltage transformer.
+// Voltage transformers are used to step up or step down the voltage, keeping
+// the power somewhat constant by increasing or decreasing the current.
+// If voltage is stepped up, current is stepped down, and vice versa.
+// Note that voltage transformers have efficiency losses, so the output power
+// is always less than the input power.
+message VoltageTransformer {
+  // The primary voltage of the transformer.
+  // This is the input voltage that is stepped up or down.
+  float primary = 1;
+
+  // The secondary voltage of the transformer.
+  // This is the output voltage that is the result of stepping the primary
+  // voltage up or down.
+  float secondary = 2;
+}
+
+// MetricConfigBounds describes a set of limits for a specific metric consisting
+// of a lower and upper bound for said metric.
+//
+// This can be used for example to specify an allowed range of power output
+// for a component.
+message MetricConfigBounds {
+  // Metric type the config bounds are for
+  frequenz.api.common.v1alpha8.metrics.Metric metric = 1;
+
+  // The set of bounds for the specified metric.
+  //
+  // This contains the lower and upper bounds for said metric.
+  // Sources these may be derived from include the component configuration,
+  // manufacturers limits, and limits of other devices.
+  frequenz.api.common.v1alpha8.metrics.Bounds config_bounds = 2;
+}
+
+// Information specific to a microgrid electrical component, based upon its
+// category.
+message ElectricalComponentCategorySpecificInfo {
+  oneof kind {
+    Battery battery = 1;
+    EvCharger ev_charger = 2;
+    Fuse fuse = 3;
+    GridConnectionPoint grid_connection_point = 4;
+    Inverter inverter = 5;
+    VoltageTransformer voltage_transformer = 6;
+  }
+}
+
+// Microgrid electrical component details.
+message ElectricalComponent {
+  // The component ID.
+  uint64 id = 1;
+
+  // Unique identifier of the parent microgrid_id.
+  uint64 microgrid_id = 2;
+
+  // The component name.
+  string name = 3;
+
+  // The component category. E.g., Inverter, Battery, etc.
+  ElectricalComponentCategory category = 4;
+
+  // The metadata specific to the component category type.
+  ElectricalComponentCategorySpecificInfo category_specific_info = 5;
+
+  // The component manufacturer.
+  string manufacturer = 6;
+
+  // The model name of the component.
+  string model_name = 7;
+
+  // The operational lifetime of the component.
+  frequenz.api.common.v1alpha8.microgrid.Lifetime operational_lifetime = 8;
+
+  // List of rated bounds present for the component identified by Metric.
+  repeated MetricConfigBounds metric_config_bounds = 9;
+}
+
+// ElectricalComponentConnection describes a single electrical link between two
+// components within a microgrid, effectively representing the physical wiring
+// as viewed from the grid connection point, if one exists, or from the
+// islanding point, in case of an islanded microgrids.
+//
+// !!! note "Physical Representation"
+//     This message is not about data flow but rather about the physical
+//     electrical connections between components. Therefore, the IDs for the
+//     source and destination components correspond to the actual setup within
+//     the microgrid.
+//
+// !!! note "Direction"
+//     The direction of the connection follows the flow of current away from the
+//     grid connection point, or in case of islands, away from the islanding
+//     point. This direction is aligned with positive current according to the
+//     [Passive Sign Convention]
+//     (https://en.wikipedia.org/wiki/Passive_sign_convention).
+//
+// !!! info "Historical Data"
+//     The timestamps of when a connection was created and terminated allows for
+//     tracking the changes over time to a microgrid, providing insights into
+//     when and how the microgrid infrastructure has been modified.
+//
+message ElectricalComponentConnection {
+  // Unique identifier of the component where the connection originates. This is
+  // aligned with the direction of current flow away from the grid connection
+  // point, or in case of islands, away from the islanding point.
+  uint64 source_component_id = 1;
+
+  // Unique ID of the component where the connection terminates. This is the
+  // component towards which the current flows.
+  uint64 destination_component_id = 2;
+
+  // The operational lifetime of the connection.
+  frequenz.api.common.v1alpha8.microgrid.Lifetime operational_lifetime = 3;
+}
+
+// Represents an error or warning condition reported by a microgrid electrical
+// component.
+//
+// This message extends a standardized error code with contextual information
+// useful for diagnostics, such as subsystem names, measured values, or
+// vendor-specific insights.
+//
+// !!! example "Typical Component Error"
+//     ```json
+//     {
+//       "diagnosticCode":
+//           "ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_OVERTEMPERATURE",
+//       "vendorDiagnosticCode": "2003",
+//       "message": "Temperature sensor 3 reported 61.5°C (limit: 60°C)"
+//     }
+//     ```
+//
+// !!! note "Component-Originated Diagnostics"
+//     This message is intended to reflect diagnostics originating from
+//     electrical components (e.g., inverters, batteries), either from internal
+//     firmware or via gateway logic.
+//
+// !!! note "Vendor-Specific Codes"
+//     When available, `vendor_error_code` will reflect manufacturer-defined
+//     error identifiers, typically exposed via Modbus or similar interfaces.
+//     These codes are vendor- and firmware-specific and must be interpreted
+//     using the vendor's official documentation.
+message ElectricalComponentDiagnostic {
+  // A standardized error code representing the category of the issue.
+  ElectricalComponentDiagnosticCode diagnostic_code = 1;
+
+  // Optional vendor-provided error code for the error, for vendor-specific
+  // insights or more granular diagnostics.
+  optional string vendor_diagnostic_code = 2;
+
+  // Optional human-readable message providing additional context.
+  string message = 3;
+}
+
+// Representation of a component state, warnings, and errors.
+message ElectricalComponentStateSnapshot {
+  // The UTC time when the state was originally captured.
+  google.protobuf.Timestamp origin_time = 1;
+
+
+  // List of operational states currently active for the component.
+  //
+  // !!! note
+  //    This list is treated as a set, and therefore its members will be unique,
+  //    i.e., no state will exist twice in this list.
+  //
+  // !!! note
+  //    If the state is `ELECTRICAL_COMPONENT_STATE_CODE_ERROR`, then the
+  //    electrical component is in an error state. In such cases, the `errors`
+  //    field will be populated with the list of errors.
+  repeated ElectricalComponentStateCode states = 2;
+
+  // List of non-critical warnings detected for the component.
+  //
+  // !!! note
+  //    This list is treated as a set, and therefore its members will be unique,
+  //    i.e., no state will exist twice in this list.
+  //
+  // !!! note
+  //     Warnings may be reported even when the component is operational.
+  repeated ElectricalComponentDiagnostic warnings = 3;
+
+  // List of critical errors currently affecting the component.
+  //
+  // !!! note
+  //    This list is treated as a set, and therefore its members will be unique,
+  //    i.e., no state will exist twice in this list.
+  //
+  // !!! note
+  //    This list is expected to have errors if and only if the electrical
+  //    component is in an error state.
+  repeated ElectricalComponentDiagnostic errors = 4;
+}
+
+// ElectricalComponentTelemetry message aggregates multiple metrics, operational
+// states, and errors, related to a specific microgrid component.
+//
+// !!! example
+//   Example output of a component data message:
+//   ```
+//    {
+//      ELECTRICAL_component_id: 13,
+//      metric_samples: [
+//        /* list of metrics for multiple timestamps */
+//        {
+//          sample_time: "2023-10-01T00:00:00Z",
+//          metric: "DC_VOLTAGE_V",
+//          value: {},
+//          bounds: {},
+//          connection: "battery_0"
+//        },
+//        {
+//          sample_time: "2023-10-01T00:00:00Z",
+//          metric: "DC_VOLTAGE_V",
+//          value: {},
+//          bounds: {},
+//          connection: "pv_0"
+//        }
+//      ],
+//      states: [
+//        /* list of states for multiple timestamps */
+//        {
+//          sample_time: "2023-10-01T00:00:00Z",
+//          states: [],
+//          warnings: [],
+//          errors: [],
+//        },
+//        {
+//          sample_time: "2023-10-01T00:00:00Z",
+//          states: [],
+//          warnings: [],
+//          errors: [],
+//        },
+//      ]
+//    }
+//  ```
+message ElectricalComponentTelemetry {
+  // The ID of the microgrid component.
+  uint64 component_id = 1;
+
+  // List of measurements for a metric of the specific microgrid component.
+  repeated frequenz.api.common.v1alpha8.metrics.MetricSample metric_samples = 2;
+
+  // List of state snapshots of a specific microgrid component.
+  repeated ElectricalComponentStateSnapshot state_snapshots = 3;
+}

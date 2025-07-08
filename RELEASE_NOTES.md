@@ -10,7 +10,7 @@
 
 ## New Features
 
-<!-- Here goes the main new features and examples or instructions on how to use them -->
+- A new package `frequenz.api.common.v1alpha8` has been added.
 
 ## Bug Fixes
 

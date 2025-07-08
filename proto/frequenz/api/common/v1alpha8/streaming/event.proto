@@ -1,0 +1,26 @@
+// Possible streaming events
+//
+// Copyright 2025 Frequenz Energy-as-a-Service GmbH
+//
+// Licensed under the MIT License (the "License");
+// you may not use this file except in compliance with the License.
+
+syntax = "proto3";
+
+package frequenz.api.common.v1alpha8.streaming;
+
+// This enum message is used to inform receivers of events what kind of
+// event they just received
+enum Event {
+  // Default, unspecified event
+  EVENT_UNSPECIFIED = 0;
+
+  // A new dispatch has been created
+  EVENT_CREATED = 1;
+
+  // An existing dispatch has been updated
+  EVENT_UPDATED = 2;
+
+  // An existing dispatch has been deleted
+  EVENT_DELETED = 3;
+}
