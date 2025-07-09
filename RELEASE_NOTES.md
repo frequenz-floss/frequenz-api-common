@@ -13,6 +13,10 @@
 - A new package `frequenz.api.common.v1alpha8` has been added. It has the following changes when compared to `frequenz.api.common.v1alpha7`:
   - `electrical_components.Fuse` has been removed.
   - `InverterType.INVERTER_TYPE_WIND_TURBINE` has been removed.
+  - `ElectricalComponentConnections.source_component_id` has been renamed to `ElectricalComponentConnections.source_electrical_component_id`
+  - `ElectricalComponentConnections.destination_component_id` has been renamed to `ElectricalComponentConnections.destination_electrical_component_id`
+  - `ElectricalComponentStateSnapshot.component_id` has been renamed to `ElectricalComponentStateSnapshot.electrical_component_id`
+
 
 ## Bug Fixes
 
