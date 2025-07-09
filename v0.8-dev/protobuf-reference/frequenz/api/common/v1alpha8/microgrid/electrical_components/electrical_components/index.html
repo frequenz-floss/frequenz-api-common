@@ -9990,13 +9990,13 @@ islanding point, in case of an islanded microgrids.</p>
 </thead>
 <tbody>
 <tr>
-<td>source_component_id</td>
+<td>source_electrical_component_id</td>
 <td><a href="#uint64">uint64</a></td>
 <td></td>
 <td>Unique identifier of the component where the connection originates. This is aligned with the direction of current flow away from the grid connection point, or in case of islands, away from the islanding point.</td>
 </tr>
 <tr>
-<td>destination_component_id</td>
+<td>destination_electrical_component_id</td>
 <td><a href="#uint64">uint64</a></td>
 <td></td>
 <td>Unique ID of the component where the connection terminates. This is the component towards which the current flows.</td>
@@ -10101,13 +10101,14 @@ vendor-specific insights.</p>
 <p><a name="frequenz-api-common-v1alpha8-microgrid-electrical_components-ElectricalComponentTelemetry"></a></p>
 <h3 id="electricalcomponenttelemetry">ElectricalComponentTelemetry<a class="headerlink" href="#electricalcomponenttelemetry" title="Permanent link">¤</a></h3>
 <p>ElectricalComponentTelemetry message aggregates multiple metrics, operational
-states, and errors, related to a specific microgrid component.</p>
+states, and errors, related to a specific electrical component in a
+microgrid.</p>
 <div class="admonition example">
 <p class="admonition-title">Example</p>
 </div>
-<p>Example output of a component data message:
+<p>Example output of a telemetry message:
   <code>{
-     component_id: 13,
+     electrical_component_id: 13,
      metric_samples: [
        /* list of metrics for multiple timestamps */
        {
@@ -10125,7 +10126,7 @@ states, and errors, related to a specific microgrid component.</p>
          connection: &amp;#34;pv_0&amp;#34;
        }
      ],
-     states: [
+     state_snapshots: [
        /* list of states for multiple timestamps */
        {
          sample_time: &amp;#34;2023-10-01T00:00:00Z&amp;#34;,
@@ -10152,22 +10153,22 @@ states, and errors, related to a specific microgrid component.</p>
 </thead>
 <tbody>
 <tr>
-<td>component_id</td>
+<td>electrical_component_id</td>
 <td><a href="#uint64">uint64</a></td>
 <td></td>
-<td>The ID of the microgrid component.</td>
+<td>The ID of the electrical component for which the telemetry is collected.</td>
 </tr>
 <tr>
 <td>metric_samples</td>
 <td><a href="#frequenz-api-common-v1alpha8-metrics-MetricSample">frequenz.api.common.v1alpha8.metrics.MetricSample</a></td>
 <td>repeated</td>
-<td>List of measurements for a metric of the specific microgrid component.</td>
+<td>List of measurements for a metric of the specific electrical component.</td>
 </tr>
 <tr>
 <td>state_snapshots</td>
 <td><a href="#frequenz-api-common-v1alpha8-microgrid-electrical_components-ElectricalComponentStateSnapshot">ElectricalComponentStateSnapshot</a></td>
 <td>repeated</td>
-<td>List of state snapshots of a specific microgrid component.</td>
+<td>List of state snapshots of a specific electrical component.</td>
 </tr>
 </tbody>
 </table>

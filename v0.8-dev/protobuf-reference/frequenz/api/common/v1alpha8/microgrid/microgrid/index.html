@@ -3533,9 +3533,9 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#microgridcomponentids" class="md-nav__link">
+  <a href="#microgridelectricalcomponentids" class="md-nav__link">
     <span class="md-ellipsis">
-      MicrogridComponentIDs
+      MicrogridElectricalComponentIDs
     </span>
   </a>
   
@@ -9469,9 +9469,9 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#microgridcomponentids" class="md-nav__link">
+  <a href="#microgridelectricalcomponentids" class="md-nav__link">
     <span class="md-ellipsis">
-      MicrogridComponentIDs
+      MicrogridElectricalComponentIDs
     </span>
   </a>
   
@@ -9536,7 +9536,7 @@
 <p><a href="#frequenz_api_common_v1alpha8_microgrid_microgrid-proto">frequenz/api/common/v1alpha8/microgrid/microgrid.proto</a></p>
 <ul>
 <li><a href="#frequenz-api-common-v1alpha8-microgrid-Microgrid">Microgrid</a></li>
-<li><a href="#frequenz-api-common-v1alpha8-microgrid-MicrogridComponentIDs">MicrogridComponentIDs</a></li>
+<li><a href="#frequenz-api-common-v1alpha8-microgrid-MicrogridElectricalComponentIDs">MicrogridElectricalComponentIDs</a></li>
 <li>
 <p><a href="#frequenz-api-common-v1alpha8-microgrid-MicrogridSensorIDs">MicrogridSensorIDs</a></p>
 </li>
@@ -9607,9 +9607,10 @@ area.</p>
 <p>If the location is not known, this field will be missing. |
 | status | <a href="#frequenz-api-common-v1alpha8-microgrid-MicrogridStatus">MicrogridStatus</a> |  | The current status of the microgrid. |
 | create_timestamp | <a href="#google-protobuf-Timestamp">google.protobuf.Timestamp</a> |  | The UTC timestamp indicating when the microgrid was initially created. |</p>
-<p><a name="frequenz-api-common-v1alpha8-microgrid-MicrogridComponentIDs"></a></p>
-<h3 id="microgridcomponentids">MicrogridComponentIDs<a class="headerlink" href="#microgridcomponentids" title="Permanent link">¤</a></h3>
-<p>A message to link component IDs with their respective microgrid ID.</p>
+<p><a name="frequenz-api-common-v1alpha8-microgrid-MicrogridElectricalComponentIDs"></a></p>
+<h3 id="microgridelectricalcomponentids">MicrogridElectricalComponentIDs<a class="headerlink" href="#microgridelectricalcomponentids" title="Permanent link">¤</a></h3>
+<p>A message to link electrical component IDs with their respective microgrid
+ID.</p>
 <table>
 <thead>
 <tr>
@@ -9627,10 +9628,10 @@ area.</p>
 <td>The ID of the microgrid.</td>
 </tr>
 <tr>
-<td>component_ids</td>
+<td>electrical_component_ids</td>
 <td><a href="#uint64">uint64</a></td>
 <td>repeated</td>
-<td>List of component IDs belonging to this microgrid.</td>
+<td>List of electrical component IDs belonging to this microgrid.</td>
 </tr>
 </tbody>
 </table>
