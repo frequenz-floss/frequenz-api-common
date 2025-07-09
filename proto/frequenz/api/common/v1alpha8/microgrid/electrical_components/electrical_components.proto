@@ -106,14 +106,16 @@ enum ElectricalComponentCategory {
   // Examples: Siemens Silyzer, Nel Hydrogen PEM, ITM Power electrolyzers.
   ELECTRICAL_COMPONENT_CATEGORY_ELECTROLYZER = 10;
 
-  // A voltage transformer.
+  // A power transformer.
   //
-  // Voltage transformers are used to step up or step down the voltage, keeping
-  // the power somewhat constant by increasing or decreasing the current.
-  // If voltage is stepped up, current is stepped down, and vice versa.
-  // Note that voltage transformers have efficiency losses, so the output power
-  // is always less than the input power.
-  ELECTRICAL_COMPONENT_CATEGORY_VOLTAGE_TRANSFORMER = 11;
+  // A power transformer is designed for the bulk transfer of electrical energy.
+  // Its main job is to "step-up" or "step-down" voltage levels for efficient
+  // transmission and distribution of power.
+  //
+  // Since power transformers try to keep the output power same as the input
+  // power (ignoring losses), when they step-up the voltage, the current gets
+  // proportionally reduced, and vice versa.
+  ELECTRICAL_COMPONENT_CATEGORY_POWER_TRANSFORMER = 11;
 
   // An HVAC system (Heating, Ventilation, and Air Conditioning).
   //
@@ -535,13 +537,18 @@ message Inverter {
   InverterType type = 1;
 }
 
-// A representation of a voltage transformer.
-// Voltage transformers are used to step up or step down the voltage, keeping
-// the power somewhat constant by increasing or decreasing the current.
-// If voltage is stepped up, current is stepped down, and vice versa.
-// Note that voltage transformers have efficiency losses, so the output power
-// is always less than the input power.
-message VoltageTransformer {
+// A representation of a power transformer.
+//
+// The voltage across the secondary winding of a power transformer is
+// typically equal to the voltage across the primary winding multiplied by the
+// primary/secondary turns ratio. The current flowing through the secondary
+// winding is typically equal to the current flowing through the primary
+// winding multiplied by the secondary/primary turns ratio, ignoring losses.
+//
+// If the voltage across the secondary winding is greater than the voltage
+// across the primary winding, the transformer is said to step-up the voltage,
+// otherwise it is said to step-down the voltage.
+message PowerTransformer {
   // The primary voltage of the transformer.
   // This is the input voltage that is stepped up or down.
   float primary = 1;
@@ -577,7 +584,7 @@ message ElectricalComponentCategorySpecificInfo {
     EvCharger ev_charger = 2;
     GridConnectionPoint grid_connection_point = 3;
     Inverter inverter = 4;
-    VoltageTransformer voltage_transformer = 5;
+    PowerTransformer power_transformer = 5;
   }
 }
 

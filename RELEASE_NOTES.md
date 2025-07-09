@@ -18,6 +18,9 @@
   - `ElectricalComponentStateSnapshot.component_id` has been renamed to `ElectricalComponentStateSnapshot.electrical_component_id`
   - `microgrid.MicrogridComponentIds` has been renamed to `microgrid.MicrogridElectricalComponentIds`.
   - `MicrogridComponentIDs.component_ids` has been renamed to `MicrogridElectricalComponentIds.electrical_component_ids`.
+  - `electrical_components.VoltageTransformer` has been renamed to `electrical_components.PowerTransformer`, to make the name more consistent with the underlying concept.
+  - `ElectricalComponentCategorySpecificInfo.kind.voltage_transformer` has been renamed to `ElectricalComponentCategorySpecificInfo.kind.power_transformer`, to make the name more consistent with the underlying concept.
+  - `ElectricalComponentCategory.ELECTRICAL_COMPONENT_CATEGORY_VOLTAGE_TRANSFORMER` has been renamed to `ElectricalComponentCategory.ELECTRICAL_COMPONENT_CATEGORY_POWER_TRANSFORMER`, to make the name more consistent with the underlying concept.
 
 
 ## Bug Fixes
