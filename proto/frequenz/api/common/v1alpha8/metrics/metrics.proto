@@ -1,0 +1,302 @@
+// Metrics definitions.
+//
+// Copyright:
+// Copyright 2025 Frequenz Energy-as-a-Service GmbH
+//
+// License:
+// MIT
+
+syntax = "proto3";
+
+package frequenz.api.common.v1alpha8.metrics;
+
+import "frequenz/api/common/v1alpha8/metrics/bounds.proto";
+
+import "google/protobuf/timestamp.proto";
+
+// Represents a single sample of a specific metric, the value of which is either
+// measured or derived at a particular time.
+message SimpleMetricValue {
+  // The value of the metric, which could be either measured or derived.
+  float value = 2;
+}
+
+// Encapsulates derived statistical summaries of a single metric.
+//
+// The message allows for the reporting of statistical summaries — minimum,
+// maximum, and average values - as well as the complete list of individual
+// samples if available.
+//
+// This message represents derived metrics and contains fields for statistical
+// summaries—minimum, maximum, and average values. Individual measurements are
+// are optional, accommodating scenarios where only subsets of this information
+// are available.
+message AggregatedMetricValue {
+  // The derived average value of the metric.
+  float avg_value = 2;
+
+  // The minimum measured value of the metric.
+  optional float min_value = 3;
+
+  // The maximum measured value of the metric.
+  optional float max_value = 4;
+
+  // Optional array of all the raw individual values.
+  repeated float raw_values = 5;
+}
+
+// `MetricValueVariant` serves as a union type that can encapsulate either a
+// `SimpleMetricValue` or an `AggregatedMetricValue`.
+//
+// This message is designed to offer flexibility in capturing different
+// granularities of metric samples—either a simple single-point measurement
+// or an aggregated set of measurements for a metric.
+//
+// A `MetricValueVariant` can hold either a `SimpleMetricValue` or an
+// `AggregatedMetricValue`, but not both simultaneously. Setting one will
+// nullify the other.
+message MetricValueVariant {
+  oneof metric_value_variant {
+    SimpleMetricValue simple_metric = 1;
+    AggregatedMetricValue aggregated_metric = 2;
+  }
+}
+
+// List of supported metrics.
+//
+// !!! note
+// AC energy metrics information:
+//
+// * This energy metric is reported directly from the component, and not a
+//  result of aggregations in our systems. If a component does not have this
+//  metric, this field cannot be populated.
+//
+//  * Components that provide energy metrics reset this metric from time to
+//  time. This behaviour is specific to each component model. E.g., some
+//  components reset it on UTC 00:00:00.
+//
+//  * This energy metric does not specify the timestamp since when the energy
+//  was being accumulated, and therefore can be inconsistent.
+enum Metric {
+  // Default value.
+  METRIC_UNSPECIFIED = 0;
+
+  // DC electricity metrics
+  METRIC_DC_VOLTAGE = 1;
+  METRIC_DC_CURRENT = 2;
+  METRIC_DC_POWER = 3;
+
+  // General AC electricity metrics
+  METRIC_AC_FREQUENCY = 10;
+  METRIC_AC_VOLTAGE = 11;
+  METRIC_AC_VOLTAGE_PHASE_1_N = 12;
+  METRIC_AC_VOLTAGE_PHASE_2_N = 13;
+  METRIC_AC_VOLTAGE_PHASE_3_N = 14;
+  METRIC_AC_VOLTAGE_PHASE_1_PHASE_2 = 15;
+  METRIC_AC_VOLTAGE_PHASE_2_PHASE_3 = 16;
+  METRIC_AC_VOLTAGE_PHASE_3_PHASE_1 = 17;
+  METRIC_AC_CURRENT = 18;
+  METRIC_AC_CURRENT_PHASE_1 = 19;
+  METRIC_AC_CURRENT_PHASE_2 = 20;
+  METRIC_AC_CURRENT_PHASE_3 = 21;
+
+  // AC power metrics
+  METRIC_AC_POWER_APPARENT = 22;
+  METRIC_AC_POWER_APPARENT_PHASE_1 = 23;
+  METRIC_AC_POWER_APPARENT_PHASE_2 = 24;
+  METRIC_AC_POWER_APPARENT_PHASE_3 = 25;
+  METRIC_AC_POWER_ACTIVE = 26;
+  METRIC_AC_POWER_ACTIVE_PHASE_1 = 27;
+  METRIC_AC_POWER_ACTIVE_PHASE_2 = 28;
+  METRIC_AC_POWER_ACTIVE_PHASE_3 = 29;
+  METRIC_AC_POWER_REACTIVE = 30;
+  METRIC_AC_POWER_REACTIVE_PHASE_1 = 31;
+  METRIC_AC_POWER_REACTIVE_PHASE_2 = 32;
+  METRIC_AC_POWER_REACTIVE_PHASE_3 = 33;
+
+  // AC Power factor
+  METRIC_AC_POWER_FACTOR = 40;
+  METRIC_AC_POWER_FACTOR_PHASE_1 = 41;
+  METRIC_AC_POWER_FACTOR_PHASE_2 = 42;
+  METRIC_AC_POWER_FACTOR_PHASE_3 = 43;
+
+  // AC energy metrics
+  METRIC_AC_ENERGY_APPARENT = 50;
+  METRIC_AC_ENERGY_APPARENT_PHASE_1 = 51;
+  METRIC_AC_ENERGY_APPARENT_PHASE_2 = 52;
+  METRIC_AC_ENERGY_APPARENT_PHASE_3 = 53;
+  METRIC_AC_ENERGY_ACTIVE = 54;
+  METRIC_AC_ENERGY_ACTIVE_PHASE_1 = 55;
+  METRIC_AC_ENERGY_ACTIVE_PHASE_2 = 56;
+  METRIC_AC_ENERGY_ACTIVE_PHASE_3 = 57;
+  METRIC_AC_ENERGY_ACTIVE_CONSUMED = 58;
+  METRIC_AC_ENERGY_ACTIVE_CONSUMED_PHASE_1 = 59;
+  METRIC_AC_ENERGY_ACTIVE_CONSUMED_PHASE_2 = 60;
+  METRIC_AC_ENERGY_ACTIVE_CONSUMED_PHASE_3 = 61;
+  METRIC_AC_ENERGY_ACTIVE_DELIVERED = 62;
+  METRIC_AC_ENERGY_ACTIVE_DELIVERED_PHASE_1 = 63;
+  METRIC_AC_ENERGY_ACTIVE_DELIVERED_PHASE_2 = 64;
+  METRIC_AC_ENERGY_ACTIVE_DELIVERED_PHASE_3 = 65;
+  METRIC_AC_ENERGY_REACTIVE = 66;
+  METRIC_AC_ENERGY_REACTIVE_PHASE_1 = 67;
+  METRIC_AC_ENERGY_REACTIVE_PHASE_2 = 68;
+  METRIC_AC_ENERGY_REACTIVE_PHASE_3 = 69;
+
+  // AC harmonics
+  METRIC_AC_TOTAL_HARMONIC_DISTORTION_CURRENT = 80;
+  METRIC_AC_TOTAL_HARMONIC_DISTORTION_CURRENT_PHASE_1 = 81;
+  METRIC_AC_TOTAL_HARMONIC_DISTORTION_CURRENT_PHASE_2 = 82;
+  METRIC_AC_TOTAL_HARMONIC_DISTORTION_CURRENT_PHASE_3 = 83;
+
+  // General BMS metrics.
+  METRIC_BATTERY_CAPACITY = 100;
+  METRIC_BATTERY_SOC_PCT = 101;
+  METRIC_BATTERY_TEMPERATURE = 102;
+
+  // General inverter metrics.
+  METRIC_INVERTER_TEMPERATURE = 120;
+  METRIC_INVERTER_TEMPERATURE_CABINET = 121;
+  METRIC_INVERTER_TEMPERATURE_HEATSINK = 122;
+  METRIC_INVERTER_TEMPERATURE_TRANSFORMER = 123;
+
+  // EV charging station metrics.
+  METRIC_EV_CHARGER_TEMPERATURE = 140;
+
+  // General sensor metrics
+  METRIC_SENSOR_WIND_SPEED = 160;
+  METRIC_SENSOR_WIND_DIRECTION = 161;
+  METRIC_SENSOR_TEMPERATURE = 162;
+  METRIC_SENSOR_RELATIVE_HUMIDITY = 163;
+  METRIC_SENSOR_DEW_POINT = 164;
+  METRIC_SENSOR_AIR_PRESSURE = 165;
+  METRIC_SENSOR_IRRADIANCE = 166;
+}
+
+// Enumerated categories of connections from which metrics can be obtained for a
+// given electrical component or sensor.
+enum MetricConnectionCategory {
+  // Default value.
+  // Do not use this value.
+  METRIC_CONNECTION_CATEGORY_UNSPECIFIED = 0;
+
+  // A generic connection for metrics that do not fit into any other category.
+  METRIC_CONNECTION_CATEGORY_OTHER = 1;
+
+  // A connection to a metric representing a battery.
+  METRIC_CONNECTION_CATEGORY_BATTERY = 2;
+
+  // A connection to a metric representing a PV (photovoltaic) array or string.
+  METRIC_CONNECTION_CATEGORY_PV = 3;
+
+  // A connection to a metric representing ambient conditions.
+  METRIC_CONNECTION_CATEGORY_AMBIENT = 10;
+
+  // A connection to a metric representing a cabinet or an enclosure.
+  METRIC_CONNECTION_CATEGORY_CABINET = 11;
+
+  // A connection to a metric representing a heatsink.
+  METRIC_CONNECTION_CATEGORY_HEATSINK = 12;
+
+  // A connection to a metric representing a transformer.
+  METRIC_CONNECTION_CATEGORY_TRANSFORMER = 13;
+}
+
+// A connection to a metric representing from which a metric was obtained.
+message MetricConnection {
+  // The category of the connection from which the metric was obtained.
+  MetricConnectionCategory category = 1;
+
+  // A  string that can be used to identify the specific connection from which
+  // the metric was obtained.
+  //
+  // This is expected to be populated when the same `Metric` variant can be
+  // obtained from multiple distinct inputs or connection points on the
+  // component. Knowing the connection for the metric can help in certain
+  // control and monitoring applications.
+  string name = 2;
+}
+
+// Representation of a sampled metric along with its value.
+//
+// !!! note
+//     This represents a single sample of a specific metric, the value of which
+//     is either measured or derived at a particular time. The real-time
+//     system-defined bounds are optional and may not always be present or set.
+//
+// !!! note
+//     ### Relationship Between Bounds and Metric Samples
+//     Suppose a metric sample for active power has a lower-bound of -10,000 W,
+//     and an upper-bound of 10,000 W. For the system to accept a charge
+//     command, clients need to request current values within the bounds.
+message MetricSample {
+  // The UTC timestamp of when the metric was sampled.
+  google.protobuf.Timestamp sample_time = 1;
+
+  // The metric that was sampled.
+  Metric metric = 2;
+
+  // The value of the sampled metric.
+  MetricValueVariant value = 3;
+
+  // List of bounds that apply to the metric sample.
+  //
+  // These bounds adapt in real-time to reflect the operating conditions at the
+  // time of aggregation or derivation.
+  //
+  // #### Multiple Bounds
+  //
+  // In the case of certain components like batteries, multiple bounds might
+  // exist. These multiple bounds collectively extend the range of allowable
+  // values, effectively forming a union of all given bounds. In such cases,
+  // the value of the metric must be within at least one of the bounds.
+  // In accordance with the passive sign convention, bounds that limit discharge
+  // would have negative numbers, while those limiting charge, such as for the
+  // State of Power (SoP) metric, would be positive. Hence bounds can have
+  // positive and negative values depending on the metric they represent.
+  //
+  // #### Example
+  //
+  // The diagram below illustrates the relationship between the bounds.
+  // ```
+  //      bound[0].lower                         bound[1].upper
+  // <-------|============|------------------|============|--------->
+  //                bound[0].upper      bound[1].lower
+  // ```
+  // ---- values here are disallowed and will be rejected
+  // ==== values here are allowed and will be accepted
+  repeated Bounds bounds = 4;
+
+  // An optional field that can be used to identify the specific connection
+  // from which the metric was obtained.
+  //
+  // This is expected to be populated when the same `Metric` variant can be
+  // obtained from multiple distinct inputs or connection points on the
+  // component. Knowing the connection for the metric can help in certain
+  // control and monitoring applications.
+  //
+  // E.g.,
+  // - A PV inverter might have multiple PV strings connected (e.g.,
+  //   `pv_string_1`, `pv_string_2`).
+  // - A hybrid inverter can have a DC connection for a battery (e.g.,
+  //   `dc_battery_0`) and another for a PV array (e.g., `dc_pv_0`). A metric
+  //   like DC voltage can be obtained from both connections. For an application
+  //   to determine the SoC of the battery using its voltage, identifying the
+  //   `dc_battery_0` connection is important.
+  // - A sensor unit might report temperature from different connected probes
+  //   (e.g., `temp_sensor_outdoor`, `temp_sensor_transformer`).
+  //
+  // !!! note "Default Connection Behavior"
+  //     If this field is unset, it is implicitly assumed that the component
+  //     only has a single connection for this metric, and the connection is
+  //     uniquely identified by the component itself.
+  //
+  // !!! example
+  //     ```
+  //     // DC power from battery string 0 in a hybrid inverter
+  //     source {
+  //       category: METRIC_CONNECTION_CATEGORY_BATTERY
+  //       name: "dc_battery_0"
+  //     }
+  //     ```
+  optional MetricConnection connection = 5;
+}
