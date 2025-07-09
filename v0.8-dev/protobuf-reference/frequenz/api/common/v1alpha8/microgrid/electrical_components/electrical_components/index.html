@@ -3571,9 +3571,9 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#voltagetransformer" class="md-nav__link">
+  <a href="#powertransformer" class="md-nav__link">
     <span class="md-ellipsis">
-      VoltageTransformer
+      PowerTransformer
     </span>
   </a>
   
@@ -9687,9 +9687,9 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#voltagetransformer" class="md-nav__link">
+  <a href="#powertransformer" class="md-nav__link">
     <span class="md-ellipsis">
-      VoltageTransformer
+      PowerTransformer
     </span>
   </a>
   
@@ -9801,7 +9801,7 @@
 <li><a href="#frequenz-api-common-v1alpha8-microgrid-electrical_components-Inverter">Inverter</a></li>
 <li><a href="#frequenz-api-common-v1alpha8-microgrid-electrical_components-MetricConfigBounds">MetricConfigBounds</a></li>
 <li>
-<p><a href="#frequenz-api-common-v1alpha8-microgrid-electrical_components-VoltageTransformer">VoltageTransformer</a></p>
+<p><a href="#frequenz-api-common-v1alpha8-microgrid-electrical_components-PowerTransformer">PowerTransformer</a></p>
 </li>
 <li>
 <p><a href="#frequenz-api-common-v1alpha8-microgrid-electrical_components-BatteryType">BatteryType</a></p>
@@ -9951,8 +9951,8 @@ category.</p>
 <td></td>
 </tr>
 <tr>
-<td>voltage_transformer</td>
-<td><a href="#frequenz-api-common-v1alpha8-microgrid-electrical_components-VoltageTransformer">VoltageTransformer</a></td>
+<td>power_transformer</td>
+<td><a href="#frequenz-api-common-v1alpha8-microgrid-electrical_components-PowerTransformer">PowerTransformer</a></td>
 <td></td>
 <td></td>
 </tr>
@@ -10285,14 +10285,17 @@ for a component.</p>
 </tbody>
 </table>
 <p>This contains the lower and upper bounds for said metric. Sources these may be derived from include the component configuration, manufacturers limits, and limits of other devices. |</p>
-<p><a name="frequenz-api-common-v1alpha8-microgrid-electrical_components-VoltageTransformer"></a></p>
-<h3 id="voltagetransformer">VoltageTransformer<a class="headerlink" href="#voltagetransformer" title="Permanent link">¤</a></h3>
-<p>A representation of a voltage transformer.
-Voltage transformers are used to step up or step down the voltage, keeping
-the power somewhat constant by increasing or decreasing the current.
-If voltage is stepped up, current is stepped down, and vice versa.
-Note that voltage transformers have efficiency losses, so the output power
-is always less than the input power.</p>
+<p><a name="frequenz-api-common-v1alpha8-microgrid-electrical_components-PowerTransformer"></a></p>
+<h3 id="powertransformer">PowerTransformer<a class="headerlink" href="#powertransformer" title="Permanent link">¤</a></h3>
+<p>A representation of a power transformer.</p>
+<p>The voltage across the secondary winding of a power transformer is
+typically equal to the voltage across the primary winding multiplied by the
+primary/secondary turns ratio. The current flowing through the secondary
+winding is typically equal to the current flowing through the primary
+winding multiplied by the secondary/primary turns ratio, ignoring losses.</p>
+<p>If the voltage across the secondary winding is greater than the voltage
+across the primary winding, the transformer is said to step-up the voltage,
+otherwise it is said to step-down the voltage.</p>
 <table>
 <thead>
 <tr>
@@ -10392,8 +10395,9 @@ OPC-UA).</p>
 <p>Generates electricity and useful heat from a single energy source. Remotely controllable for start/stop commands and setpoint adjustments. Examples: 2G Agenitor, Viessmann Vitobloc, TEDOM Micro series, Bosch CHP. |
 | ELECTRICAL_COMPONENT_CATEGORY_ELECTROLYZER | 10 | An electrolyzer.</p>
 <p>Converts electrical energy into hydrogen and oxygen by electrolyzing water. Remotely controllable for operating mode and production rate. Examples: Siemens Silyzer, Nel Hydrogen PEM, ITM Power electrolyzers. |
-| ELECTRICAL_COMPONENT_CATEGORY_VOLTAGE_TRANSFORMER | 11 | A voltage transformer.</p>
-<p>Voltage transformers are used to step up or step down the voltage, keeping the power somewhat constant by increasing or decreasing the current. If voltage is stepped up, current is stepped down, and vice versa. Note that voltage transformers have efficiency losses, so the output power is always less than the input power. |
+| ELECTRICAL_COMPONENT_CATEGORY_POWER_TRANSFORMER | 11 | A power transformer.</p>
+<p>A power transformer is designed for the bulk transfer of electrical energy. Its main job is to &#34;step-up&#34; or &#34;step-down&#34; voltage levels for efficient transmission and distribution of power.</p>
+<p>Since power transformers try to keep the output power same as the input power (ignoring losses), when they step-up the voltage, the current gets proportionally reduced, and vice versa. |
 | ELECTRICAL_COMPONENT_CATEGORY_HVAC | 12 | An HVAC system (Heating, Ventilation, and Air Conditioning).</p>
 <p>Manages indoor climate by controlling heating, cooling, and ventilation. Remotely controllable for setpoint and operational scheduling. Examples: Siemens Desigo, Trane Voyager, Daikin VRV, Schneider Electric SmartStruxure. |
 | ELECTRICAL_COMPONENT_CATEGORY_PLC | 13 | An industrial controller or PLC (Programmable Logic Controller).</p>
