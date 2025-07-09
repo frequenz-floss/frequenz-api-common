@@ -753,7 +753,7 @@ message ElectricalComponentStateSnapshot {
 //   Example output of a component data message:
 //   ```
 //    {
-//      ELECTRICAL_component_id: 13,
+//      component_id: 13,
 //      metric_samples: [
 //        /* list of metrics for multiple timestamps */
 //        {
