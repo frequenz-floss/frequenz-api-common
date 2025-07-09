@@ -162,7 +162,7 @@ message SensorStateSnapshot {
 //          connection: "humidity_sensor_1"
 //        }
 //      ],
-//      states: [
+//      state_snapshots: [
 //        {
 //          sample_time: "2023-10-01T00:00:00Z",
 //          states: [],
