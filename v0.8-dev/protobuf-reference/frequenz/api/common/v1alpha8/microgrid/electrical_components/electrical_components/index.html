@@ -3544,15 +3544,6 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#fuse" class="md-nav__link">
-    <span class="md-ellipsis">
-      Fuse
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#gridconnectionpoint" class="md-nav__link">
     <span class="md-ellipsis">
       GridConnectionPoint
@@ -9669,15 +9660,6 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#fuse" class="md-nav__link">
-    <span class="md-ellipsis">
-      Fuse
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#gridconnectionpoint" class="md-nav__link">
     <span class="md-ellipsis">
       GridConnectionPoint
@@ -9815,7 +9797,6 @@
 <li><a href="#frequenz-api-common-v1alpha8-microgrid-electrical_components-ElectricalComponentStateSnapshot">ElectricalComponentStateSnapshot</a></li>
 <li><a href="#frequenz-api-common-v1alpha8-microgrid-electrical_components-ElectricalComponentTelemetry">ElectricalComponentTelemetry</a></li>
 <li><a href="#frequenz-api-common-v1alpha8-microgrid-electrical_components-EvCharger">EvCharger</a></li>
-<li><a href="#frequenz-api-common-v1alpha8-microgrid-electrical_components-Fuse">Fuse</a></li>
 <li><a href="#frequenz-api-common-v1alpha8-microgrid-electrical_components-GridConnectionPoint">GridConnectionPoint</a></li>
 <li><a href="#frequenz-api-common-v1alpha8-microgrid-electrical_components-Inverter">Inverter</a></li>
 <li><a href="#frequenz-api-common-v1alpha8-microgrid-electrical_components-MetricConfigBounds">MetricConfigBounds</a></li>
@@ -9954,12 +9935,6 @@ category.</p>
 <tr>
 <td>ev_charger</td>
 <td><a href="#frequenz-api-common-v1alpha8-microgrid-electrical_components-EvCharger">EvCharger</a></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>fuse</td>
-<td><a href="#frequenz-api-common-v1alpha8-microgrid-electrical_components-Fuse">Fuse</a></td>
 <td></td>
 <td></td>
 </tr>
@@ -10217,30 +10192,6 @@ states, and errors, related to a specific microgrid component.</p>
 </tr>
 </tbody>
 </table>
-<p><a name="frequenz-api-common-v1alpha8-microgrid-electrical_components-Fuse"></a></p>
-<h3 id="fuse">Fuse<a class="headerlink" href="#fuse" title="Permanent link">¤</a></h3>
-<p>A representation of a fuse.
-The fuse component represents a fuse in the microgrid. It is used to protect
-components from overcurrents.</p>
-<table>
-<thead>
-<tr>
-<th>Field</th>
-<th>Type</th>
-<th>Label</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>rated_current</td>
-<td><a href="#uint32">uint32</a></td>
-<td></td>
-<td>The rated current of the fuse in amperes. This is the maximum current that the fuse can withstand for a long time. This limit applies to currents both flowing in or out of each of the 3 phases individually.</td>
-</tr>
-</tbody>
-</table>
-<p>In other words, a current <em>i</em> A at one of the phases of the node must comply with the following constraint: <code>-rated_fuse_current &amp;lt;= i &amp;lt;= rated_fuse_current</code> |</p>
 <p><a name="frequenz-api-common-v1alpha8-microgrid-electrical_components-GridConnectionPoint"></a></p>
 <h3 id="gridconnectionpoint">GridConnectionPoint<a class="headerlink" href="#gridconnectionpoint" title="Permanent link">¤</a></h3>
 <p>A representation of a grid connection point. This is the point where a
