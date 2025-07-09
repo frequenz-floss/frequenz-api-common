@@ -10,7 +10,8 @@
 
 ## New Features
 
-- A new package `frequenz.api.common.v1alpha8` has been added.
+- A new package `frequenz.api.common.v1alpha8` has been added. It has the following changes when compared to `frequenz.api.common.v1alpha7`:
+  - `electrical_components.Fuse` has been removed.
 
 ## Bug Fixes
 

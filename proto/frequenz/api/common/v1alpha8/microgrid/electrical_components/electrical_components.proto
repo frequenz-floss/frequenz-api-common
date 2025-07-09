@@ -478,21 +478,6 @@ message EvCharger {
   EvChargerType type = 1;
 }
 
-// A representation of a fuse.
-// The fuse component represents a fuse in the microgrid. It is used to protect
-// components from overcurrents.
-message Fuse {
-  // The rated current of the fuse in amperes.
-  // This is the maximum current that the fuse can withstand for a long time.
-  // This limit applies to currents both flowing in or out of each of the 3
-  // phases individually.
-  //
-  // In other words, a current _i_ A at one of the phases of the node must
-  // comply with the following constraint:
-  // `-rated_fuse_current <= i <= rated_fuse_current`
-  uint32 rated_current = 1;
-}
-
 // A representation of a grid connection point. This is the point where a
 // microgrid connects to the grid.
 //
@@ -593,10 +578,9 @@ message ElectricalComponentCategorySpecificInfo {
   oneof kind {
     Battery battery = 1;
     EvCharger ev_charger = 2;
-    Fuse fuse = 3;
-    GridConnectionPoint grid_connection_point = 4;
-    Inverter inverter = 5;
-    VoltageTransformer voltage_transformer = 6;
+    GridConnectionPoint grid_connection_point = 3;
+    Inverter inverter = 4;
+    VoltageTransformer voltage_transformer = 5;
   }
 }
 
