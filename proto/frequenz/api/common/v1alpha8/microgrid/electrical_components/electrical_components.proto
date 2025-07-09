@@ -753,7 +753,7 @@ message ElectricalComponentStateSnapshot {
 //          connection: "pv_0"
 //        }
 //      ],
-//      states: [
+//      state_snapshots: [
 //        /* list of states for multiple timestamps */
 //        {
 //          sample_time: "2023-10-01T00:00:00Z",
