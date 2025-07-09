@@ -21,6 +21,7 @@
   - `electrical_components.VoltageTransformer` has been renamed to `electrical_components.PowerTransformer`, to make the name more consistent with the underlying concept.
   - `ElectricalComponentCategorySpecificInfo.kind.voltage_transformer` has been renamed to `ElectricalComponentCategorySpecificInfo.kind.power_transformer`, to make the name more consistent with the underlying concept.
   - `ElectricalComponentCategory.ELECTRICAL_COMPONENT_CATEGORY_VOLTAGE_TRANSFORMER` has been renamed to `ElectricalComponentCategory.ELECTRICAL_COMPONENT_CATEGORY_POWER_TRANSFORMER`, to make the name more consistent with the underlying concept.
+  - The `type` package has been renamed to `types`, to avoid using reserved keywords in programming languages.
 
 
 ## Bug Fixes

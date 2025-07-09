@@ -7,7 +7,7 @@
 
 syntax = "proto3";
 
-package frequenz.api.common.v1alpha8.type;
+package frequenz.api.common.v1alpha8.types;
 
 // protolint:disable MAX_LINE_LENGTH
 // (the link is too long)
