@@ -9,7 +9,7 @@ syntax = "proto3";
 
 package frequenz.api.common.v1alpha8.market;
 
-import "frequenz/api/common/v1alpha8/type/decimal.proto";
+import "frequenz/api/common/v1alpha8/types/decimal.proto";
 
 // Represents a single unit of power.
 //
@@ -26,5 +26,5 @@ import "frequenz/api/common/v1alpha8/type/decimal.proto";
 // market applications.
 message Power {
   // Power amount in Megawatts (MW).
-  frequenz.api.common.v1alpha8.type.Decimal mw = 1;
+  frequenz.api.common.v1alpha8.types.Decimal mw = 1;
 }

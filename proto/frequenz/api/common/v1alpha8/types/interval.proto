@@ -7,7 +7,7 @@
 
 syntax = "proto3";
 
-package frequenz.api.common.v1alpha8.type;
+package frequenz.api.common.v1alpha8.types;
 
 import "google/protobuf/timestamp.proto";
 
