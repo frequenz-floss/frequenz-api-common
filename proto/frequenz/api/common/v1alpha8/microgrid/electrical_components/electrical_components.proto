@@ -559,6 +559,25 @@ message PowerTransformer {
   float secondary = 2;
 }
 
+// A representation of a meter.
+//
+// Meters typically cannot be controlled remotely, but they can provide
+// telemetry data.
+message Meter {
+  // Indicates if the polarity of the meter is reversed.
+  //
+  // During installation, meters may be wired in an opposite direction, causing
+  // consumption to be reported as negative values, and production as positive
+  // values. Since this is opposite to the convention followed in this API -
+  // consumption is positive, and production is negative - it is important to
+  // know if such a reversal is present.
+  //
+  // If true, the telemetry values reported by the meter should be inverted
+  // (multiplied by -1) to reflect the correct polarity - consumption as
+  // positive, and production as negative.
+  bool polarity_reversed = 1;
+}
+
 // MetricConfigBounds describes a set of limits for a specific metric consisting
 // of a lower and upper bound for said metric.
 //
@@ -585,6 +604,7 @@ message ElectricalComponentCategorySpecificInfo {
     GridConnectionPoint grid_connection_point = 3;
     Inverter inverter = 4;
     PowerTransformer power_transformer = 5;
+    Meter meter = 6;
   }
 }
 

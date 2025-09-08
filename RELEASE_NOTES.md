@@ -10,7 +10,8 @@
 
 ## New Features
 
-<!-- Here goes the main new features and examples or instructions on how to use them -->
+- A new message has been added to the `v1alpha8` package: `microgrid.electrical_components.Meter`. This message holds static information about specific meters in a microgrid.
+- The `microgrid.electrical_components.ElectricalComponentCategorySpecificInfo` enum in the `v1alpha8` package has been extended with a new variant: `Meter`. This addition allows expressing information specific to meters within a microgrid.
 
 ## Bug Fixes
 
