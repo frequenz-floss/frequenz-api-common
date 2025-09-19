@@ -65,8 +65,8 @@ updates:
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
-      interval: "weekly"
-      time: "06:00"
+      interval: "monthly"
+      day: "thursday"
     labels:
       - "part:tooling"
       - "type:tech-debt"
