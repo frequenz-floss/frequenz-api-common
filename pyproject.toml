@@ -56,7 +56,7 @@ dev-flake8 = [
   "pydoclint == 0.7.3",
   "pydocstyle == 6.3.0",
 ]
-dev-formatting = ["black == 25.1.0", "isort == 6.0.1"]
+dev-formatting = ["black == 25.9.0", "isort == 6.1.0"]
 dev-mkdocs = [
   "mike == 1.1.2",
   "mkdocs-gen-files == 0.5.0",
@@ -66,7 +66,7 @@ dev-mkdocs = [
   "frequenz-repo-config[api] == 0.13.5",
 ]
 dev-mypy = [
-  "mypy == 1.17.1",
+  "mypy == 1.18.2",
   "grpc-stubs == 1.53.0.6",
   # For checking the noxfile, docs/ script, and tests
   "frequenz-api-common[dev-mkdocs,dev-noxfile,dev-pytest]",
