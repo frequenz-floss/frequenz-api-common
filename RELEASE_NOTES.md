@@ -2,6 +2,16 @@
 
 ## Summary
 
-## Features
+<!-- Here goes a general summary of what this release is about -->
 
-- Add `gridpool.Gridpool` message type to `v1alpha8`, defining a gridpool as an assigned group of microgrids for the purpose of energy trading.
+## Upgrading
+
+<!-- Here goes notes on how to upgrade from previous versions, including deprecations and what they should be replaced with -->
+
+## New Features
+
+<!-- Here goes the main new features and examples or instructions on how to use them -->
+
+## Bug Fixes
+
+<!-- Here goes notable bug fixes that are worth a special mention or explanation -->
