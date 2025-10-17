@@ -1,0 +1,22 @@
+// protolint:disable MAX_LINE_LENGTH
+// Frequenz gridpool definition.
+//
+// Copyright 2025 Frequenz Energy-as-a-Service GmbH
+//
+// Licensed under the MIT License (the "License");
+// you may not use this file except in compliance with the License.
+
+syntax = "proto3";
+
+package frequenz.api.common.v1alpha8.gridpool;
+
+
+// Gridpool contains details of a specific gridpool. 
+// A gridpool is an assigned group of microgrids for the purpose of energy trading.
+message Gridpool {
+  // A unique identifier for the gridpool.
+  uint64 id = 1;
+
+  // The name of the gridpool.
+  string name = 2;
+}
