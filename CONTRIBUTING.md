@@ -45,6 +45,42 @@ etc.) in one go too:
 python -m pip install -e .[dev]
 ```
 
+### Adding new proto files
+
+When you create a new directory or add proto files in the `/proto/*` directory
+structure, you **must** create a corresponding `__init__.py` file in the
+matching `/py/*` directory path.
+
+For example, if you add a new proto file at:
+```
+proto/frequenz/api/common/v1/new_module/example.proto
+```
+
+You need to create:
+```
+py/frequenz/api/common/v1/new_module/__init__.py
+```
+
+**Why is this required?**
+
+Python requires `__init__.py` files to treat directories as packages. Without
+these files:
+- The generated Python code from your proto files won't be importable
+- The package hierarchy won't be recognized by Python
+- Import statements will fail when trying to use the generated protobuf bindings
+
+The `__init__.py` file should include:
+- A license header (see existing files for the template)
+- A docstring describing the module's purpose
+
+**Example `__init__.py` content:**
+```python
+# License: MIT
+# Copyright © 2025 Frequenz Energy-as-a-Service GmbH
+
+"""Description of what this module provides."""
+```
+
 If you don't want to install all the dependencies, you can also use `nox` to
 run the tests and other checks creating its own virtual environments:
 
