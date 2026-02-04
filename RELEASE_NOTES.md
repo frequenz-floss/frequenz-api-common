@@ -10,7 +10,13 @@
 
 ## New Features
 
-<!-- Here goes the main new features and examples or instructions on how to use them -->
+- The following new messages have been added:
+  - `TransformerRatio`: Represents a single transformer ratio with primary and secondary values.
+  - `TransformerRatioThreePhase`: Represents a three-phase transformer ratio, containing individual `TransformerRatio` messages for each phase.
+  - `MeterTransformerRatio`: Represents a meter's transformer ratio (either CT or VT) along with its operational lifetime.
+  - `Meter`: Represents a meter with lists of current and voltage transformer ratios. Each list contains `MeterTransformerRatio` entries to allow tracking historical configurations.
+
+- The `ElectricalComponentCategorySpecificInfo` message has been updated to include the new `Meter` component category.
 
 ## Bug Fixes
 

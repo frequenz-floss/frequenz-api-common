@@ -559,6 +559,121 @@ message PowerTransformer {
   float secondary = 2;
 }
 
+// Represents a transformer ratio for instrument transformers.
+//
+// This message can be used for both Current Transformers (CTs) and
+// Voltage/Potential Transformers (VTs/PTs). The ratio defines the
+// relationship between the primary (line-side) and secondary (meter-side)
+// values.
+//
+// For Current Transformers:
+//   A CT with ratio 100:5 would have primary=100.0 and secondary=5.0
+//   To calculate actual current: actual_amps = measured_amps * (primary/secondary)
+//   Example: 2A measured with 100:5 CT = 2 * (100/5) = 40A actual
+//
+// For Voltage Transformers:
+//   A VT with ratio 11000:110 would have primary=11000.0 and secondary=110.0
+//   To calculate actual voltage: actual_volts = measured_volts * (primary/secondary)
+//   Example: 105V measured with 11000:110 VT = 105 * (11000/110) = 10500V actual
+message TransformerRatio {
+  // The primary (line-side/high-side) rated value of the transformer.
+  // For CTs: primary current rating in amperes (e.g., 100 for a 100:5 CT)
+  // For VTs: primary voltage rating in volts (e.g., 11000 for an 11kV:110V VT)
+  float primary = 1;
+
+  // The secondary (meter-side/low-side) rated value of the transformer.
+  // For CTs: secondary current rating in amperes (typically 1A or 5A)
+  // For VTs: secondary voltage rating in volts (typically 110V or 120V)
+  float secondary = 2;
+}
+
+// A representation of a three-phase transformer ratio.
+//
+// While this message is designed for three-phase systems, it can also be used
+// for single-phase or two-phase systems by populating only the relevant phases
+// and leaving the others unset (null/absent).
+//
+// Phase mapping conventions:
+//   - Three-phase: populate all three phases (L1/L2/L3 or A/B/C or R/Y/B)
+//   - Single-phase: populate phase_1 only
+//   - Two-phase (split-phase): populate phase_1 and phase_2
+//
+// Unpopulated phases should remain unset rather than using zero values.
+message TransformerRatioThreePhase {
+  // The transformer ratio for phase 1 (L1/A/R).
+  TransformerRatio phase_1 = 1;
+
+  // The transformer ratio for phase 2 (L2/B/Y).
+  TransformerRatio phase_2 = 2;
+
+  // The transformer ratio for phase 3 (L3/C/B).
+  TransformerRatio phase_3 = 3;
+}
+
+// A representation of a meter's transformer ratio for either current or
+// voltage.
+//
+// Meters in high-voltage/high-current systems typically use instrument
+// transformers in two ways:
+// 1. Current Transformers (CTs): Step down high currents to measurable values
+//    (typically 1A or 5A secondary)
+// 2. Voltage/Potential Transformers (VTs/PTs): Step down high voltages to
+//    measurable values (typically 110V or 120V secondary)
+//
+// This message represents either the current transformer ratios OR the voltage
+// transformer ratios for a meter across all three phases. A complete meter
+// configuration requires two instances: one for CT ratios and one for VT
+// ratios.
+//
+// association with the meter, allowing for historical tracking of transformer
+// ratios over time.
+message MeterTransformerRatio {
+  // The operational lifetime of this transformer ratio's association with the
+  // meter.
+  frequenz.api.common.v1alpha8.microgrid.Lifetime operational_lifetime = 1;
+
+  // The three-phase transformer ratio associated with the meter.
+  // All phases will have the same unit (either all current or all voltage ratios).
+  TransformerRatioThreePhase transformer_ratio = 2;
+}
+
+// A representation of a meter.
+//
+// Meters are used to measure electrical parameters such as voltage, current,
+// power, energy, and frequency. Meters typically cannot be controlled
+// remotely, but they can provide telemetry data.
+//
+// Meters are typically rated to operate only within certain voltage and current
+// limits. To measure higher voltages or currents, meters often use transformers
+// to step down the voltage or current to a level that the meter can handle.
+message Meter {
+  // The list of current transformer ratios associated with the meter.
+  //
+  // Each entry includes a set of 3-phase transformer ratio and its operational
+  // lifetime.
+  //
+  // Since a meter can only have one set of current transformer ratios active at
+  // any given time, the operational lifetimes of the entries in this list must
+  // not overlap. Overlapping operational lifetimes will indicate mistakes in
+  // the meter configuration, and there would be no suitable fallback behavior.
+  // Hence, in case there are overlapping operational lifetimes, this field will
+  // be ignored.
+  repeated MeterTransformerRatio current_transformer_ratios = 1;
+
+  // The list of voltage transformer ratios associated with the meter.
+  //
+  // Each entry includes a set of 3-phase transformer ratio and its operational
+  // lifetime.
+  //
+  // Since a meter can only have one set of voltage transformer ratios active at
+  // any given time, the operational lifetimes of the entries in this list must
+  // not overlap. Overlapping operational lifetimes will indicate mistakes in
+  // the meter configuration, and there would be no suitable fallback behavior.
+  // Hence, in case there are overlapping operational lifetimes, this field will
+  // be ignored.
+  repeated MeterTransformerRatio voltage_transformer_ratios = 2;
+}
+
 // MetricConfigBounds describes a set of limits for a specific metric consisting
 // of a lower and upper bound for said metric.
 //
@@ -584,6 +699,7 @@ message ElectricalComponentCategorySpecificInfo {
     EvCharger ev_charger = 2;
     GridConnectionPoint grid_connection_point = 3;
     Inverter inverter = 4;
+    Meter meter = 6;
     PowerTransformer power_transformer = 5;
   }
 }
