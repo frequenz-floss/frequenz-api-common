@@ -94,15 +94,15 @@ plugins:
       default_handler: python
       handlers:
         python:
+          paths: ["py"]
           options:
-            paths: ["py"]
             docstring_section_style: spacy
             merge_init_into_class: false
             show_category_heading: true
             show_root_heading: true
             show_root_members_full_path: true
             show_source: true
-          import:
+          inventories:
             # See https://mkdocstrings.github.io/python/usage/#import for details
             - https://docs.python.org/3/objects.inv
             - https://grpc.github.io/grpc/python/objects.inv
