@@ -637,10 +637,18 @@ message ElectricalComponent {
   ElectricalComponentCategorySpecificInfo category_specific_info = 5;
 
   // The component manufacturer.
-  string manufacturer = 6;
+  //
+  // Note that this field is deprecated and should not be used.
+  // Please use the `model` field instead, which includes both the manufacturer
+  // and the model name.
+  string manufacturer = 6 [deprecated = true];
 
   // The model name of the component.
-  string model_name = 7;
+  //
+  // Note that this field is deprecated and should not be used.
+  // Please use the `model` field instead, which includes both the manufacturer
+  // and the model name.
+  string model_name = 7 [deprecated = true];
 
   // The operational lifetime of the component.
   frequenz.api.common.v1alpha8.microgrid.Lifetime operational_lifetime = 8;

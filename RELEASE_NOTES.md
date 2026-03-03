@@ -6,7 +6,11 @@
 
 ## Upgrading
 
-<!-- Here goes notes on how to upgrade from previous versions, including deprecations and what they should be replaced with -->
+- The following fields have been deprecated in the package `v1alpha8`, and will be removed in a future release:
+  - `microgrid.electrical_components.ElectricalComponent.manufacturer` (string): The manufacturer of the electrical component.
+  - `microgrid.electrical_components.ElectricalComponent.model_number` (string): The model number of the electrical component.
+  - `microgrid.sensors.Sensor.manufacturer` (string): The manufacturer of the sensor.
+  - `microgrid.sensors.Sensor.model_number` (string): The model number of the sensor.
 
 ## New Features
 
