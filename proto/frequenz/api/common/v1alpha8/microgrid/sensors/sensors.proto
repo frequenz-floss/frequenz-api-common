@@ -63,6 +63,10 @@ message Sensor {
 
   // The operational lifetime of the sensor.
   frequenz.api.common.v1alpha8.microgrid.Lifetime operational_lifetime = 7;
+
+  // The model name of the electrical component.
+  // Includes both the manufacturer and the model name.
+  string model = 8;
 }
 
 // Represents an error or warning condition reported by a microgrid sensor.

@@ -652,6 +652,10 @@ message ElectricalComponent {
   // active and operational, and whether it provides telemetry data, accepts
   // control commands, or both.
   ElectricalComponentOperationalMode operational_mode = 10;
+
+  // The model name of the electrical component.
+  // Includes both the manufacturer and the model name.
+  string model = 11;
 }
 
 // ElectricalComponentConnection describes a single electrical link between two
