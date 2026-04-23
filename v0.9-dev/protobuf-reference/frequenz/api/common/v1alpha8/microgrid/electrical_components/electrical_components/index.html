@@ -4293,6 +4293,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#electricalcomponentoperationalmode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ElectricalComponentOperationalMode
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#electricalcomponentstatecode" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -11606,6 +11617,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#electricalcomponentoperationalmode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ElectricalComponentOperationalMode
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#electricalcomponentstatecode" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -11700,6 +11722,7 @@
 </li>
 <li><a href="#frequenz-api-common-v1alpha8-microgrid-electrical_components-ElectricalComponentCategory">ElectricalComponentCategory</a></li>
 <li><a href="#frequenz-api-common-v1alpha8-microgrid-electrical_components-ElectricalComponentDiagnosticCode">ElectricalComponentDiagnosticCode</a></li>
+<li><a href="#frequenz-api-common-v1alpha8-microgrid-electrical_components-ElectricalComponentOperationalMode">ElectricalComponentOperationalMode</a></li>
 <li><a href="#frequenz-api-common-v1alpha8-microgrid-electrical_components-ElectricalComponentStateCode">ElectricalComponentStateCode</a></li>
 <li><a href="#frequenz-api-common-v1alpha8-microgrid-electrical_components-EvChargerType">EvChargerType</a></li>
 <li><a href="#frequenz-api-common-v1alpha8-microgrid-electrical_components-InverterType">InverterType</a></li>
@@ -11801,6 +11824,12 @@
 <td><a href="#frequenz-api-common-v1alpha8-microgrid-electrical_components-MetricConfigBounds">MetricConfigBounds</a></td>
 <td>repeated</td>
 <td>List of rated bounds present for the component identified by Metric.</td>
+</tr>
+<tr>
+<td>operational_mode</td>
+<td><a href="#frequenz-api-common-v1alpha8-microgrid-electrical_components-ElectricalComponentOperationalMode">ElectricalComponentOperationalMode</a></td>
+<td></td>
+<td>The operational mode of the component, indicating whether the component is active and operational, and whether it provides telemetry data, accepts control commands, or both.</td>
 </tr>
 </tbody>
 </table>
@@ -12595,6 +12624,47 @@ component.</p>
 <td>ELECTRICAL_COMPONENT_DIAGNOSTIC_CODE_INVERTER_DC_OVERVOLTAGE</td>
 <td>81</td>
 <td>The inverter is inoperable due to the DC voltage being too high.</td>
+</tr>
+</tbody>
+</table>
+<p><a name="frequenz-api-common-v1alpha8-microgrid-electrical_components-ElectricalComponentOperationalMode"></a></p>
+<h3 id="electricalcomponentoperationalmode">ElectricalComponentOperationalMode<a class="headerlink" href="#electricalcomponentoperationalmode" title="Permanent link">¤</a></h3>
+<p>This enum represents the operational mode of an electrical component,
+indicating whether the component is active and operational, and whether it
+provides telemetry data, accepts control commands, or both.</p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Number</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ELECTRICAL_COMPONENT_OPERATIONAL_MODE_UNSPECIFIED</td>
+<td>0</td>
+<td>Default value when the operational mode is not explicitly set.</td>
+</tr>
+<tr>
+<td>ELECTRICAL_COMPONENT_OPERATIONAL_MODE_INACTIVE</td>
+<td>1</td>
+<td>The component is inactive and not operational. It does not provide telemetry data, and it does not accept control commands.</td>
+</tr>
+<tr>
+<td>ELECTRICAL_COMPONENT_OPERATIONAL_MODE_TELEMTRY_ONLY</td>
+<td>2</td>
+<td>The component is active and operational. It only provides telemetry data, and it does not accept control commands.</td>
+</tr>
+<tr>
+<td>ELECTRICAL_COMPONENT_OPERATIONAL_MODE_CONTROL_ONLY</td>
+<td>3</td>
+<td>The component is active and operational. It only accepts control commands, and it does not provide telemetry data.</td>
+</tr>
+<tr>
+<td>ELECTRICAL_COMPONENT_OPERATIONAL_MODE_CONTROL_AND_TELEMETRY</td>
+<td>4</td>
+<td>The component is active and operational. It provides telemetry data and accepts control commands.</td>
 </tr>
 </tbody>
 </table>
