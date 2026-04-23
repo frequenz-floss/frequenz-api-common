@@ -10,7 +10,9 @@
 
 ## New Features
 
-<!-- Here goes the main new features and examples or instructions on how to use them -->
+- The following new entities have been added to the package `v1alpha8`:
+  - Enum `microgrid.electrical_components.ElectricalComponentOperationalMode`: Enumeration of the possible operational modes of an electrical component - inactive, telemetry-only, control-only, and control-and-telemetry.
+  - Field `microgrid.electrical_components.ElectricalComponent.operational_mode`: Defines if an electrical component is active, if it provides telemetry data, and if it accepts control commands.
 
 ## Bug Fixes
 

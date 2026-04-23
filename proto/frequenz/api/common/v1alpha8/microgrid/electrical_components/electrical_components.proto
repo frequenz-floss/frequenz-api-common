@@ -595,6 +595,30 @@ message ElectricalComponentCategorySpecificInfo {
   }
 }
 
+// This enum represents the operational mode of an electrical component,
+// indicating whether the component is active and operational, and whether it
+// provides telemetry data, accepts control commands, or both.
+enum ElectricalComponentOperationalMode {
+  // Default value when the operational mode is not explicitly set.
+  ELECTRICAL_COMPONENT_OPERATIONAL_MODE_UNSPECIFIED = 0;
+
+  // The component is inactive and not operational. It does not provide
+  // telemetry data, and it does not accept control commands.
+  ELECTRICAL_COMPONENT_OPERATIONAL_MODE_INACTIVE = 1;
+
+  // The component is active and operational. It only provides telemetry data,
+  // and it does not accept control commands.
+  ELECTRICAL_COMPONENT_OPERATIONAL_MODE_TELEMTRY_ONLY = 2;
+
+  // The component is active and operational. It only accepts control commands,
+  // and it does not provide telemetry data.
+  ELECTRICAL_COMPONENT_OPERATIONAL_MODE_CONTROL_ONLY = 3;
+
+  // The component is active and operational. It provides telemetry data and
+  // accepts control commands.
+  ELECTRICAL_COMPONENT_OPERATIONAL_MODE_CONTROL_AND_TELEMETRY = 4;
+}
+
 // Microgrid electrical component details.
 message ElectricalComponent {
   // The component ID.
@@ -623,6 +647,11 @@ message ElectricalComponent {
 
   // List of rated bounds present for the component identified by Metric.
   repeated MetricConfigBounds metric_config_bounds = 9;
+
+  // The operational mode of the component, indicating whether the component is
+  // active and operational, and whether it provides telemetry data, accepts
+  // control commands, or both.
+  ElectricalComponentOperationalMode operational_mode = 10;
 }
 
 // ElectricalComponentConnection describes a single electrical link between two
