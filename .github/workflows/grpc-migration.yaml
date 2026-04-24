@@ -78,7 +78,7 @@ jobs:
         # update version fix, which left updated-dependencies-json incomplete.
         # See:
         # https://github.com/dependabot/fetch-metadata/issues/402
-        uses: dependabot/fetch-metadata@4c0bbfe3a642ee5826e71be3cb91cd949dc0a897  # main
+        uses: dependabot/fetch-metadata@25dd0e34f4fe68f24cc83900b1fe3fe149efef98  # main
       - name: Print debug info
         env:
           UPDATED_DEPENDENCIES_JSON: ${{ steps.dependabot-metadata.outputs.updated-dependencies-json }}
