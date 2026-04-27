@@ -11473,22 +11473,15 @@ environment.</p>
 <td>manufacturer</td>
 <td><a href="#string">string</a></td>
 <td></td>
-<td>The sensor manufacturer.</td>
-</tr>
-<tr>
-<td>model_name</td>
-<td><a href="#string">string</a></td>
-<td></td>
-<td>The model name of the sensor.</td>
-</tr>
-<tr>
-<td>operational_lifetime</td>
-<td><a href="#frequenz-api-common-v1alpha8-microgrid-Lifetime">frequenz.api.common.v1alpha8.microgrid.Lifetime</a></td>
-<td></td>
-<td>The operational lifetime of the sensor.</td>
+<td><strong>Deprecated.</strong> The component manufacturer.</td>
 </tr>
 </tbody>
 </table>
+<p>Note that this field is deprecated and should not be used. Please use the <code>model</code> field instead, which includes both the manufacturer and the model name. |
+| model_name | <a href="#string">string</a> |  | <strong>Deprecated.</strong> The model name of the component.</p>
+<p>Note that this field is deprecated and should not be used. Please use the <code>model</code> field instead, which includes both the manufacturer and the model name. |
+| operational_lifetime | <a href="#frequenz-api-common-v1alpha8-microgrid-Lifetime">frequenz.api.common.v1alpha8.microgrid.Lifetime</a> |  | The operational lifetime of the sensor. |
+| model | <a href="#string">string</a> |  | The model name of the electrical component. Includes both the manufacturer and the model name. |</p>
 <p><a name="frequenz-api-common-v1alpha8-microgrid-sensors-SensorDiagnostic"></a></p>
 <h3 id="sensordiagnostic">SensorDiagnostic<a class="headerlink" href="#sensordiagnostic" title="Permanent link">¤</a></h3>
 <p>Represents an error or warning condition reported by a microgrid sensor.</p>

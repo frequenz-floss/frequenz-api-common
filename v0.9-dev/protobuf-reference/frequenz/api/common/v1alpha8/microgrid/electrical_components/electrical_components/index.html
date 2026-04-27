@@ -11805,34 +11805,17 @@
 <td>manufacturer</td>
 <td><a href="#string">string</a></td>
 <td></td>
-<td>The component manufacturer.</td>
-</tr>
-<tr>
-<td>model_name</td>
-<td><a href="#string">string</a></td>
-<td></td>
-<td>The model name of the component.</td>
-</tr>
-<tr>
-<td>operational_lifetime</td>
-<td><a href="#frequenz-api-common-v1alpha8-microgrid-Lifetime">frequenz.api.common.v1alpha8.microgrid.Lifetime</a></td>
-<td></td>
-<td>The operational lifetime of the component.</td>
-</tr>
-<tr>
-<td>metric_config_bounds</td>
-<td><a href="#frequenz-api-common-v1alpha8-microgrid-electrical_components-MetricConfigBounds">MetricConfigBounds</a></td>
-<td>repeated</td>
-<td>List of rated bounds present for the component identified by Metric.</td>
-</tr>
-<tr>
-<td>operational_mode</td>
-<td><a href="#frequenz-api-common-v1alpha8-microgrid-electrical_components-ElectricalComponentOperationalMode">ElectricalComponentOperationalMode</a></td>
-<td></td>
-<td>The operational mode of the component, indicating whether the component is active and operational, and whether it provides telemetry data, accepts control commands, or both.</td>
+<td><strong>Deprecated.</strong> The component manufacturer.</td>
 </tr>
 </tbody>
 </table>
+<p>Note that this field is deprecated and should not be used. Please use the <code>model</code> field instead, which includes both the manufacturer and the model name. |
+| model_name | <a href="#string">string</a> |  | <strong>Deprecated.</strong> The model name of the component.</p>
+<p>Note that this field is deprecated and should not be used. Please use the <code>model</code> field instead, which includes both the manufacturer and the model name. |
+| operational_lifetime | <a href="#frequenz-api-common-v1alpha8-microgrid-Lifetime">frequenz.api.common.v1alpha8.microgrid.Lifetime</a> |  | The operational lifetime of the component. |
+| metric_config_bounds | <a href="#frequenz-api-common-v1alpha8-microgrid-electrical_components-MetricConfigBounds">MetricConfigBounds</a> | repeated | List of rated bounds present for the component identified by Metric. |
+| operational_mode | <a href="#frequenz-api-common-v1alpha8-microgrid-electrical_components-ElectricalComponentOperationalMode">ElectricalComponentOperationalMode</a> |  | The operational mode of the component, indicating whether the component is active and operational, and whether it provides telemetry data, accepts control commands, or both. |
+| model | <a href="#string">string</a> |  | The model name of the electrical component. Includes both the manufacturer and the model name. |</p>
 <p><a name="frequenz-api-common-v1alpha8-microgrid-electrical_components-ElectricalComponentCategorySpecificInfo"></a></p>
 <h3 id="electricalcomponentcategoryspecificinfo">ElectricalComponentCategorySpecificInfo<a class="headerlink" href="#electricalcomponentcategoryspecificinfo" title="Permanent link">¤</a></h3>
 <p>Information specific to a microgrid electrical component, based upon its
