@@ -2,7 +2,7 @@
 
 ## Summary
 
-<!-- Here goes a general summary of what this release is about -->
+Added `model` and `operational_mode` fields to electrical components and sensors, deprecating separate `manufacturer` and `model_number` fields.
 
 ## Upgrading
 
@@ -22,4 +22,4 @@
 
 ## Bug Fixes
 
-<!-- Here goes notable bug fixes that are worth a special mention or explanation -->
+- None
