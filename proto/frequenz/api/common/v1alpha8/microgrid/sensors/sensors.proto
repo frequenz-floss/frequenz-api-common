@@ -55,14 +55,26 @@ message Sensor {
   // An optional name for the sensor.
   string name = 3;
 
-  // The sensor manufacturer.
-  string manufacturer = 5;
+  // The component manufacturer.
+  //
+  // Note that this field is deprecated and should not be used.
+  // Please use the `model` field instead, which includes both the manufacturer
+  // and the model name.
+  string manufacturer = 5 [deprecated = true];
 
-  // The model name of the sensor.
-  string model_name = 6;
+  // The model name of the component.
+  //
+  // Note that this field is deprecated and should not be used.
+  // Please use the `model` field instead, which includes both the manufacturer
+  // and the model name.
+  string model_name = 6 [deprecated = true];
 
   // The operational lifetime of the sensor.
   frequenz.api.common.v1alpha8.microgrid.Lifetime operational_lifetime = 7;
+
+  // The model name of the electrical component.
+  // Includes both the manufacturer and the model name.
+  string model = 8;
 }
 
 // Represents an error or warning condition reported by a microgrid sensor.
