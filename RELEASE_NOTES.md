@@ -2,16 +2,8 @@
 
 ## Summary
 
-<!-- Here goes a general summary of what this release is about -->
-
-## Upgrading
-
-<!-- Here goes notes on how to upgrade from previous versions, including deprecations and what they should be replaced with -->
-
-## New Features
-
-<!-- Here goes the main new features and examples or instructions on how to use them -->
+This release includes a bug fix for a typo in the enum `v1alpha8::microgrid::electrical_components::ElectricalComponentOperationalMode`.
 
 ## Bug Fixes
 
-<!-- Here goes notable bug fixes that are worth a special mention or explanation -->
+- A typo in the enum `v1alpha8::microgrid::electrical_components::ElectricalComponentOperationalMode` has been fixed. The variant `ELECTRICAL_COMPONENT_OPERATIONAL_MODE_TELEMTRY` has been renamed to `ELECTRICAL_COMPONENT_OPERATIONAL_MODE_TELEMETRY`.
