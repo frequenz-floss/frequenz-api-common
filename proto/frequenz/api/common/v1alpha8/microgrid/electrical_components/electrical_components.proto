@@ -608,7 +608,7 @@ enum ElectricalComponentOperationalMode {
 
   // The component is active and operational. It only provides telemetry data,
   // and it does not accept control commands.
-  ELECTRICAL_COMPONENT_OPERATIONAL_MODE_TELEMTRY_ONLY = 2;
+  ELECTRICAL_COMPONENT_OPERATIONAL_MODE_TELEMETRY_ONLY = 2;
 
   // The component is active and operational. It only accepts control commands,
   // and it does not provide telemetry data.
