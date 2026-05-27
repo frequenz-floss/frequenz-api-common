@@ -2,8 +2,17 @@
 
 ## Summary
 
-This release includes a bug fix for a typo in the enum `v1alpha8::microgrid::electrical_components::ElectricalComponentOperationalMode`.
+This release includes addition of new definitions of market area and market 
+locations in v1alpha8.
+
+## Upgrading
+
+## New Features
+
+- Added `MarketLocationIdType`, `MarketLocationIdValue`, `MarketLocationId` and 
+  `MarketLocationSelector` to "frequenz/api/common/v1alpha8/market/market_location.proto"
+- Added `MarketArea` to "frequenz/api/common/v1alpha8/market/market_area.proto"
 
 ## Bug Fixes
 
-- A typo in the enum `v1alpha8::microgrid::electrical_components::ElectricalComponentOperationalMode` has been fixed. The variant `ELECTRICAL_COMPONENT_OPERATIONAL_MODE_TELEMTRY` has been renamed to `ELECTRICAL_COMPONENT_OPERATIONAL_MODE_TELEMETRY`.
+<!-- Here goes notable bug fixes that are worth a special mention or explanation -->

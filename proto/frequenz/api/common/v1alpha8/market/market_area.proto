@@ -1,0 +1,123 @@
+// Frequenz definitions of market areas.
+//
+// Copyright 2025 Frequenz Energy-as-a-Service GmbH
+//
+// Licensed under the MIT License (the "License");
+// you may not use this file except in compliance with the License.
+
+syntax = "proto3";
+
+package frequenz.api.common.v1alpha8.market;
+
+// Defines the jurisdiction in which a Market Location is registered.
+//
+// A Market Area represents the regulatory jurisdiction and market regime that
+// governs identifier formats, settlement periods, and metering conventions
+// for a Market Location.
+//
+// Identifier formats (MaLo-ID, MPAN, POD, NMI, ESI-ID, …) are modeled
+// separately in MarketLocationIdType.
+//
+// !!! note "Jurisdictions, not operators"
+//     Market areas represent regulatory regimes, not individual exchanges or
+//     TSOs. Where operator-specific behavior matters (e.g. ERCOT vs PJM),
+//     dedicated sub-areas are defined.
+//
+// !!! note "Numeric ranges"
+//     Enum values are grouped by region to preserve ordering, readability,
+//     and backwards-compatible extension.
+//
+enum MarketArea {
+  // UNSPECIFIED: Default unspecified value — must not be used.
+  MARKET_AREA_UNSPECIFIED = 0;
+
+  // ---------------------------------------------------------------------------
+  // Europe [100..199]
+  // ---------------------------------------------------------------------------
+
+  // EU_DE: Germany — MaLo-ID regime (Marktlokation / MaLo-ID).
+  MARKET_AREA_EU_DE = 101;
+
+  // EU_UK: United Kingdom — MPAN regime (Meter Point Administration Number).
+  MARKET_AREA_EU_UK = 102;
+
+  // EU_FR: France — PDL/PRM regime (Point de Livraison/Référence Mesure).
+  MARKET_AREA_EU_FR = 103;
+
+  // EU_IT: Italy — POD regime (Point of Delivery).
+  MARKET_AREA_EU_IT = 104;
+
+  // EU_ES: Spain — CUPS regime (Código Universal de Punto de Suministro).
+  MARKET_AREA_EU_ES = 105;
+
+  // EU_NL: Netherlands — EAN regime (European Article Number).
+  MARKET_AREA_EU_NL = 106;
+
+  // EU_BE: Belgium — EAN regime.
+  MARKET_AREA_EU_BE = 107;
+
+  // EU_CH: Switzerland — EAN regime.
+  MARKET_AREA_EU_CH = 108;
+
+  // EU_AT: Austria — Zählpunktnummer (EAN-based).
+  MARKET_AREA_EU_AT = 109;
+
+  // EU_NORDICS: Nordic region — Elhub / GSRN regime (NO, SE, DK, FI).
+  MARKET_AREA_EU_NORDICS = 110;
+
+  // ---------------------------------------------------------------------------
+  // Asia Pacific [200..299]
+  // ---------------------------------------------------------------------------
+
+  // AP_JP: Japan — country-specific metering / settlement regime.
+  MARKET_AREA_AP_JP = 201;
+
+  // AP_CN: China — country-specific metering / settlement regime.
+  MARKET_AREA_AP_CN = 202;
+
+  // AP_IN: India — country-specific metering / settlement regime.
+  MARKET_AREA_AP_IN = 203;
+
+  // AP_SG: Singapore — country-specific metering / settlement regime.
+  MARKET_AREA_AP_SG = 204;
+
+  // ---------------------------------------------------------------------------
+  // North America [300..399]
+  // ---------------------------------------------------------------------------
+
+  // NA_US_ERCOT: United States — ERCOT regime (ESI-ID).
+  MARKET_AREA_NA_US_ERCOT = 301;
+
+  // NA_US_PJM: United States — PJM regime (ESI-ID).
+  MARKET_AREA_NA_US_PJM = 302;
+
+  // NA_US_ISONE: United States — ISO New England regime (ESI-ID).
+  MARKET_AREA_NA_US_ISONE = 303;
+
+  // NA_US_CAISO: United States — CAISO regime (ESI-ID).
+  MARKET_AREA_NA_US_CAISO = 304;
+
+  // ---------------------------------------------------------------------------
+  // Eurasia [400..499]
+  // ---------------------------------------------------------------------------
+
+  // EURASIA_RU: Russia — country-specific metering / settlement regime.
+  MARKET_AREA_EURASIA_RU = 401;
+
+  // ---------------------------------------------------------------------------
+  // Oceania [500..599]
+  // ---------------------------------------------------------------------------
+
+  // OC_AU: Australia — NMI regime (National Metering Identifier).
+  MARKET_AREA_OC_AU = 501;
+
+  // OC_NZ: New Zealand — ICP regime (Installation Control Point).
+  MARKET_AREA_OC_NZ = 502;
+
+  // ---------------------------------------------------------------------------
+  // Other / not yet modelled [900..999]
+  // ---------------------------------------------------------------------------
+
+  // OTHER: Other or not yet modelled areas.
+  MARKET_AREA_OTHER = 999;
+}
