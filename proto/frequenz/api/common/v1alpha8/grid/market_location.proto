@@ -7,7 +7,7 @@
 
 syntax = "proto3";
 
-package frequenz.api.common.v1alpha8.market;
+package frequenz.api.common.v1alpha8.grid;
 
 import "frequenz/api/common/v1alpha8/market/market_area.proto";
 
@@ -134,7 +134,7 @@ message MarketLocationId {
 // Identifies a Market Location.
 message MarketLocationSelector {
   // Regulatory jurisdiction in which this Market Location is registered.
-  MarketArea market_area = 1;
+  frequenz.api.common.v1alpha8.market.MarketArea market_area = 1;
 
   // Official market identifier (MaLo-ID, MPAN, ESI-ID, ...).
   MarketLocationId market_location_id = 2;
