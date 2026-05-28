@@ -2,16 +2,15 @@
 
 ## Summary
 
-This release includes addition of new definitions of market area and market 
-locations in v1alpha8.
+This release includes addition a new definition of balancing group in 
+v1alpha8 and moved market location definition to the `grid` submodule.
 
 ## Upgrading
 
 ## New Features
 
-- Added `MarketLocationIdType`, `MarketLocationIdValue`, `MarketLocationId` and 
-  `MarketLocationSelector` to "frequenz/api/common/v1alpha8/market/market_location.proto"
-- Added `MarketArea` to "frequenz/api/common/v1alpha8/market/market_area.proto"
+- Added `BalancingGroup` to 
+  "frequenz/api/common/v1alpha8/grid/balancing_group.proto"
 
 ## Bug Fixes
 

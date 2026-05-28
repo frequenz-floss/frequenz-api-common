@@ -1,0 +1,24 @@
+// Frequenz definitions balancing groups.
+//
+// Copyright 2025 Frequenz Energy-as-a-Service GmbH
+//
+// Licensed under the MIT License (the "License");
+// you may not use this file except in compliance with the License.
+
+syntax = "proto3";
+
+package frequenz.api.common.v1alpha8.grid;
+
+import "frequenz/api/common/v1alpha8/grid/delivery_area.proto";
+
+// Identifies a balancing group by its market code.
+//
+// This message identifies the balancing group itself. It does not include the
+// delivery area in which the balancing group is used.
+message BalancingGroup {
+  // The balancing group code.
+  string code = 1;
+
+  // The type of market code used to identify the balancing group.
+  EnergyMarketCodeType code_type = 2;
+}
