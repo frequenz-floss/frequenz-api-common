@@ -11,7 +11,6 @@ v1alpha8 and moved market location definition to the `grid` submodule.
 
 - Added `BalancingGroup` to 
   "frequenz/api/common/v1alpha8/grid/balancing_group.proto"
-- Moved `MarketLocation` from market to grid submodule
 
 ## Bug Fixes
 
