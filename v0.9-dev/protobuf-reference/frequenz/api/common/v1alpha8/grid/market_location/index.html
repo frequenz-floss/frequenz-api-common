@@ -3584,6 +3584,17 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#marketlocation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MarketLocation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#marketlocationid" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -3599,17 +3610,6 @@
     <span class="md-ellipsis">
       
         MarketLocationIdValue
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#marketlocationselector" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        MarketLocationSelector
       
     </span>
   </a>
@@ -11555,6 +11555,17 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#marketlocation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MarketLocation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#marketlocationid" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -11570,17 +11581,6 @@
     <span class="md-ellipsis">
       
         MarketLocationIdValue
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#marketlocationselector" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        MarketLocationSelector
       
     </span>
   </a>
@@ -11641,10 +11641,10 @@
 <li>
 <p><a href="#frequenz_api_common_v1alpha8_grid_market_location-proto">frequenz/api/common/v1alpha8/grid/market_location.proto</a></p>
 <ul>
+<li><a href="#frequenz-api-common-v1alpha8-grid-MarketLocation">MarketLocation</a></li>
 <li><a href="#frequenz-api-common-v1alpha8-grid-MarketLocationId">MarketLocationId</a></li>
-<li><a href="#frequenz-api-common-v1alpha8-grid-MarketLocationIdValue">MarketLocationIdValue</a></li>
 <li>
-<p><a href="#frequenz-api-common-v1alpha8-grid-MarketLocationSelector">MarketLocationSelector</a></p>
+<p><a href="#frequenz-api-common-v1alpha8-grid-MarketLocationIdValue">MarketLocationIdValue</a></p>
 </li>
 <li>
 <p><a href="#frequenz-api-common-v1alpha8-grid-MarketLocationIdType">MarketLocationIdType</a></p>
@@ -11659,6 +11659,41 @@
 <p align="right"><a href="#top">Top</a></p>
 
 <h2 id="frequenzapicommonv1alpha8gridmarket_locationproto">frequenz/api/common/v1alpha8/grid/market_location.proto<a class="headerlink" href="#frequenzapicommonv1alpha8gridmarket_locationproto" title="Permanent link">¤</a></h2>
+<p><a name="frequenz-api-common-v1alpha8-grid-MarketLocation"></a></p>
+<h3 id="marketlocation">MarketLocation<a class="headerlink" href="#marketlocation" title="Permanent link">¤</a></h3>
+<p>Identifies a Market Location in a specific market area.</p>
+<p>A Market Location is the official market-facing identifier used for
+settlement, billing, balancing-group allocation, portfolio aggregation, and
+grid-operator reporting.</p>
+<p>Examples include:
+- Germany: MaLo-ID
+- UK: MPAN
+- Australia: NMI
+- US: ESI-ID</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Label</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>market_area</td>
+<td><a href="#frequenz-api-common-v1alpha8-market-MarketArea">frequenz.api.common.v1alpha8.market.MarketArea</a></td>
+<td></td>
+<td>Market area in which the Market Location is registered.</td>
+</tr>
+<tr>
+<td>market_location_id</td>
+<td><a href="#frequenz-api-common-v1alpha8-grid-MarketLocationId">MarketLocationId</a></td>
+<td></td>
+<td>Official Market Location identifier.</td>
+</tr>
+</tbody>
+</table>
 <p><a name="frequenz-api-common-v1alpha8-grid-MarketLocationId"></a></p>
 <h3 id="marketlocationid">MarketLocationId<a class="headerlink" href="#marketlocationid" title="Permanent link">¤</a></h3>
 <p>Market-standard identifier describing a Market Location.</p>
@@ -11743,33 +11778,6 @@ normalized form derived from the input value, based on the type.</p>
 <td><a href="#string">string</a></td>
 <td></td>
 <td>Official market location identifier.</td>
-</tr>
-</tbody>
-</table>
-<p><a name="frequenz-api-common-v1alpha8-grid-MarketLocationSelector"></a></p>
-<h3 id="marketlocationselector">MarketLocationSelector<a class="headerlink" href="#marketlocationselector" title="Permanent link">¤</a></h3>
-<p>Identifies a Market Location.</p>
-<table>
-<thead>
-<tr>
-<th>Field</th>
-<th>Type</th>
-<th>Label</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>market_area</td>
-<td><a href="#frequenz-api-common-v1alpha8-market-MarketArea">frequenz.api.common.v1alpha8.market.MarketArea</a></td>
-<td></td>
-<td>Regulatory jurisdiction in which this Market Location is registered.</td>
-</tr>
-<tr>
-<td>market_location_id</td>
-<td><a href="#frequenz-api-common-v1alpha8-grid-MarketLocationId">MarketLocationId</a></td>
-<td></td>
-<td>Official market identifier (MaLo-ID, MPAN, ESI-ID, ...).</td>
 </tr>
 </tbody>
 </table>
