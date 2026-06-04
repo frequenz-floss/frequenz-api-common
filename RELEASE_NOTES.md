@@ -2,15 +2,13 @@
 
 ## Summary
 
-This release includes addition a new definition of balancing group in 
-v1alpha8 and moved market location definition to the `grid` submodule.
+This release renames `MarketLocationSelector` to `MarketLocation`
 
 ## Upgrading
 
-## New Features
+- Rename `MarketLocationSelector` to `MarketLocation`
 
-- Added `BalancingGroup` to 
-  "frequenz/api/common/v1alpha8/grid/balancing_group.proto"
+## New Features
 
 ## Bug Fixes
 

@@ -131,11 +131,21 @@ message MarketLocationId {
   MarketLocationIdType type = 2;
 }
 
-// Identifies a Market Location.
-message MarketLocationSelector {
-  // Regulatory jurisdiction in which this Market Location is registered.
+// Identifies a Market Location in a specific market area.
+//
+// A Market Location is the official market-facing identifier used for
+// settlement, billing, balancing-group allocation, portfolio aggregation, and
+// grid-operator reporting.
+//
+// Examples include:
+// - Germany: MaLo-ID
+// - UK: MPAN
+// - Australia: NMI
+// - US: ESI-ID
+message MarketLocation {
+  // Market area in which the Market Location is registered.
   frequenz.api.common.v1alpha8.market.MarketArea market_area = 1;
 
-  // Official market identifier (MaLo-ID, MPAN, ESI-ID, ...).
+  // Official Market Location identifier.
   MarketLocationId market_location_id = 2;
 }
