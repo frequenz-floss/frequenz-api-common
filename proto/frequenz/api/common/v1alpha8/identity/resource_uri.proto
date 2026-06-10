@@ -11,7 +11,7 @@
 
 syntax = "proto3";
 
-package frequenz.api.common.v1alpha8.grid;
+package frequenz.api.common.v1alpha8.identity;
 
 // Classifies the type of resource identified by a `ResourceUri`.
 //
