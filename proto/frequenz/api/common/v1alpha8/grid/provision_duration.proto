@@ -15,8 +15,13 @@ import "google/protobuf/timestamp.proto";
 // Defines standard provision durations for flexibility services.
 //
 // A provision duration is the duration of a single provision period. In many
-// markets, this corresponds to the delivery block or product block for which
+// markets, this corresponds to the delivery block or service interval for which
 // a flexibility service is contracted, committed, or delivered.
+//
+// Provision durations are modeled as an enum because only a fixed set of
+// provision periods is supported by the relevant services, markets, and
+// operator integrations. This makes invalid durations unrepresentable and
+// keeps validation behavior consistent across APIs.
 //
 // !!! note "Duration vs. resolution"
 //     This field defines the duration of a single provision period. In market

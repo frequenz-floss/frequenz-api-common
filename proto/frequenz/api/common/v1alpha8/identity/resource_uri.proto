@@ -150,10 +150,18 @@ enum ResourceUriType {
 //     ```
 //
 message ResourceUri {
-  // Full URI string (e.g., "group://frequenz/primary/pool-1").
+  // Full URI string, including scheme, authority, and optional path.
   string uri = 1;
 
-  // Resource type category, such as access owner, operator, or flexibility
-  // group.
+  // Expected domain-specific resource type for validation.
+  //
+  // The resource type is used to validate that `uri` identifies the expected
+  // kind of resource. For example, a value of `RESOURCE_URI_TYPE_FLEX_GROUP`
+  // requires a URI that identifies a flexibility group, such as one using the
+  // `group://` scheme according to the URI conventions of this API.
+  //
+  // This field is intentionally explicit instead of being inferred only from
+  // the URI string, so clients and servers can reject mismatches early and make
+  // the expected resource category clear in API messages.
   ResourceUriType type = 2;
 }
