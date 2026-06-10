@@ -1,0 +1,167 @@
+// Domain Resource URI definitions used across Frequenz APIs.
+//
+// Resource URIs identify domain resources such as access owners, operators,
+// flexibility groups, control groups, or other resources that participate in
+// energy, flexibility, grid-operation, or market workflows.
+//
+// Copyright 2025 Frequenz Energy-as-a-Service GmbH
+//
+// Licensed under the MIT License (the "License");
+// you may not use this file except in compliance with the License.
+
+syntax = "proto3";
+
+package frequenz.api.common.v1alpha8.identity;
+
+// Classifies the type of resource identified by a `ResourceUri`.
+//
+// The URI scheme identifies the general namespace, while the `type` field
+// provides the domain-specific interpretation. For example, `group://...`
+// identifies a group resource; when used with `RESOURCE_URI_TYPE_FLEX_GROUP`,
+// that group is interpreted as a flexibility group.
+//
+// !!! note "URI scheme vs. resource type"
+//     URI schemes and resource types do not need to be one-to-one.
+//     For example:
+//     - A URI like `access-owner://frequenz` with
+//       `RESOURCE_URI_TYPE_ACCESS_OWNER` identifies a flexibility market
+//       access owner.
+//     - A URI like `operator://50hertz` with
+//       `RESOURCE_URI_TYPE_OPERATOR` identifies an operator or control-system
+//       authority.
+//     - A URI like `group://frequenz/secondary/fsp_q3` with
+//       `RESOURCE_URI_TYPE_FLEX_GROUP` identifies a flexibility group.
+//
+enum ResourceUriType {
+  // UNSPECIFIED: Default unspecified value — must not be used in production
+  // messages.
+  RESOURCE_URI_TYPE_UNSPECIFIED = 0;
+
+  // ACCESS_OWNER: Flexibility market access owner URI.
+  //
+  // Identifies the entity that holds or represents the market access rights
+  // under which flexibility services are offered, activated, or settled.
+  //
+  // An access owner may define or authorize flexibility groups and may
+  // represent microgrids, Gridpools, asset groups, or other flexibility
+  // resources toward market operators, grid operators, or flexibility
+  // platforms.
+  //
+  // Depending on the market model, this role may be referred to as a
+  // flexibility service provider, balancing service provider, aggregator, or
+  // virtual power plant operator. In this API, the generic term is access
+  // owner.
+  RESOURCE_URI_TYPE_ACCESS_OWNER = 1;
+
+  // OPERATOR: Operator URI.
+  //
+  // Identifies an entity or system authorized to operate, coordinate, validate,
+  // or issue control instructions for grid-facing or market-facing
+  // integrations.
+  //
+  // An operator may represent a grid operator, market operator, flexibility
+  // platform, gateway, or control-system authority. Unlike an access owner, an
+  // operator does not necessarily hold flexibility market access rights. It may
+  // instead act as the external or internal authority that exchanges setpoints,
+  // telemetry, status information, or validation signals with the platform.
+  //
+  // Typical examples include transmission system operators (TSOs),
+  // distribution system operators (DSOs), market operators, flexibility
+  // platforms, or gateway systems such as GridLink.
+  RESOURCE_URI_TYPE_OPERATOR = 2;
+
+  // FLEX_GROUP: Flexibility group URI.
+  //
+  // Identifies a logical group of microgrids or assets that can jointly
+  // participate in a flexibility service.
+  //
+  // !!! note "What is a flexibility group?"
+  //     A flexibility group represents a logical group of microgrids or assets
+  //     that can jointly participate in flexibility services.
+  //
+  //     Instruction delivery, telemetry interpretation, and delivery evaluation
+  //     are determined by the concrete participation context, such as the
+  //     flexibility group, service type, and provision period.
+  //
+  // !!! note "Terminology across markets"
+  //     Different markets use different terms for the concept of a
+  //     flexibility group:
+  //     - Europe: "Pool" or "Flexibility Service Provider Group"
+  //     - US: "Aggregated Resource", "DER Aggregation", "Composite Resource"
+  //     - UK: "Balancing Unit (BU)", "VLP Group", "Asset Group"
+  //
+  // !!! note "Examples for flexibility group usage"
+  //     - A group of microgrids committed together to provide FCR capacity in a
+  //       specific delivery area.
+  //     - A group of controllable batteries used to follow an aFRR activation
+  //       signal as one aggregated flexibility unit.
+  //     - A group of flexible loads participating in a demand-response product
+  //       for congestion relief.
+  RESOURCE_URI_TYPE_FLEX_GROUP = 3;
+
+  // GROUP: Generic group URI.
+  //
+  // Identifies a logical aggregation of assets, microgrids, controllable
+  // components, or other resources that are addressed as one unit.
+  //
+  // A group is intentionally context-neutral. It can be used whenever the API
+  // needs to refer to an aggregated resource scope without assigning a specific
+  // market, regulatory, or product meaning to that aggregation.
+  //
+  // !!! note "Generic group vs. flexibility group"
+  //     Use `RESOURCE_URI_TYPE_GROUP` when the group is merely the addressed
+  //     scope for telemetry, setpoints, control, routing, status reporting, or
+  //     another operational interaction.
+  //
+  //     Use `RESOURCE_URI_TYPE_FLEX_GROUP` when the group specifically
+  //     represents a flexibility-market or provision-registration concept, such
+  //     as a pool used for bid placement, reserve provisioning, activation, or
+  //     delivery validation.
+  //
+  // !!! note "Examples for generic group usage"
+  //     - A controllable asset group used by GridGuard, such as all batteries,
+  //       all PV inverters, or another DER subset in a microgrid.
+  //     - A GridLink routing scope used to exchange telemetry, setpoints,
+  //       communication status, or activation acknowledgements.
+  //     - A curtailment or grid-compliance group defined by an operator or
+  //       control-system integration.
+  RESOURCE_URI_TYPE_GROUP = 4;
+}
+
+// Represents a typed URI to identify a resource in the Frequenz ecosystem.
+//
+// !!! format "Structure"
+//     URIs must follow the format:
+//     ```
+//     <scheme>://<authority>/<path>...
+//     ```
+//
+//     Examples:
+//     - `access-owner://frequenz` → flexibility market access owner
+//     - `operator://50hertz` → operator or control-system authority
+//     - `group://frequenz/primary/pool-1` → flexibility group
+//
+// !!! example
+//     ```
+//     ResourceUri {
+//       uri: "group://frequenz/secondary/fsp_q3",
+//       type: RESOURCE_URI_TYPE_FLEX_GROUP
+//     }
+//     ```
+//
+message ResourceUri {
+  // Full URI string, including scheme, authority, and optional path.
+  string uri = 1;
+
+  // Expected domain-specific resource type for validation.
+  //
+  // The resource type is used to validate that `uri` identifies the expected
+  // kind of resource. For example, a value of `RESOURCE_URI_TYPE_FLEX_GROUP`
+  // requires a URI that identifies a flexibility group, such as one using the
+  // `group://` scheme according to the URI conventions of this API.
+  //
+  // This field is intentionally explicit instead of being inferred only from
+  // the URI string, so clients and servers can reject mismatches early and make
+  // the expected resource category clear in API messages.
+  ResourceUriType type = 2;
+}
