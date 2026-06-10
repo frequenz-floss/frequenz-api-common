@@ -10,19 +10,20 @@
 #
 # Dependabot correctly bumps `[build-system].requires`, but it does not bump
 # the matching `>=` floor in `[project].dependencies`.  This workflow runs
-# after a Dependabot `grpc` group PR, rewrites the `>=` floor to match the
-# new build pins, and pushes the fix-up commit back onto the PR branch.
+# after a Dependabot grpc/protobuf group PR, rewrites the `>=` floor to match
+# the new build pins, and pushes the fix-up commit back onto the PR branch.
 #
-# The companion auto-dependabot workflow skips the `grpc` group so those PRs
-# are handled exclusively by this migration workflow.
+# The companion auto-dependabot workflow skips the `grpc-compatible`,
+# `grpcio-major` and `protobuf-major` groups so those PRs are handled
+# exclusively by this migration workflow.
 #
 # XXX: !!! SECURITY WARNING !!!
 # pull_request_target has write access to the repo, and can read secrets.
 # This is required because Dependabot PRs are treated as fork PRs: the
 # GITHUB_TOKEN is read-only and secrets are unavailable with a plain
 # pull_request trigger.  The action mitigates the risk by:
-#   - Never executing code from the PR (the migration script is embedded
-#     in this workflow file on the base branch, not taken from the PR).
+#   - Never executing code from the PR (the migration script is fetched
+#     from the repo-config branch configured below, not taken from the PR).
 #   - Gating migration steps on github.actor == 'dependabot[bot]' AND the
 #     PR title.
 #   - Running checkout with persist-credentials: false and isolating
@@ -62,7 +63,7 @@ jobs:
     steps:
       - name: Generate token
         id: create-app-token
-        uses: actions/create-github-app-token@1b10c78c7865c340bc4f6099eb2f838309f1e8c3 # v3.1.1
+        uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1 # v3.2.0
         with:
           app-id: ${{ secrets.FREQUENZ_AUTO_DEPENDABOT_APP_ID }}
           private-key: ${{ secrets.FREQUENZ_AUTO_DEPENDABOT_APP_PRIVATE_KEY }}
@@ -72,148 +73,13 @@ jobs:
           permission-issues: write
           # Read/update pull request metadata and labels.
           permission-pull-requests: write
-      - name: Fetch Dependabot metadata
-        id: dependabot-metadata
-        # We pin a main-branch commit because v2.5.0 missed the grouped-
-        # update version fix, which left updated-dependencies-json incomplete.
-        # See:
-        # https://github.com/dependabot/fetch-metadata/issues/402
-        uses: dependabot/fetch-metadata@25dd0e34f4fe68f24cc83900b1fe3fe149efef98  # main
-      - name: Print debug info
-        env:
-          UPDATED_DEPENDENCIES_JSON: ${{ steps.dependabot-metadata.outputs.updated-dependencies-json }}
-        run: |
-          echo "Updated dependencies JSON:"
-          echo "$UPDATED_DEPENDENCIES_JSON" | jq -C .
       - name: Migrate
-        uses: frequenz-floss/gh-action-dependabot-migrate@45994e185a9040449304a470e8f02d0e197873b4  # v1.1.1
-        env:
-          UPDATED_DEPENDENCIES_JSON: ${{ steps.dependabot-metadata.outputs.updated-dependencies-json }}
+        uses: frequenz-floss/gh-action-dependabot-migrate@eb100d3cf732b4808a7776eee8f303521efd494b # v1.2.1
         with:
-          migration-script: |
-            """Sync grpc/protobuf pins and runtime ranges from Dependabot metadata."""
-
-            import json
-            import os
-            import re
-            import sys
-            from pathlib import Path
-
-
-            PYPROJECT = Path("pyproject.toml")
-            TRACKED_DEPS = ("protobuf", "grpcio-tools", "grpcio")
-            RUNTIME_DEPS = ("protobuf", "grpcio")
-
-
-            def fail(message: str) -> None:
-                print(f"ERROR: {message}", file=sys.stderr)
-                sys.exit(1)
-
-
-            def major(version: str) -> int:
-                match = re.match(r"v?(\d+)(?:[.+-]|$)", version.strip())
-                if match is None:
-                    fail(f"could not parse a major version from {version!r}")
-                return int(match.group(1))
-
-
-            def dependency_versions() -> dict[str, str]:
-                raw = os.environ.get("UPDATED_DEPENDENCIES_JSON", "")
-                if not raw:
-                    fail("UPDATED_DEPENDENCIES_JSON is empty")
-
-                try:
-                    dependencies = json.loads(raw)
-                except json.JSONDecodeError as exc:
-                    fail(f"failed to parse UPDATED_DEPENDENCIES_JSON: {exc}")
-
-                if not isinstance(dependencies, list):
-                    fail("UPDATED_DEPENDENCIES_JSON must be an array")
-
-                versions: dict[str, str] = {}
-                for dependency in dependencies:
-                    if not isinstance(dependency, dict):
-                        fail("UPDATED_DEPENDENCIES_JSON contains a non-object item")
-                    name = dependency.get("dependencyName")
-                    if name not in TRACKED_DEPS:
-                        continue
-                    version = dependency.get("newVersion")
-                    if not isinstance(version, str) or not version:
-                        fail(f"missing newVersion for {name!r}")
-                    versions[name] = version
-
-                if not versions:
-                    fail("no grpc/protobuf dependency metadata found")
-
-                return versions
-
-
-            def replace_once(text: str, pattern: str, repl, what: str) -> tuple[str, int]:
-                text, count = re.subn(pattern, repl, text, count=1)
-                if count != 1:
-                    fail(f"expected exactly one {what} entry")
-                return text, count
-
-
-            def replace_range(text: str, name: str, version: str) -> tuple[str, int]:
-                pattern = rf'("{re.escape(name)}\s*>=\s*)([^,"]+)(\s*,\s*<\s*)([^"]+)(")'
-                new_limit_major: int | None = None
-
-                def repl(match: re.Match[str]) -> str:
-                    nonlocal new_limit_major
-                    old_floor = match.group(2).strip()
-                    old_limit = match.group(4).strip()
-                    old_floor_major = major(old_floor)
-                    old_limit_major = major(old_limit)
-                    new_major = major(version)
-                    if new_major < old_floor_major:
-                        fail(f"refusing to downgrade {name} from {old_floor} to {version}")
-                    new_limit_major = old_limit_major + new_major - old_floor_major
-                    return f"{match.group(1)}{version}{match.group(3)}{new_limit_major}{match.group(5)}"
-
-                text, count = replace_once(text, pattern, repl, f"{name} runtime range")
-                if new_limit_major is None:
-                    fail(f"could not compute the new {name} upper bound")
-
-                comment_pattern = (
-                    rf'("{re.escape(name)}\s*>=\s*{re.escape(version)}'
-                    rf'\s*,\s*<\s*{new_limit_major}"\s*,\s*'
-                    rf'#\s*Do not widen beyond\s*)\d+(!)'
-                )
-                text = re.sub(
-                    comment_pattern,
-                    rf"\g<1>{new_limit_major}\2",
-                    text,
-                    count=1,
-                )
-                return text, count
-
-
-            def main() -> None:
-                if not PYPROJECT.exists():
-                    fail("pyproject.toml not found")
-
-                text = PYPROJECT.read_text(encoding="utf-8")
-                versions = dependency_versions()
-                replacements = 0
-
-                for name in RUNTIME_DEPS:
-                    version = versions.get(name)
-                    if version is None:
-                        continue
-                    text, count = replace_range(text, name, version)
-                    replacements += count
-
-                if replacements == 0:
-                    print("No grpc/protobuf runtime constraints to update.")
-                    return
-
-                PYPROJECT.write_text(text, encoding="utf-8")
-                print(f"Updated pyproject.toml with {replacements} grpc/protobuf constraint(s).")
-
-
-            main()
+          script-url-template: >- # v0.18.0
+            https://raw.githubusercontent.com/frequenz-floss/frequenz-repo-config-python/529d30b554392e6d8b66e84e92c04ac9cd170da7/cookiecutter/scripts/dependabot-grpc-fixer.py
           token: ${{ steps.create-app-token.outputs.token }}
+          version-iteration: "false"
           sign-commits: "true"
           auto-merged-label: "tool:auto-merged"
           migrated-label: "tool:grpc:migration:executed"

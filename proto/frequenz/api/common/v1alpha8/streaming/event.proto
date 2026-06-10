@@ -15,12 +15,12 @@ enum Event {
   // Default, unspecified event
   EVENT_UNSPECIFIED = 0;
 
-  // A new dispatch has been created
+  // A new resource has been created
   EVENT_CREATED = 1;
 
-  // An existing dispatch has been updated
+  // An existing resource has been updated
   EVENT_UPDATED = 2;
 
-  // An existing dispatch has been deleted
+  // An existing resource has been deleted
   EVENT_DELETED = 3;
 }
