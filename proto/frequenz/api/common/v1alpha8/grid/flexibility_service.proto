@@ -1,0 +1,171 @@
+// Frequenz definitions for grid-facing flexibility services.
+//
+// Copyright 2025 Frequenz Energy-as-a-Service GmbH
+//
+// Licensed under the MIT License (the "License");
+// you may not use this file except in compliance with the License.
+
+syntax = "proto3";
+
+package frequenz.api.common.v1alpha8.grid;
+
+// Defines the type of flexibility service associated with a flexibility
+// resource.
+//
+// A flexibility resource can represent an individual asset, an asset group, a
+// microgrid, a Gridpool, or another market-specific aggregation that provides
+// or consumes flexibility.
+//
+// Each service type represents a flexibility service, often corresponding to
+// a market product or grid-operator requirement, with specific rules for
+// activation, delivery, telemetry, and control-signal handling.
+//
+// !!! note "Naming conventions"
+//     This enum uses region-neutral terminology and maps it to common
+//     flexibility-service names used by grid system operators and market
+//     operators in different regions.
+//
+// !!! note "Service behavior"
+//     This enum classifies the service type only. Service-specific behavior
+//     such as setpoint cadence, ramping windows, activation timing, telemetry
+//     requirements, and dispatch method is defined by the service or API that
+//     consumes this enum.
+//
+enum FlexServiceType {
+  // UNSPECIFIED: Default unspecified value — must not be used.
+  FLEX_SERVICE_TYPE_UNSPECIFIED = 0;
+
+  // PRIMARY: Primary Regulation
+  //
+  // Also known as:
+  // - Frequency Containment Reserve (FCR) [Europe]
+  // - Primary Frequency Response [US]
+  // - Dynamic Containment [UK]
+  //
+  // Provides autonomous frequency response within an assigned ΔP capacity band.
+  // Participating resources adjust active power locally and in real time based
+  // on measured frequency deviations.
+  //
+  // No centralized real-time dispatch signal is required for activation. The
+  // assigned capacity band may be determined by a bid, contract, schedule,
+  // or other service commitment.
+  //
+  // During the provision period, the assigned capacity responsibility may be
+  // updated, for example when availability changes or assets are deregistered.
+  FLEX_SERVICE_TYPE_PRIMARY = 1;
+
+  // SECONDARY_POS: Secondary Upward Regulation
+  //
+  // Also known as:
+  // - Automatic Frequency Restoration Reserve Up (aFRR+) [Europe]
+  // - Regulation Up [US, PJM]
+  // - Dynamic Regulation Up [UK]
+  //
+  // Supports the grid by increasing net export or reducing net import:
+  // - increasing generation or battery discharge,
+  // - decreasing consumption or battery charging.
+  //
+  // Secondary upward regulation is typically activated through recurring
+  // explicit control instructions or ΔP setpoints.
+  //
+  // Unlike primary regulation, activation is signal-based rather than purely
+  // autonomous. Participating resources are expected to follow received control
+  // instructions within the required ramping and delivery constraints.
+  FLEX_SERVICE_TYPE_SECONDARY_POS = 2;
+
+  // SECONDARY_NEG: Secondary Downward Regulation
+  //
+  // Also known as:
+  // - Automatic Frequency Restoration Reserve Down (aFRR-) [Europe]
+  // - Regulation Down / RegD Down [US, PJM]
+  // - Dynamic Regulation Down [UK]
+  //
+  // Supports the grid by reducing net export or increasing net import:
+  // - decreasing generation or battery discharge,
+  // - increasing consumption or battery charging.
+  //
+  // Secondary downward regulation is typically activated through recurring
+  // explicit control instructions or ΔP setpoints.
+  //
+  // Unlike primary regulation, activation is signal-based rather than purely
+  // autonomous. Participating resources are expected to follow received control
+  // instructions within the required ramping and delivery constraints.
+  FLEX_SERVICE_TYPE_SECONDARY_NEG = 3;
+
+  // MANUAL_POS: Manual Upward Reserve
+  //
+  // Also known as:
+  // - mFRR+ / Replacement Reserve Up [Europe]
+  // - Contingency Reserve Up [US]
+  //
+  // Supports the grid by increasing net export or reducing net import:
+  // - increasing generation or battery discharge,
+  // - decreasing consumption or battery charging.
+  //
+  // Manual upward reserve is typically activated through explicit control
+  // instructions or setpoints.
+  //
+  // Compared to secondary regulation, activation is usually less frequent and
+  // may follow manual, semi-automated, or event-driven operator processes.
+  FLEX_SERVICE_TYPE_MANUAL_POS = 4;
+
+  // MANUAL_NEG: Manual Downward Reserve
+  //
+  // Also known as:
+  // - mFRR– / Replacement Reserve Down [Europe]
+  // - Contingency Reserve Down [US]
+  //
+  // Supports the grid by reducing net export or increasing net import:
+  // - decreasing generation or battery discharge,
+  // - increasing consumption or battery charging.
+  //
+  // Manual downward reserve is typically activated through explicit control
+  // instructions or setpoints.
+  //
+  // Compared to secondary regulation, activation is usually less frequent and
+  // may follow manual, semi-automated, or event-driven operator processes.
+  FLEX_SERVICE_TYPE_MANUAL_NEG = 5;
+
+  // REPLACEMENT_RESERVE: Replacement Reserve
+  //
+  // Also known as:
+  // - Replacement Reserve (RR) [Europe]
+  // - Supplemental Reserve [US]
+  //
+  // Provides slower reserve capacity to restore operational balance or replace
+  // previously activated balancing capacity.
+  //
+  // Replacement reserve can support the grid in either direction, depending on
+  // the relevant market rules or grid-operator requirements:
+  // - upward reserve increases net export or reduces net import,
+  // - downward reserve reduces net export or increases net import.
+  //
+  // The activation process and control-instruction semantics are defined by the
+  // concrete service rules. Compared to primary and secondary regulation,
+  // activation is typically slower and less continuous.
+  FLEX_SERVICE_TYPE_REPLACEMENT_RESERVE = 6;
+
+  // DEMAND: Demand Response
+  //
+  // Also known as:
+  // - Emergency Demand Response
+  // - Interruptible Load
+  // - Flexible Load or Load Curtailment
+  //
+  // Provides load-side flexibility by changing consumption in response to
+  // market rules, grid-operator requirements, or a specific flexibility
+  // service.
+  //
+  // Demand response most commonly supports the grid by reducing net import:
+  // - decreasing consumption,
+  // - shifting consumption to another time period,
+  // - or temporarily interrupting flexible loads.
+  //
+  // Some demand-response products may also support increasing net import, for
+  // example to absorb excess generation or relieve local grid constraints.
+  //
+  // Activation is typically event-based or instruction-based rather than
+  // autonomous frequency response. Activation timing, duration, and control
+  // behavior are service-specific.
+  FLEX_SERVICE_TYPE_DEMAND = 7;
+}
