@@ -689,6 +689,11 @@ message ElectricalComponent {
 //     tracking the changes over time to a microgrid, providing insights into
 //     when and how the microgrid infrastructure has been modified.
 //
+// !!! info "No Self-Connections"
+//     `source_electrical_component_id` MUST NOT equal
+//     `destination_electrical_component_id`. A component cannot be connected
+//     to itself.
+//
 message ElectricalComponentConnection {
   // Unique identifier of the component where the connection originates. This is
   // aligned with the direction of current flow away from the grid connection
