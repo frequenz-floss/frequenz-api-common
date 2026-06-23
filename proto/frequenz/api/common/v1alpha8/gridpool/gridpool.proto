@@ -1,4 +1,3 @@
-// protolint:disable MAX_LINE_LENGTH
 // Frequenz gridpool definition.
 //
 // Copyright 2025 Frequenz Energy-as-a-Service GmbH
@@ -11,12 +10,23 @@ syntax = "proto3";
 package frequenz.api.common.v1alpha8.gridpool;
 
 
-// Gridpool contains details of a specific gridpool. 
-// A gridpool is an assigned group of microgrids for the purpose of energy trading.
+// Gridpool contains details of a specific Gridpool.
+//
+// A Gridpool is a virtual balancing and operating pool. It groups Market
+// Locations, Microgrids, and Microgrid-to-Market-Location links that are
+// managed together by applications for trading, balancing, forecasting,
+// reporting, settlement, flexibility, and related services.
+//
+// A Gridpool is not a physical site and does not imply a single delivery area.
+// Members of the same Gridpool may belong to different delivery areas.
+//
+// The members and services configured for a Gridpool are modeled as separate
+// resources by APIs that expose Gridpool topology and service configuration.
+//
 message Gridpool {
-  // A unique identifier for the gridpool.
+  // Unique identifier of the Gridpool.
   uint64 id = 1;
 
-  // The name of the gridpool.
+  /// Human-readable name of the Gridpool.
   string name = 2;
 }
