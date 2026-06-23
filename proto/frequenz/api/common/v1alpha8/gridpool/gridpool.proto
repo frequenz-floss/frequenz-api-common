@@ -9,28 +9,31 @@ syntax = "proto3";
 
 package frequenz.api.common.v1alpha8.gridpool;
 
-
 // Gridpool contains details of a specific Gridpool.
 //
-// A Gridpool is a virtual balancing and operating pool. It groups physical,
-// market-facing, contractual, and virtual contributors that are managed
-// together by Frequenz cloud applications for trading, balancing, forecasting,
-// reporting, settlement, flexibility, and related services.
+// A Gridpool is a virtual balancing and operating pool. It groups
+// physical, market-facing, contractual, and virtual contributors that are
+// managed together by Frequenz cloud applications for trading, balancing,
+// forecasting, reporting, settlement, flexibility, and related services.
 //
-// A Gridpool can include Market Locations, Microgrids,
-// Microgrid-to-Market-Location links, energy schedules, virtual positions, and
-// other contributors exposed by Gridpool-specific APIs.
+// Contributors may include Market Locations, Microgrids,
+// Microgrid-to-Market-Location links, energy schedules, virtual positions,
+// and other contributors.
+//
+// Conceptually, a Gridpool functions as a virtual sub-balancing group. It
+// aggregates contributors into a single operational and commercial position
+// that can be forecasted, scheduled, traded, balanced, reported, or optimized.
+//
+// A Gridpool does not necessarily have a standalone settlement identity with a
+// grid operator. Physical settlement and imbalance accounting may occur
+// through a parent balancing group, market account, or scheduling entity.
 //
 // A Gridpool is not a physical site and does not imply a single delivery area.
 // Members of the same Gridpool may belong to different delivery areas.
 //
-// A Gridpool also does not necessarily have a standalone settlement identity
-// with a grid operator. Physical settlement and imbalance accounting may occur
-// through a parent balancing group, market account, or other scheduling entity.
-//
-// Gridpool members, services, schedules, and application variables are modeled
-// as separate resources by APIs that expose Gridpool topology and service
-// configuration.
+// Gridpool members, services, schedules, application variables, and other
+// contributor-specific details are modeled as separate resources that
+// expose Gridpool topology and service configuration.
 //
 message Gridpool {
   // Unique identifier of the Gridpool.
