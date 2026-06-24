@@ -11,34 +11,93 @@ package frequenz.api.common.v1alpha8.gridpool;
 
 // Gridpool contains details of a specific Gridpool.
 //
-// A Gridpool is a virtual balancing and operating pool. It groups
-// physical, market-facing, contractual, and virtual contributors that are
-// managed together by Frequenz cloud applications for trading, balancing,
-// forecasting, reporting, settlement, flexibility, and related services.
+// A Gridpool is a virtual balancing, trading, and operating pool. It combines
+// Gridpool members and other position contributions into a unified operational
+// and commercial position.
 //
-// Contributors may include Market Locations, Microgrids,
-// Microgrid-to-Market-Location links, energy schedules, virtual positions,
-// and other contributors.
-//
-// Conceptually, a Gridpool functions as a virtual sub-balancing group. It
-// aggregates contributors into a single operational and commercial position
-// that can be forecasted, scheduled, traded, balanced, reported, or optimized.
+// A Gridpool is attached to a parent balancing group, market account, or
+// scheduling entity. Conceptually, it functions as a virtual sub-balancing
+// group: it aggregates measured, forecasted, scheduled, contractual, flexible,
+// and virtual effects into a position that can be forecasted, scheduled,
+// traded, balanced, reported, optimized, or used for flexibility services.
 //
 // A Gridpool does not necessarily have a standalone settlement identity with a
 // grid operator. Physical settlement and imbalance accounting may occur
-// through a parent balancing group, market account, or scheduling entity.
+// through the parent balancing group, market account, or scheduling entity.
+//
+// Gridpool members are explicit assignments of entities or relationships to a
+// Gridpool. Members describe what belongs to the Gridpool structurally. They
+// may include:
+//
+//   • Market Locations: market-facing metering or settlement points
+//     representing consumption, generation, import, export, or other
+//     market-relevant energy flows.
+//   • Microgrids: single-site energy systems containing multiple assets, such
+//     as batteries, PV, generators, flexible loads, or other controllable
+//     components, typically operated through a local edge controller.
+//   • FlexClusters or distributed flexible asset groups: distributed pools of
+//     flexible assets, such as stand-alone batteries, home storage systems,
+//     PV-battery deployments, EV chargers, or other controllable assets.
+//
+// Gridpool contributions describe how members or other inputs affect the
+// Gridpool's operational, commercial, balance-relevant, or tradable position.
+// Contributions may include:
+//
+//   • measured consumption or generation from Market Locations,
+//   • flexibility availability from Microgrids or distributed flexible assets,
+//   • energy transfer schedules,
+//   • contractual positions,
+//   • and virtual contributions.
+//
+// A Gridpool member does not necessarily contribute to every service,
+// direction, or time period. For example, a Microgrid may provide
+// flexibility without having an export Market Location managed by Frequenz,
+// or a Market Location may contribute measured consumption without
+// providing controllable flexibility.
+//
+// Virtual contributions are synthetic or model-derived volumes used for
+// forecasting, strategy development, hedging, or virtual trading. They do not
+// correspond to physical assets, Microgrids, or Market Locations and are
+// independent of the physical flexibility range of the Gridpool. A Gridpool may
+// therefore have virtual contributions even if it has no physical contributors
+// for a specific service or time period.
+//
+// Gridpools bring physical, contractual, flexible, scheduled, and virtual
+// contributions together into a single position:
+//
+// ```text
+// Parent Balancing Group / Market Account / Scheduling Entity
+// └── Gridpool  (virtual sub-balancing group)
+//     ├── Gridpool members (Physical contributors)
+//     │     ├── Market Locations (metering or settlement points)
+//     │     ├── Microgrids (DER sites such as batteries, PV, generators,
+//     │     │   and flexible loads; typically controlled via edge controller)
+//     │     └── FlexClusters or distributed flexible asset groups
+//     ├── Scheduled and contractual contributions
+//     │     ├── Energy transfer schedules
+//     │     └── Contracted positions
+//     └── Virtual contributions
+//           └── Synthetic or model-derived volumes for forecasting,
+//               hedging, strategy development, or virtual trading
+// ```
 //
 // A Gridpool is not a physical site and does not imply a single delivery area.
-// Members of the same Gridpool may belong to different delivery areas.
+// Members and contributions of the same Gridpool may belong to different
+// delivery areas, bidding zones, regional markets, ISO/TSO regions, or nodes.
 //
-// Gridpool members, services, schedules, application variables, and other
-// contributor-specific details are modeled as separate resources that
-// expose Gridpool topology and service configuration.
+// The members and contributions of a Gridpool define its operational, physical,
+// flexible, and financial profile. A Gridpool's aggregated consumption,
+// production, schedules, forecasts, contracts, flexibility, and virtual
+// positions determine its balance-relevant and tradable position.
+//
+// Gridpool members, services, schedules, application variables, and
+// contributor-specific details are modeled as separate resources by APIs
+// that expose Gridpool topology and service configuration.
 //
 message Gridpool {
   // Unique identifier of the Gridpool.
   uint64 id = 1;
 
-  /// Human-readable name of the Gridpool.
+  // Human-readable name of the Gridpool.
   string name = 2;
 }
