@@ -2,17 +2,11 @@
 
 ## Summary
 
-This release adds common grid definitions for flexibility service participation.
+This release clarifies the definition of a Gridpool.
 
 ## Upgrading
 
-APIs that currently define flexibility service types, provision periods, or typed resource URIs locally can migrate to the new common grid definitions.
-
 ## New Features
-
-* Added common grid definitions for flexibility service types.
-* Added common provision duration and provision period definitions.
-* Added common typed resource URI definitions for shared domain resources such as access owners, operators, and flexibility groups.
 
 ## Bug Fixes
 
