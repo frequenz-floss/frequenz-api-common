@@ -142,7 +142,7 @@ message MarketLocationId {
 // - UK: MPAN
 // - Australia: NMI
 // - US: ESI-ID
-message MarketLocation {
+message MarketLocationRef {
   // Market area in which the Market Location is registered.
   frequenz.api.common.v1alpha8.market.MarketArea market_area = 1;
 

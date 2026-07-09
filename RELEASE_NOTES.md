@@ -2,7 +2,7 @@
 
 ## Summary
 
-This release clarifies the definition of a Gridpool.
+Renamed MarketLocation message to MarketLocationRef.
 
 ## Upgrading
 
