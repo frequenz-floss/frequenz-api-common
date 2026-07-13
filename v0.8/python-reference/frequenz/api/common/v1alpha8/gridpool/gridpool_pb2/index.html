@@ -12101,8 +12101,75 @@
 
 
 
-        <p>Gridpool contains details of a specific gridpool. 
-A gridpool is an assigned group of microgrids for the purpose of energy trading.</p>
+        <p>Gridpool contains details of a specific Gridpool.</p>
+<p>A Gridpool is a virtual balancing, trading, and operating pool. It combines
+Gridpool members and other position contributions into a unified operational
+and commercial position.</p>
+<p>A Gridpool is attached to a parent balancing group, market account, or
+scheduling entity. Conceptually, it functions as a virtual sub-balancing
+group: it aggregates measured, forecasted, scheduled, contractual, flexible,
+and virtual effects into a position that can be forecasted, scheduled,
+traded, balanced, reported, optimized, or used for flexibility services.</p>
+<p>A Gridpool does not necessarily have a standalone settlement identity with a
+grid operator. Physical settlement and imbalance accounting may occur
+through the parent balancing group, market account, or scheduling entity.</p>
+<p>Gridpool members are explicit assignments of entities or relationships to a
+Gridpool. Members describe what belongs to the Gridpool structurally. They
+may include:</p>
+<p>• Market Locations: market-facing metering or settlement points
+    representing consumption, generation, import, export, or other
+    market-relevant energy flows.
+  • Microgrids: single-site energy systems containing multiple assets, such
+    as batteries, PV, generators, flexible loads, or other controllable
+    components, typically operated through a local edge controller.
+  • FlexClusters or distributed flexible asset groups: distributed pools of
+    flexible assets, such as stand-alone batteries, home storage systems,
+    PV-battery deployments, EV chargers, or other controllable assets.</p>
+<p>Gridpool contributions describe how members or other inputs affect the
+Gridpool's operational, commercial, balance-relevant, or tradable position.
+Contributions may include:</p>
+<p>• measured consumption or generation from Market Locations,
+  • flexibility availability from Microgrids or distributed flexible assets,
+  • energy transfer schedules,
+  • contractual positions,
+  • and virtual contributions.</p>
+<p>A Gridpool member does not necessarily contribute to every service,
+direction, or time period. For example, a Microgrid may provide
+flexibility without having an export Market Location managed by Frequenz,
+or a Market Location may contribute measured consumption without
+providing controllable flexibility.</p>
+<p>Virtual contributions are synthetic or model-derived volumes used for
+forecasting, strategy development, hedging, or virtual trading. They do not
+correspond to physical assets, Microgrids, or Market Locations and are
+independent of the physical flexibility range of the Gridpool. A Gridpool may
+therefore have virtual contributions even if it has no physical contributors
+for a specific service or time period.</p>
+<p>Gridpools bring physical, contractual, flexible, scheduled, and virtual
+contributions together into a single position:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Parent Balancing Group / Market Account / Scheduling Entity
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>└── Gridpool  (virtual sub-balancing group)
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    ├── Gridpool members (Physical contributors)
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    │     ├── Market Locations (metering or settlement points)
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    │     ├── Microgrids (DER sites such as batteries, PV, generators,
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>    │     │   and flexible loads; typically controlled via edge controller)
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>    │     └── FlexClusters or distributed flexible asset groups
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>    ├── Scheduled and contractual contributions
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>    │     ├── Energy transfer schedules
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>    │     └── Contracted positions
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>    └── Virtual contributions
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>          └── Synthetic or model-derived volumes for forecasting,
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>              hedging, strategy development, or virtual trading
+</span></code></pre></div>
+<p>A Gridpool is not a physical site and does not imply a single delivery area.
+Members and contributions of the same Gridpool may belong to different
+delivery areas, bidding zones, regional markets, ISO/TSO regions, or nodes.</p>
+<p>The members and contributions of a Gridpool define its operational, physical,
+flexible, and financial profile. A Gridpool's aggregated consumption,
+production, schedules, forecasts, contracts, flexibility, and virtual
+positions determine its balance-relevant and tradable position.</p>
+<p>Gridpool members, services, schedules, application variables, and
+contributor-specific details are modeled as separate resources by APIs
+that expose Gridpool topology and service configuration.</p>
 
 
 
@@ -12113,7 +12180,8 @@ A gridpool is an assigned group of microgrids for the purpose of energy trading.
 
               <details class="mkdocstrings-source">
                 <summary>Source code in <code>py/frequenz/api/common/v1alpha8/gridpool/gridpool_pb2.py</code></summary>
-                <div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-26">26</a></span>
+                <div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-25">25</a></span>
+<span class="normal"><a href="#__codelineno-0-26">26</a></span>
 <span class="normal"><a href="#__codelineno-0-27">27</a></span>
 <span class="normal"><a href="#__codelineno-0-28">28</a></span>
 <span class="normal"><a href="#__codelineno-0-29">29</a></span>
@@ -12121,17 +12189,16 @@ A gridpool is an assigned group of microgrids for the purpose of energy trading.
 <span class="normal"><a href="#__codelineno-0-31">31</a></span>
 <span class="normal"><a href="#__codelineno-0-32">32</a></span>
 <span class="normal"><a href="#__codelineno-0-33">33</a></span>
-<span class="normal"><a href="#__codelineno-0-34">34</a></span>
-<span class="normal"><a href="#__codelineno-0-35">35</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26"></a><span class="n">DESCRIPTOR</span> <span class="o">=</span> <span class="n">_descriptor_pool</span><span class="o">.</span><span class="n">Default</span><span class="p">()</span><span class="o">.</span><span class="n">AddSerializedFile</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">4frequenz/api/common/v1alpha8/gridpool/gridpool.proto</span><span class="se">\x12</span><span class="si">%f</span><span class="s1">requenz.api.common.v1alpha8.gridpool</span><span class="se">\&quot;</span><span class="s1">$</span><span class="se">\n\x08</span><span class="s1">Gridpool</span><span class="se">\x12\n\n\x02</span><span class="s1">id</span><span class="se">\x18\x01</span><span class="s1"> </span><span class="se">\x01</span><span class="s1">(</span><span class="se">\x04\x12\x0c\n\x04</span><span class="s1">name</span><span class="se">\x18\x02</span><span class="s1"> </span><span class="se">\x01</span><span class="s1">(</span><span class="se">\t</span><span class="s1">b</span><span class="se">\x06</span><span class="s1">proto3&#39;</span><span class="p">)</span>
-</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27"></a>
-</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28"></a><span class="n">_globals</span> <span class="o">=</span> <span class="nb">globals</span><span class="p">()</span>
-</span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29"></a><span class="n">_builder</span><span class="o">.</span><span class="n">BuildMessageAndEnumDescriptors</span><span class="p">(</span><span class="n">DESCRIPTOR</span><span class="p">,</span> <span class="n">_globals</span><span class="p">)</span>
-</span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30"></a><span class="n">_builder</span><span class="o">.</span><span class="n">BuildTopDescriptorsAndMessages</span><span class="p">(</span><span class="n">DESCRIPTOR</span><span class="p">,</span> <span class="s1">&#39;frequenz.api.common.v1alpha8.gridpool.gridpool_pb2&#39;</span><span class="p">,</span> <span class="n">_globals</span><span class="p">)</span>
-</span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31"></a><span class="k">if</span> <span class="ow">not</span> <span class="n">_descriptor</span><span class="o">.</span><span class="n">_USE_C_DESCRIPTORS</span><span class="p">:</span>
-</span><span id="__span-0-32"><a id="__codelineno-0-32" name="__codelineno-0-32"></a>  <span class="n">DESCRIPTOR</span><span class="o">.</span><span class="n">_loaded_options</span> <span class="o">=</span> <span class="kc">None</span>
-</span><span id="__span-0-33"><a id="__codelineno-0-33" name="__codelineno-0-33"></a>  <span class="n">_globals</span><span class="p">[</span><span class="s1">&#39;_GRIDPOOL&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">_serialized_start</span><span class="o">=</span><span class="mi">95</span>
-</span><span id="__span-0-34"><a id="__codelineno-0-34" name="__codelineno-0-34"></a>  <span class="n">_globals</span><span class="p">[</span><span class="s1">&#39;_GRIDPOOL&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">_serialized_end</span><span class="o">=</span><span class="mi">131</span>
-</span><span id="__span-0-35"><a id="__codelineno-0-35" name="__codelineno-0-35"></a><span class="c1"># @@protoc_insertion_point(module_scope)</span>
+<span class="normal"><a href="#__codelineno-0-34">34</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25"></a><span class="n">DESCRIPTOR</span> <span class="o">=</span> <span class="n">_descriptor_pool</span><span class="o">.</span><span class="n">Default</span><span class="p">()</span><span class="o">.</span><span class="n">AddSerializedFile</span><span class="p">(</span><span class="sa">b</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">4frequenz/api/common/v1alpha8/gridpool/gridpool.proto</span><span class="se">\x12</span><span class="si">%f</span><span class="s1">requenz.api.common.v1alpha8.gridpool</span><span class="se">\&quot;</span><span class="s1">$</span><span class="se">\n\x08</span><span class="s1">Gridpool</span><span class="se">\x12\n\n\x02</span><span class="s1">id</span><span class="se">\x18\x01</span><span class="s1"> </span><span class="se">\x01</span><span class="s1">(</span><span class="se">\x04\x12\x0c\n\x04</span><span class="s1">name</span><span class="se">\x18\x02</span><span class="s1"> </span><span class="se">\x01</span><span class="s1">(</span><span class="se">\t</span><span class="s1">b</span><span class="se">\x06</span><span class="s1">proto3&#39;</span><span class="p">)</span>
+</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26"></a>
+</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27"></a><span class="n">_globals</span> <span class="o">=</span> <span class="nb">globals</span><span class="p">()</span>
+</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28"></a><span class="n">_builder</span><span class="o">.</span><span class="n">BuildMessageAndEnumDescriptors</span><span class="p">(</span><span class="n">DESCRIPTOR</span><span class="p">,</span> <span class="n">_globals</span><span class="p">)</span>
+</span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29"></a><span class="n">_builder</span><span class="o">.</span><span class="n">BuildTopDescriptorsAndMessages</span><span class="p">(</span><span class="n">DESCRIPTOR</span><span class="p">,</span> <span class="s1">&#39;frequenz.api.common.v1alpha8.gridpool.gridpool_pb2&#39;</span><span class="p">,</span> <span class="n">_globals</span><span class="p">)</span>
+</span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30"></a><span class="k">if</span> <span class="ow">not</span> <span class="n">_descriptor</span><span class="o">.</span><span class="n">_USE_C_DESCRIPTORS</span><span class="p">:</span>
+</span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31"></a>  <span class="n">DESCRIPTOR</span><span class="o">.</span><span class="n">_loaded_options</span> <span class="o">=</span> <span class="kc">None</span>
+</span><span id="__span-0-32"><a id="__codelineno-0-32" name="__codelineno-0-32"></a>  <span class="n">_globals</span><span class="p">[</span><span class="s1">&#39;_GRIDPOOL&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">_serialized_start</span><span class="o">=</span><span class="mi">95</span>
+</span><span id="__span-0-33"><a id="__codelineno-0-33" name="__codelineno-0-33"></a>  <span class="n">_globals</span><span class="p">[</span><span class="s1">&#39;_GRIDPOOL&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">_serialized_end</span><span class="o">=</span><span class="mi">131</span>
+</span><span id="__span-0-34"><a id="__codelineno-0-34" name="__codelineno-0-34"></a><span class="c1"># @@protoc_insertion_point(module_scope)</span>
 </span></code></pre></div></td></tr></table></div>
               </details>
 
@@ -12161,7 +12228,7 @@ A gridpool is an assigned group of microgrids for the purpose of energy trading.
 
     <div class="doc doc-contents ">
 
-        <p>A unique identifier for the gridpool.</p>
+        <p>Unique identifier of the Gridpool.</p>
 
     </div>
 
@@ -12183,7 +12250,7 @@ A gridpool is an assigned group of microgrids for the purpose of energy trading.
 
     <div class="doc doc-contents ">
 
-        <p>The name of the gridpool.</p>
+        <p>Human-readable name of the Gridpool.</p>
 
     </div>
 
