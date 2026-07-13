@@ -2,12 +2,9 @@
 
 ## Summary
 
-Renamed MarketLocation message to MarketLocationRef.
+This release renames the `MarketLocation` message to `MarketLocationRef`.
 
 ## Upgrading
 
-## New Features
-
-## Bug Fixes
-
-<!-- Here goes notable bug fixes that are worth a special mention or explanation -->
+Replace uses of `frequenz.api.common.v1alpha8.grid.MarketLocation` with
+`frequenz.api.common.v1alpha8.grid.MarketLocationRef`.
