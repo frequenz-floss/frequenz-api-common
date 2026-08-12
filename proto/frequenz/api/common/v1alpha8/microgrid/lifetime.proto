@@ -37,5 +37,7 @@ message Lifetime {
   // Optional timestamp when the asset's operational activity ceased.
   // If not set, the asset is considered to be in operation indefinitely into
   // the future.
+  // When both timestamps are set, `start_timestamp` should be less than or
+  // equal to `end_timestamp`.
   google.protobuf.Timestamp end_timestamp = 2;
 }
