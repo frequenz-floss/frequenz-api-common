@@ -2,7 +2,7 @@
 
 ## Summary
 
-<!-- Here goes a general summary of what this release is about -->
+This version of the Frequenz Common API introduces a new metric for monitoring pressure.
 
 ## Upgrading
 
@@ -10,7 +10,7 @@
 
 ## New Features
 
-<!-- Here goes the main new features and examples or instructions on how to use them -->
+A new metric has been added to the API, `METRIC_PRESSURE_ABSOLUTE`, in order to represent absolute pressure measurements from electrical components.
 
 ## Bug Fixes
 
