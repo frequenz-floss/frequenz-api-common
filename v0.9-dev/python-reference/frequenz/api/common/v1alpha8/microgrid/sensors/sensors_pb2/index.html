@@ -13254,10 +13254,10 @@ vendor-specific insights.</p>
 <div class="admonition example">
 <p class="admonition-title">Typical Sensor Error</p>
 <div class="language-json highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="p">{</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="nt">&quot;diagnosticCode&quot;</span><span class="p">:</span>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">      </span><span class="s2">&quot;SENSOR_DIAGNOSTIC_CODE_INTERNAL&quot;</span><span class="p">,</span>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">  </span><span class="nt">&quot;vendorErrorCode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2003&quot;</span><span class="p">,</span>
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">  </span><span class="nt">&quot;message&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Temperature sensor 3 reported 61.5°C (limit: 60°C)&quot;</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="nt">"diagnosticCode"</span><span class="p">:</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">      </span><span class="s2">"SENSOR_DIAGNOSTIC_CODE_INTERNAL"</span><span class="p">,</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">  </span><span class="nt">"vendorErrorCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2003"</span><span class="p">,</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">  </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Temperature sensor 3 reported 61.5°C (limit: 60°C)"</span>
 </span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="p">}</span>
 </span></code></pre></div>
 </div>
@@ -13444,7 +13444,7 @@ This enum is unified across all sensor categories for consistency.</p>
               <details class="mkdocstrings-source">
                 <summary>Source code in <code>py/frequenz/api/common/v1alpha8/microgrid/sensors/sensors_pb2.py</code></summary>
                 <div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-52">52</a></span>
-<span class="normal"><a href="#__codelineno-0-53">53</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-52"><a id="__codelineno-0-52" name="__codelineno-0-52"></a>  <span class="n">_globals</span><span class="p">[</span><span class="s1">&#39;_SENSORTELEMETRY&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">_serialized_end</span><span class="o">=</span><span class="mi">1180</span>
+<span class="normal"><a href="#__codelineno-0-53">53</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-52"><a id="__codelineno-0-52" name="__codelineno-0-52"></a>  <span class="n">_globals</span><span class="p">[</span><span class="s1">'_SENSORTELEMETRY'</span><span class="p">]</span><span class="o">.</span><span class="n">_serialized_end</span><span class="o">=</span><span class="mi">1180</span>
 </span><span id="__span-0-53"><a id="__codelineno-0-53" name="__codelineno-0-53"></a><span class="c1"># @@protoc_insertion_point(module_scope)</span>
 </span></code></pre></div></td></tr></table></div>
               </details>
@@ -13649,23 +13649,23 @@ errors, related to a specific microgrid sensor.</p>
 </span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>   metric_samples: [
 </span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>     /* list of metrics for multiple timestamps */
 </span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>     {
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>       sample_time: &quot;2023-10-01T00:00:00Z&quot;,
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>       metric: &quot;METRIC_SENSOR_TEMPERATURE&quot;,
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>       sample_time: "2023-10-01T00:00:00Z",
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>       metric: "METRIC_SENSOR_TEMPERATURE",
 </span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>       value: metric_value_variant: {simple_metric: {value: 23.5},
 </span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>       bounds: {}
 </span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>       connection: {}
 </span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>     },
 </span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>     {
-</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>       sample_time: &quot;2023-10-01T00:00:00Z&quot;,
-</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>       metric: &quot;METRIC_SENSOR_RELATIVE_HUMIDITY&quot;,
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>       sample_time: "2023-10-01T00:00:00Z",
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>       metric: "METRIC_SENSOR_RELATIVE_HUMIDITY",
 </span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>       value: metric_value_variant: {simple_metric: {value: 23.5},
 </span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>       bounds: {}
-</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>       connection: &quot;humidity_sensor_1&quot;
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>       connection: "humidity_sensor_1"
 </span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>     }
 </span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>   ],
 </span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>   state_snapshots: [
 </span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>     {
-</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>       sample_time: &quot;2023-10-01T00:00:00Z&quot;,
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>       sample_time: "2023-10-01T00:00:00Z",
 </span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>       states: [],
 </span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>       errors: [],
 </span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>     },
