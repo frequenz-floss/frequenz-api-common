@@ -170,6 +170,13 @@ enum Metric {
   METRIC_SENSOR_DEW_POINT = 164;
   METRIC_SENSOR_AIR_PRESSURE = 165;
   METRIC_SENSOR_IRRADIANCE = 166;
+
+  // ---------------------------------------------------------------------------
+  // General physical metrics, intended to be used for electrical components.
+  // ---------------------------------------------------------------------------
+
+  // The absolute pressure of a fluid (liquid or gas) in bars.
+  METRIC_PRESSURE_ABSOLUTE = 180;
 }
 
 // Enumerated categories of connections from which metrics can be obtained for a
