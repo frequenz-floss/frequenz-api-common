@@ -12,6 +12,7 @@ package frequenz.api.common.v1alpha8.metrics;
 
 // A set of lower and upper bounds for any metric.
 // The units of the bounds are always the same as the related metric.
+// If both are set, `lower` must be less than or equal to `upper`.
 message Bounds {
   // The lower bound.
   // If absent, there is no lower bound.
