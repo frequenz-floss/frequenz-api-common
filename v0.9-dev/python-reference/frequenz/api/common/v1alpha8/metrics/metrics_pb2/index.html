@@ -14112,9 +14112,9 @@ State of Power (SoP) metric, would be positive. Hence bounds can have
 positive and negative values depending on the metric they represent.</p>
 <h6 id="frequenz.api.common.v1alpha8.metrics.metrics_pb2.MetricSample.bounds--example">Example<a class="headerlink" href="#frequenz.api.common.v1alpha8.metrics.metrics_pb2.MetricSample.bounds--example" title="Permanent link">¤</a></h6>
 <p>The diagram below illustrates the relationship between the bounds.
-<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>     bound[0].lower                         bound[1].upper
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>&lt;-------|============|------------------|============|---------&gt;
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>               bound[0].upper      bound[1].lower
+<div class="language-text highlight"><pre><span></span><code><span id="frequenz.api.common.v1alpha8.metrics.metrics_pb2.MetricSample.bounds--__span-0-1"><a id="frequenz.api.common.v1alpha8.metrics.metrics_pb2.MetricSample.bounds--__codelineno-0-1" name="frequenz.api.common.v1alpha8.metrics.metrics_pb2.MetricSample.bounds--__codelineno-0-1" href="#frequenz.api.common.v1alpha8.metrics.metrics_pb2.MetricSample.bounds--__codelineno-0-1"></a>     bound[0].lower                         bound[1].upper
+</span><span id="frequenz.api.common.v1alpha8.metrics.metrics_pb2.MetricSample.bounds--__span-0-2"><a id="frequenz.api.common.v1alpha8.metrics.metrics_pb2.MetricSample.bounds--__codelineno-0-2" name="frequenz.api.common.v1alpha8.metrics.metrics_pb2.MetricSample.bounds--__codelineno-0-2" href="#frequenz.api.common.v1alpha8.metrics.metrics_pb2.MetricSample.bounds--__codelineno-0-2"></a>&lt;-------|============|------------------|============|---------&gt;
+</span><span id="frequenz.api.common.v1alpha8.metrics.metrics_pb2.MetricSample.bounds--__span-0-3"><a id="frequenz.api.common.v1alpha8.metrics.metrics_pb2.MetricSample.bounds--__codelineno-0-3" name="frequenz.api.common.v1alpha8.metrics.metrics_pb2.MetricSample.bounds--__codelineno-0-3" href="#frequenz.api.common.v1alpha8.metrics.metrics_pb2.MetricSample.bounds--__codelineno-0-3"></a>               bound[0].upper      bound[1].lower
 </span></code></pre></div>
 ---- values here are disallowed and will be rejected
 ==== values here are allowed and will be accepted</p>
@@ -14159,11 +14159,11 @@ uniquely identified by the component itself.</p>
 </div>
 <div class="admonition example">
 <p class="admonition-title">Example</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>// DC power from battery string 0 in a hybrid inverter
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>source {
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>  category: METRIC_CONNECTION_CATEGORY_BATTERY
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>  name: "dc_battery_0"
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>}
+<div class="language-text highlight"><pre><span></span><code><span id="frequenz.api.common.v1alpha8.metrics.metrics_pb2.MetricSample.connection--__span-0-1"><a id="frequenz.api.common.v1alpha8.metrics.metrics_pb2.MetricSample.connection--__codelineno-0-1" name="frequenz.api.common.v1alpha8.metrics.metrics_pb2.MetricSample.connection--__codelineno-0-1" href="#frequenz.api.common.v1alpha8.metrics.metrics_pb2.MetricSample.connection--__codelineno-0-1"></a>// DC power from battery string 0 in a hybrid inverter
+</span><span id="frequenz.api.common.v1alpha8.metrics.metrics_pb2.MetricSample.connection--__span-0-2"><a id="frequenz.api.common.v1alpha8.metrics.metrics_pb2.MetricSample.connection--__codelineno-0-2" name="frequenz.api.common.v1alpha8.metrics.metrics_pb2.MetricSample.connection--__codelineno-0-2" href="#frequenz.api.common.v1alpha8.metrics.metrics_pb2.MetricSample.connection--__codelineno-0-2"></a>source {
+</span><span id="frequenz.api.common.v1alpha8.metrics.metrics_pb2.MetricSample.connection--__span-0-3"><a id="frequenz.api.common.v1alpha8.metrics.metrics_pb2.MetricSample.connection--__codelineno-0-3" name="frequenz.api.common.v1alpha8.metrics.metrics_pb2.MetricSample.connection--__codelineno-0-3" href="#frequenz.api.common.v1alpha8.metrics.metrics_pb2.MetricSample.connection--__codelineno-0-3"></a>  category: METRIC_CONNECTION_CATEGORY_BATTERY
+</span><span id="frequenz.api.common.v1alpha8.metrics.metrics_pb2.MetricSample.connection--__span-0-4"><a id="frequenz.api.common.v1alpha8.metrics.metrics_pb2.MetricSample.connection--__codelineno-0-4" name="frequenz.api.common.v1alpha8.metrics.metrics_pb2.MetricSample.connection--__codelineno-0-4" href="#frequenz.api.common.v1alpha8.metrics.metrics_pb2.MetricSample.connection--__codelineno-0-4"></a>  name: "dc_battery_0"
+</span><span id="frequenz.api.common.v1alpha8.metrics.metrics_pb2.MetricSample.connection--__span-0-5"><a id="frequenz.api.common.v1alpha8.metrics.metrics_pb2.MetricSample.connection--__codelineno-0-5" name="frequenz.api.common.v1alpha8.metrics.metrics_pb2.MetricSample.connection--__codelineno-0-5" href="#frequenz.api.common.v1alpha8.metrics.metrics_pb2.MetricSample.connection--__codelineno-0-5"></a>}
 </span></code></pre></div>
 </div>
 
