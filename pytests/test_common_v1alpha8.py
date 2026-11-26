@@ -176,6 +176,28 @@ def test_module_import_microgrid_pools() -> None:
     assert power_pb2_grpc is not None
 
 
+def test_module_import_microgrid_telemetry() -> None:
+    """Test that the modules can be imported."""
+    # pylint: disable=import-outside-toplevel
+    from frequenz.api.common.v1alpha8.microgrid import telemetry
+
+    assert telemetry is not None
+
+    # pylint: disable=import-outside-toplevel
+    from frequenz.api.common.v1alpha8.microgrid.telemetry import (
+        aggregate_expression_pb2,
+    )
+
+    assert aggregate_expression_pb2 is not None
+
+    # pylint: disable=import-outside-toplevel
+    from frequenz.api.common.v1alpha8.microgrid.telemetry import (
+        aggregate_expression_pb2_grpc,
+    )
+
+    assert aggregate_expression_pb2_grpc is not None
+
+
 def test_module_import_location() -> None:
     """Test that the modules can be imported."""
     # pylint: disable=import-outside-toplevel
