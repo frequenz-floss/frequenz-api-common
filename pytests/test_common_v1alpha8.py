@@ -51,6 +51,19 @@ def test_module_import_metrics_metrics() -> None:
     assert metrics_pb2_grpc is not None
 
 
+def test_module_import_metrics_resampling() -> None:
+    """Test that the modules can be imported."""
+    # pylint: disable=import-outside-toplevel
+    from frequenz.api.common.v1alpha8.metrics import resampling_pb2
+
+    assert resampling_pb2 is not None
+
+    # pylint: disable=import-outside-toplevel
+    from frequenz.api.common.v1alpha8.metrics import resampling_pb2_grpc
+
+    assert resampling_pb2_grpc is not None
+
+
 def test_module_import_grid() -> None:
     """Test that the modules can be imported."""
     # pylint: disable=import-outside-toplevel

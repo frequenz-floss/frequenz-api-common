@@ -10,7 +10,7 @@
 
 ## New Features
 
-<!-- Here goes the main new features and examples or instructions on how to use them -->
+- `metrics.ResamplingFunction` names how the values of a metric within one resampling interval are combined: average, minimum, maximum, latest value, or sum.
 
 ## Bug Fixes
 
