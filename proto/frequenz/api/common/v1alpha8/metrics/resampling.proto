@@ -1,0 +1,33 @@
+// Definitions for resampling metrics.
+//
+// Copyright:
+// Copyright 2026 Frequenz Energy-as-a-Service GmbH
+//
+// License:
+// MIT
+
+syntax = "proto3";
+
+package frequenz.api.common.v1alpha8.metrics;
+
+// How the values of a metric within one resampling interval are combined.
+enum ResamplingFunction {
+  // The default of the service that resamples the metric. The default can
+  // differ between metrics.
+  RESAMPLING_FUNCTION_UNSPECIFIED = 0;
+
+  // The average of the values.
+  RESAMPLING_FUNCTION_AVG = 1;
+
+  // The smallest value.
+  RESAMPLING_FUNCTION_MIN = 2;
+
+  // The largest value.
+  RESAMPLING_FUNCTION_MAX = 3;
+
+  // The latest value.
+  RESAMPLING_FUNCTION_LAST = 4;
+
+  // The sum of the values.
+  RESAMPLING_FUNCTION_SUM = 5;
+}

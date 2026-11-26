@@ -1,0 +1,174 @@
+// Definitions for expressions over the telemetry of a microgrid.
+//
+// Copyright:
+// Copyright 2026 Frequenz Energy-as-a-Service GmbH
+//
+// License:
+// MIT
+
+syntax = "proto3";
+
+package frequenz.api.common.v1alpha8.microgrid.telemetry;
+
+// protolint:disable MAX_LINE_LENGTH
+// (the electrical components import and fully qualified types are too long)
+
+import "frequenz/api/common/v1alpha8/metrics/metrics.proto";
+import "frequenz/api/common/v1alpha8/microgrid/electrical_components/electrical_components.proto";
+
+// An expression over the telemetry of several electrical components. A service
+// computes its value once per resampling interval.
+//
+// All operands of an operator must have metrics of the same unit. If an
+// operand has no value for a resampling interval, `coalesce` moves on to its
+// next operand, and every other operator has no value either.
+message AggregateExpression {
+  // A list of operands.
+  message Operands {
+    // The operands, at least one.
+    repeated AggregateExpression operands = 1;
+  }
+
+  // The difference of two operands: `left` minus `right`.
+  message Difference {
+    // The operand to subtract from.
+    AggregateExpression left = 1;
+
+    // The operand to subtract.
+    AggregateExpression right = 2;
+  }
+
+  // An operand times a factor.
+  message Scale {
+    // The operand to multiply.
+    AggregateExpression operand = 1;
+
+    // The factor to multiply it by.
+    float factor = 2;
+  }
+
+  oneof expression {
+    // A value the service knows how to compute for a group of components.
+    NamedAggregate named_aggregate = 1;
+
+    // One metric of one component.
+    ElectricalComponentMetric electrical_component_metric = 2;
+
+    // A formula, in the syntax of the API that uses it.
+    Formula formula = 3;
+
+    // A constant, in the base unit of the other operands' metric.
+    float constant = 4;
+
+    // The sum of the operands.
+    Operands sum = 5;
+
+    // `left` minus `right`.
+    Difference difference = 6;
+
+    // An operand times a factor.
+    Scale scale = 7;
+
+    // The smallest of the operands.
+    Operands min = 8;
+
+    // The largest of the operands.
+    Operands max = 9;
+
+    // The first operand that has a value.
+    Operands coalesce = 10;
+  }
+}
+
+// A value the service knows how to compute for a group of electrical
+// components, using the microgrid's component graph.
+message NamedAggregate {
+  // Electrical components of one category, or inverters of one type.
+  //
+  // A metric that a component's category doesn't measure itself is taken from
+  // the components it is connected through, e.g. the AC power of batteries
+  // from their inverters.
+  message CategoryGroup {
+    // The kind of the components.
+    oneof kind {
+      // The category of the components, e.g.
+      // `ELECTRICAL_COMPONENT_CATEGORY_BATTERY`.
+      frequenz.api.common.v1alpha8.microgrid.electrical_components.ElectricalComponentCategory
+        category = 1;
+
+      // The type of the inverters, e.g. `INVERTER_TYPE_PV`.
+      frequenz.api.common.v1alpha8.microgrid.electrical_components.InverterType
+        inverter_type = 2;
+    }
+
+    // The components of the group, e.g. some of the microgrid's batteries.
+    //
+    // If empty, every component of the category, or every inverter of the
+    // type.
+    repeated uint64 electrical_component_ids = 3;
+  }
+
+  // Something to aggregate over the whole microgrid, such as its grid
+  // connection point.
+  enum MicrogridAggregate {
+    // Default value. A service rejects an expression with it.
+    MICROGRID_AGGREGATE_UNSPECIFIED = 0;
+
+    // The microgrid's grid connection point.
+    MICROGRID_AGGREGATE_GRID = 1;
+
+    // The microgrid's loads: the power at the grid connection point minus the
+    // power of the batteries, PV inverters, CHP units, EV chargers, wind
+    // turbines and steam boilers. It can be negative, e.g. when production
+    // that the component graph doesn't know about is larger than the
+    // consumption.
+    MICROGRID_AGGREGATE_CONSUMER = 2;
+
+    // The microgrid's PV inverters, CHP units and wind turbines together.
+    MICROGRID_AGGREGATE_PRODUCER = 3;
+  }
+
+  // What to aggregate.
+  oneof group {
+    // Something to aggregate over the whole microgrid.
+    MicrogridAggregate microgrid_aggregate = 1;
+
+    // Components of one category or inverter type.
+    CategoryGroup category_group = 2;
+  }
+
+  // The metric to compute, e.g. `METRIC_AC_POWER_ACTIVE`.
+  //
+  // For metrics that don't add up, such as a battery's state of charge, the
+  // service computes a fitting aggregate, e.g. the state of charge weighted by
+  // capacity.
+  frequenz.api.common.v1alpha8.metrics.Metric metric = 3;
+}
+
+// One metric of one electrical component.
+message ElectricalComponentMetric {
+  // The ID of the electrical component.
+  uint64 electrical_component_id = 1;
+
+  // The metric.
+  frequenz.api.common.v1alpha8.metrics.Metric metric = 2;
+
+  // The connection to take the metric from, for a metric the component
+  // measures at several connections, e.g. the DC voltage of a hybrid
+  // inverter's battery and PV inputs.
+  //
+  // If unset, the sample without a connection is used, or the only sample if
+  // there is just one. If there is neither, the service rejects the
+  // expression.
+  optional frequenz.api.common.v1alpha8.metrics.MetricConnection connection = 3;
+}
+
+// A formula, in the syntax of the API that uses it. For example,
+// `COALESCE(#7, #8 + #9)`, where `#7` is the electrical component with ID 7.
+message Formula {
+  // The formula, e.g. `COALESCE(#7, #8 + #9)`.
+  string text = 1;
+
+  // The metric of the components the formula reads.
+  frequenz.api.common.v1alpha8.metrics.Metric metric = 2;
+}
