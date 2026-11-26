@@ -1,0 +1,166 @@
+// Definitions for reports on the power of pools of electrical components.
+//
+// Copyright:
+// Copyright 2026 Frequenz Energy-as-a-Service GmbH
+//
+// License:
+// MIT
+
+syntax = "proto3";
+
+package frequenz.api.common.v1alpha8.microgrid.pools;
+
+// protolint:disable MAX_LINE_LENGTH
+// (the electrical components import and fully qualified types are too long)
+
+import "frequenz/api/common/v1alpha8/metrics/bounds.proto";
+import "frequenz/api/common/v1alpha8/microgrid/electrical_components/electrical_components.proto";
+
+import "google/protobuf/timestamp.proto";
+
+// A report on how a service sets the power of a pool's electrical components,
+// as seen from a priority.
+//
+// A pool is a set of electrical components that a client controls together, by
+// proposing a preferred power, bounds, or both, at a priority. The API that
+// takes the proposals says how they are combined. The API that sends the
+// report says which priority the report is seen from, and whether the report's
+// powers are active or reactive.
+//
+// Powers are in watts (W) for active power. They follow the passive sign
+// convention: positive values consume power, e.g. charge batteries, and
+// negative values produce power, e.g. discharge batteries.
+message PoolPowerReport {
+  // The time the report's state applies to.
+  google.protobuf.Timestamp origin_time = 1;
+
+  // The power the components will take in total, with the shares of every
+  // pool on them. It includes `uncontrolled_power`, and the controlled
+  // components are set to the rest. Unset while no proposal controls them.
+  optional float target_power = 2;
+
+  // The power the components are set to now, while they move towards
+  // `target_power`. Equal to `target_power` once they get there. Unset while
+  // no proposal controls them.
+  optional float trajectory_power = 3;
+
+  // The power the proposals at the report's priority got together. Like their
+  // preferred power, it is relative to the power the higher priorities got,
+  // and doesn't include that power. Unset if none of them has a preferred
+  // power.
+  optional float allotted_power = 4;
+
+  // The measured power of the components the service accounts for but can't
+  // control. A component whose power isn't measured counts as 0 W, and its
+  // entry in `components` has `power_unmeasured` set. An excluded component
+  // whose power flows through a component the service sets isn't counted
+  // here, because that power is already in the other component's. Unset if
+  // there are no such components.
+  optional float uncontrolled_power = 5;
+
+  // When the components are expected to reach `target_power`. Unset once they
+  // are there, and while `target_power` is unset.
+  optional google.protobuf.Timestamp expected_settle_time = 6;
+
+  // The power still available to the proposals at the report's priority. Like
+  // their preferred power, the bounds are relative to the power the higher
+  // priorities got. While no higher priority has a preferred power, they are
+  // bounds for the total power, including `uncontrolled_power`. The proposals
+  // at the report's priority are served from them one after another, so only
+  // the first of them is sure to get these bounds.
+  //
+  // The components can't take power in a gap between two bounds, except the
+  // power that sets the controlled components to 0 W. Empty when the bounds
+  // that the higher priorities leave hold no other power the components can
+  // take.
+  repeated frequenz.api.common.v1alpha8.metrics.Bounds bounds = 7;
+
+  // What the service did with each component of the pool. Empty if the client
+  // didn't ask for this list, or while no proposal controls the components.
+  repeated ElectricalComponentPowerReport components = 8;
+}
+
+// What the service did with one electrical component of a pool.
+//
+// For a component whose power the service sets through other components, such
+// as a battery through its inverters, the setpoints are its share of their
+// power. The component is left out if the service can't set it, or can set none
+// of the components it is set through. If both `EXCLUSION_REASON_UNHEALTHY`
+// and `EXCLUSION_REASON_OPERATIONAL_MODE` apply, the reason is
+// `EXCLUSION_REASON_UNHEALTHY`. A component that isn't left out has the first
+// of `POWER_OUTCOME_FAILED`, `POWER_OUTCOME_OVERRIDDEN` and
+// `POWER_OUTCOME_PENDING` that one of the components it is set through has, or
+// `POWER_OUTCOME_OK` if none has.
+message ElectricalComponentPowerReport {
+  // The ID of the electrical component.
+  uint64 electrical_component_id = 1;
+
+  // The power the component will be set to. Unset if the service doesn't set
+  // its power.
+  optional float target_setpoint = 2;
+
+  // The power the component is set to now, while it moves towards
+  // `target_setpoint`. Unset if the service doesn't set its power.
+  optional float trajectory_setpoint = 3;
+
+  // Whether the component, or the components it is set through, took the
+  // latest setpoints the service sent.
+  PowerOutcome outcome = 4;
+
+  // Why the service doesn't set the component's power. Set only if `outcome`
+  // is `POWER_OUTCOME_EXCLUDED`.
+  ExclusionReason exclusion_reason = 5;
+
+  // The operational mode that left the component out. Set only if
+  // `exclusion_reason` is `EXCLUSION_REASON_OPERATIONAL_MODE`. For a component
+  // set through other components, it can be the mode of one of them.
+  frequenz.api.common.v1alpha8.microgrid.electrical_components.ElectricalComponentOperationalMode
+    operational_mode = 6;
+
+  // Whether the service accounts for the component's power but can't measure
+  // it, so that it counts as 0 W in `PoolPowerReport.uncontrolled_power`.
+  bool power_unmeasured = 7;
+}
+
+// Whether an electrical component took its setpoint.
+enum PowerOutcome {
+  // Default value. Not sent by the service.
+  POWER_OUTCOME_UNSPECIFIED = 0;
+
+  // The service sent the component a new target setpoint, and the component
+  // hasn't answered yet. Renewals and steps towards the target don't make the
+  // outcome pending again, but their results replace it.
+  POWER_OUTCOME_PENDING = 1;
+
+  // The component accepted its setpoint.
+  POWER_OUTCOME_OK = 2;
+
+  // Setting the power of the component failed.
+  POWER_OUTCOME_FAILED = 3;
+
+  // A request that isn't a pool proposal, e.g. a setpoint sent to the
+  // component directly, overrode the component's setpoint.
+  POWER_OUTCOME_OVERRIDDEN = 4;
+
+  // The service doesn't set the component's power; see `exclusion_reason`.
+  // Its power still counts towards the total: in
+  // `PoolPowerReport.uncontrolled_power`, or in the power of a component the
+  // service sets that it flows through.
+  POWER_OUTCOME_EXCLUDED = 5;
+}
+
+// Why the service doesn't set the power of an electrical component of a pool.
+enum ExclusionReason {
+  // Default value. Not sent by the service.
+  EXCLUSION_REASON_UNSPECIFIED = 0;
+
+  // The component, or a component it is set through, reports an error or
+  // stopped sending telemetry.
+  EXCLUSION_REASON_UNHEALTHY = 1;
+
+  // The operational mode of the component, or of a component it is set
+  // through, is one the service doesn't set the power of, e.g. telemetry only,
+  // or control only, which sends no telemetry to base a setpoint on. See
+  // `operational_mode`.
+  EXCLUSION_REASON_OPERATIONAL_MODE = 2;
+}

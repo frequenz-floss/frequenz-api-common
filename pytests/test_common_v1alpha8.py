@@ -158,6 +158,24 @@ def test_module_import_microgrid_communication_components() -> None:
     assert communication_components_pb2_grpc is not None
 
 
+def test_module_import_microgrid_pools() -> None:
+    """Test that the modules can be imported."""
+    # pylint: disable=import-outside-toplevel
+    from frequenz.api.common.v1alpha8.microgrid import pools
+
+    assert pools is not None
+
+    # pylint: disable=import-outside-toplevel
+    from frequenz.api.common.v1alpha8.microgrid.pools import power_pb2
+
+    assert power_pb2 is not None
+
+    # pylint: disable=import-outside-toplevel
+    from frequenz.api.common.v1alpha8.microgrid.pools import power_pb2_grpc
+
+    assert power_pb2_grpc is not None
+
+
 def test_module_import_location() -> None:
     """Test that the modules can be imported."""
     # pylint: disable=import-outside-toplevel
